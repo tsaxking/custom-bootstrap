@@ -1,5 +1,10 @@
 
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_EmailInputOptions}
+ */
 type CBS_EmailInputOptions = {
     classes?: string[];
     id?: string;
@@ -9,7 +14,20 @@ type CBS_EmailInputOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_EmailInput
+ * @typedef {CBS_EmailInput}
+ * @extends {CBS_Input}
+ */
 class CBS_EmailInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_EmailInput.
+     *
+     * @constructor
+     * @param {?CBS_EmailInputOptions} [options]
+     */
     constructor(options?: CBS_EmailInputOptions) {
         super(options);
 

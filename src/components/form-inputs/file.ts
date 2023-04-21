@@ -1,4 +1,9 @@
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_FileInputOptions}
+ */
 type CBS_FileInputOptions = {
     classes?: string[];
     id?: string;
@@ -8,7 +13,20 @@ type CBS_FileInputOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_FileInput
+ * @typedef {CBS_FileInput}
+ * @extends {CBS_Input}
+ */
 class CBS_FileInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_FileInput.
+     *
+     * @constructor
+     * @param {?CBS_FileInputOptions} [options]
+     */
     constructor(options?: CBS_FileInputOptions) {
         super(options);
 

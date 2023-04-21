@@ -1,5 +1,10 @@
 
 
+/**
+ * Options for CBS_ListItem
+ *
+ * @typedef {CBS_ListItemOptions}
+ */
 type CBS_ListItemOptions = {
     classes?: string[];
     id?: string;
@@ -10,7 +15,20 @@ type CBS_ListItemOptions = {
 }
 
 
+/**
+ * Item for CBS_List
+ *
+ * @class CBS_ListItem
+ * @typedef {CBS_ListItem}
+ * @extends {CBS_Component}
+ */
 class CBS_ListItem extends CBS_Component {
+    /**
+     * Creates an instance of CBS_ListItem
+     *
+     * @constructor
+     * @param {?CBS_ListItemOptions} [options]
+     */
     constructor(options?: CBS_ListItemOptions) {
         super(options);
 
@@ -29,7 +47,6 @@ class CBS_ListItem extends CBS_Component {
         this.el = document.createElement('li');
     }
 }
-
 
 
 CBS.addElement('list-item', CBS_ListItem);

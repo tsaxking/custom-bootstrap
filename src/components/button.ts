@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_ButtonOptions}
+ */
 type CBS_ButtonOptions = {
     classes?: string[];
     id?: string;
@@ -14,7 +19,20 @@ type CBS_ButtonOptions = {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_ButtonContent
+ * @typedef {CBS_ButtonContent}
+ * @extends {CBS_Element}
+ */
 class CBS_ButtonContent extends CBS_Element {
+    /**
+     * Creates an instance of CBS_ButtonContent.
+     *
+     * @constructor
+     * @param {?CBS_Options} [options]
+     */
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -23,18 +41,41 @@ class CBS_ButtonContent extends CBS_Element {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_Button
+ * @typedef {CBS_Button}
+ * @extends {CBS_Component}
+ */
 class CBS_Button extends CBS_Component {
     // options: CBS_ButtonOptions = {};
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_NodeContainer}
+     */
     components: CBS_NodeContainer = {
         content: new CBS_ButtonContent()
     };
 
+    /**
+     * Creates an instance of CBS_Button.
+     *
+     * @constructor
+     * @param {?CBS_ButtonOptions} [options]
+     */
     constructor(options?: CBS_ButtonOptions) {
         super(options);
 
         this.el = document.createElement('button');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ButtonOptions}
+     */
     set options(options: CBS_ButtonOptions) {
         super.options = options;
 
@@ -59,18 +100,36 @@ class CBS_Button extends CBS_Component {
         }
     }
 
+    /**
+     * Description placeholder
+     */
     disable() {
         this.el.setAttribute('disabled', 'disabled');
     }
 
+    /**
+     * Description placeholder
+     */
     enable() {
         this.el.removeAttribute('disabled');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {boolean}
+     */
     get enabled() {
         return !this.disabled;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {*}
+     */
     get disabled() {
         return this.el.hasAttribute('disabled');
     }

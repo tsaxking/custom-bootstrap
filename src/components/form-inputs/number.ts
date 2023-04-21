@@ -4,6 +4,11 @@
 
 
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_NumberInputOptions}
+ */
 type CBS_NumberInputOptions = {
     classes?: string[];
     id?: string;
@@ -13,7 +18,20 @@ type CBS_NumberInputOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_NumberInput
+ * @typedef {CBS_NumberInput}
+ * @extends {CBS_Input}
+ */
 class CBS_NumberInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_NumberInput.
+     *
+     * @constructor
+     * @param {?CBS_NumberInputOptions} [options]
+     */
     constructor(options?: CBS_NumberInputOptions) {
         super(options);
 

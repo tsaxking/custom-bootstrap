@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_HeadingOptions}
+ */
 type CBS_HeadingOptions = {
     classes?: string[];
     id?: string;
@@ -7,13 +12,39 @@ type CBS_HeadingOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_Heading
+ * @typedef {CBS_Heading}
+ * @extends {CBS_Text}
+ */
 class CBS_Heading extends CBS_Text {
+    /**
+     * Creates an instance of CBS_Heading.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H1
+ * @typedef {CBS_H1}
+ * @extends {CBS_Heading}
+ */
 class CBS_H1 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H1.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 
@@ -21,7 +52,20 @@ class CBS_H1 extends CBS_Heading {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H2
+ * @typedef {CBS_H2}
+ * @extends {CBS_Heading}
+ */
 class CBS_H2 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H2.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 
@@ -29,7 +73,20 @@ class CBS_H2 extends CBS_Heading {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H3
+ * @typedef {CBS_H3}
+ * @extends {CBS_Heading}
+ */
 class CBS_H3 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H3.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 
@@ -37,7 +94,20 @@ class CBS_H3 extends CBS_Heading {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H4
+ * @typedef {CBS_H4}
+ * @extends {CBS_Heading}
+ */
 class CBS_H4 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H4.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 
@@ -45,7 +115,20 @@ class CBS_H4 extends CBS_Heading {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H5
+ * @typedef {CBS_H5}
+ * @extends {CBS_Heading}
+ */
 class CBS_H5 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H5.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 
@@ -53,7 +136,20 @@ class CBS_H5 extends CBS_Heading {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_H6
+ * @typedef {CBS_H6}
+ * @extends {CBS_Heading}
+ */
 class CBS_H6 extends CBS_Heading {
+    /**
+     * Creates an instance of CBS_H6.
+     *
+     * @constructor
+     * @param {?CBS_HeadingOptions} [options]
+     */
     constructor(options?: CBS_HeadingOptions) {
         super(options);
 

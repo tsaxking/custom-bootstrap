@@ -1,5 +1,8 @@
-
-
+/**
+ * Options for the CBS_List component
+ *
+ * @typedef {CBS_ListOptions}
+ */
 type CBS_ListOptions = {
     classes?: string[];
     id?: string;
@@ -12,7 +15,20 @@ type CBS_ListOptions = {
 }
 
 
+/**
+ * <ul> or <ol> element as a component
+ *
+ * @class CBS_List
+ * @typedef {CBS_List}
+ * @extends {CBS_Component}
+ */
 class CBS_List extends CBS_Component {
+    /**
+     * Creates an instance of CBS_List
+     *
+     * @constructor
+     * @param {?CBS_ListOptions} [options]
+     */
     constructor(options?: CBS_ListOptions) {
         super(options);
 
@@ -35,6 +51,12 @@ class CBS_List extends CBS_Component {
         }
     }
 
+    /**
+     * Sets the options for the CBS_List component
+     * Calls the super method and then sets the element to either an <ol> or <ul> element
+     *
+     * @type {CBS_ListOptions}
+     */
     set options(options: CBS_ListOptions) {
         super.options = options;
 
@@ -45,6 +67,11 @@ class CBS_List extends CBS_Component {
         }
     }
 
+    /**
+     * Changes element to an <ol> element or <ul> element
+     *
+     * @type {boolean}
+     */
     set ordered(ordered: boolean) {
         this.options = {
             ...this.options,
@@ -52,6 +79,11 @@ class CBS_List extends CBS_Component {
         };
     }
 
+    /**
+     * Returns whether the element is an <ol> element or <ul> element
+     *
+     * @type {boolean}
+     */
     get ordered(): boolean {
         return this.options?.ordered || false;
     }

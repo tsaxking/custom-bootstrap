@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_ParagraphOptions}
+ */
 type CBS_ParagraphOptions = {
     classes?: string[];
     id?: string;
@@ -8,7 +13,20 @@ type CBS_ParagraphOptions = {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_Paragraph
+ * @typedef {CBS_Paragraph}
+ * @extends {CBS_Text}
+ */
 class CBS_Paragraph extends CBS_Text {
+    /**
+     * Creates an instance of CBS_Paragraph.
+     *
+     * @constructor
+     * @param {?CBS_ParagraphOptions} [options]
+     */
     constructor(options?: CBS_ParagraphOptions) {
         super(options);
 

@@ -17,18 +17,38 @@
 
 
 // Generic types
+/**
+ * Generic types for the library
+ *
+ * @typedef {CBS_NodeContainer}
+ */
 type CBS_NodeContainer = {
     [key: string]: CBS_Node;
 }
 
 // Used for subcomponents
+/**
+ * Used for subcomponents
+ *
+ * @typedef {CBS_ElementContainer}
+ */
 type CBS_ElementContainer = {
     [key: string]: CBS_Element;
 }
 
 // Used for parameters
+/**
+ * Used for parameters
+ *
+ * @typedef {CBS_ParameterValue}
+ */
 type CBS_ParameterValue = string|number|boolean|HTMLElement|undefined|Element|Node;
 
+/**
+ * Used for parameters
+ *
+ * @typedef {CBS_Parameters}
+ */
 type CBS_Parameters = {
     [key: string]: CBS_ParameterValue;
 }
@@ -38,33 +58,121 @@ type CBS_Parameters = {
 
 
 // Is not currently used, but may be useful in the future?
+/**
+ * Description placeholder
+ *
+ * @interface CBS_ElementNameMap
+ * @typedef {CBS_ElementNameMap}
+ */
 interface CBS_ElementNameMap {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_AudioCard}
+     */
     'audio': CBS_AudioCard;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Video}
+     */
     'video': CBS_Video;
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Modal}
+     */
     'modal': CBS_Modal;
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Card}
+     */
     'card': CBS_Card;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Form}
+     */
     'form': CBS_Form;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_List}
+     */
     'list': CBS_List;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Progress}
+     */
     'progress-bar': CBS_Progress;
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_CheckboxInput}
+     */
     'checkbox': CBS_CheckboxInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_RadioInput}
+     */
     'radio': CBS_RadioInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Input}
+     */
     'input': CBS_Input;
-    'textarea': CBS_TextAreaInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_TextareaInput}
+     */
+    'textarea': CBS_TextareaInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Button}
+     */
     'button': CBS_Button;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_SelectInput}
+     */
     'select': CBS_SelectInput;
 
 }
 
 
 // TODO: Add all the elements to this interface
+/**
+ * Description placeholder
+ *
+ * @interface CBS
+ * @typedef {CBS}
+ */
 interface CBS {
+    /**
+     * Description placeholder
+     *
+     * @template K
+     * @param {K} tagName
+     * @returns {CBS_ElementNameMap[K]}
+     */
     createElement<K extends keyof CBS_ElementNameMap>(tagName: K): CBS_ElementNameMap[K];
 }
 
-// Selector object returned by CustomBootstrap.parseSelector()s
+/**
+ * Selector object returned by CustomBootstrap.parseSelector()
+ *
+ * @typedef {Selector}
+ */
 type Selector = {
     tag: string;
     id?: string;
@@ -74,16 +182,28 @@ type Selector = {
     };
 }
 
-// Not currently used, but it's for someMethod() to return the constructor, not the element
+/**
+ * Not currently used, but it's for someMethod() to return the constructor, not the element
+ *
+ * @typedef {CBS_ElementConstructorMap}
+ */
 type CBS_ElementConstructorMap = {
     [key: string]: new (options?: CBS_Options) => CBS_Element;
 }
 
+/**
+ * Container for all of the CustomBootstrap library
+ *
+ * @class CustomBootstrap
+ * @typedef {CustomBootstrap}
+ */
 class CustomBootstrap {
     /**
-     * 
-     * @param {string} selector Css selector string (includes custom tag names)
-     * @returns {Selector} object
+     * Parses a string into a selector object
+     *
+     * @static
+     * @param {string} selector
+     * @returns {Selector}
      */
     static parseSelector(selector: string): Selector {
         selector = selector.trim();
@@ -133,6 +253,11 @@ class CustomBootstrap {
 
     // all of these are added when the constructor is created, so I commented them out
     // However, I may want to change this and I don't want to rewrite all of this
+    /**
+     * Elements contained in the CustomBootstrap library
+     *
+     * @type {CBS_ElementConstructorMap}
+     */
     #elements: CBS_ElementConstructorMap = {
         // // media
         // 'audio': CBS_Audio,
@@ -190,9 +315,11 @@ class CustomBootstrap {
     };
 
     /**
-     * 
-     * @param {string} name Name of the element (tag name for parseSelector())
-     * @param {CBS_Element} element Constructor of the custom element
+     * Adds an element to the CustomBootstrap library
+     *
+     * @param {string} name
+     * @param {new (options?: CBS_Options) => CBS_Element} element
+     * @returns {(CBS_Element) => void}
      */
     addElement(name: string, element: new (options?: CBS_Options) => CBS_Element) {
         this.#elements[name] = element;
@@ -202,10 +329,11 @@ class CustomBootstrap {
 
 
     /**
-     * 
-     * @param {string} selector CSS Selector string (includes custom tag names)
-     * @param {CBS_Options} options (optional) Options for the element 
-     * @returns {CBS_Element} The element
+     * Creates an element from a selector string
+     *
+     * @param {string} selector
+     * @param {?CBS_Options} [options]
+     * @returns {CBS_Element}
      */
     createElement(selector: string, options?: CBS_Options): CBS_Element {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
@@ -227,9 +355,10 @@ class CustomBootstrap {
     }
 
     /**
-     * 
-     * @param {string} text HTML text to be parsed into an element
-     * @returns {ChildNode|null} The element
+     * Creates an element from an html string
+     *
+     * @param {string} text
+     * @returns {(ChildNode|null)}
      */
     createElementFromText(text: string): ChildNode|null {
         const div = document.createElement('div');
@@ -240,9 +369,12 @@ class CustomBootstrap {
 
 
     /**
-     * 
-     * @param {string} message Message to be displayed in the alert
-     * @returns {Promise<void>} Promise that resolves when the alert is closed
+     * Replacement for alert() that uses modals
+     * Returns a promise that resolves when the modal is closed
+     *
+     * @async
+     * @param {*} message
+     * @returns {Promise<void>}
      */
     async alert(message: any): Promise<void> {
         return new Promise((res, rej) => {
@@ -275,9 +407,12 @@ class CustomBootstrap {
     }
 
     /**
-     * 
-     * @param {string} message Message to be displayed in the confirm
-     * @returns {Promise<boolean>} Promise that resolves to true if the user clicks yes, false if the user clicks no
+     * Replacement for confirm() that uses modals
+     * Returns a promise that resolves to true if the user clicks Okay, false if the user clicks Cancel
+     *
+     * @async
+     * @param {*} message
+     * @returns {Promise<boolean>}
      */
     async confirm(message: any): Promise<boolean> {
         return new Promise((res, rej) => {
@@ -285,13 +420,13 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            yes.subcomponents.content.append('Yes');
+            yes.subcomponents.content.append('Okay');
 
             const no = new CBS_Button({
                 color: 'secondary'
             });
 
-            no.subcomponents.content.append('No');
+            no.subcomponents.content.append('Cancel');
 
             const modal = new CBS_Modal({
                 buttons: [
@@ -325,9 +460,11 @@ class CustomBootstrap {
     }
 
     /**
-     * 
-     * @param {CBS_Form} form Form to be displayed in the modal
-     * @returns {Promise<any>} Promise that resolves to the form value when the user clicks submit
+     * Returns a promise that resolves to the value of the form input if the user clicks Submit, null if the user clicks Cancel
+     *
+     * @async
+     * @param {CBS_Form} form
+     * @returns {Promise<any>}
      */
     async modalForm(form: CBS_Form): Promise<any> {
         return new Promise((res, rej) => {
@@ -366,18 +503,22 @@ class CustomBootstrap {
             //     res(form.value);
             // });
 
-            // modal.on('hidden.bs.modal', () => res(form.value));
-            // modal.on('destroyed', () => res(form.value));
+            // modal.on('hidden.bs.modal', () => res(null));
+            // modal.on('destroyed', () => res(null));
             modal.show();
         });
     }
 
+
     /**
-     * 
-     * @param {string} message Message to be displayed in the prompt
-     * @returns {Promise<string>} Promise that resolves to the user input when the user clicks submit
+     * Replacement for prompt() that uses modals
+     * Returns a promise that resolves to the value of the input if the user clicks Okay, null if the user clicks Cancel
+     *
+     * @async
+     * @param {?*} [message]
+     * @returns {Promise<string|null>}
      */
-    async prompt(message?: any): Promise<string> {
+    async prompt(message?: any): Promise<string|null> {
         return new Promise((res, rej) => {
             const ok = new CBS_Button({
                 color: 'primary'
@@ -404,12 +545,17 @@ class CustomBootstrap {
                 res(input.value);
             });
 
-            modal.on('hidden.bs.modal', () => res(input.value));
-            modal.on('destroyed', () => res(input.value));
+            modal.on('hidden.bs.modal', () => res(null));
+            modal.on('destroyed', () => res(null));
             modal.show();
         });
     }
 }
 
 
+/**
+ * The global CustomBootstrap instance
+ *
+ * @type {CustomBootstrap}
+ */
 const CBS = new CustomBootstrap();

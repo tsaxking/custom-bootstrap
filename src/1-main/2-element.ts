@@ -1,22 +1,87 @@
+/**
+ * Generic Node
+ *
+ * @typedef {CBS_Node}
+ */
 type CBS_Node = CBS_Element|Node|string;
 
 // used in CBS_Element.components
+/**
+ * Generic NodeMap
+ *
+ * @typedef {CBS_NodeMap}
+ */
 type CBS_NodeMap = CBS_Node[];
 
 // Passed into every CBS_Element constructor
-class CBS_Options {
+/**
+ * Generic options object
+ *
+ * @class CBS_Options
+ * @typedef {CBS_Options}
+ */
+type CBS_Options = {
+    /**
+     * Classes to be added to the element
+     *
+     * @type {?string[]}
+     */
     classes?: string[];
+    /**
+     * Id to be added to the element
+     *
+     * @type {?string}
+     */
     id?: string;
+    /**
+     * Style to be added to the element
+     *
+     * @type {?object}
+     */
     style?: object;
+    /**
+     * Attributes to be added to the element
+     *
+     * @type {?object}
+     */
     attributes?: {
         [key: string]: string;
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_PropertyMap}
+ */
+type CBS_PropertyMap = {
+    [key: string]: number|undefined;
+}
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_Properties}
+ */
+type CBS_Properties = {
+    padding: CBS_PropertyMap;
+    margin: CBS_PropertyMap;
+}
+
+
+/**
+ * Element container
+ *
+ * @class CBS_Element
+ * @typedef {CBS_Element}
+ * @extends {CustomBootstrap}
+ */
 class CBS_Element extends CustomBootstrap {
     /**
-     * The templates that can be used to create new elements built off of this class
+     * All templates for this class
+     *
+     * @static
+     * @type {{ [key: string]: CBS_Element }}
      */
     static #templates: { [key: string]: CBS_Element } = {
         'default': new CBS_Element()
@@ -24,11 +89,15 @@ class CBS_Element extends CustomBootstrap {
 
 
     /**
-     * This is currently in progress and is not ready for use
-     * 
+     * Generates a class from the template
      * @deprecated
-     * @param type key of the template to use
-     * @returns a new class that extends the template
+     * This is currently in progress and is not ready for use
+     *
+     * @todo // TODO: Finish this
+     * 
+     * @static
+     * @param {string} type
+     * @returns {new () => CBS_Element}
      */
     static classFromTemplate(type: string): new () => CBS_Element {
         const template = this.templates[type] || this.templates['default'];
@@ -55,10 +124,12 @@ class CBS_Element extends CustomBootstrap {
     }
 
     /**
-     * Generates a new element from a template
-     * @param type Key of the template to use
-     * @param options Options to pass to the new element
-     * @returns a new element built off of the template
+     * Generates a premade template from a string
+     *
+     * @static
+     * @param {string} type
+     * @param {?CBS_Options} [options]
+     * @returns {CBS_Element}
      */
     static fromTemplate(type: string, options?: CBS_Options): CBS_Element {
         const el = (this.templates[type] || this.templates['default']).clone(true);
@@ -66,15 +137,26 @@ class CBS_Element extends CustomBootstrap {
         return el;
     }
 
+    /**
+     * All templates for this class
+     *
+     * @private
+     * @static
+     * @readonly
+     * @type {{ [key: string]: CBS_Element }}
+     */
     private static get templates(): { [key: string]: CBS_Element } {
         return this.#templates;
     }
 
     /**
-     * Creates a new template to be used by the class
-     * @param type key of the template to add
-     * @param template the template to add
-     * @returns {boolean} true if the template was added, false if the template already exists
+     * Adds a template to the class
+     *
+     * @public
+     * @static
+     * @param {string} type
+     * @param {CBS_Element} template
+     * @returns {boolean}
      */
     public static addTemplate(type: string, template: CBS_Element): boolean {
         if (template.constructor.name !== this.name) {
@@ -92,17 +174,422 @@ class CBS_Element extends CustomBootstrap {
 
 
     // default properties
+    /**
+     * Parameters (used in writing/reading)
+     *
+     * @type {CBS_Parameters}
+     */
     #parameters: CBS_Parameters = {};
+    /**
+     * The element this class represents
+     *
+     * @type {HTMLElement}
+     */
     _el: HTMLElement = document.createElement('div');
+    /**
+     * All listeners for this element
+     *
+     * @type {CBS_Listener[]}
+     */
     listeners: CBS_Listener[] = [];
+    /**
+     * All events and their respective callbacks (used in dispatching)
+     *
+     * @type {{ [key: string]: CBS_ListenerCallback }}
+     */
     #events: { [key: string]: CBS_ListenerCallback } = {};
+    /**
+     * All components
+     *
+     * @type {CBS_NodeMap}
+     */
     #components: CBS_NodeMap = [];
+    /**
+     * All subcomponents (This is so elements can have children that are also components)
+     *
+     * @type {CBS_NodeContainer}
+     */
     subcomponents: CBS_NodeContainer = {};
+    /**
+     * All options for this element
+     *
+     * @type {CBS_Options}
+     */
     _options: CBS_Options = {};
 
 
+    get components(): CBS_NodeMap {
+        return this.#components;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    // █▀▄ ▄▀▄ █▀▄ █▀▄ █ █▄ █ ▄▀     ▄▀▄ █▄ █ █▀▄    █▄ ▄█ ▄▀▄ █▀▄ ▄▀  █ █▄ █ 
+    // █▀  █▀█ █▄▀ █▄▀ █ █ ▀█ ▀▄█    █▀█ █ ▀█ █▄▀    █ ▀ █ █▀█ █▀▄ ▀▄█ █ █ ▀█ 
+
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
+    #padding: CBS_PropertyMap = {};
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
+    #margin: CBS_PropertyMap = {};
+
+    /**
+     * Description placeholder
+     *
+     * @private
+     * @param {string} paddingOrMargin
+     * @param {string} key
+     * @param {(number|undefined)} value
+     */
+    private setPaddingOrMargin(paddingOrMargin: string, key: string, value: number|undefined) {
+        const properties = [
+            's',
+            'e',
+            't',
+            'b',
+
+            'x',
+            'y'
+        ];
+
+        const set = (property: CBS_PropertyMap, key: string, value: number|undefined) => {
+            const abbr: string = paddingOrMargin[0];
+
+            this.removeClass(`${abbr}-${property.global}`); // removes glbal property
+
+            if (key === 'global') {
+                properties.forEach(p => {
+                    this.removeClass(`${abbr}${p}-${property[p]}`)
+
+                    delete property[p];
+                });
+
+                property.global = value;
+                this.addClass(`${abbr}-${value}`);
+            } else {
+                delete property.global;
+                this.removeClass(`${abbr}${key}-${property[key]}`); // removes the current property
+                property[key] = value;
+                this.addClass(`${abbr}${key}-${value}`);
+            }
+        }
+
+        switch (paddingOrMargin) {
+            case 'padding':
+                set(this.#padding, key, value);
+                break;
+            case 'margin':
+                set(this.#margin, key, value);
+                break;
+        }
+    }
+
+    set allPadding(padding: CBS_PropertyMap) {
+        this.#padding = padding;
+
+        this.paddingS = padding.s;
+        this.paddingE = padding.e;
+        this.paddingT = padding.t;
+        this.paddingB = padding.b;
+        this.paddingX = padding.x;
+        this.paddingY = padding.y;
+        this.padding = padding.global;
+    }
+
+    get allPadding(): CBS_PropertyMap {
+        return this.#padding;
+    }
+
+    set allMargin(margin: CBS_PropertyMap) {
+        this.#margin = margin;
+
+        this.marginS = margin.s;
+        this.marginE = margin.e;
+        this.marginT = margin.t;
+        this.marginB = margin.b;
+        this.marginX = margin.x;
+        this.marginY = margin.y;
+        this.margin = margin.global;
+    }
+
+    get allMargin(): CBS_PropertyMap {
+        return this.#margin;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set padding(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 'global', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingX(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 'x', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingY(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 'y', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingS(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 's', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingE(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 'e', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingT(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 't', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set paddingB(value: number|undefined) {
+        this.setPaddingOrMargin('padding', 'b', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set margin(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 'global', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginX(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 'x', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginY(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 'y', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginS(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 's', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginE(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 'e', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginT(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 't', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set marginB(value: number|undefined) {
+        this.setPaddingOrMargin('margin', 'b', value);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get padding(): number|undefined {
+        return this.#padding.global;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingX(): number|undefined {
+        return this.#padding.x;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingY(): number|undefined {
+        return this.#padding.y;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingS(): number|undefined {
+        return this.#padding.s;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingE(): number|undefined {
+        return this.#padding.e;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingT(): number|undefined {
+        return this.#padding.t;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get paddingB(): number|undefined {
+        return this.#padding.b;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get margin(): number|undefined {
+        return this.#margin.global;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get marginX(): number|undefined {
+        return this.#margin.x;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get marginY(): number|undefined {
+        return this.#margin.y;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get marginS(): number|undefined {
+        return this.#margin.s;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get marginE(): number|undefined {
+        return this.#margin.e;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(number|undefined)}
+     */
+    get marginT(): number|undefined {
+        return this.#margin.t;
+    }
+
+
+
+
+
+
+
+    
+    // ▄▀▀ █ █ ▄▀▀ ▀█▀ ▄▀▄ █▄ ▄█    ██▀ █ █ ██▀ █▄ █ ▀█▀ ▄▀▀ 
+    // ▀▄▄ ▀▄█ ▄█▀  █  ▀▄▀ █ ▀ █    █▄▄ ▀▄▀ █▄▄ █ ▀█  █  ▄█▀ 
 
     // custom events on all elements
+    /**
+     * All custom events for this element
+     *
+     * @type {string[]}
+     */
     #customEvents: string[] = [
         // DOM Events
         'el:change',
@@ -122,53 +609,71 @@ class CBS_Element extends CustomBootstrap {
     ];
 
 
+    /**
+     * Gets all custom events for this element
+     *
+     * @static
+     * @type {string[]}
+     */
     static get customEvents(): string[] {
         return this.prototype.#customEvents;
     }
 
+    /**
+     * Sets all custom events for this element
+     *
+     * @static
+     * @type {{}}
+     */
     static set customEvents(events: string[]) {
         this.prototype.#customEvents = events;
     }
 
     /**
-     * Add a single custom event to the prototype
-     * @param {string} event string
+     * Adds a single custom event to the prototype
+     *
+     * @static
+     * @param {string} event
      */
     static addCustomEvent(event: string) {
         this.prototype.#customEvents.push(event);
     }
 
     /**
-     * Remove a single custom event from the prototype
-     * @param {string} event string
+     * Removes a single custom event from the prototype
+     *
+     * @static
+     * @param {string} event
      */
     static removeCustomEvent(event: string) {
         this.prototype.#customEvents = this.customEvents.filter(e => e !== event);
     }
 
     /**
-     * Add multiple custom events to the prototype
-     * @param {...string} events strings
+     * Adds multiple custom events to the prototype
+     *
+     * @static
+     * @param {...string[]} events
      */
     static addCustomEvents(...events: string[]) {
         this.prototype.#customEvents.push(...events);
     }
 
     /**
-     * Remove multiple custom events from the prototype
-     * @param {...string} events strings
+     * Removes multiple custom events from the prototype
+     *
+     * @static
+     * @param {...string[]} events
      */
     static removeCustomEvents(...events: string[]) {
         this.prototype.#customEvents = this.customEvents.filter(e => !events.includes(e));
     }
 
-
-
-
-
     /**
-     * 
-     * @param {CBS_Options} options
+     * Creates an instance of CBS_Element
+     *
+     * @constructor
+     * @param {?CBS_Options} [options]
      */
     constructor(options?: CBS_Options) {
         super();
@@ -176,10 +681,20 @@ class CBS_Element extends CustomBootstrap {
         this.options = options || {};
     }
 
+    /**
+     * Gets the options for this element
+     *
+     * @type {CBS_Options}
+     */
     get options(): CBS_Options {
         return this._options;
     }
 
+    /**
+     * Sets the options for this element and renders
+     *
+     * @type {CBS_Options}
+     */
     set options(options: CBS_Options) {
         if (!this._el) return;
 
@@ -210,13 +725,32 @@ class CBS_Element extends CustomBootstrap {
         this.trigger('options:change');
     }
 
+    /**
+     * Gets the element this class represents
+     *
+     * @type {HTMLElement}
+     */
     get el(): HTMLElement {
         return this._el;
     }
 
+    /**
+     * Sets the element this class represents
+     * Also clears all elements
+     * Also adds all events to the element
+     * Also triggers the element:change event
+     * Also renders the element
+     * Also sets the padding and margin
+     *
+     * @type {HTMLElement}
+     */
     set el(el: HTMLElement) {
+        this.clearElements();
+
         this._el = el;
         this.options = this._options;
+        this.allPadding = this.allPadding;
+        this.allMargin = this.allMargin;
 
         Object.entries(this.#events).forEach(([event, callback]) => {
             this._el.addEventListener(event, callback);
@@ -229,6 +763,17 @@ class CBS_Element extends CustomBootstrap {
 
 
 
+
+
+    // ██▀ █   ██▀ █▄ ▄█ ██▀ █▄ █ ▀█▀ ▄▀▀ 
+    // █▄▄ █▄▄ █▄▄ █ ▀ █ █▄▄ █ ▀█  █  ▄█▀ 
+
+
+    /**
+     * Appends an element to this element
+     *
+     * @param {...CBS_NodeMap} elements
+     */
     append(...elements: CBS_NodeMap) {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
@@ -245,6 +790,11 @@ class CBS_Element extends CustomBootstrap {
         this.render();
     }
 
+    /**
+     * Removes an element from this element
+     *
+     * @param {...CBS_NodeMap} elements
+     */
     removeElement(...elements: CBS_NodeMap) {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
@@ -259,6 +809,11 @@ class CBS_Element extends CustomBootstrap {
         this.#components = this.#components.filter(e => !elements.includes(e));
     }
 
+    /**
+     * Appends an element at the start of this element
+     *
+     * @param {...CBS_NodeMap} elements
+     */
     prepend(...elements: CBS_NodeMap) {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
@@ -275,6 +830,12 @@ class CBS_Element extends CustomBootstrap {
         this.render();
     }
 
+    /**
+     * Replace an element with another element
+     *
+     * @param {CBS_Node} nodeToReplace
+     * @param {...CBS_NodeMap} elementsToAdd
+     */
     replace(nodeToReplace: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
         if (this.#components.includes(nodeToReplace)) {
             const index = this.#components.indexOf(nodeToReplace);
@@ -285,6 +846,12 @@ class CBS_Element extends CustomBootstrap {
         this.render();
     }
 
+    /**
+     * Inserts an element before another element
+     *
+     * @param {CBS_Node} nodeToInsertBefore
+     * @param {...CBS_NodeMap} elementsToAdd
+     */
     insertBefore(nodeToInsertBefore: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
         if (this.#components.includes(nodeToInsertBefore)) {
             const index = this.#components.indexOf(nodeToInsertBefore);
@@ -318,6 +885,12 @@ class CBS_Element extends CustomBootstrap {
         this.render();
     }
 
+    /**
+     * Inserts an element after another element
+     *
+     * @param {CBS_Node} nodeToInsertAfter
+     * @param {...CBS_NodeMap} elementsToAdd
+     */
     insertAfter(nodeToInsertAfter: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
         if (this.#components.includes(nodeToInsertAfter)) {
             const index = this.#components.indexOf(nodeToInsertAfter);
@@ -331,10 +904,30 @@ class CBS_Element extends CustomBootstrap {
         }
     }
 
+    /**
+     * Description placeholder
+     */
+    clearElements() {
+        this.#components = [];
+        this._el.innerHTML = '';
+    }
+
+    /**
+     * Gets all children of this element as their repspective classes
+     *
+     * @readonly
+     * @type {CBS_NodeMap}
+     */
     get children(): CBS_NodeMap {
         return this.#components;
     }
 
+    /**
+     * Gets the parent of this element
+     *
+     * @readonly
+     * @type {(HTMLElement|null)}
+     */
     get parent(): HTMLElement|null {
         return this._el.parentElement;
     }
@@ -352,6 +945,9 @@ class CBS_Element extends CustomBootstrap {
     // █▀▄ ▄▀▄ █▀▄ ▄▀▄ █▄ ▄█ ██▀ ▀█▀ ██▀ █▀▄ ▄▀▀ 
     // █▀  █▀█ █▀▄ █▀█ █ ▀ █ █▄▄  █  █▄▄ █▀▄ ▄█▀ 
 
+    /**
+     * Creates all <span> and <div> to replace {{}} in the HTML
+     */
     render() {
         const { parameters } = this;
         
@@ -379,12 +975,17 @@ class CBS_Element extends CustomBootstrap {
             });
         }
 
-        Object.entries(parameters).forEach(([key, value]) => {
-            this.write(key, value);
-        });
+        this.writeAll();
     }
     
-    write(key: string, value: CBS_ParameterValue) {
+    /**
+     * Writes a value to a parameter
+     *
+     * @param {string} key
+     * @param {CBS_ParameterValue} value
+     * @param {boolean} [trigger=true]
+     */
+    write(key: string, value: CBS_ParameterValue, trigger: boolean = true) {
         if (this._el) {
             this._el.querySelectorAll(`[data-cbs-${this.constructor.name}="${key}"]`).forEach(el => {
                 if (typeof value === 'string' || typeof value === 'number') {
@@ -405,10 +1006,20 @@ class CBS_Element extends CustomBootstrap {
 
             this.parameters[key] = value;
 
-            this.trigger('param:write');
+            this.trigger(`parameter.write:${key}`);
+            if (trigger) this.trigger('parameters.write');
         }
     }
 
+    /**
+     * Reads a parameter
+     * @deprecated
+     * I don't think this is useful at all
+     *
+     * @param {string} param
+     * @param {boolean} [asHTML=false]
+     * @returns {CBS_ParameterValue[]}
+     */
     read(param: string, asHTML:boolean = false): CBS_ParameterValue[] {
         if (this._el) {
             this.trigger('param:read');
@@ -420,13 +1031,33 @@ class CBS_Element extends CustomBootstrap {
         return [];
     }
 
+    /**
+     * Gets all parameters
+     *
+     * @type {CBS_Parameters}
+     */
     get parameters(): CBS_Parameters {
         return this.#parameters;
     }
 
+    /**
+     * Sets all parameters and writs them to the element
+     *
+     * @type {CBS_Parameters}
+     */
     set parameters(params: CBS_Parameters) {
         this.#parameters = params;
-        this.render();
+    }
+
+    /**
+     * Writes all parameters to the element
+     */
+    writeAll() {
+        Object.entries(this.parameters).forEach(([key, value]) => {
+            this.write(key, value, false);
+        });
+
+        this.trigger('parameters.write');
     }
 
 
@@ -450,6 +1081,13 @@ class CBS_Element extends CustomBootstrap {
     // █   █ ▄▀▀ ▀█▀ ██▀ █▄ █ ██▀ █▀▄ ▄▀▀ 
     // █▄▄ █ ▄█▀  █  █▄▄ █ ▀█ █▄▄ █▀▄ ▄█▀ 
 
+    /**
+     * Adds a listener to the element
+     *
+     * @param {string} event
+     * @param {CBS_ListenerCallback} callback
+     * @param {boolean} [isAsync=false]
+     */
     on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = false) {
         if (!this._el) throw new Error('No element to add listener to');
         if (typeof event !== 'string') throw new Error('Event must be a string');
@@ -485,10 +1123,22 @@ class CBS_Element extends CustomBootstrap {
 
     }
 
+    /**
+     * If the element has a listener for the event
+     *
+     * @param {string} event
+     * @returns {boolean}
+     */
     has(event: string): boolean {
         return !!this.#events[event];
     }
 
+    /**
+     * Removes a listener from the element
+     *
+     * @param {?string} [event]
+     * @param {?CBS_ListenerCallback} [callback]
+     */
     off(event?: string, callback?: CBS_ListenerCallback) {
         if (!this._el) throw new Error('No element to remove event listener from');
 
@@ -526,6 +1176,14 @@ class CBS_Element extends CustomBootstrap {
         }
     }
 
+    /**
+     * Triggers an event on the element (same as dispatch event)
+     *
+     * @async
+     * @param {string} event
+     * @param {?EventInit} [options]
+     * @returns {Promise<boolean>}
+     */
     async trigger(event: string, options?: EventInit): Promise<boolean> {
         return new Promise((res,rej) => {
             if (!this._el) throw new Error('No element to trigger event on');
@@ -550,7 +1208,9 @@ class CBS_Element extends CustomBootstrap {
 
 
 
-
+        
+    // ▄▀  ██▀ █▄ █ ██▀ █▀▄ ▄▀▄ █      █▄ ▄█ ██▀ ▀█▀ █▄█ ▄▀▄ █▀▄ ▄▀▀ 
+    // ▀▄█ █▄▄ █ ▀█ █▄▄ █▀▄ █▀█ █▄▄    █ ▀ █ █▄▄  █  █ █ ▀▄▀ █▄▀ ▄█▀ 
 
 
     /**
@@ -585,6 +1245,9 @@ class CBS_Element extends CustomBootstrap {
         this._el.classList.toggle('d-none');
     }
 
+    /**
+     * Description placeholder
+     */
     destroy() {
         this.trigger('el:destroy');
 
@@ -618,5 +1281,137 @@ class CBS_Element extends CustomBootstrap {
         this.trigger('el:clone');
 
         return clone;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ▄▀▀ █   ▄▀▄ ▄▀▀ ▄▀▀ ██▀ ▄▀▀ 
+    // ▀▄▄ █▄▄ █▀█ ▄█▀ ▄█▀ █▄▄ ▄█▀ 
+
+    /**
+     * Description placeholder
+     *
+     * @param {...string[]} classes
+     */
+    addClass(...classes: string[]) {
+        this.options = {
+            ...this.options,
+            classes: [
+                ...(this.options.classes || []),
+                ...classes
+            ]
+        }
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {...string[]} classes
+     */
+    removeClass(...classes: string[]) {
+        this.options = {
+            ...this.options,
+            classes: this.options.classes?.filter(c => !classes.includes(c))
+        }
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {...string[]} classes
+     */
+    toggleClass(...classes: string[]) {
+        this.options = {
+            ...this.options,
+            classes: this.options.classes?.map(c => {
+                return classes.includes(c) ? c : null;
+            }).filter(c => !!c) as string[]
+        }
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {{}}
+     */
+    get classes() {
+        return this.options.classes || [];
+    }
+
+
+
+
+
+
+
+
+
+    // ▄▀▄ ▀█▀ ▀█▀ █▀▄ █ ██▄ █ █ ▀█▀ ██▀ ▄▀▀ 
+    // █▀█  █   █  █▀▄ █ █▄█ ▀▄█  █  █▄▄ ▄█▀ 
+
+    /**
+     * Description placeholder
+     *
+     * @param {string} name
+     * @param {string} value
+     */
+    setAttribute(name: string, value: string) {
+        this.options = {
+            ...this.options,
+            attributes: {
+                ...this.options.attributes,
+                [name]: value
+            }
+        }
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {string} name
+     */
+    removeAttribute(name: string) {
+        if (this.options.attributes) {
+            delete this.options.attributes[name];
+        }
+
+        this.options = this.options;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {{ [key: string]: string; }}
+     */
+    get attributes() {
+        return this.options.attributes || {};
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {string} name
+     * @returns {string}
+     */
+    getAttribute(name: string) {
+        return this.attributes[name];
     }
 };

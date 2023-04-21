@@ -1,4 +1,9 @@
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_ColorInputOptions}
+ */
 type CBS_ColorInputOptions = {
     classes?: string[];
     id?: string;
@@ -8,7 +13,20 @@ type CBS_ColorInputOptions = {
     }
 };
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_ColorInput
+ * @typedef {CBS_ColorInput}
+ * @extends {CBS_Input}
+ */
 class CBS_ColorInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_ColorInput.
+     *
+     * @constructor
+     * @param {?CBS_ColorInputOptions} [options]
+     */
     constructor(options?: CBS_ColorInputOptions) {
         super(options);
 

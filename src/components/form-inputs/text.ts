@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_TextInputOptions}
+ */
 type CBS_TextInputOptions = {
     classes?: string[];
     id?: string;
@@ -17,7 +22,20 @@ type CBS_TextInputOptions = {
     datalist?: string;
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_TextInput
+ * @typedef {CBS_TextInput}
+ * @extends {CBS_Input}
+ */
 class CBS_TextInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_TextInput.
+     *
+     * @constructor
+     * @param {?CBS_TextInputOptions} [options]
+     */
     constructor(options?: CBS_TextInputOptions) {
         super(options);
 

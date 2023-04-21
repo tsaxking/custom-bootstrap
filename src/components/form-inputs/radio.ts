@@ -1,4 +1,9 @@
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_RadioOptions}
+ */
 type CBS_RadioOptions = {
     classes?: string[];
     id?: string;
@@ -8,7 +13,20 @@ type CBS_RadioOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_RadioInput
+ * @typedef {CBS_RadioInput}
+ * @extends {CBS_Input}
+ */
 class CBS_RadioInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_RadioInput.
+     *
+     * @constructor
+     * @param {?CBS_RadioOptions} [options]
+     */
     constructor(options?: CBS_RadioOptions) {
         super(options);
 
@@ -27,5 +45,9 @@ class CBS_RadioInput extends CBS_Input {
 }
 
 
+class CBS_Radio extends CBS_Input {};
+
+
+class CBS_RadioGroup extends CBS_Input {}
 
 CBS.addElement('input-radio', CBS_RadioInput);

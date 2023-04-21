@@ -3,6 +3,11 @@
 
 
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_TextareaOptions}
+ */
 type CBS_TextareaOptions = {
     classes?: string[];
     id?: string;
@@ -12,7 +17,20 @@ type CBS_TextareaOptions = {
     }
 }
 
-class CBS_TextAreaInput extends CBS_Input {
+/**
+ * Description placeholder
+ *
+ * @class CBS_TextAreaInput
+ * @typedef {CBS_TextareaInput}
+ * @extends {CBS_Input}
+ */
+class CBS_TextareaInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_TextAreaInput.
+     *
+     * @constructor
+     * @param {?CBS_TextareaOptions} [options]
+     */
     constructor(options?: CBS_TextareaOptions) {
         super(options);
 
@@ -29,4 +47,4 @@ class CBS_TextAreaInput extends CBS_Input {
 }
 
 
-CBS.addElement('input-textarea', CBS_TextAreaInput);
+CBS.addElement('input-textarea', CBS_TextareaInput);

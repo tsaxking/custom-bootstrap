@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_AudioOptions}
+ */
 type CBS_AudioOptions = {
     classes?: string[];
     id?: string;
@@ -9,53 +14,125 @@ type CBS_AudioOptions = {
     fadeTime?: number;
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioSource
+ * @typedef {CBS_AudioSource}
+ * @extends {CBS_Element}
+ */
 class CBS_AudioSource extends CBS_Element {
+    /**
+     * Creates an instance of CBS_AudioSource.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
         this.el = document.createElement('source') as HTMLSourceElement;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set src(src: string) {
         (this.el as HTMLSourceElement).src = src;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get src(): string {
         return (this.el as HTMLSourceElement).src;
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioElement
+ * @typedef {CBS_AudioElement}
+ * @extends {CBS_Component}
+ */
 class CBS_AudioElement extends CBS_Component {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         source: new CBS_AudioSource()
     }
 
+    /**
+     * Creates an instance of CBS_AudioElement.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
         this.el = document.createElement('audio');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {number}
+     */
     get fadeTime(): number{
         return (this.options as CBS_AudioOptions)?.fadeTime || 100;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @returns {*}
+     */
     async play() {
         this.volume = 0;
         (this.el as HTMLAudioElement).play();
         this.fadeIn(100).catch(() => {});
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @returns {*}
+     */
     async pause() {
         await this.fadeOut(100).catch(() => {});
         (this.el as HTMLAudioElement).pause();
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @returns {*}
+     */
     async stop() {
         await this.pause();
         this.currentTime = 0;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @param {number} duration
+     * @returns {Promise<void>}
+     */
     async fadeIn(duration: number): Promise<void> {
         return new Promise((resolve, reject) => {
             let volume: number = 0;
@@ -74,6 +151,13 @@ class CBS_AudioElement extends CBS_Component {
         });
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @param {number} duration
+     * @returns {Promise<void>}
+     */
     async fadeOut(duration: number): Promise<void> {
         return new Promise((res, rej) => {
             let interval: number = duration / this.fadeTime;
@@ -90,41 +174,92 @@ class CBS_AudioElement extends CBS_Component {
         });
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     set volume(volume: number) {
         (this.el as HTMLAudioElement).volume = volume;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     get volume(): number {
         return (this.el as HTMLAudioElement).volume;
     }
 
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set src(src: string) {
         (this.subcomponents.source as CBS_AudioSource).src = src;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get src(): string {
         return (this.subcomponents.source as CBS_AudioSource).src;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {boolean}
+     */
     set controls(controls: boolean) {
         (this.el as HTMLAudioElement).controls = controls;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {boolean}
+     */
     get controls(): boolean {
         return (this.el as HTMLAudioElement).controls;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {boolean}
+     */
     set autoplay(autoplay: boolean) {
         (this.el as HTMLAudioElement).autoplay = autoplay;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {boolean}
+     */
     get autoplay(): boolean {
         return (this.el as HTMLAudioElement).autoplay;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     #duration: number = 0;
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {Promise<number>}
+     */
     get duration(): Promise<number> {
         return new Promise((res, rej) => {
             if (this.#duration) {
@@ -138,20 +273,49 @@ class CBS_AudioElement extends CBS_Component {
         });
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     get currentTime(): number {
         return (this.el as HTMLAudioElement).currentTime;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     set currentTime(currentTime: number) {
         (this.el as HTMLAudioElement).currentTime = currentTime;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {boolean}
+     */
     get paused(): boolean {
         return (this.el as HTMLAudioElement).paused;
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioPlayhead
+ * @typedef {CBS_AudioPlayhead}
+ * @extends {CBS_Element}
+ */
 class CBS_AudioPlayhead extends CBS_Element {
+    /**
+     * Creates an instance of CBS_AudioPlayhead.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
@@ -176,11 +340,29 @@ class CBS_AudioPlayhead extends CBS_Element {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioTimeline
+ * @typedef {CBS_AudioTimeline}
+ * @extends {CBS_Component}
+ */
 class CBS_AudioTimeline extends CBS_Component {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         playhead: new CBS_AudioPlayhead()
     }
 
+    /**
+     * Creates an instance of CBS_AudioTimeline.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
@@ -204,12 +386,25 @@ class CBS_AudioTimeline extends CBS_Component {
         this.el = document.createElement('div');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @param {CBS_AudioElement} audio
+     * @returns {*}
+     */
     async update(audio: CBS_AudioElement) {
         let playhead: CBS_AudioPlayhead = this.subcomponents.playhead as CBS_AudioPlayhead;
         let percentage: number = audio.currentTime / (await audio.duration) * 100;
         playhead.el.style.left = `${percentage}%`;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @param {number} clientX
+     * @returns {number}
+     */
     getProgress(clientX: number): number {
         let playhead: CBS_AudioPlayhead = this.subcomponents.playhead as CBS_AudioPlayhead;
         return (clientX - this.el.offsetLeft) / (this.el.offsetWidth - playhead.el.offsetWidth);
@@ -219,7 +414,21 @@ class CBS_AudioTimeline extends CBS_Component {
 CBS_AudioTimeline.addCustomEvent('playhead.move');
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioButton
+ * @typedef {CBS_AudioButton}
+ * @extends {CBS_Element}
+ */
 class CBS_AudioButton extends CBS_Element {
+    /**
+     * Creates an instance of CBS_AudioButton.
+     *
+     * @constructor
+     * @param {string} type
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(type: string, options?: CBS_AudioOptions) {
         super(options);
 
@@ -248,7 +457,19 @@ class CBS_AudioButton extends CBS_Element {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioPlayer
+ * @typedef {CBS_AudioPlayer}
+ * @extends {CBS_Component}
+ */
 class CBS_AudioPlayer extends CBS_Component {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         audio: new CBS_AudioElement(),
         toggleButton: new CBS_AudioButton('toggle'),
@@ -256,6 +477,12 @@ class CBS_AudioPlayer extends CBS_Component {
         timeline: new CBS_AudioTimeline()
     }
 
+    /**
+     * Creates an instance of CBS_AudioPlayer.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
@@ -332,13 +559,31 @@ class CBS_AudioPlayer extends CBS_Component {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioCardBody
+ * @typedef {CBS_AudioCardBody}
+ * @extends {CBS_CardBody}
+ */
 class CBS_AudioCardBody extends CBS_CardBody {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         title: new CBS_H5(),
         subtitle: new CBS_Paragraph(),
         player: new CBS_AudioPlayer()
     }
 
+    /**
+     * Creates an instance of CBS_AudioCardBody.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
@@ -353,12 +598,30 @@ class CBS_AudioCardBody extends CBS_CardBody {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_AudioCard
+ * @typedef {CBS_AudioCard}
+ * @extends {CBS_Card}
+ */
 class CBS_AudioCard extends CBS_Card {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         image: new CBS_Image(),
         body: new CBS_AudioCardBody()
     }
 
+    /**
+     * Creates an instance of CBS_AudioCard.
+     *
+     * @constructor
+     * @param {?CBS_AudioOptions} [options]
+     */
     constructor(options?: CBS_AudioOptions) {
         super(options);
 

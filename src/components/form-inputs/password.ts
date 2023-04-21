@@ -3,6 +3,11 @@
 
 
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_PasswordInputOptions}
+ */
 type CBS_PasswordInputOptions = {
     classes?: string[];
     id?: string;
@@ -12,7 +17,20 @@ type CBS_PasswordInputOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_PasswordInput
+ * @typedef {CBS_PasswordInput}
+ * @extends {CBS_Input}
+ */
 class CBS_PasswordInput extends CBS_Input {
+    /**
+     * Creates an instance of CBS_PasswordInput.
+     *
+     * @constructor
+     * @param {?CBS_PasswordInputOptions} [options]
+     */
     constructor(options?: CBS_PasswordInputOptions) {
         super(options);
 

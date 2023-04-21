@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_ProgressBarOptions}
+ */
 type CBS_ProgressBarOptions = {
     classes?: string[];
     id?: string;
@@ -7,7 +12,20 @@ type CBS_ProgressBarOptions = {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_ProgressBar
+ * @typedef {CBS_ProgressBar}
+ * @extends {CBS_Component}
+ */
 class CBS_ProgressBar extends CBS_Component {
+    /**
+     * Creates an instance of CBS_ProgressBar.
+     *
+     * @constructor
+     * @param {?CBS_ProgressBarOptions} [options]
+     */
     constructor(options?: CBS_ProgressBarOptions) {
         super(options);
 
@@ -36,7 +54,19 @@ class CBS_ProgressBar extends CBS_Component {
     }
 }
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_Progress
+ * @typedef {CBS_Progress}
+ * @extends {CBS_Component}
+ */
 class CBS_Progress extends CBS_Component {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
     subcomponents: CBS_ElementContainer = {
         text: new CBS_Paragraph({
             classes: [
@@ -48,6 +78,12 @@ class CBS_Progress extends CBS_Component {
 
 
 
+    /**
+     * Creates an instance of CBS_Progress.
+     *
+     * @constructor
+     * @param {?CBS_ProgressBarOptions} [options]
+     */
     constructor(options?: CBS_ProgressBarOptions) {
         super(options);
 
@@ -91,6 +127,11 @@ class CBS_Progress extends CBS_Component {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     set progress(progress: number) {
         this.parameters = {
             ...this.parameters,
@@ -110,10 +151,18 @@ class CBS_Progress extends CBS_Component {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
     get progress() {
         return this.parameters.progress as number;
     }
 
+    /**
+     * Description placeholder
+     */
     destroy(): void {
         setTimeout(super.destroy, 1000); // in case the animation doesn't work
 
