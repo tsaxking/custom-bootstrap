@@ -33,15 +33,32 @@ class CBS_DateInput extends CBS_Input {
         this.setAttribute('type', 'date');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get value(): string {
         return (this.el as HTMLInputElement).value;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set value(value: string) {
         (this.el as HTMLInputElement).value = value;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {Date}
+     */
     get mirrorValue(): Date {
+        if (this.getMirrorValue) return this.getMirrorValue(this.value);
         return new Date(this.value);
     }
 }

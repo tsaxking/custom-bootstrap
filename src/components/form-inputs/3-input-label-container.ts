@@ -160,10 +160,20 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
         return (this.subcomponents.input as CBS_Input).mirrorValue;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get formText() {
         return (this.subcomponents.text as CBS_FormText).content;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set formText(content: string) {
         (this.subcomponents.text as CBS_FormText).content = content;
     }

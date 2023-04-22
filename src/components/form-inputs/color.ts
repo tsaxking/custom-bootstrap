@@ -33,6 +33,36 @@ class CBS_ColorInput extends CBS_Input {
         this.addClass('form-control');
         this.setAttribute('type', 'color');
     }
+
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
+    get value() {
+        return (this.el as HTMLInputElement).value;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
+    set value(value: string) {
+        (this.el as HTMLInputElement).value = value;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {*}
+     */
+    get mirrorValue(): any {
+        if (this.getMirrorValue) return this.getMirrorValue(this.value);
+
+        return null;
+    }
 }
 
 

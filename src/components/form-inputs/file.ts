@@ -34,10 +34,19 @@ class CBS_FileInput extends CBS_Input {
         this.setAttribute('type', 'file');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {FileList}
+     */
     get value(): FileList {
         return (this.el as HTMLInputElement).files as FileList;
     }
 
+    /**
+     * Description placeholder
+     */
     clearFiles() {
         // clear all files from input
         try { 
@@ -49,6 +58,12 @@ class CBS_FileInput extends CBS_Input {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @returns {Promise<ReadableStream[]>}
+     */
     async getFileStreams(): Promise<ReadableStream[]> {
         return new Promise((res, rej) => {
             const files = this.value;

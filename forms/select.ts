@@ -1,1 +1,0 @@
-class CBS_Select extends CBS_Element {}

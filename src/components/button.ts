@@ -55,7 +55,7 @@ class CBS_Button extends CBS_Component {
      *
      * @type {CBS_NodeContainer}
      */
-    components: CBS_NodeContainer = {
+    subcomponents: CBS_ElementContainer = {
         content: new CBS_ButtonContent()
     };
 

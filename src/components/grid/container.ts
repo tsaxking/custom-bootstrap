@@ -1,3 +1,8 @@
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_ContainerOptions}
+ */
 type CBS_ContainerOptions = {
     classes?: string[];
     id?: string;
@@ -10,7 +15,20 @@ type CBS_ContainerOptions = {
 }
 
 
+/**
+ * Description placeholder
+ *
+ * @class CBS_Container
+ * @typedef {CBS_Container}
+ * @extends {CBS_Element}
+ */
 class CBS_Container extends CBS_Element {
+    /**
+     * Creates an instance of CBS_Container.
+     *
+     * @constructor
+     * @param {?CBS_ContainerOptions} [options]
+     */
     constructor(options?: CBS_ContainerOptions) {
         super(options);
 
@@ -22,6 +40,11 @@ class CBS_Container extends CBS_Element {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ContainerOptions}
+     */
     set options(options: CBS_ContainerOptions) {
         super.options = options;
         this.removeClass('container-fluid', 'container');
@@ -33,6 +56,11 @@ class CBS_Container extends CBS_Element {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {boolean}
+     */
     set fluid(fluid: boolean) {
         this.options = {
             ...this.options,
@@ -40,6 +68,11 @@ class CBS_Container extends CBS_Element {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @returns {*}
+     */
     addRow() {
         const row = new CBS_Row();
 

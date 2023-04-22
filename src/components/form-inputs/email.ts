@@ -35,17 +35,45 @@ class CBS_EmailInput extends CBS_Input {
         this.setAttribute('type', 'email');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get value(): string {
         return (this.el as HTMLInputElement).value;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set value(value: string) {
         (this.el as HTMLInputElement).value = value;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @async
+     * @returns {unknown}
+     */
     async isValid() {
         // TODO: check if the email is a valid email
         return true;
+    }
+
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {any}
+     */
+    get mirrorValue():any {
+        if (this.getMirrorValue) return this.getMirrorValue(this.value);
+        return this.mirrorValues[this.value];
     }
 }
 

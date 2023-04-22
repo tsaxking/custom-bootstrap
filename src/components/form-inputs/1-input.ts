@@ -56,6 +56,11 @@ interface CBS_InputInterface {
     mirrorValue?: any;
 }
 
+/**
+ * Description placeholder
+ *
+ * @typedef {CBS_InputMirrorValueMap}
+ */
 type CBS_InputMirrorValueMap = {
     [key: string]: any;
 }
@@ -69,7 +74,18 @@ type CBS_InputMirrorValueMap = {
  * @implements {CBS_InputInterface}
  */
 class CBS_Input extends CBS_Component implements CBS_InputInterface {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_InputMirrorValueMap}
+     */
     mirrorValues: CBS_InputMirrorValueMap = {};
+    /**
+     * Description placeholder
+     *
+     * @type {?(value: any) => any}
+     */
+    getMirrorValue?: (value: any) => any;
 
     /**
      * Description placeholder
@@ -108,7 +124,28 @@ class CBS_Input extends CBS_Component implements CBS_InputInterface {
      * @type {*}
      */
     get mirrorValue(): any {
-        return;
+        return this.getMirrorValue ? this.getMirrorValue(this._el.value) : null;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {(value: string) => any} fn
+     * @returns {any) => void}
+     */
+    setMirrorValueGetter(fn: (value: string) => any) {
+        this.getMirrorValue = fn;
+    }
+
+
+    /**
+     * Description placeholder
+     *
+     * @param {string} name
+     * @param {*} value
+     */
+    addMirrorValue(name: string, value: any): void {
+        this.mirrorValues[name] = value;
     }
 }
 

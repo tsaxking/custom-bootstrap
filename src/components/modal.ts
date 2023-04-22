@@ -78,16 +78,14 @@ class CBS_ModalFooter extends CBS_Element {
     }
 }
 
-
-
 /**
  * Description placeholder
  *
- * @class CBS_Modal
- * @typedef {CBS_Modal}
+ * @class CBS_ModalDialog
+ * @typedef {CBS_ModalDialog}
  * @extends {CBS_Component}
  */
-class CBS_Modal extends CBS_Component {
+class CBS_ModalDialog extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -99,6 +97,48 @@ class CBS_Modal extends CBS_Component {
         footer: new CBS_ModalFooter()
     }
 
+
+    /**
+     * Creates an instance of CBS_ModalDialog.
+     *
+     * @constructor
+     * @param {?CBS_Options} [options]
+     */
+    constructor(options?: CBS_Options) {
+        super(options);
+
+
+        this.el = document.createElement('div');
+        this.addClass('modal-dialog');
+        this.setAttribute('role', 'document');
+
+        this.append(
+            this.subcomponents.title,
+            this.subcomponents.body,
+            this.subcomponents.footer
+        );
+
+        this.subcomponents.title.append(CBS_Button.fromTemplate('modal-close'));
+    }
+}
+
+/**
+ * Description placeholder
+ *
+ * @class CBS_Modal
+ * @typedef {CBS_Modal}
+ * @extends {CBS_Component}
+ */
+class CBS_Modal extends CBS_Element {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ElementContainer}
+     */
+    subcomponents: CBS_ElementContainer = {
+        dialog: new CBS_ModalDialog()
+    }
+
     /**
      * Creates an instance of CBS_Modal.
      *
@@ -108,29 +148,15 @@ class CBS_Modal extends CBS_Component {
     constructor(options?: CBS_ModalOptions) {
         super(options);
 
-        options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'modal',
-                'fade'
-            ],
-            attributes: {
-                ...options?.attributes,
-                'tabindex': '-1',
-                'role': 'dialog',
-                'aria-hidden': 'true',
-                'aria-labelledby': 'modal-title'
-            }
-        }
+        this.addClass('modal','fade');
+        this.setAttribute('tabindex', '-1');
+        this.setAttribute('role', 'dialog');
+        this.setAttribute('aria-hidden', 'true');
+        this.setAttribute('aria-labelledby', 'modal-title');
 
         this.append(
-            this.subcomponents.title,
-            this.subcomponents.body,
-            this.subcomponents.footer
+            this.subcomponents.dialog
         );
-
-        this.subcomponents.title.append(CBS_Button.fromTemplate('modal-close'));
     }
 
 
@@ -156,14 +182,13 @@ class CBS_Modal extends CBS_Component {
      * @type {*}
      */
     set title(title: Node|string) {
-        this.removeElement(this.subcomponents.title);
-        this.subcomponents.title = new CBS_ModalTitle();
+        const dialog = this.subcomponents.dialog as CBS_ModalDialog;
+        
+        dialog.removeElement(this.subcomponents.title);
+        dialog.subcomponents.title = new CBS_ModalTitle();
 
-        this.subcomponents.title.append(title);
-    }/**
-     * Description placeholder
-     */
-    ;
+        dialog.subcomponents.title.append(title);
+    }
 
     /**
      * Description placeholder
@@ -171,14 +196,13 @@ class CBS_Modal extends CBS_Component {
      * @type {*}
      */
     set body(body: Node|string) {
-        this.removeElement(this.subcomponents.body);
-        this.subcomponents.body = new CBS_ModalBody();
+        const dialog = this.subcomponents.dialog as CBS_ModalDialog;
 
-        this.subcomponents.body.append(body);
-    }/**
-     * Description placeholder
-     */
-    ;
+        dialog.removeElement(this.subcomponents.body);
+        dialog.subcomponents.body = new CBS_ModalBody();
+
+        dialog.subcomponents.body.append(body);
+    }
 
     /**
      * Description placeholder
@@ -186,15 +210,13 @@ class CBS_Modal extends CBS_Component {
      * @type {*}
      */
     set footer(footer: Node|string) {
-        this.removeElement(this.subcomponents.footer);
-        this.subcomponents.footer = new CBS_ModalFooter();
+        const dialog = this.subcomponents.dialog as CBS_ModalDialog;
 
-        this.subcomponents.footer.append(footer);
-    }/**
-     * Description placeholder
-     */
-    ;
+        dialog.removeElement(this.subcomponents.footer);
+        dialog.subcomponents.footer = new CBS_ModalFooter();
 
+        dialog.subcomponents.footer.append(footer);
+    }
 
     /**
      * Description placeholder

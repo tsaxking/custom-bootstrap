@@ -1,4 +1,17 @@
+/**
+ * Description placeholder
+ *
+ * @class CBS_FormText
+ * @typedef {CBS_FormText}
+ * @extends {CBS_Element}
+ */
 class CBS_FormText extends CBS_Element {
+    /**
+     * Creates an instance of CBS_FormText.
+     *
+     * @constructor
+     * @param {?CBS_Options} [options]
+     */
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -7,6 +20,11 @@ class CBS_FormText extends CBS_Element {
         this.addClass('form-text');
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     set content(content: string) {
         this.el.innerHTML = content;
 
@@ -14,6 +32,11 @@ class CBS_FormText extends CBS_Element {
         else this.hide();
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
     get content() {
         return this.el.innerHTML;
     }

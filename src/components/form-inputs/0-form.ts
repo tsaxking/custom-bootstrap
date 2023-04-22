@@ -78,6 +78,13 @@ class CBS_Form extends CBS_Component {
         this.append(input);
     }
 
+    /**
+     * Description placeholder
+     *
+     * @param {string} type
+     * @param {CBS_Options} options
+     * @returns {CBS_Input}
+     */
     createInput(type: string, options: CBS_Options): CBS_Input {
         switch (type) {
             case 'text':

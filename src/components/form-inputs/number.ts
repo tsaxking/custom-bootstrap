@@ -39,12 +39,24 @@ class CBS_NumberInput extends CBS_Input {
         this.setAttribute('type', 'number');
     }
 
-    get value(): string {
-        return (this.el as HTMLInputElement).value;
+    get value(): number {
+        return +(this.el as HTMLInputElement).value;
     }
 
-    set value(value: string) {
-        (this.el as HTMLInputElement).value = value;
+    set value(value: number) {
+        (this.el as HTMLInputElement).value = value.toString();
+    }
+
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {any}
+     */
+    get mirrorValue():any {
+        if (this.getMirrorValue) return this.getMirrorValue(this.value);
+        return this.mirrorValues[this.value];
     }
 }
 

@@ -38,6 +38,73 @@ class CBS_TextareaInput extends CBS_Input {
 
         this.el = document.createElement('textarea');
     }
+
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
+    get value(): string {
+        return (this.el as HTMLTextAreaElement).value;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {string}
+     */
+    set value(value: string) {
+        (this.el as HTMLTextAreaElement).value = value;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    get columns(): number {
+        return (this.el as HTMLTextAreaElement).cols;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set columns(value: number) {
+        (this.el as HTMLTextAreaElement).cols = value;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    get rows(): number {
+        return (this.el as HTMLTextAreaElement).rows;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set rows(value: number) {
+        (this.el as HTMLTextAreaElement).rows = value;
+    }
+
+
+
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {any}
+     */
+    get mirrorValue():any {
+        if (this.getMirrorValue) return this.getMirrorValue(this.value);
+        return this.mirrorValues[this.value];
+    }
 }
 
 
