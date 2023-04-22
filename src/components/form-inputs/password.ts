@@ -34,17 +34,16 @@ class CBS_PasswordInput extends CBS_Input {
     constructor(options?: CBS_PasswordInputOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'password'
-            }
-        }
+        this.addClass('form-control');
+        this.setAttribute('type', 'password');
+    }
+
+    get value(): string {
+        return (this.el as HTMLInputElement).value;
+    }
+
+    set value(value: string) {
+        (this.el as HTMLInputElement).value = value;
     }
 }
 

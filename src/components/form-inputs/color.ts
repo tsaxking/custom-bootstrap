@@ -30,17 +30,8 @@ class CBS_ColorInput extends CBS_Input {
     constructor(options?: CBS_ColorInputOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'color'
-            }
-        }
+        this.addClass('form-control');
+        this.setAttribute('type', 'color');
     }
 }
 

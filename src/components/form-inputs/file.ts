@@ -30,17 +30,34 @@ class CBS_FileInput extends CBS_Input {
     constructor(options?: CBS_FileInputOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'file'
-            }
-        };
+        this.addClass('form-control');
+        this.setAttribute('type', 'file');
+    }
+
+    get value(): FileList {
+        return (this.el as HTMLInputElement).files as FileList;
+    }
+
+    clearFiles() {
+        // clear all files from input
+        try { 
+            (this.el as HTMLInputElement).value = '';
+        } catch (e) {
+            console.warn('You must be using an older browser, attempting to clear files again...');
+            this.setAttribute('type', 'text');
+            this.setAttribute('type', 'file');
+        }
+    }
+
+    async getFileStreams(): Promise<ReadableStream[]> {
+        return new Promise((res, rej) => {
+            const files = this.value;
+            const streams: ReadableStream[] = Array.from(files).map((f) => {
+                return f.stream();
+            });
+
+            res(streams);
+        });
     }
 }
 

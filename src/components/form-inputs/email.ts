@@ -31,17 +31,21 @@ class CBS_EmailInput extends CBS_Input {
     constructor(options?: CBS_EmailInputOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'email'
-            }
-        }
+        this.addClass('form-control');
+        this.setAttribute('type', 'email');
+    }
+
+    get value(): string {
+        return (this.el as HTMLInputElement).value;
+    }
+
+    set value(value: string) {
+        (this.el as HTMLInputElement).value = value;
+    }
+
+    async isValid() {
+        // TODO: check if the email is a valid email
+        return true;
     }
 }
 

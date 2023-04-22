@@ -910,6 +910,8 @@ class CBS_Element extends CustomBootstrap {
     clearElements() {
         this.#components = [];
         this._el.innerHTML = '';
+
+        this.trigger('element:clear');
     }
 
     /**

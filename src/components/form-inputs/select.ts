@@ -30,17 +30,8 @@ class CBS_SelectInput extends CBS_Input {
     constructor(options?: CBS_SelectOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-select'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'select'
-            }
-        }
+        this.addClass('form-select');
+        this.el = document.createElement('select');
     }
 }
 

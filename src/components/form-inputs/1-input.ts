@@ -56,6 +56,10 @@ interface CBS_InputInterface {
     mirrorValue?: any;
 }
 
+type CBS_InputMirrorValueMap = {
+    [key: string]: any;
+}
+
 /**
  * Description placeholder
  *
@@ -65,6 +69,8 @@ interface CBS_InputInterface {
  * @implements {CBS_InputInterface}
  */
 class CBS_Input extends CBS_Component implements CBS_InputInterface {
+    mirrorValues: CBS_InputMirrorValueMap = {};
+
     /**
      * Description placeholder
      *

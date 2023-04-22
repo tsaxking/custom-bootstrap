@@ -34,13 +34,7 @@ class CBS_TextareaInput extends CBS_Input {
     constructor(options?: CBS_TextareaOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ]
-        }
+        this.addClass('form-control');
 
         this.el = document.createElement('textarea');
     }

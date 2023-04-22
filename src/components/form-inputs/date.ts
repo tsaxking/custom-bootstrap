@@ -29,17 +29,20 @@ class CBS_DateInput extends CBS_Input {
     constructor(options?: CBS_DateInputOptions) {
         super(options);
 
-        this.options = {
-            ...options,
-            classes: [
-                ...(options?.classes || []),
-                'form-control'
-            ],
-            attributes: {
-                ...options?.attributes,
-                type: 'date'
-            }
-        };
+        this.addClass('form-control');
+        this.setAttribute('type', 'date');
+    }
+
+    get value(): string {
+        return (this.el as HTMLInputElement).value;
+    }
+
+    set value(value: string) {
+        (this.el as HTMLInputElement).value = value;
+    }
+
+    get mirrorValue(): Date {
+        return new Date(this.value);
     }
 }
 
