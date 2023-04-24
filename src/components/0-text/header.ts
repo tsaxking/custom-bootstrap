@@ -19,7 +19,7 @@ type CBS_HeadingOptions = {
  * @typedef {CBS_Heading}
  * @extends {CBS_Component}
  */
-class CBS_Heading extends CBS_Component {
+class CBS_Heading extends CBS_Text {
     /**
      * Creates an instance of CBS_Heading.
      *

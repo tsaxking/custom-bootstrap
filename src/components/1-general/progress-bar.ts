@@ -28,29 +28,16 @@ class CBS_ProgressBar extends CBS_Component {
      */
     constructor(options?: CBS_ProgressBarOptions) {
         super(options);
-
-        this.options = {
-            ...this.options,
-            classes: [
-                ...(this.options.classes || []),
-                'progress-bar',
-                'rounded',
-                'shadow'
-            ],
-            attributes: {
-                ...this.options.attributes,
-                'aria-valuenow': '0',
-                'aria-valuemin': '0',
-                'aria-valuemax': '100'
-            },
-            style: {
-                ...this.options.style,
-                width: '0%',
-                height: '24px'
-            }
-        }
-
         this.el = document.createElement('div');
+
+        this.addClass('progress-bar', 'rounded', 'shadow');
+        this.setAttribute('aria-valuenow', '0');
+        this.setAttribute('aria-valuemin', '0');
+        this.setAttribute('aria-valuemax', '100');
+        this.style = {
+            width: '0%',
+            height: '24px'
+        }
     }
 }
 

@@ -83,7 +83,7 @@ class CBS_Element extends CustomBootstrap {
      * @static
      * @type {{ [key: string]: CBS_Element }}
      */
-    static #templates: { [key: string]: CBS_Element } = {
+    static _templates: { [key: string]: CBS_Element } = {
         'default': new CBS_Element()
     };
 
@@ -116,9 +116,8 @@ class CBS_Element extends CustomBootstrap {
         c.prototype.parameters = template.parameters;
         c.prototype._el = template._el.cloneNode(true) as HTMLElement;
         c.prototype._options = template._options;
-        c.prototype.#events = template.#events;
-        c.prototype.#components = template.#components;
-        c.prototype.#customEvents = template.#customEvents;
+        c.prototype._events = template._events;
+        c.prototype._components = template._components;
 
         return c;
     }
@@ -146,7 +145,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {{ [key: string]: CBS_Element }}
      */
     private static get templates(): { [key: string]: CBS_Element } {
-        return this.#templates;
+        return this._templates;
     }
 
     /**
@@ -164,8 +163,8 @@ class CBS_Element extends CustomBootstrap {
         }
 
 
-        if (this.#templates[type]) return false;
-        this.#templates[type] = template;
+        if (this._templates[type]) return false;
+        this._templates[type] = template;
         return true;
     }
 
@@ -179,7 +178,7 @@ class CBS_Element extends CustomBootstrap {
      *
      * @type {CBS_Parameters}
      */
-    #parameters: CBS_Parameters = {};
+    _parameters: CBS_Parameters = {};
     /**
      * The element this class represents
      *
@@ -197,13 +196,13 @@ class CBS_Element extends CustomBootstrap {
      *
      * @type {{ [key: string]: CBS_ListenerCallback }}
      */
-    #events: { [key: string]: CBS_ListenerCallback } = {};
+    _events: { [key: string]: CBS_ListenerCallback } = {};
     /**
      * All components
      *
      * @type {CBS_NodeMap}
      */
-    #components: CBS_NodeMap = [];
+    _components: CBS_NodeMap = [];
     /**
      * All options for this element
      *
@@ -219,7 +218,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_NodeMap}
      */
     get components(): CBS_NodeMap {
-        return this.#components;
+        return this._components;
     }
 
 
@@ -240,13 +239,13 @@ class CBS_Element extends CustomBootstrap {
      *
      * @type {CBS_PropertyMap}
      */
-    #padding: CBS_PropertyMap = {};
+    _padding: CBS_PropertyMap = {};
     /**
      * Description placeholder
      *
      * @type {CBS_PropertyMap}
      */
-    #margin: CBS_PropertyMap = {};
+    _margin: CBS_PropertyMap = {};
 
     /**
      * Description placeholder
@@ -291,10 +290,10 @@ class CBS_Element extends CustomBootstrap {
 
         switch (paddingOrMargin) {
             case 'padding':
-                set(this.#padding, key, value);
+                set(this._padding, key, value);
                 break;
             case 'margin':
-                set(this.#margin, key, value);
+                set(this._margin, key, value);
                 break;
         }
     }
@@ -305,15 +304,15 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_PropertyMap}
      */
     set allPadding(padding: CBS_PropertyMap) {
-        this.#padding = padding;
+        this._padding = padding;
 
-        this.paddingS = padding.s;
-        this.paddingE = padding.e;
-        this.paddingT = padding.t;
-        this.paddingB = padding.b;
-        this.paddingX = padding.x;
-        this.paddingY = padding.y;
-        this.padding = padding.global;
+        if (padding.s) this.paddingS = padding.s;
+        if (padding.e) this.paddingE = padding.e;
+        if (padding.t) this.paddingT = padding.t;
+        if (padding.b) this.paddingB = padding.b;
+        if (padding.x) this.paddingX = padding.x;
+        if (padding.y) this.paddingY = padding.y;
+        if (padding.global) this.padding = padding.global;
     }
 
     /**
@@ -322,7 +321,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_PropertyMap}
      */
     get allPadding(): CBS_PropertyMap {
-        return this.#padding;
+        return this._padding;
     }
 
     /**
@@ -331,15 +330,15 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_PropertyMap}
      */
     set allMargin(margin: CBS_PropertyMap) {
-        this.#margin = margin;
+        this._margin = margin;
 
-        this.marginS = margin.s;
-        this.marginE = margin.e;
-        this.marginT = margin.t;
-        this.marginB = margin.b;
-        this.marginX = margin.x;
-        this.marginY = margin.y;
-        this.margin = margin.global;
+        if (margin.s) this.marginS = margin.s;
+        if (margin.e) this.marginE = margin.e;
+        if (margin.t) this.marginT = margin.t;
+        if (margin.b) this.marginB = margin.b;
+        if (margin.x) this.marginX = margin.x;
+        if (margin.y) this.marginY = margin.y;
+        if (margin.global) this.margin = margin.global;
     }
 
     /**
@@ -348,7 +347,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_PropertyMap}
      */
     get allMargin(): CBS_PropertyMap {
-        return this.#margin;
+        return this._margin;
     }
 
     /**
@@ -483,7 +482,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get padding(): number|undefined {
-        return this.#padding.global;
+        return this._padding.global;
     }
 
     /**
@@ -492,7 +491,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingX(): number|undefined {
-        return this.#padding.x;
+        return this._padding.x;
     }
 
     /**
@@ -501,7 +500,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingY(): number|undefined {
-        return this.#padding.y;
+        return this._padding.y;
     }
 
     /**
@@ -510,7 +509,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingS(): number|undefined {
-        return this.#padding.s;
+        return this._padding.s;
     }
 
     /**
@@ -519,7 +518,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingE(): number|undefined {
-        return this.#padding.e;
+        return this._padding.e;
     }
 
     /**
@@ -528,7 +527,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingT(): number|undefined {
-        return this.#padding.t;
+        return this._padding.t;
     }
 
     /**
@@ -537,7 +536,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get paddingB(): number|undefined {
-        return this.#padding.b;
+        return this._padding.b;
     }
 
     /**
@@ -546,7 +545,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get margin(): number|undefined {
-        return this.#margin.global;
+        return this._margin.global;
     }
 
     /**
@@ -555,7 +554,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get marginX(): number|undefined {
-        return this.#margin.x;
+        return this._margin.x;
     }
 
     /**
@@ -564,7 +563,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get marginY(): number|undefined {
-        return this.#margin.y;
+        return this._margin.y;
     }
 
     /**
@@ -573,7 +572,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get marginS(): number|undefined {
-        return this.#margin.s;
+        return this._margin.s;
     }
 
     /**
@@ -582,7 +581,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get marginE(): number|undefined {
-        return this.#margin.e;
+        return this._margin.e;
     }
 
     /**
@@ -591,7 +590,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {(number|undefined)}
      */
     get marginT(): number|undefined {
-        return this.#margin.t;
+        return this._margin.t;
     }
 
 
@@ -610,7 +609,7 @@ class CBS_Element extends CustomBootstrap {
      *
      * @type {string[]}
      */
-    #customEvents: string[] = [
+    static _customEvents: string[] = [
         // DOM Events
         'el:change',
         'el:append',
@@ -636,7 +635,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {string[]}
      */
     static get customEvents(): string[] {
-        return this.prototype.#customEvents;
+        return this._customEvents;
     }
 
     /**
@@ -646,7 +645,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {{}}
      */
     static set customEvents(events: string[]) {
-        this.prototype.#customEvents = events;
+        this._customEvents = events;
     }
 
     /**
@@ -656,7 +655,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} event
      */
     static addCustomEvent(event: string) {
-        this.prototype.#customEvents.push(event);
+        this._customEvents.push(event);
     }
 
     /**
@@ -666,7 +665,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} event
      */
     static removeCustomEvent(event: string) {
-        this.prototype.#customEvents = this.customEvents.filter(e => e !== event);
+        this._customEvents = this.customEvents.filter(e => e !== event);
     }
 
     /**
@@ -676,7 +675,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} events
      */
     static addCustomEvents(...events: string[]) {
-        this.prototype.#customEvents.push(...events);
+        this._customEvents.push(...events);
     }
 
     /**
@@ -686,7 +685,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} events
      */
     static removeCustomEvents(...events: string[]) {
-        this.prototype.#customEvents = this.customEvents.filter(e => !events.includes(e));
+        this._customEvents = this.customEvents.filter(e => !events.includes(e));
     }
 
     /**
@@ -698,7 +697,35 @@ class CBS_Element extends CustomBootstrap {
     constructor(options?: CBS_Options) {
         super();
 
-        this.options = options || {};
+        this.__options = options || {};
+    }
+
+    set __options(options: CBS_Options) {
+        if (!this._el) return;
+
+        this._options = options;
+
+        const { classes, id, style, attributes } = options;
+
+        if (classes?.length) {
+            this._el.classList.add(...classes);
+        }
+
+        if (id) {
+            this._el.id = id;
+        }
+
+        if (style) {
+            this._el.setAttribute('style', Object.entries(style).map(([key, val]) => {
+                return `${key}: ${val};`;
+            }).join() || '');
+        }
+
+        if (attributes) {
+            Object.entries(attributes).forEach(([value, key]) => {
+                this._el.setAttribute(key, value);
+            });
+        }
     }
 
     /**
@@ -737,7 +764,7 @@ class CBS_Element extends CustomBootstrap {
         }
 
         if (attributes) {
-            Object.entries(attributes).forEach(([value, key]) => {
+            Object.entries(attributes).forEach(([key, value]) => {
                 this._el.setAttribute(key, value);
             });
         }
@@ -772,7 +799,7 @@ class CBS_Element extends CustomBootstrap {
         this.allPadding = this.allPadding;
         this.allMargin = this.allMargin;
 
-        Object.entries(this.#events).forEach(([event, callback]) => {
+        Object.entries(this._events).forEach(([event, callback]) => {
             this._el.addEventListener(event, callback);
         });
 
@@ -805,7 +832,7 @@ class CBS_Element extends CustomBootstrap {
             }
         });
 
-        this.#components.push(...elements);
+        this._components.push(...elements);
 
         this.render();
     }
@@ -826,7 +853,7 @@ class CBS_Element extends CustomBootstrap {
             }
         });
 
-        this.#components = this.#components.filter(e => !elements.includes(e));
+        this._components = this._components.filter(e => !elements.includes(e));
     }
 
     /**
@@ -845,7 +872,7 @@ class CBS_Element extends CustomBootstrap {
             }
         });
 
-        this.#components.unshift(...elements);
+        this._components.unshift(...elements);
 
         this.render();
     }
@@ -857,8 +884,8 @@ class CBS_Element extends CustomBootstrap {
      * @param {...CBS_NodeMap} elementsToAdd
      */
     replace(nodeToReplace: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
-        if (this.#components.includes(nodeToReplace)) {
-            const index = this.#components.indexOf(nodeToReplace);
+        if (this._components.includes(nodeToReplace)) {
+            const index = this._components.indexOf(nodeToReplace);
             this.insertAfter(nodeToReplace, ...elementsToAdd);
             this.removeElement(nodeToReplace);
         }
@@ -873,9 +900,9 @@ class CBS_Element extends CustomBootstrap {
      * @param {...CBS_NodeMap} elementsToAdd
      */
     insertBefore(nodeToInsertBefore: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
-        if (this.#components.includes(nodeToInsertBefore)) {
-            const index = this.#components.indexOf(nodeToInsertBefore);
-            this.#components.splice(index, 0, ...elementsToAdd);
+        if (this._components.includes(nodeToInsertBefore)) {
+            const index = this._components.indexOf(nodeToInsertBefore);
+            this._components.splice(index, 0, ...elementsToAdd);
 
             let node: Node|null;
 
@@ -912,9 +939,9 @@ class CBS_Element extends CustomBootstrap {
      * @param {...CBS_NodeMap} elementsToAdd
      */
     insertAfter(nodeToInsertAfter: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
-        if (this.#components.includes(nodeToInsertAfter)) {
-            const index = this.#components.indexOf(nodeToInsertAfter);
-            const nextNode = this.#components[index + 1];
+        if (this._components.includes(nodeToInsertAfter)) {
+            const index = this._components.indexOf(nodeToInsertAfter);
+            const nextNode = this._components[index + 1];
 
             if (nextNode) {
                 this.insertBefore(nextNode, ...elementsToAdd);
@@ -928,7 +955,7 @@ class CBS_Element extends CustomBootstrap {
      * Description placeholder
      */
     clearElements() {
-        this.#components = [];
+        this._components = [];
         this._el.innerHTML = '';
 
         this.trigger('element:clear');
@@ -941,7 +968,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_NodeMap}
      */
     get children(): CBS_NodeMap {
-        return this.#components;
+        return this._components;
     }
 
     /**
@@ -1059,7 +1086,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_Parameters}
      */
     get parameters(): CBS_Parameters {
-        return this.#parameters;
+        return this._parameters;
     }
 
     /**
@@ -1068,7 +1095,7 @@ class CBS_Element extends CustomBootstrap {
      * @type {CBS_Parameters}
      */
     set parameters(params: CBS_Parameters) {
-        this.#parameters = params;
+        this._parameters = params;
     }
 
     /**
@@ -1139,7 +1166,7 @@ class CBS_Element extends CustomBootstrap {
         this.listeners.push(new CBS_Listener(event, callback, isAsync));
 
         if (!this.has(event)) {
-            this.#events[event] = errCallback;
+            this._events[event] = errCallback;
             this._el.addEventListener(event, errCallback);
         }
 
@@ -1152,7 +1179,7 @@ class CBS_Element extends CustomBootstrap {
      * @returns {boolean}
      */
     has(event: string): boolean {
-        return !!this.#events[event];
+        return !!this._events[event];
     }
 
     /**
@@ -1166,10 +1193,10 @@ class CBS_Element extends CustomBootstrap {
 
         if (!event) {
             this.listeners = [];
-            Object.entries(this.#events).forEach(([event, cb]) => {
+            Object.entries(this._events).forEach(([event, cb]) => {
                 this._el.removeEventListener(event, cb);
             });
-            this.#events = {};
+            this._events = {};
             return;
         }
 
@@ -1193,8 +1220,8 @@ class CBS_Element extends CustomBootstrap {
         // this.listeners = this.listeners.filter(listener => listener.event !== event || listener.callback !== callback);
 
         if (!this.listeners.filter(listener => listener.event === event).length) {
-            this._el.removeEventListener(event, this.#events[event]);
-            delete this.#events[event];
+            this._el.removeEventListener(event, this._events[event]);
+            delete this._events[event];
         }
     }
 
@@ -1212,7 +1239,7 @@ class CBS_Element extends CustomBootstrap {
 
             if (typeof event !== 'string') throw new Error('event must be a string, received ' + typeof event);
 
-            if (this.constructor.prototype.customEvents.includes(event)) {
+            if (this.constructor.prototype._customEvents?.includes(event)) {
                 const e = new CustomEvent(event, {
                     ...(options || {}),
                     detail: {
@@ -1274,7 +1301,7 @@ class CBS_Element extends CustomBootstrap {
         this.trigger('el:destroy');
 
         this.off();
-        this.#components.forEach(c => {
+        this._components.forEach(c => {
             if (c instanceof CBS_Element) c.destroy();
         });
         this._el.remove();
@@ -1291,7 +1318,9 @@ class CBS_Element extends CustomBootstrap {
     clone(listeners: boolean = true): CBS_Element {
         // this will probably need to be changed for every extension of this class
 
-        const clone = CBS.createElement(this.constructor.name);
+        const constructor = this.constructor as new (options?: CBS_Options) => CBS_Element;
+
+        const clone = new constructor(this.options);
 
         clone._el = this._el.cloneNode(true) as HTMLElement;
 
@@ -1335,7 +1364,7 @@ class CBS_Element extends CustomBootstrap {
         this.options = {
             ...this.options,
             classes: [
-                ...(this.options.classes || []),
+                ...(this.options?.classes || []),
                 ...classes
             ]
         }
@@ -1349,7 +1378,7 @@ class CBS_Element extends CustomBootstrap {
     removeClass(...classes: string[]) {
         this.options = {
             ...this.options,
-            classes: this.options.classes?.filter(c => !classes.includes(c))
+            classes: this.options?.classes?.filter(c => !classes.includes(c))
         }
     }
 
@@ -1425,7 +1454,7 @@ class CBS_Element extends CustomBootstrap {
         this.options = {
             ...this.options,
             attributes: {
-                ...this.options.attributes,
+                ...(this.options?.attributes || {}),
                 [name]: value
             }
         }
@@ -1523,7 +1552,7 @@ class CBS_Element extends CustomBootstrap {
      *
      * @type {(CBS_Color|undefined)}
      */
-    #background: CBS_Color|undefined;
+    _background: CBS_Color|undefined;
 
     /**
      * Description placeholder
@@ -1532,7 +1561,7 @@ class CBS_Element extends CustomBootstrap {
      */
     set background(color: CBS_Color|undefined) {
         if (this.background) this.removeClass(`bg-${this.background}`);
-        this.#background = color;
+        this._background = color;
         if (color) this.addClass(`bg-${color}`);
     }
 
@@ -1542,6 +1571,14 @@ class CBS_Element extends CustomBootstrap {
      * @type {(CBS_Color|undefined)}
      */
     get background(): CBS_Color|undefined {
-        return this.#background;
+        return this._background;
+    }
+
+    get html() {
+        return this.el.innerHTML;
+    }
+
+    set html(text: string) {
+        this.el.innerHTML = text;
     }
 };

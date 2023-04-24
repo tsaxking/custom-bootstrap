@@ -6,11 +6,7 @@
         console.error('jQuery is not loaded!');
     }
 
-    try {
-        const el = document.createElement('div');
-        el.classList.add('toast');
-        $(el).toast('hide');
-    } catch {
+    if (!$('.any').toast) {
         console.error('Popper is not loaded!');
     }
 })();
@@ -326,8 +322,6 @@ class CustomBootstrap {
     }
 
 
-
-
     /**
      * Creates an element from a selector string
      *
@@ -382,7 +376,7 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            ok.subcomponents.content.append('Okay');
+            ok.content = 'Okay';
 
             const modal = new CBS_Modal({
                 buttons: [
@@ -390,7 +384,11 @@ class CustomBootstrap {
                 ]
             });
 
+            modal.title = 'Alert';
+
             modal.subcomponents.body.append(message);
+
+            modal.subcomponents.footer.append(ok);
 
             ok.on('click', () => {
                 modal.hide();
@@ -420,13 +418,13 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            yes.subcomponents.content.append('Okay');
+            yes.content = 'Okay';
 
             const no = new CBS_Button({
                 color: 'secondary'
             });
 
-            no.subcomponents.content.append('Cancel');
+            no.content = 'Cancel';
 
             const modal = new CBS_Modal({
                 buttons: [
@@ -434,6 +432,8 @@ class CustomBootstrap {
                     no
                 ]
             });
+
+            modal.title = 'Confirm';
 
             modal.subcomponents.body.append(message);
 
@@ -452,6 +452,8 @@ class CustomBootstrap {
                 });
                 res(false);
             });
+
+            modal.footer.append(yes, no);
 
             modal.on('hidden.bs.modal', () => res(false));
             modal.on('destroyed', () => res(false));
@@ -472,13 +474,15 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            submit.subcomponents.content.append('Submit');
+            submit.content = 'Submit';
 
             const modal = new CBS_Modal({
                 buttons: [
                     submit
                 ]
             });
+
+            modal.title = 'Fill out form';
 
             modal.subcomponents.body.append(form);
 
@@ -524,7 +528,7 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            ok.subcomponents.content.append('Okay');
+            ok.content = 'Okay';
 
             const modal = new CBS_Modal({
                 buttons: [
@@ -532,10 +536,18 @@ class CustomBootstrap {
                 ]
             });
 
+            modal.title = 'Prompt';
+    
             const input = new CBS_TextInput();
 
             modal.subcomponents.body.append(message);
             modal.subcomponents.body.append(input);
+
+            input.on('keydown', (e) => {
+                if ((e as KeyboardEvent).key === 'Enter') {
+                    ok.el.click();
+                }
+            })
 
             ok.on('click', () => {
                 modal.hide();
@@ -544,6 +556,8 @@ class CustomBootstrap {
                 });
                 res(input.value);
             });
+
+            modal.subcomponents.footer.append(ok);
 
             modal.on('hidden.bs.modal', () => res(null));
             modal.on('destroyed', () => res(null));

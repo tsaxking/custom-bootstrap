@@ -69,7 +69,28 @@ class CBS_Button extends CBS_Component {
         super(options);
 
         this.el = document.createElement('button');
+
+        this.addClass('btn');
+
+        this.append(this.subcomponents.content);
     }
+
+
+    get content() {
+        return this.subcomponents.content;
+    }
+
+    set content(content: string | HTMLElement | CBS_Element) {
+        if (typeof content === 'string') {
+            this.subcomponents.content.html = content;
+        } else if (content instanceof HTMLElement) {
+            this.subcomponents.content.el = content;
+        } else if (content instanceof CBS_Element) {
+            this.subcomponents.content = content;
+        }
+    }
+
+
 
     /**
      * Description placeholder
@@ -79,23 +100,23 @@ class CBS_Button extends CBS_Component {
     set options(options: CBS_ButtonOptions) {
         super.options = options;
 
-        if (this.options.color) {
-            if (this.options.outlined) {
-                this.el.classList.add(`btn-outline-${this.options.color}`);
+        if (options.color) {
+            if (options.outlined) {
+                this.el.classList.add(`btn-outline-${options.color}`);
             } else {
-                this.el.classList.add(`btn-${this.options.color}`);
+                this.el.classList.add(`btn-${options.color}`);
             }
         }
 
-        if (this.options.size) {
-            this.el.classList.add(`btn-${this.options.size}`);
+        if (options.size) {
+            this.el.classList.add(`btn-${options.size}`);
         }
 
-        if (this.options.rounded) {
+        if (options.rounded) {
             this.el.classList.add(`btn-rounded`);
         }
 
-        if (this.options.shadow) {
+        if (options.shadow) {
             this.el.classList.add(`btn-shadow`);
         }
     }
@@ -141,15 +162,16 @@ CBS.addElement('button', CBS_Button);
 (() => {
     const modalClose = new CBS_Button({
         color: 'secondary',
-        outlined: true,
         size: CBS_Size.sm,
-        classes: ['modal-close'],
+        classes: ['btn-close'],
         attributes: {
             'type': 'button',
             'data-bs-dismiss': 'modal',
             'aria-label': 'Close'
         }
     });
+
+    modalClose.removeClass('btn');
 
     CBS_Button.addTemplate('modal-close', modalClose);
 })();

@@ -21,10 +21,10 @@ type CBS_TextOptions = {
  * @extends {CBS_Element}
  */
 class CBS_Text extends CBS_Element {
-    #color?: CBS_Color;
-    #size?: CBS_Size;
-    #weight?: CBS_Weight;
-    #align?: CBS_Align;
+    __color?: CBS_Color;
+    __size?: CBS_Size;
+    __weight?: CBS_Weight;
+    __align?: CBS_Align;
     /**
      * Creates an instance of CBS_Text.
      *
@@ -53,42 +53,42 @@ class CBS_Text extends CBS_Element {
 
     set color(color: CBS_Color|undefined) {
         if (this.color) this.removeClass(`text-${this.color}`); 
-        this.#color = color;
+        this.__color = color;
         if (color) this.addClass(`text-${color}`);
     }
 
     get color(): CBS_Color|undefined {
-        return this.#color;
+        return this.__color;
     }
 
     set size(size: CBS_Size|undefined) {
         if (this.size) this.removeClass(`text-${this.size}`);
-        this.#size = size;
+        this.__size = size;
         if (size) this.addClass(`text-${size}`);
     }
 
     get size(): CBS_Size|undefined {
-        return this.#size;
+        return this.__size;
     }
 
     set weight(weight: CBS_Weight|undefined) {
         if (this.weight) this.removeClass(`font-${this.weight}`);
-        this.#weight = weight;
+        this.__weight = weight;
         if (weight) this.addClass(`font-${weight}`);
     }
 
     get weight(): CBS_Weight|undefined {
-        return this.#weight;
+        return this.__weight;
     }
 
     set align(align: CBS_Align|undefined) {
         if (this.align) this.removeClass(`text-${this.align}`);
-        this.#align = align;
+        this.__align = align;
         if (align) this.addClass(`text-${align}`);
     }
 
     get align(): CBS_Align|undefined {
-        return this.#align;
+        return this.__align;
     }
 }
 
