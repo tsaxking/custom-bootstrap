@@ -12,9 +12,9 @@ type CBS_MaterialIconFontSettings = {
  *
  * @class CBS_MaterialIcon
  * @typedef {CBS_MaterialIcon}
- * @extends {CBS_Text}
+ * @extends {CBS_Component}
  */
-class CBS_MaterialIcon extends CBS_Text {
+class CBS_MaterialIcon extends CBS_Component {
     /**
      * Creates an instance of CBS_MaterialIcon.
      *
@@ -207,7 +207,7 @@ const CBS_GenerateMaterialIcons = (prefix?: string) => {
             CBS_H4,
             CBS_H5,
             CBS_H6,
-            CBS_Paragraph,
+            CBS_Component,
             CBS_Anchor
         ].forEach(c => {
             const el = new c();

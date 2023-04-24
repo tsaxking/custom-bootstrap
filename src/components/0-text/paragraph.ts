@@ -17,8 +17,8 @@ type CBS_ParagraphOptions = {
  * Description placeholder
  *
  * @class CBS_Paragraph
- * @typedef {CBS_Paragraph}
- * @extends {CBS_Text}
+ * @typedef {CBS_Component}
+ * @extends {CBS_Component}
  */
 class CBS_Paragraph extends CBS_Text {
     /**
@@ -35,4 +35,4 @@ class CBS_Paragraph extends CBS_Text {
 }
 
 
-CBS.addElement('paragraph', CBS_Paragraph);
+CBS.addElement('paragraph', CBS_Component);

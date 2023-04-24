@@ -18,9 +18,9 @@ type CBS_AnchorOptions = {
  *
  * @class CBS_Anchor
  * @typedef {CBS_Anchor}
- * @extends {CBS_Text}
+ * @extends {CBS_Component}
  */
-class CBS_Anchor extends CBS_Text {
+class CBS_Anchor extends CBS_Component {
     /**
      * Creates an instance of CBS_Anchor.
      *

@@ -76,6 +76,60 @@ class CBS_RangeInput extends CBS_Input {
         if (this.getMirrorValue) return this.getMirrorValue(this.value);
         return this.mirrorValues[this.value];
     }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    get min(): number {
+        return this.getAttribute('min') ? +this.getAttribute('min') : 0;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set min(min: number) {
+        this.setAttribute('min', min.toString());
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    get max(): number {
+        return this.getAttribute('max') ? +this.getAttribute('max') : 100;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set max(max: number) {
+        this.setAttribute('max', max.toString());
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    get step(): number {
+        return this.getAttribute('step') ? +this.getAttribute('step') : 1;
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {number}
+     */
+    set step(step: number) {
+        this.setAttribute('step', step.toString());
+    }
 }
 
 

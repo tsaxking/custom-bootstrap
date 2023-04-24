@@ -11,6 +11,7 @@ type CBS_TextInputOptions = {
         [key: string]: string;
     }
 
+    // TODO: add these
     name?: string;
     label?: string;
     value?: string;

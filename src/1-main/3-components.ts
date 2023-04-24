@@ -1,9 +1,4 @@
-/**
- * All Bootstrap Breakpoints
- *
- * @typedef {CBS_Breakpoint}
- */
-type CBS_Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
 
 /**
  * For Subcomponents
@@ -11,7 +6,7 @@ type CBS_Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
  * @typedef {CBS_SubComponentContainer}
  */
 type CBS_SubComponentContainer = {
-    [key: string]: CBS_Component;
+    [key: string]: CBS_Element;
 }
 
 

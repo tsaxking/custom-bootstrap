@@ -112,7 +112,7 @@ class CBS_Element extends CustomBootstrap {
 
         c.prototype.options = template.options;
         c.prototype.listeners = template.listeners;
-        c.prototype.subcomponents = template.subcomponents;
+        (c.prototype as CBS_Component).subcomponents = (template as CBS_Component).subcomponents;
         c.prototype.parameters = template.parameters;
         c.prototype._el = template._el.cloneNode(true) as HTMLElement;
         c.prototype._options = template._options;
@@ -205,12 +205,6 @@ class CBS_Element extends CustomBootstrap {
      */
     #components: CBS_NodeMap = [];
     /**
-     * All subcomponents (This is so elements can have children that are also components)
-     *
-     * @type {CBS_NodeContainer}
-     */
-    subcomponents: CBS_NodeContainer = {};
-    /**
      * All options for this element
      *
      * @type {CBS_Options}
@@ -218,6 +212,12 @@ class CBS_Element extends CustomBootstrap {
     _options: CBS_Options = {};
 
 
+    /**
+     * Description placeholder
+     *
+     * @readonly
+     * @type {CBS_NodeMap}
+     */
     get components(): CBS_NodeMap {
         return this.#components;
     }
@@ -299,6 +299,11 @@ class CBS_Element extends CustomBootstrap {
         }
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
     set allPadding(padding: CBS_PropertyMap) {
         this.#padding = padding;
 
@@ -311,10 +316,20 @@ class CBS_Element extends CustomBootstrap {
         this.padding = padding.global;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
     get allPadding(): CBS_PropertyMap {
         return this.#padding;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
     set allMargin(margin: CBS_PropertyMap) {
         this.#margin = margin;
 
@@ -327,6 +342,11 @@ class CBS_Element extends CustomBootstrap {
         this.margin = margin.global;
     }
 
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_PropertyMap}
+     */
     get allMargin(): CBS_PropertyMap {
         return this.#margin;
     }
@@ -1357,9 +1377,36 @@ class CBS_Element extends CustomBootstrap {
         return this.options.classes || [];
     }
 
+    /**
+     * Description placeholder
+     *
+     * @param {string} name
+     * @returns {*}
+     */
+    hasClass(name: string): any {
+        return this.classes.includes(name);
+    }
 
 
 
+
+    // ▄▀▀ ▀█▀ ▀▄▀ █   ██▀ 
+    // ▄█▀  █   █  █▄▄ █▄▄ 
+
+
+    get style() {
+        return this.options.style || {};
+    }
+
+    set style(style: object) {
+        this.options = {
+            ...this.options,
+            style: {
+                ...(this.options.style || {}),
+                ...style
+            }
+        }
+    }
 
 
 
@@ -1415,5 +1462,86 @@ class CBS_Element extends CustomBootstrap {
      */
     getAttribute(name: string) {
         return this.attributes[name];
+    }
+
+
+
+
+
+
+
+
+    // ██▀ █ █ ██▀ █▄ █ ▀█▀ ▄▀▀ 
+    // █▄▄ ▀▄▀ █▄▄ █ ▀█  █  ▄█▀ 
+
+    /**
+     * Description placeholder
+     *
+     * @param {(MouseEvent|TouchEvent)} e
+     * @returns {{ x: any; y: any; }}
+     */
+    getXY(e: MouseEvent|TouchEvent) {
+        if ((e as TouchEvent).touches) {
+            return {
+                x: (e as TouchEvent).touches[0].clientX,
+                y: (e as TouchEvent).touches[0].clientY
+            }
+        } else {
+            return {
+                x: (e as MouseEvent).clientX,
+                y: (e as MouseEvent).clientY
+            }
+        }
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @param {TouchEvent} e
+     * @returns {*}
+     */
+    getXYList(e: TouchEvent) {
+        return Array.from((e as TouchEvent).touches).map(t => {
+            return {
+                x: t.clientX,
+                y: t.clientY
+            }
+        });
+    }
+
+
+
+
+
+
+
+    // ▄▀▀ ▄▀▄ █   ▄▀▄ █▀▄ 
+    // ▀▄▄ ▀▄▀ █▄▄ ▀▄▀ █▀▄ 
+
+    /**
+     * Description placeholder
+     *
+     * @type {(CBS_Color|undefined)}
+     */
+    #background: CBS_Color|undefined;
+
+    /**
+     * Description placeholder
+     *
+     * @type {*}
+     */
+    set background(color: CBS_Color|undefined) {
+        if (this.background) this.removeClass(`bg-${this.background}`);
+        this.#background = color;
+        if (color) this.addClass(`bg-${color}`);
+    }
+
+    /**
+     * Description placeholder
+     *
+     * @type {(CBS_Color|undefined)}
+     */
+    get background(): CBS_Color|undefined {
+        return this.#background;
     }
 };

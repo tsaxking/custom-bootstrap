@@ -57,116 +57,116 @@ type CBS_Parameters = {
 
 
 
-// Is not currently used, but may be useful in the future?
-/**
- * Description placeholder
- *
- * @interface CBS_ElementNameMap
- * @typedef {CBS_ElementNameMap}
- */
-interface CBS_ElementNameMap {
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_AudioCard}
-     */
-    'audio': CBS_AudioCard;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Video}
-     */
-    'video': CBS_Video;
+// // Is not currently used, but may be useful in the future?
+// /**
+//  * Description placeholder
+//  *
+//  * @interface CBS_ElementNameMap
+//  * @typedef {CBS_ElementNameMap}
+//  */
+// interface CBS_ElementNameMap {
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_AudioCard}
+//      */
+//     'audio': CBS_AudioCard;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Video}
+//      */
+//     'video': CBS_Video;
 
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Modal}
-     */
-    'modal': CBS_Modal;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Modal}
+//      */
+//     'modal': CBS_Modal;
 
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Card}
-     */
-    'card': CBS_Card;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Form}
-     */
-    'form': CBS_Form;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_List}
-     */
-    'list': CBS_List;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Progress}
-     */
-    'progress-bar': CBS_Progress;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Card}
+//      */
+//     'card': CBS_Card;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Form}
+//      */
+//     'form': CBS_Form;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_List}
+//      */
+//     'list': CBS_List;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Progress}
+//      */
+//     'progress-bar': CBS_Progress;
 
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_CheckboxInput}
-     */
-    'checkbox': CBS_CheckboxInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_RadioInput}
-     */
-    'radio': CBS_RadioInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Input}
-     */
-    'input': CBS_Input;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_TextareaInput}
-     */
-    'textarea': CBS_TextareaInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Button}
-     */
-    'button': CBS_Button;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_SelectInput}
-     */
-    'select': CBS_SelectInput;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_CheckboxInput}
+//      */
+//     'checkbox': CBS_CheckboxInput;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_RadioInput}
+//      */
+//     'radio': CBS_RadioInput;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Input}
+//      */
+//     'input': CBS_Input;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_TextareaInput}
+//      */
+//     'textarea': CBS_TextareaInput;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_Button}
+//      */
+//     'button': CBS_Button;
+//     /**
+//      * Description placeholder
+//      *
+//      * @type {CBS_SelectInput}
+//      */
+//     'select': CBS_SelectInput;
 
-}
+// }
 
 
 // TODO: Add all the elements to this interface
-/**
- * Description placeholder
- *
- * @interface CBS
- * @typedef {CBS}
- */
-interface CBS {
-    /**
-     * Description placeholder
-     *
-     * @template K
-     * @param {K} tagName
-     * @returns {CBS_ElementNameMap[K]}
-     */
-    createElement<K extends keyof CBS_ElementNameMap>(tagName: K): CBS_ElementNameMap[K];
-}
+// /**
+//  * Description placeholder
+//  *
+//  * @interface CBS
+//  * @typedef {CBS}
+//  */
+// interface CBS {
+//     /**
+//      * Description placeholder
+//      *
+//      * @template K
+//      * @param {K} tagName
+//      * @returns {CBS_ElementNameMap[K]}
+//      */
+//     createElement<K extends keyof CBS_ElementNameMap>(tagName: K): CBS_ElementNameMap[K];
+// }
 
 /**
  * Selector object returned by CustomBootstrap.parseSelector()

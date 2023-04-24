@@ -421,7 +421,7 @@ CBS_AudioTimeline.addCustomEvent('playhead.move');
  * @typedef {CBS_AudioButton}
  * @extends {CBS_Element}
  */
-class CBS_AudioButton extends CBS_Element {
+class CBS_AudioButton extends CBS_Component {
     /**
      * Creates an instance of CBS_AudioButton.
      *
@@ -503,7 +503,7 @@ class CBS_AudioPlayer extends CBS_Component {
             stopButton,
             timeline
         );
-        const toggleButtonContent = toggleButton.subcomponents.content as CBS_MaterialIcon;
+        const toggleButtonContent = (toggleButton as CBS_AudioButton).subcomponents.content as CBS_MaterialIcon;
 
         const pause = () => {
             toggleButtonContent.icon = 'play_arrow';
@@ -535,7 +535,7 @@ class CBS_AudioPlayer extends CBS_Component {
             (audio as CBS_AudioElement).currentTime = progress * (await (audio as CBS_AudioElement).duration);
         });
 
-        const playhead  = timeline.subcomponents.playhead as CBS_AudioPlayhead;
+        const playhead  = (timeline as CBS_AudioTimeline).subcomponents.playhead as CBS_AudioPlayhead;
 
         playhead.on('mousedown', async(e) => {
             (audio as CBS_AudioElement).pause();
@@ -574,7 +574,7 @@ class CBS_AudioCardBody extends CBS_CardBody {
      */
     subcomponents: CBS_ElementContainer = {
         title: new CBS_H5(),
-        subtitle: new CBS_Paragraph(),
+        subtitle: new CBS_Component(),
         player: new CBS_AudioPlayer()
     }
 

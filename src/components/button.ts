@@ -13,7 +13,7 @@ type CBS_ButtonOptions = {
 
     outlined?: boolean;
     rounded?: boolean;
-    size?: CBS_Breakpoint;
+    size?: CBS_Size;
     color?: string;
     shadow?: boolean;
 }
@@ -142,7 +142,7 @@ CBS.addElement('button', CBS_Button);
     const modalClose = new CBS_Button({
         color: 'secondary',
         outlined: true,
-        size: 'sm',
+        size: CBS_Size.sm,
         classes: ['modal-close'],
         attributes: {
             'type': 'button',
