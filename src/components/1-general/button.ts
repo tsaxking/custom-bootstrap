@@ -16,6 +16,8 @@ type CBS_ButtonOptions = {
     size?: CBS_Size;
     color?: string;
     shadow?: boolean;
+
+    text?: string;
 }
 
 
@@ -73,6 +75,8 @@ class CBS_Button extends CBS_Component {
         this.addClass('btn');
 
         this.append(this.subcomponents.content);
+
+        this.options = options || {};
     }
 
 
@@ -118,6 +122,10 @@ class CBS_Button extends CBS_Component {
 
         if (options.shadow) {
             this.el.classList.add(`btn-shadow`);
+        }
+
+        if (options.text) {
+            this.content = options.text;
         }
     }
 
@@ -171,7 +179,7 @@ CBS.addElement('button', CBS_Button);
         }
     });
 
-    modalClose.removeClass('btn');
+    // modalClose.removeClass('btn');
 
     CBS_Button.addTemplate('modal-close', modalClose);
 })();

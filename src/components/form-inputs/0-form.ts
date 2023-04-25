@@ -23,7 +23,9 @@ type CBS_FormOptions = {
  *
  * @typedef {CBS_InputList}
  */
-type CBS_InputList = (CBS_Input|CBS_InputLabelContainer)[];
+type CBS_InputList = {
+    [key: string]: CBS_Input|CBS_InputLabelContainer;
+}
 
 
 /**
@@ -34,12 +36,15 @@ type CBS_InputList = (CBS_Input|CBS_InputLabelContainer)[];
  * @extends {CBS_Component}
  */
 class CBS_Form extends CBS_Component {
+    subcomponents: CBS_ElementContainer = {
+    }
+    
     /**
      * Description placeholder
      *
      * @type {CBS_InputList}
      */
-    inputs: CBS_InputList = [];
+    inputs: CBS_InputList = {};
 
     /**
      * Creates an instance of CBS_Form.
@@ -49,6 +54,18 @@ class CBS_Form extends CBS_Component {
      */
     constructor(options?: CBS_FormOptions) {
         super(options);
+
+        this.el = document.createElement('form');
+
+        this.subcomponents.submit = new CBS_Button({
+            text: 'Submit',
+            color: 'primary',
+            attributes: {
+                type: 'submit'
+            }
+        });
+
+        this.append(this.subcomponents.submit);
     }
 
     /**
@@ -56,13 +73,13 @@ class CBS_Form extends CBS_Component {
      *
      * @returns {CBS_InputGroup}
      */
-    addGroup() {
+    addGroup(name: string) {
         const group = new CBS_InputGroup();
         this.append(group);
 
         group.on('input:add', () => {
             const input = group.components[group.components.length - 1];
-            this.inputs.push(input as CBS_Input|CBS_InputLabelContainer);
+            this.inputs[name] = input as CBS_Input|CBS_InputLabelContainer;
         });
 
         return group;
@@ -73,9 +90,23 @@ class CBS_Form extends CBS_Component {
      *
      * @param {(CBS_Input|CBS_InputLabelContainer)} input
      */
-    addInput(input: CBS_Input|CBS_InputLabelContainer) {
-        this.inputs.push(input);
-        this.append(input);
+    addInput(input: CBS_Input|CBS_InputLabelContainer, name?: string) {
+        if (name) input.setAttribute('name', name);
+        else name = input.getAttribute('name');
+        if (!name) {
+            return console.error('CBS_Form.addInput: Input must have a name attribute');
+        }
+
+        if (!(input instanceof CBS_InputLabelContainer)) {
+            let container = new CBS_InputLabelContainer();
+            container.label = new CBS_Label();
+            container.label.text = name;
+            container.input = input;
+            input = container;
+        }
+
+        this.inputs[name] = input;
+        this.insertBefore(this.components[this.components.length - 1], input);
     }
 
     /**
@@ -85,33 +116,85 @@ class CBS_Form extends CBS_Component {
      * @param {CBS_Options} options
      * @returns {CBS_Input}
      */
-    createInput(type: string, options: CBS_Options): CBS_Input {
+    createInput(name: string, type: string, options?: CBS_Options): CBS_Input {
+        options = {
+            ...options,
+            attributes: {
+                ...(options?.attributes || {}),
+                name: name
+            }
+        };
+
+        let i;
+
         switch (type) {
             case 'text':
-                return new CBS_TextInput(options);
+                i = new CBS_TextInput(options);
+                break;
             case 'password':
-                return new CBS_PasswordInput(options);
+                i = new CBS_PasswordInput(options);
+                break;
             case 'email':
-                return new CBS_EmailInput(options);
+                i = new CBS_EmailInput(options);
+                break;
             case 'select':
-                return new CBS_SelectInput(options);
+                i = new CBS_SelectInput(options);
+                break;
             case 'textarea':
-                return new CBS_TextareaInput(options);
+                i = new CBS_TextareaInput(options);
+                break;
             case 'checkbox':
-                return new CBS_Checkbox(options);
+                i = new CBS_Checkbox(options);
+                break;
             case 'radio':
-                return new CBS_Radio(options);
+                i = new CBS_Radio(options);
+                break;
             case 'file':
-                return new CBS_FileInput(options);
+                i = new CBS_FileInput(options);
+                break;
             case 'range':
-                return new CBS_RangeInput(options);
+                i = new CBS_RangeInput(options);
+                break;
             case 'color':
-                return new CBS_ColorInput(options);
+                i = new CBS_ColorInput(options);
+                break;
             case 'date':
-                return new CBS_DateInput(options);
+                i = new CBS_DateInput(options);
+                break;
+            default:
+                i = new CBS_Input(options);
+                break;
         }
 
-        return new CBS_Input();
+        this.addInput(i, name);
+
+        return i;
+    }
+
+
+
+
+
+    get value() {
+        return Object.entries(this.inputs).reduce((acc, [name, input]) => {
+            if (input instanceof CBS_InputLabelContainer) {
+                acc[name] = input.value;
+            } else {
+                acc[name] = input.value;
+            }
+            return acc;
+        }, {} as {[key: string]: any});
+    }
+
+    get mirrorValue() {
+        return Object.entries(this.inputs).reduce((acc, [name, input]) => {
+            if (input instanceof CBS_InputLabelContainer) {
+                acc[name] = input.mirrorValue;
+            } else {
+                acc[name] = input.mirrorValue;
+            }
+            return acc;
+        }, {} as {[key: string]: any});
     }
 }
 

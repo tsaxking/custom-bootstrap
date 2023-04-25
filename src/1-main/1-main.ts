@@ -485,30 +485,27 @@ class CustomBootstrap {
             modal.title = 'Fill out form';
 
             modal.subcomponents.body.append(form);
+            modal.subcomponents.footer.append(submit);
 
+            submit.on('click', () => {
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(form.value);
+            });
 
+            form.on('submit', (e) => {
+                e.preventDefault();
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(form.value);
+            });
 
-            // I have not implemented forms yet, so this is just a placeholder
-            // the code will probably look like this
-
-            // submit.on('click', () => {
-            //     modal.hide();
-            //     modal.on('animationend', () => {
-            //         modal.destroy();
-            //     });
-            //     res(form.value);
-            // });
-
-            // form.on('submit', () => {
-            //     modal.hide();
-            //     modal.on('animationend', () => {
-            //         modal.destroy();
-            //     });
-            //     res(form.value);
-            // });
-
-            // modal.on('hidden.bs.modal', () => res(null));
-            // modal.on('destroyed', () => res(null));
+            modal.on('hidden.bs.modal', () => res(null));
+            modal.on('destroyed', () => res(null));
             modal.show();
         });
     }

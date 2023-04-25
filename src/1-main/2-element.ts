@@ -269,22 +269,22 @@ class CBS_Element extends CustomBootstrap {
         const set = (property: CBS_PropertyMap, key: string, value: number|undefined) => {
             const abbr: string = paddingOrMargin[0];
 
-            this.removeClass(`${abbr}-${property.global}`); // removes glbal property
+            this.el.classList.remove(`${abbr}-${property.global}`); // removes glbal property
 
             if (key === 'global') {
                 properties.forEach(p => {
-                    this.removeClass(`${abbr}${p}-${property[p]}`)
+                    this.el.classList.remove(`${abbr}${p}-${property[p]}`);
 
                     delete property[p];
                 });
 
                 property.global = value;
-                this.addClass(`${abbr}-${value}`);
+                this.el.classList.add(`${abbr}-${value}`);
             } else {
                 delete property.global;
-                this.removeClass(`${abbr}${key}-${property[key]}`); // removes the current property
+                this.el.classList.remove(`${abbr}${key}-${property[key]}`); // removes the current property
                 property[key] = value;
-                this.addClass(`${abbr}${key}-${value}`);
+                this.el.classList.add(`${abbr}${key}-${value}`);
             }
         }
 
@@ -795,7 +795,7 @@ class CBS_Element extends CustomBootstrap {
         this.clearElements();
 
         this._el = el;
-        this.options = this._options;
+        this.__options = this._options;
         this.allPadding = this.allPadding;
         this.allMargin = this.allMargin;
 
@@ -1376,9 +1376,10 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     removeClass(...classes: string[]) {
+        const newClasses = this.options?.classes?.filter(c => !classes.includes(c)) || [];
         this.options = {
             ...this.options,
-            classes: this.options?.classes?.filter(c => !classes.includes(c))
+            classes: newClasses
         }
     }
 
@@ -1580,5 +1581,15 @@ class CBS_Element extends CustomBootstrap {
 
     set html(text: string) {
         this.el.innerHTML = text;
+    }
+
+    get content() {
+        return this.components;
+    }
+
+    set content(content: CBS_Node|CBS_NodeMap) {
+        this.clearElements();
+        if (Array.isArray(content)) this.append(...content);
+        else this.append(content);
     }
 };

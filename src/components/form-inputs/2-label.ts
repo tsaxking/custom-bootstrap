@@ -38,7 +38,7 @@ class CBS_Label extends CBS_Element {
     constructor(options?: CBS_InputOptions) {
         super(options);
 
-        this.el = document.createElement('input');
+        this.el = document.createElement('label');
     }
 
     /**
@@ -48,7 +48,7 @@ class CBS_Label extends CBS_Element {
      */
     set text(text: string) {
         this.#text = text;
-        this.el.textContent = text;
+        this.el.innerHTML = text;
     }
 
     /**

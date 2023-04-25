@@ -23,7 +23,7 @@ type CBS_InputLabelContainerOptions = {
  * @extends {CBS_Component}
  * @implements {CBS_InputInterface}
  */
-class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
+class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
     /**
      * Description placeholder
      *
@@ -43,13 +43,10 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
      * @param {CBS_Label} label
      * @param {?CBS_Options} [options]
      */
-    constructor(input: CBS_Input, label: CBS_Label, options?: CBS_Options) {
+    constructor(options?: CBS_Options) {
         super(options);
 
         this.el = document.createElement('div');
-
-        this.input = input;
-        this.label = label;
     }
 
     /**
@@ -59,7 +56,12 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
      */
     set input(input: CBS_Input) {
         this.subcomponents.input = input;
-        this.options = this.options;
+        this.options = this.options || {};
+        this.append(input);
+    }
+
+    get input() {
+        return (this.subcomponents.input as CBS_Input);
     }
 
     /**
@@ -69,7 +71,12 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
      */
     set label(label: CBS_Label) {
         this.subcomponents.label = label;
-        this.options = this.options;
+        this.options = this.options || {};
+        this.append(label);
+    }
+
+    get label() {
+        return (this.subcomponents.label as CBS_Label);
     }
 
 
@@ -85,12 +92,15 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
             type
         } = options;
 
-        const {
+        let {
             input, 
             label
         } = this.subcomponents;
 
-        this.el = document.createElement('div');
+        if (!input) input = new CBS_Input();
+        if (!label) label = new CBS_Label();
+
+        this.clearElements();
 
         // inline
         // label (default)
