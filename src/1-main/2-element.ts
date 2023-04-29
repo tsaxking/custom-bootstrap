@@ -904,27 +904,27 @@ class CBS_Element extends CustomBootstrap {
             const index = this._components.indexOf(nodeToInsertBefore);
             this._components.splice(index, 0, ...elementsToAdd);
 
-            let node: Node|null;
+            let node: CBS_Element|ChildNode;
 
             // adds elements to components
             if (nodeToInsertBefore instanceof CBS_Element) {
                 node = nodeToInsertBefore._el;
             } else if (typeof nodeToInsertBefore === 'string') { 
-                node = this.createElementFromText(nodeToInsertBefore);
+                [node] = this.createElementFromText(nodeToInsertBefore);
             } else {
-                node = nodeToInsertBefore;
+                node = nodeToInsertBefore as ChildNode;
             }
 
             // adds elements to the DOM
             elementsToAdd.forEach((el, i) => {
                 if (el instanceof CBS_Element) {
-                    this._el.insertBefore(el._el, node);
+                    this._el.insertBefore(el._el, (node instanceof CBS_Element) ? node._el : node);
                 } else if (typeof el === 'string') {
                     const div = document.createElement('div');
                     div.innerHTML = el;
-                    this._el.insertBefore(div, node);
+                    this._el.insertBefore(div, (node instanceof CBS_Element) ? node._el : node);
                 } else {
-                    this._el.insertBefore(el, node);
+                    this._el.insertBefore(el, (node instanceof CBS_Element) ? node._el : node);
                 }
             });
         }
@@ -1361,13 +1361,11 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     addClass(...classes: string[]) {
-        this.options = {
-            ...this.options,
-            classes: [
-                ...(this.options?.classes || []),
-                ...classes
-            ]
-        }
+        if (!this._options) this.options = {};
+        if (!this._options.classes) this._options.classes = [];
+
+        this._options.classes = [...this._options.classes, ...classes];
+        this.el.classList.add(...classes);
     }
 
     /**
@@ -1376,11 +1374,11 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     removeClass(...classes: string[]) {
-        const newClasses = this.options?.classes?.filter(c => !classes.includes(c)) || [];
-        this.options = {
-            ...this.options,
-            classes: newClasses
-        }
+        if (!this.options) this.options = {};
+        if (!this.options.classes) this.options.classes = [];
+
+        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        this.el.classList.remove(...classes);
     }
 
     /**
@@ -1389,12 +1387,12 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     toggleClass(...classes: string[]) {
-        this.options = {
-            ...this.options,
-            classes: this.options.classes?.map(c => {
-                return classes.includes(c) ? c : null;
-            }).filter(c => !!c) as string[]
-        }
+        if (!this.options.classes) this.options.classes = [];
+
+        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        classes.forEach(c => {
+            this.el.classList.toggle(c);
+        });
     }
 
     /**
@@ -1438,6 +1436,13 @@ class CBS_Element extends CustomBootstrap {
         }
     }
 
+    get id():string|undefined {
+        return this.options.id;
+    }
+
+    set id(id: string|undefined) {
+        this.options.id = id;
+    }
 
 
 

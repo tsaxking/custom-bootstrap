@@ -350,14 +350,66 @@ class CustomBootstrap {
 
     /**
      * Creates an element from an html string
-     *
+     * 
      * @param {string} text
      * @returns {(ChildNode|null)}
      */
-    createElementFromText(text: string): ChildNode|null {
+    createElementFromText(text: string): (ChildNode|CBS_Element)[] {
         const div = document.createElement('div');
         div.innerHTML = text;
-        return div.firstChild;
+        const fullArray = Array.from(div.querySelectorAll('*'));
+
+        const collected: any[] = [];
+
+        return fullArray.map((el) => {
+            // console.log(el);
+            const tag = el.tagName.toLowerCase();
+            if (tag.includes('cbs-')) {
+            const [,element] = tag.split('cbs-');
+            const cbsEl = CBS.createElement(element);
+
+            // defining properties
+            Array.from(el.attributes).forEach((attr) => {
+                cbsEl.setAttribute(attr.name, attr.value);
+            });
+            cbsEl.addClass(...Array.from(el.classList));
+            cbsEl.style = Object.keys((el as HTMLElement).style).reduce((acc, key) => {
+                if (!(el as HTMLElement).style[key]) return acc;
+                acc[key] = (el as HTMLElement).style[key];
+                return acc;
+            }, {} as { [key: string]: string });
+
+            if (cbsEl instanceof CBS_Component) {
+                Object.keys(cbsEl.subcomponents).forEach(name => {
+                    const subEl = el.querySelector(`${element}-${name}`);
+                    // console.log(name, subEl);
+                    if (subEl) {
+                        // console.log(subEl);
+
+                        // get all text nodes and children in correct order
+                        const textNodes = Array.from(subEl.childNodes).filter(n => n.nodeType === 3);
+                        const children = Array.from(subEl.childNodes).filter(n => n.nodeType !== 3);
+
+                        const subElements = [...textNodes, ...children];
+                        subElements.sort((a, b) => {
+                        if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        });
+
+                        cbsEl.subcomponents[name].el.append(...subElements);
+                        collected.push(subEl);
+                    }
+                });
+            }
+
+            el.replaceWith(cbsEl.el);
+            return cbsEl;
+            }
+            return el;
+        }).filter(e => (e && !collected.includes(e)));
     }
 
 

@@ -10,6 +10,8 @@ type CBS_ColOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    breakpoints?: CBS_BreakpointMap;
 }
 
 /**
@@ -50,6 +52,12 @@ class CBS_Col extends CBS_Element {
         super(options);
 
         this.el = document.createElement('div');
+
+        if (options?.breakpoints) {
+            for (const breakpoint in options.breakpoints) {
+                this.addBreakpoint(breakpoint, options.breakpoints[breakpoint]);
+            }
+        }
     }
 
     /**
@@ -71,5 +79,15 @@ class CBS_Col extends CBS_Element {
     removeBreakpoint(breakpoint: string) {
         this.removeClass(`col-${breakpoint}-${this.breakpoints[breakpoint]}`);
         delete this.breakpoints[breakpoint];
+    }
+
+    set options(options: CBS_ColOptions) {
+        super.options = options;
+
+        if (options.breakpoints) {
+            for (const breakpoint in options.breakpoints) {
+                this.addBreakpoint(breakpoint, options.breakpoints[breakpoint]);
+            }
+        }
     }
 }

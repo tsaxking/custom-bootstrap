@@ -37,14 +37,8 @@ type CBS_InputList = {
  */
 class CBS_Form extends CBS_Component {
     subcomponents: CBS_ElementContainer = {
+        container: new CBS_Container()
     }
-    
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_InputList}
-     */
-    inputs: CBS_InputList = {};
 
     /**
      * Creates an instance of CBS_Form.
@@ -65,48 +59,7 @@ class CBS_Form extends CBS_Component {
             }
         });
 
-        this.append(this.subcomponents.submit);
-    }
-
-    /**
-     * Description placeholder
-     *
-     * @returns {CBS_InputGroup}
-     */
-    addGroup(name: string) {
-        const group = new CBS_InputGroup();
-        this.append(group);
-
-        group.on('input:add', () => {
-            const input = group.components[group.components.length - 1];
-            this.inputs[name] = input as CBS_Input|CBS_InputLabelContainer;
-        });
-
-        return group;
-    }
-
-    /**
-     * Description placeholder
-     *
-     * @param {(CBS_Input|CBS_InputLabelContainer)} input
-     */
-    addInput(input: CBS_Input|CBS_InputLabelContainer, name?: string) {
-        if (name) input.setAttribute('name', name);
-        else name = input.getAttribute('name');
-        if (!name) {
-            return console.error('CBS_Form.addInput: Input must have a name attribute');
-        }
-
-        if (!(input instanceof CBS_InputLabelContainer)) {
-            let container = new CBS_InputLabelContainer();
-            container.label = new CBS_Label();
-            container.label.text = name;
-            container.input = input;
-            input = container;
-        }
-
-        this.inputs[name] = input;
-        this.insertBefore(this.components[this.components.length - 1], input);
+        this.append(this.subcomponents.container);
     }
 
     /**
@@ -116,7 +69,7 @@ class CBS_Form extends CBS_Component {
      * @param {CBS_Options} options
      * @returns {CBS_Input}
      */
-    createInput(name: string, type: string, options?: CBS_Options): CBS_Input {
+    createInput(name: string, type: string, options?: CBS_Options): CBS_InputLabelContainer {
         options = {
             ...options,
             attributes: {
@@ -125,7 +78,7 @@ class CBS_Form extends CBS_Component {
             }
         };
 
-        let i;
+        let i: CBS_Input;
 
         switch (type) {
             case 'text':
@@ -146,8 +99,11 @@ class CBS_Form extends CBS_Component {
             case 'checkbox':
                 i = new CBS_Checkbox(options);
                 break;
+            case 'checkbox-group':
+                i = new CBS_CheckboxGroup(options);
+                break;
             case 'radio':
-                i = new CBS_Radio(options);
+                i = new CBS_RadioGroup(options);
                 break;
             case 'file':
                 i = new CBS_FileInput(options);
@@ -166,35 +122,52 @@ class CBS_Form extends CBS_Component {
                 break;
         }
 
-        this.addInput(i, name);
+        const c = new CBS_InputLabelContainer();
+        c.input = i;
+        c.label.text = name;
 
-        return i;
+        return c;
     }
 
 
+    get inputs() {
+        const reduce = (acc: CBS_InputList, element: CBS_Node) => {
+            if (element instanceof CBS_Input || element instanceof CBS_InputLabelContainer) {
+                if (acc[element.getAttribute('name')]) console.warn('Duplicate input, name:', element.getAttribute('name'), 'The previous will be overwritten');
+                acc[element.getAttribute('name') || ''] = element;
+            } else if (element instanceof CBS_Element) {
+                element.components.forEach(el => reduce(acc, el));
+            }
 
+            return acc;
+        };
 
+        return this.components.reduce(reduce, {} as CBS_InputList)
+    }
 
     get value() {
         return Object.entries(this.inputs).reduce((acc, [name, input]) => {
-            if (input instanceof CBS_InputLabelContainer) {
-                acc[name] = input.value;
-            } else {
-                acc[name] = input.value;
-            }
+            acc[name || ''] = input.value;
             return acc;
         }, {} as {[key: string]: any});
     }
 
     get mirrorValue() {
         return Object.entries(this.inputs).reduce((acc, [name, input]) => {
-            if (input instanceof CBS_InputLabelContainer) {
-                acc[name] = input.mirrorValue;
-            } else {
-                acc[name] = input.mirrorValue;
-            }
+            acc[name || ''] = input.mirrorValue;
             return acc;
         }, {} as {[key: string]: any});
+    }
+
+    append(...elements: CBS_Node[]) {
+        super.append(...elements);
+        elements.forEach(el => {
+            if (el instanceof CBS_Input) {
+                if (!el.getAttribute('name')) {
+                    console.warn('CBS_Form.append: Input does not have "name" attribute');
+                }
+            }
+        });
     }
 }
 

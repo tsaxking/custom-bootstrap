@@ -32,8 +32,7 @@ class CBS_Container extends CBS_Element {
     constructor(options?: CBS_ContainerOptions) {
         super(options);
 
-        this.el = document.createElement('div');
-        if (this.options.fluid) {
+        if (options?.fluid) {
             this.addClass('container-fluid');
         } else {
             this.addClass('container');
@@ -47,9 +46,8 @@ class CBS_Container extends CBS_Element {
      */
     set options(options: CBS_ContainerOptions) {
         super.options = options;
-        this.removeClass('container-fluid', 'container');
 
-        if (this.options.fluid) {
+        if (options?.fluid) {
             this.addClass('container-fluid');
         } else {
             this.addClass('container');
@@ -73,11 +71,9 @@ class CBS_Container extends CBS_Element {
      *
      * @returns {*}
      */
-    addRow() {
-        const row = new CBS_Row();
-
+    addRow(options?: CBS_Options) {
+        const row = new CBS_Row(options);
         this.append(row);
-
         return row;
     }
 }

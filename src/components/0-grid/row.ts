@@ -40,13 +40,9 @@ class CBS_Row extends CBS_Element {
      * @returns {CBS_Col}
      */
     addCol(breakpoints?: CBS_BreakpointMap) {
-        const col = new CBS_Col();
-
-        if (breakpoints) {
-            for (const breakpoint in breakpoints) {
-                col.addBreakpoint(breakpoint, breakpoints[breakpoint]);
-            }
-        }
+        const col = new CBS_Col({
+            breakpoints: breakpoints
+        });
 
         this.append(col);
 
