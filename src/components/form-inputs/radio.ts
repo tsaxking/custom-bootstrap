@@ -28,6 +28,8 @@ class CBS_RadioLabel extends CBS_CheckboxLabel {
     }
 }
 
+CBS.addElement('cbs-radio-label', CBS_RadioLabel);
+
 
 
 /**
@@ -100,6 +102,8 @@ class CBS_RadioInput extends CBS_Input {
         (this.el as HTMLInputElement).disabled = false;
     }
 }
+
+CBS.addElement('cbs-radio-input', CBS_RadioInput);
 
 
 /**
@@ -192,6 +196,8 @@ class CBS_Radio extends CBS_Input {
         (this.subcomponents.input as CBS_RadioInput).enable();
     }
 };
+
+CBS.addElement('cbs-radio', CBS_Radio);
 
 
 /**

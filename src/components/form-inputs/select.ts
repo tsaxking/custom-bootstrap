@@ -102,6 +102,7 @@ class CBS_SelectOption extends CBS_Element {
     }
 }
 
+CBS.addElement('input-option', CBS_SelectOption);
 
 
 /**

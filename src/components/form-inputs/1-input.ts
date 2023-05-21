@@ -117,6 +117,10 @@ class CBS_Input extends CBS_Component implements CBS_InputInterface {
         return this._el.value;
     }
 
+    set value(value: any) {
+        this._el.value = value;
+    }
+
     /**
      * Description placeholder
      *

@@ -90,4 +90,8 @@ class CBS_Col extends CBS_Element {
             }
         }
     }
+
+    get options() {
+        return this._options;
+    }
 }

@@ -61,5 +61,4 @@ class CBS_Label extends CBS_Element {
     }
 }
 
-
-CBS.addElement('input', CBS_Input);
+CBS.addElement('label', CBS_Label);

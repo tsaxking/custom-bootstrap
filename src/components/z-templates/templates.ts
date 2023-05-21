@@ -5,10 +5,6 @@
     card.subcomponents.header.prepend(card.subcomponents.image);
 
     CBS_Card.addTemplate('image', card);
-
-
-
-
 })();
 
 (() => {

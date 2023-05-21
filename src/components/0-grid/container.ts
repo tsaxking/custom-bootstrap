@@ -54,6 +54,10 @@ class CBS_Container extends CBS_Element {
         }
     }
 
+    get options() {
+        return this._options;
+    }
+
     /**
      * Description placeholder
      *

@@ -77,6 +77,10 @@ type CBS_Properties = {
  * @extends {CustomBootstrap}
  */
 class CBS_Element extends CustomBootstrap {
+
+
+
+
     /**
      * All templates for this class
      *
@@ -599,7 +603,6 @@ class CBS_Element extends CustomBootstrap {
 
 
 
-    
     // ▄▀▀ █ █ ▄▀▀ ▀█▀ ▄▀▄ █▄ ▄█    ██▀ █ █ ██▀ █▄ █ ▀█▀ ▄▀▀ 
     // ▀▄▄ ▀▄█ ▄█▀  █  ▀▄▀ █ ▀ █    █▄▄ ▀▄▀ █▄▄ █ ▀█  █  ▄█▀ 
 
@@ -697,36 +700,9 @@ class CBS_Element extends CustomBootstrap {
     constructor(options?: CBS_Options) {
         super();
 
-        this.__options = options || {};
+        this.options = options || {};
     }
 
-    set __options(options: CBS_Options) {
-        if (!this._el) return;
-
-        this._options = options;
-
-        const { classes, id, style, attributes } = options;
-
-        if (classes?.length) {
-            this._el.classList.add(...classes);
-        }
-
-        if (id) {
-            this._el.id = id;
-        }
-
-        if (style) {
-            this._el.setAttribute('style', Object.entries(style).map(([key, val]) => {
-                return `${key}: ${val};`;
-            }).join() || '');
-        }
-
-        if (attributes) {
-            Object.entries(attributes).forEach(([value, key]) => {
-                this._el.setAttribute(key, value);
-            });
-        }
-    }
 
     /**
      * Gets the options for this element
@@ -744,32 +720,13 @@ class CBS_Element extends CustomBootstrap {
      */
     set options(options: CBS_Options) {
         if (!this._el) return;
-
+        const { classes, attributes, style, id } = options;
         this._options = options;
 
-        const { classes, id, style, attributes } = options;
-
-        if (classes?.length) {
-            this._el.classList.add(...classes);
-        }
-
-        if (id) {
-            this._el.id = id;
-        }
-
-        if (style) {
-            this._el.setAttribute('style', Object.entries(style).map(([key, val]) => {
-                return `${key}: ${val};`;
-            }).join() || '');
-        }
-
-        if (attributes) {
-            Object.entries(attributes).forEach(([key, value]) => {
-                this._el.setAttribute(key, value);
-            });
-        }
-
-        this.trigger('options:change');
+        if (classes) this.classes = classes;
+        if (attributes) this.attributes = attributes;
+        if (style) this.style = style;
+        if (id) this.id = id;
     }
 
     /**
@@ -795,9 +752,11 @@ class CBS_Element extends CustomBootstrap {
         this.clearElements();
 
         this._el = el;
-        this.__options = this._options;
+        this.options = this._options;
         this.allPadding = this.allPadding;
         this.allMargin = this.allMargin;
+
+        console.log('el set', this._el, this.options);
 
         Object.entries(this._events).forEach(([event, callback]) => {
             this._el.addEventListener(event, callback);
@@ -806,7 +765,17 @@ class CBS_Element extends CustomBootstrap {
         this.trigger('element:change');
     }
 
+    _id: string = '';
 
+    get id(): string {
+        return this._id;
+    }
+
+    set id(id: string) {
+        if (!this._el) return;
+        this._id = id;
+        this._el.id = id;
+    }
 
 
 
@@ -1374,10 +1343,10 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     removeClass(...classes: string[]) {
-        if (!this.options) this.options = {};
-        if (!this.options.classes) this.options.classes = [];
+        if (!this._options) this.options = {};
+        if (!this._options.classes) this._options.classes = [];
 
-        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        this._options.classes = this._options.classes.filter(c => !classes.includes(c));
         this.el.classList.remove(...classes);
     }
 
@@ -1387,9 +1356,9 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     toggleClass(...classes: string[]) {
-        if (!this.options.classes) this.options.classes = [];
+        if (!this._options.classes) this._options.classes = [];
 
-        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        this._options.classes = this._options.classes.filter(c => !classes.includes(c));
         classes.forEach(c => {
             this.el.classList.toggle(c);
         });
@@ -1402,7 +1371,17 @@ class CBS_Element extends CustomBootstrap {
      * @type {{}}
      */
     get classes() {
-        return this.options.classes || [];
+        return Array.from(this.el.classList);
+    }
+
+
+    set classes(classes: string[]) {
+        this.clearClasses();
+        this.addClass(...classes);
+    }
+
+    clearClasses() {
+        this.el.classList.remove(...this.classes);
     }
 
     /**
@@ -1422,33 +1401,22 @@ class CBS_Element extends CustomBootstrap {
     // ▄█▀  █   █  █▄▄ █▄▄ 
 
 
-    get style() {
-        return this.options.style || {};
+    get style(): object {
+        return this.el.style;
     }
 
     set style(style: object) {
-        this.options = {
-            ...this.options,
-            style: {
-                ...(this.options.style || {}),
-                ...style
-            }
-        }
+        Object.assign(this.el.style, style);
     }
-
-    get id():string|undefined {
-        return this.options.id;
-    }
-
-    set id(id: string|undefined) {
-        this.options.id = id;
-    }
-
 
 
 
     // ▄▀▄ ▀█▀ ▀█▀ █▀▄ █ ██▄ █ █ ▀█▀ ██▀ ▄▀▀ 
     // █▀█  █   █  █▀▄ █ █▄█ ▀▄█  █  █▄▄ ▄█▀ 
+
+    _attributes: {
+        [key: string]: string;
+    } = {};
 
     /**
      * Description placeholder
@@ -1457,13 +1425,8 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} value
      */
     setAttribute(name: string, value: string) {
-        this.options = {
-            ...this.options,
-            attributes: {
-                ...(this.options?.attributes || {}),
-                [name]: value
-            }
-        }
+        this._el.setAttribute(name, value);
+        this._attributes[name] = value;
     }
 
     /**
@@ -1472,22 +1435,10 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      */
     removeAttribute(name: string) {
-        if (this.options.attributes) {
-            delete this.options.attributes[name];
-        }
-
-        this.options = this.options;
+        this._el.removeAttribute(name);
+        delete this._attributes[name];
     }
 
-    /**
-     * Description placeholder
-     *
-     * @readonly
-     * @type {{ [key: string]: string; }}
-     */
-    get attributes() {
-        return this.options.attributes || {};
-    }
 
     /**
      * Description placeholder
@@ -1495,8 +1446,25 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      * @returns {string}
      */
-    getAttribute(name: string) {
-        return this.attributes[name];
+    getAttribute(name: string): string {
+        return this._attributes[name];
+    }
+
+    clearAttributes() {
+        Object.keys(this._attributes).forEach(this.removeAttribute.bind(this));
+    }
+
+    get attributes(): { [key: string]: string } {
+        return this._attributes;
+    }
+
+    set attributes(attributes: { [key: string]: string }) {
+        this.clearAttributes();
+        this._attributes = attributes;
+
+        Object.keys(attributes).forEach(key => {
+            this.setAttribute(key, attributes[key]);
+        });
     }
 
 
@@ -1513,9 +1481,9 @@ class CBS_Element extends CustomBootstrap {
      * Description placeholder
      *
      * @param {(MouseEvent|TouchEvent)} e
-     * @returns {{ x: any; y: any; }}
+     * @returns {{ x: number; y: number; }}
      */
-    getXY(e: MouseEvent|TouchEvent) {
+    getXY(e: MouseEvent|TouchEvent): { x: number; y: number; } {
         if ((e as TouchEvent).touches) {
             return {
                 x: (e as TouchEvent).touches[0].clientX,
@@ -1535,7 +1503,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {TouchEvent} e
      * @returns {*}
      */
-    getXYList(e: TouchEvent) {
+    getXYList(e: TouchEvent): { x: number; y: number; }[] {
         return Array.from((e as TouchEvent).touches).map(t => {
             return {
                 x: t.clientX,

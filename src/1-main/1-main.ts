@@ -194,6 +194,18 @@ type CBS_ElementConstructorMap = {
  * @typedef {CustomBootstrap}
  */
 class CustomBootstrap {
+    static ids: string[] = [];
+
+    static newID(): string {
+        let id: string;
+        do {
+            id = 'cbs-' + Math.random().toString(36).substring(2, 9);
+        } while (CustomBootstrap.ids.includes(id));
+
+        CustomBootstrap.ids.push(id);
+        return id;
+    }
+
     /**
      * Parses a string into a selector object
      *
@@ -528,9 +540,16 @@ class CustomBootstrap {
 
             submit.content = 'Submit';
 
+            const cancel = new CBS_Button({
+                color: 'secondary'
+            });
+
+            cancel.content = 'Cancel';
+
             const modal = new CBS_Modal({
                 buttons: [
-                    submit
+                    submit,
+                    cancel
                 ]
             });
 
@@ -545,6 +564,14 @@ class CustomBootstrap {
                     modal.destroy();
                 });
                 res(form.value);
+            });
+
+            cancel.on('click', () => {
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(null);
             });
 
             form.on('submit', (e) => {
@@ -573,15 +600,20 @@ class CustomBootstrap {
      */
     async prompt(message?: any): Promise<string|null> {
         return new Promise((res, rej) => {
-            const ok = new CBS_Button({
+            const submit = new CBS_Button({
                 color: 'primary'
             });
 
-            ok.content = 'Okay';
+            const cancel = new CBS_Button({
+                color: 'secondary'
+            });
+
+            submit.content = 'Submit';
+            cancel.content = 'Cancel';
 
             const modal = new CBS_Modal({
                 buttons: [
-                    ok
+                    submit
                 ]
             });
 
@@ -594,11 +626,11 @@ class CustomBootstrap {
 
             input.on('keydown', (e) => {
                 if ((e as KeyboardEvent).key === 'Enter') {
-                    ok.el.click();
+                    submit.el.click();
                 }
             })
 
-            ok.on('click', () => {
+            submit.on('click', () => {
                 modal.hide();
                 modal.on('animationend', () => {
                     modal.destroy();
@@ -606,7 +638,15 @@ class CustomBootstrap {
                 res(input.value);
             });
 
-            modal.subcomponents.footer.append(ok);
+            cancel.on('click', () => {
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(null);
+            });
+
+            modal.subcomponents.footer.append(submit);
 
             modal.on('hidden.bs.modal', () => res(null));
             modal.on('destroyed', () => res(null));

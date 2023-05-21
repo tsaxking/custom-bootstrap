@@ -237,11 +237,15 @@ class CBS_Modal extends CBS_Component {
     set options(options: CBS_ModalOptions) {
         super.options = options;
 
-        if (options.buttons) {
+        if (options.buttons && this.subcomponents?.dialog) {
             (this.subcomponents.dialog as CBS_ModalDialog).subcomponents.footer.append(
                 ...options.buttons
             );
         }
+    }
+
+    get options() {
+        return this._options;
     }
 
     /**

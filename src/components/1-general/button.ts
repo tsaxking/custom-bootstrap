@@ -16,31 +16,8 @@ type CBS_ButtonOptions = {
     size?: CBS_Size;
     color?: string;
     shadow?: boolean;
-
-    text?: string;
 }
 
-
-/**
- * Description placeholder
- *
- * @class CBS_ButtonContent
- * @typedef {CBS_ButtonContent}
- * @extends {CBS_Element}
- */
-class CBS_ButtonContent extends CBS_Element {
-    /**
-     * Creates an instance of CBS_ButtonContent.
-     *
-     * @constructor
-     * @param {?CBS_Options} [options]
-     */
-    constructor(options?: CBS_Options) {
-        super(options);
-
-        this.el = document.createElement('div');
-    }
-}
 
 
 /**
@@ -50,17 +27,7 @@ class CBS_ButtonContent extends CBS_Element {
  * @typedef {CBS_Button}
  * @extends {CBS_Component}
  */
-class CBS_Button extends CBS_Component {
-    // options: CBS_ButtonOptions = {};
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_NodeContainer}
-     */
-    subcomponents: CBS_ElementContainer = {
-        content: new CBS_ButtonContent()
-    };
-
+class CBS_Button extends CBS_Element {
     /**
      * Creates an instance of CBS_Button.
      *
@@ -68,30 +35,14 @@ class CBS_Button extends CBS_Component {
      * @param {?CBS_ButtonOptions} [options]
      */
     constructor(options?: CBS_ButtonOptions) {
+        console.log('CBS_Button constructor', JSON.stringify(options));
+
         super(options);
 
         this.el = document.createElement('button');
+        this.options = options || {};
 
         this.addClass('btn');
-
-        this.append(this.subcomponents.content);
-
-        this.options = options || {};
-    }
-
-
-    get content() {
-        return this.subcomponents.content;
-    }
-
-    set content(content: string | HTMLElement | CBS_Element) {
-        if (typeof content === 'string') {
-            this.subcomponents.content.html = content;
-        } else if (content instanceof HTMLElement) {
-            this.subcomponents.content.el = content;
-        } else if (content instanceof CBS_Element) {
-            this.subcomponents.content = content;
-        }
     }
 
 
@@ -113,20 +64,23 @@ class CBS_Button extends CBS_Component {
         }
 
         if (options.size) {
-            this.el.classList.add(`btn-${options.size}`);
+            this.addClass(`btn-${options.size}`);
+            // this.el.classList.add(`btn-${options.size}`);
         }
 
         if (options.rounded) {
-            this.el.classList.add(`btn-rounded`);
+            this.addClass(`btn-rounded`);
+            // this.el.classList.add(`btn-rounded`);
         }
 
         if (options.shadow) {
-            this.el.classList.add(`btn-shadow`);
+            this.addClass(`btn-shadow`);
+            // this.el.classList.add(`btn-shadow`);
         }
+    }
 
-        if (options.text) {
-            this.content = options.text;
-        }
+    get options() {
+        return this._options;
     }
 
     /**

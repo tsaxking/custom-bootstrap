@@ -244,6 +244,10 @@ class CBS_Contextmenu extends CBS_Component {
         }
     }
 
+    get options() {
+        return this._options;
+    }
+
     /**
      * Description placeholder
      *
