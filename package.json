@@ -9,5 +9,6 @@
     "better-docs": "^2.7.2",
     "jsdoc": "^4.0.2",
     "typedoc": "^0.24.4"
-  }
+  },
+  "version": "0.0.1"
 }
