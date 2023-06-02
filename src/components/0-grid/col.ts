@@ -38,7 +38,7 @@ class CBS_Col extends CBS_Element {
             [key: string]: number;
         }}
      */
-    breakpoints: {
+    private breakpoints: {
         [key: string]: number;
     } = {};
 
@@ -51,12 +51,9 @@ class CBS_Col extends CBS_Element {
     constructor(options?: CBS_ColOptions) {
         super(options);
 
-        this.el = document.createElement('div');
-
-        if (options?.breakpoints) {
-            for (const breakpoint in options.breakpoints) {
-                this.addBreakpoint(breakpoint, options.breakpoints[breakpoint]);
-            }
+        this.options = {
+            classes: ['col'],
+            ...options
         }
     }
 
@@ -85,6 +82,7 @@ class CBS_Col extends CBS_Element {
         super.options = options;
 
         if (options.breakpoints) {
+            if (!this.breakpoints) this.breakpoints = {}
             for (const breakpoint in options.breakpoints) {
                 this.addBreakpoint(breakpoint, options.breakpoints[breakpoint]);
             }
@@ -95,3 +93,5 @@ class CBS_Col extends CBS_Element {
         return this._options;
     }
 }
+
+CBS.addElement('col', CBS_Col);

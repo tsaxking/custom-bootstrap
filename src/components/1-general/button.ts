@@ -35,12 +35,11 @@ class CBS_Button extends CBS_Element {
      * @param {?CBS_ButtonOptions} [options]
      */
     constructor(options?: CBS_ButtonOptions) {
-        console.log('CBS_Button constructor', JSON.stringify(options));
+        // console.log('CBS_Button constructor', JSON.stringify(options));
 
         super(options);
 
         this.el = document.createElement('button');
-        this.options = options || {};
 
         this.addClass('btn');
     }

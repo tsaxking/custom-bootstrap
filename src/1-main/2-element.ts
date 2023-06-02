@@ -77,10 +77,6 @@ type CBS_Properties = {
  * @extends {CustomBootstrap}
  */
 class CBS_Element extends CustomBootstrap {
-
-
-
-
     /**
      * All templates for this class
      *
@@ -698,6 +694,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {?CBS_Options} [options]
      */
     constructor(options?: CBS_Options) {
+        // console.log('CBS_Element Constructor', JSON.stringify(options));
         super();
 
         this.options = options || {};
@@ -756,13 +753,13 @@ class CBS_Element extends CustomBootstrap {
         this.allPadding = this.allPadding;
         this.allMargin = this.allMargin;
 
-        console.log('el set', this._el, this.options);
+        // console.log('el set', this._el, this.options);
 
         Object.entries(this._events).forEach(([event, callback]) => {
             this._el.addEventListener(event, callback);
         });
 
-        this.trigger('element:change');
+        this.trigger('element.change');
     }
 
     _id: string = '';
@@ -794,6 +791,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.appendChild(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML += el;
             } else {
@@ -815,6 +813,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.removeChild(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML = this._el.innerHTML.replace(el, '');
             } else {
@@ -834,6 +833,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.prepend(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML = el + this._el.innerHTML;
             } else {
@@ -888,6 +888,7 @@ class CBS_Element extends CustomBootstrap {
             elementsToAdd.forEach((el, i) => {
                 if (el instanceof CBS_Element) {
                     this._el.insertBefore(el._el, (node instanceof CBS_Element) ? node._el : node);
+                    el.render();
                 } else if (typeof el === 'string') {
                     const div = document.createElement('div');
                     div.innerHTML = el;
@@ -931,16 +932,6 @@ class CBS_Element extends CustomBootstrap {
     }
 
     /**
-     * Gets all children of this element as their repspective classes
-     *
-     * @readonly
-     * @type {CBS_NodeMap}
-     */
-    get children(): CBS_NodeMap {
-        return this._components;
-    }
-
-    /**
      * Gets the parent of this element
      *
      * @readonly
@@ -957,24 +948,19 @@ class CBS_Element extends CustomBootstrap {
 
 
 
-
-
-
     // █▀▄ ▄▀▄ █▀▄ ▄▀▄ █▄ ▄█ ██▀ ▀█▀ ██▀ █▀▄ ▄▀▀ 
     // █▀  █▀█ █▀▄ █▀█ █ ▀ █ █▄▄  █  █▄▄ █▀▄ ▄█▀ 
 
     /**
      * Creates all <span> and <div> to replace {{}} in the HTML
      */
-    render() {
-        const { parameters } = this;
-        
+    render() {        
         const isShallow = (el: Element): boolean => !el.children.length;
 
         if (this._el) {
             this._el.querySelectorAll('[data-cbs-replace]').forEach(e => {
                 const replacement = document.createElement('div');
-                replacement.dataset[`cbs-${this.constructor.name}`] = e.getAttribute('data-cbs-replace') || '';
+                replacement.dataset[`cbs-${this.constructor.name.toLowerCase()}`] = e.getAttribute('data-cbs-replace') || '';
 
                 e.replaceWith(replacement);
             });
@@ -986,7 +972,7 @@ class CBS_Element extends CustomBootstrap {
                     const params = match.innerHTML.match(/{{.*}}/g);
                     params?.forEach(param => {
                         const key = param.replace(/[{}]/g, '');
-                        const value = `<span data-cbs-${this.constructor.name}="${key}"></span>`;
+                        const value = `<span data-cbs-${this.constructor.name.toLowerCase()}="${key}"></span>`;
                         match.innerHTML = match.innerHTML.replace(param, value);
                     });
                 }
@@ -1005,18 +991,21 @@ class CBS_Element extends CustomBootstrap {
      */
     write(key: string, value: CBS_ParameterValue, trigger: boolean = true) {
         if (this._el) {
-            this._el.querySelectorAll(`[data-cbs-${this.constructor.name}="${key}"]`).forEach(el => {
-                if (typeof value === 'string' || typeof value === 'number') {
+            this._el.querySelectorAll(`*[data-cbs-${this.constructor.name.toLowerCase()}="${key}"]`).forEach(el => {
+                if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
                     el.innerHTML = value.toString();
-                } else if (typeof value === 'boolean') {
-                    el.innerHTML = value ? 'true' : 'false';
-                } else if (typeof value === 'undefined') {
+                } else if (typeof value === 'undefined' || value === null) {
                     el.innerHTML = '';
                 } else if (value instanceof HTMLElement) {
                     while (el.firstChild) {
                         el.removeChild(el.firstChild);
                     }
                     el.appendChild(value);
+                } else if (value instanceof CBS_Element) {
+                    while (el.firstChild) {
+                        el.removeChild(el.firstChild);
+                    }
+                    el.appendChild(value.el);
                 } else {
                     console.error('Invalid value type', value);
                 }
@@ -1026,6 +1015,10 @@ class CBS_Element extends CustomBootstrap {
 
             this.trigger(`parameter.write:${key}`);
             if (trigger) this.trigger('parameters.write');
+
+            for (const c of this.components) {
+                if (c instanceof CBS_Element) c.write(key, value, trigger);
+            }
         }
     }
 
@@ -1040,7 +1033,7 @@ class CBS_Element extends CustomBootstrap {
      */
     read(param: string, asHTML:boolean = false): CBS_ParameterValue[] {
         if (this._el) {
-            this.trigger('param:read');
+            this.trigger('parameter.read');
 
             const arr = Array.from(this._el.querySelectorAll(`[data-cbs-${this.constructor.name}="${param}"]`));
             if (asHTML) return arr.map(el => el.children[0] || el);
@@ -1106,14 +1099,14 @@ class CBS_Element extends CustomBootstrap {
      * @param {CBS_ListenerCallback} callback
      * @param {boolean} [isAsync=false]
      */
-    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = false) {
+    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true) {
         if (!this._el) throw new Error('No element to add listener to');
         if (typeof event !== 'string') throw new Error('Event must be a string');
         if (typeof callback !== 'function') throw new Error('Callback must be a function');
         // if (options && typeof options !== 'object') throw new Error('Options must be an object');
 
         const errCallback = async(e: Event): Promise<boolean> => {
-            return new Promise((res,rej) => {
+            return new Promise(async (res,rej) => {
                 let success = true;
                 const listeners = this.listeners.filter(l => l.event === event);
 
@@ -1121,7 +1114,7 @@ class CBS_Element extends CustomBootstrap {
 
                 for (const listener of listeners.filter(l => !l.isAsync)) {
                     try {
-                        listener.callback(e);
+                        await listener.callback(e);
                     } catch (err) {
                         success = false;
                         console.error(err);
@@ -1134,11 +1127,10 @@ class CBS_Element extends CustomBootstrap {
 
         this.listeners.push(new CBS_Listener(event, callback, isAsync));
 
-        if (!this.has(event)) {
+        if (!this.hasListener(event)) {
             this._events[event] = errCallback;
             this._el.addEventListener(event, errCallback);
         }
-
     }
 
     /**
@@ -1147,7 +1139,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} event
      * @returns {boolean}
      */
-    has(event: string): boolean {
+    hasListener(event: string): boolean {
         return !!this._events[event];
     }
 
@@ -1390,8 +1382,8 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      * @returns {*}
      */
-    hasClass(name: string): any {
-        return this.classes.includes(name);
+    hasClass(...name: string[]): any {
+        return name.every(c => this.el.classList.contains(c));
     }
 
 

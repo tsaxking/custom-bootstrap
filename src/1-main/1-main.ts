@@ -6,10 +6,10 @@
         console.error('jQuery is not loaded!');
     }
 
-    if (!$('.any').toast) {
+    if (!$(document.createElement('button')).toast) {
         console.error('Popper is not loaded!');
     }
-})();
+});
 
 
 // Generic types
@@ -196,6 +196,20 @@ type CBS_ElementConstructorMap = {
 class CustomBootstrap {
     static ids: string[] = [];
 
+    static getAllParentNodes(el: HTMLElement): Node[] {
+        const nodeList: Node[] = [];
+
+        let prevLength = nodeList.length;
+
+        while(prevLength === nodeList.length) {
+            if (el.parentElement) nodeList.push(el.parentElement);
+
+            prevLength = nodeList.length;
+        }
+
+        return nodeList;
+    }
+
     static newID(): string {
         let id: string;
         do {
@@ -213,7 +227,7 @@ class CustomBootstrap {
      * @param {string} selector
      * @returns {Selector}
      */
-    static parseSelector(selector: string): Selector {
+    private static parseSelector(selector: string): Selector {
         selector = selector.trim();
 
         const getTag = (selector: string): string => {
@@ -345,10 +359,15 @@ class CustomBootstrap {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
         options = {
-            ...(options || {}),
-            id,
-            classes,
-            attributes
+            classes: [
+                ...(classes || []),
+                ...(options?.classes || [])
+            ],
+            id: id || options?.id,
+            attributes: {
+                ...(options?.attributes || {}),
+                ...(attributes || {})
+            }
         }
 
         const element = this.#elements[tag];
@@ -404,15 +423,21 @@ class CustomBootstrap {
 
                         const subElements = [...textNodes, ...children];
                         subElements.sort((a, b) => {
-                        if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING) {
-                            return 1;
-                        } else {
-                            return -1;
-                        }
+                            if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING) {
+                                return 1;
+                            } else {
+                                return -1;
+                            }
                         });
 
                         cbsEl.subcomponents[name].el.append(...subElements);
                         collected.push(subEl);
+                    } else {
+                        try {
+                            cbsEl.removeElement(cbsEl.subcomponents[name]);
+                        } catch (e) {
+                            console.error(e);
+                        }
                     }
                 });
             }
@@ -652,6 +677,13 @@ class CustomBootstrap {
             modal.on('destroyed', () => res(null));
             modal.show();
         });
+    }
+
+    modal(container: CBS_Container) {
+        const modal = new CBS_Modal();
+        modal.subcomponents.body.append(container);
+        modal.show();
+        return modal;
     }
 }
 

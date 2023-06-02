@@ -157,7 +157,6 @@ class CBS_H6 extends CBS_Heading {
     }
 }
 
-CBS.addElement('heading', CBS_Heading);
 CBS.addElement('h1', CBS_H1);
 CBS.addElement('h2', CBS_H2);
 CBS.addElement('h3', CBS_H3);
