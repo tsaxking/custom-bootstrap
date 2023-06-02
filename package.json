@@ -10,5 +10,25 @@
     "jsdoc": "^4.0.2",
     "typedoc": "^0.24.4"
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "docs": "typedoc --out docs src",
+    "docs:dev": "better-docs --out docs src",
+    "docs:dev:watch": "better-docs --out docs src --watch",
+    "docs:watch": "typedoc --out docs src --watch"
+  },
+  "author": "Taylor King",
+  "license": "MIT",
+  "description": "A collection of Bootstrap 5 components for use with TypeScript",
+  "keywords": [
+    "bootstrap",
+    "typescript",
+    "components",
+    "cbs",
+    "cbs-bootstrap",
+    "custom bootstrap"
+  ]
 }
