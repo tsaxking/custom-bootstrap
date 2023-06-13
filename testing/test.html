@@ -36,17 +36,16 @@
 
     <script src="../index.js"></script>
     <script>
-      const dom = CBS.createElement('dom');
-      document.body.appendChild(dom.el);
+      class Thing {
+        static doThis() {
+          console.log('DID THIS');
+        }
+      }
 
-      const card = CBS.createElement('card');
-      dom.append(card);
 
-      const cm = CBS.createElement('contextmenu');
-      const s = cm.addSection('Some Section');
-      s.addItem('click me!', console.log);
-      cm.apply(card);
+      const thing = new Thing();
 
+      thing.constructor.doThis();
     </script>
 </body>
 

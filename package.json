@@ -11,8 +11,8 @@
     "typedoc": "^0.24.4"
   },
   "version": "0.0.2",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "docs": "typedoc --out docs src",

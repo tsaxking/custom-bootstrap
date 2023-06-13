@@ -1,4 +1,4 @@
-# custom-bootstrap
+# cbs-bootstrap
 Hello, and welcome to Custom Bootstrap! This is a resource for developers who use Bootstrap (5.0+) and would like a framework to manage elements.
 
 ## Basics
