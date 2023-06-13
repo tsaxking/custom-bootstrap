@@ -997,9 +997,7 @@ class CBS_Element extends CustomBootstrap {
                 } else if (typeof value === 'undefined' || value === null) {
                     el.innerHTML = '';
                 } else if (value instanceof HTMLElement) {
-                    while (el.firstChild) {
-                        el.removeChild(el.firstChild);
-                    }
+                    el.innerHTML = '';
                     el.appendChild(value);
                 } else if (value instanceof CBS_Element) {
                     while (el.firstChild) {
@@ -1101,16 +1099,20 @@ class CBS_Element extends CustomBootstrap {
      */
     on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true) {
         if (!this._el) throw new Error('No element to add listener to');
-        if (typeof event !== 'string') throw new Error('Event must be a string');
-        if (typeof callback !== 'function') throw new Error('Callback must be a function');
+        // if (!event && !callback) {
+        //     reset all .off() listeners
+        // }
         // if (options && typeof options !== 'object') throw new Error('Options must be an object');
 
         const errCallback = async(e: Event): Promise<boolean> => {
-            return new Promise(async (res,rej) => {
+            return new Promise(async (res, rej) => {
                 let success = true;
                 const listeners = this.listeners.filter(l => l.event === event);
 
-                listeners.filter(l => l.isAsync).forEach(async l => l.callback(e));
+                const promises = listeners.filter(l => l.isAsync).map(async l => l.callback(e)?.catch((err) => {
+                    success = false;
+                    console.error(err);
+                }));
 
                 for (const listener of listeners.filter(l => !l.isAsync)) {
                     try {
@@ -1121,7 +1123,9 @@ class CBS_Element extends CustomBootstrap {
                     }
                 }
 
-                return res(success);
+                await Promise.all(promises);
+
+                res(success);
             });
         }
 
@@ -1229,7 +1233,7 @@ class CBS_Element extends CustomBootstrap {
     hide() {
         this._el.classList.add('d-none');
 
-        this.trigger('el:hide');
+        this.trigger('el.hide');
     }
 
     /**
@@ -1238,7 +1242,7 @@ class CBS_Element extends CustomBootstrap {
     show() {
         this._el.classList.remove('d-none');
 
-        this.trigger('el:show');
+        this.trigger('el.show');
     }
 
     /**
@@ -1259,7 +1263,7 @@ class CBS_Element extends CustomBootstrap {
      * Description placeholder
      */
     destroy() {
-        this.trigger('el:destroy');
+        this.trigger('el.destroy');
 
         this.off();
         this._components.forEach(c => {
@@ -1290,7 +1294,7 @@ class CBS_Element extends CustomBootstrap {
             clone.on(listener.event, listener.callback);
         });
 
-        this.trigger('el:clone');
+        this.trigger('el.clone');
 
         return clone;
     }
