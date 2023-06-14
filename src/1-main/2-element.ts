@@ -76,7 +76,7 @@ type CBS_Properties = {
  * @typedef {CBS_Element}
  * @extends {CustomBootstrap}
  */
-class CBS_Element extends CustomBootstrap {
+class CBS_Element  {
     /**
      * All templates for this class
      *
@@ -695,7 +695,6 @@ class CBS_Element extends CustomBootstrap {
      */
     constructor(options?: CBS_Options) {
         // console.log('CBS_Element Constructor', JSON.stringify(options));
-        super();
 
         this.options = options || {};
     }
@@ -879,7 +878,7 @@ class CBS_Element extends CustomBootstrap {
             if (nodeToInsertBefore instanceof CBS_Element) {
                 node = nodeToInsertBefore._el;
             } else if (typeof nodeToInsertBefore === 'string') { 
-                [node] = this.createElementFromText(nodeToInsertBefore);
+                [node] = CBS.createElementFromText(nodeToInsertBefore);
             } else {
                 node = nodeToInsertBefore as ChildNode;
             }

@@ -1,15 +1,3 @@
-(() => {
-    // test for jQuery and popper
-    try {
-        $('hello-world');
-    } catch {
-        console.error('jQuery is not loaded!');
-    }
-
-    if (!$(document.createElement('button')).toast) {
-        console.error('Popper is not loaded!');
-    }
-});
 
 
 // Generic types
@@ -54,115 +42,116 @@ type CBS_Parameters = {
 
 
 // // Is not currently used, but may be useful in the future?
-// /**
-//  * Description placeholder
-//  *
-//  * @interface CBS_ElementNameMap
-//  * @typedef {CBS_ElementNameMap}
-//  */
-// interface CBS_ElementNameMap {
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_AudioCard}
-//      */
-//     'audio': CBS_AudioCard;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Video}
-//      */
-//     'video': CBS_Video;
+/**
+ * Description placeholder
+ *
+ * @interface CBS_ElementNameMap
+ * @typedef {CBS_ElementNameMap}
+ */
+interface CBS_ElementNameMap {
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_AudioCard}
+     */
+    'audio': CBS_AudioCard;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Video}
+     */
+    'video': CBS_Video;
 
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Modal}
-//      */
-//     'modal': CBS_Modal;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Modal}
+     */
+    'modal': CBS_Modal;
 
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Card}
-//      */
-//     'card': CBS_Card;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Form}
-//      */
-//     'form': CBS_Form;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_List}
-//      */
-//     'list': CBS_List;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Progress}
-//      */
-//     'progress-bar': CBS_Progress;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Card}
+     */
+    'card': CBS_Card;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Form}
+     */
+    'form': CBS_Form;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_List}
+     */
+    'list': CBS_List;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Progress}
+     */
+    'progress-bar': CBS_Progress;
 
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_CheckboxInput}
-//      */
-//     'checkbox': CBS_CheckboxInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_RadioInput}
-//      */
-//     'radio': CBS_RadioInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Input}
-//      */
-//     'input': CBS_Input;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_TextareaInput}
-//      */
-//     'textarea': CBS_TextareaInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Button}
-//      */
-//     'button': CBS_Button;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_SelectInput}
-//      */
-//     'select': CBS_SelectInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_CheckboxInput}
+     */
+    'checkbox': CBS_CheckboxInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_RadioInput}
+     */
+    'radio': CBS_RadioInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Input}
+     */
+    'input': CBS_Input;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_TextareaInput}
+     */
+    'textarea': CBS_TextareaInput;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_Button}
+     */
+    'button': CBS_Button;
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_SelectInput}
+     */
+    'select': CBS_SelectInput;
 
-// }
+    // set key to string so that it can be used as a type
+}
 
 
 // TODO: Add all the elements to this interface
-// /**
-//  * Description placeholder
-//  *
-//  * @interface CBS
-//  * @typedef {CBS}
-//  */
-// interface CBS {
-//     /**
-//      * Description placeholder
-//      *
-//      * @template K
-//      * @param {K} tagName
-//      * @returns {CBS_ElementNameMap[K]}
-//      */
-//     createElement<K extends keyof CBS_ElementNameMap>(tagName: K): CBS_ElementNameMap[K];
-// }
+/**
+ * Description placeholder
+ *
+ * @interface CBS
+ * @typedef {CBS}
+ */
+interface CBS {
+    /**
+     * Description placeholder
+     *
+     * @template K
+     * @param {K} selector
+     * @returns {CBS_ElementNameMap[K]}
+     */
+    createElement<K extends keyof CBS_ElementNameMap>(selector: K, options?: CBS_Options): CBS_ElementNameMap[K];
+}
 
 /**
  * Selector object returned by CustomBootstrap.parseSelector()
@@ -193,7 +182,7 @@ type CBS_ElementConstructorMap = {
  * @class CustomBootstrap
  * @typedef {CustomBootstrap}
  */
-class CustomBootstrap {
+class CustomBootstrap /* implements CBS */ {
     static ids: string[] = [];
 
     static getAllParentNodes(el: HTMLElement): Node[] {
@@ -355,7 +344,7 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement(selector: string, options?: CBS_Options): CBS_Element {
+    createElement(selector: string /* extends keyof CBS_ElementNameMap */, options?: CBS_Options): CBS_Element|CBS_Component {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
         options = {
@@ -434,11 +423,11 @@ class CustomBootstrap {
                                 }
                             });
 
-                            cbsEl.subcomponents[name].el.append(...subElements);
+                            (cbsEl as CBS_Component).subcomponents[name].el.append(...subElements);
                             collected.push(subEl);
                         } else {
                             try {
-                                cbsEl.removeElement(cbsEl.subcomponents[name]);
+                                cbsEl.removeElement((cbsEl as CBS_Component).subcomponents[name]);
                             } catch (e) {
                                 console.error(e);
                             }
@@ -698,3 +687,15 @@ class CustomBootstrap {
  * @type {CustomBootstrap}
  */
 const CBS = new CustomBootstrap();
+(() => {
+    // test for jQuery and popper
+    try {
+        $('hello-world');
+    } catch {
+        console.error('jQuery is not loaded!');
+    }
+
+    if (!$(document.createElement('button')).toast) {
+        console.error('Popper is not loaded!');
+    }
+});

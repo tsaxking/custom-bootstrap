@@ -1,5 +1,7 @@
-declare namespace global {
-    /**
+export {}
+
+declare global {
+/**
  * Generic types for the library
  *
  * @typedef {CBS_NodeContainer}
@@ -56,7 +58,7 @@ type CBS_ElementConstructorMap = {
  * @class CustomBootstrap
  * @typedef {CustomBootstrap}
  */
-declare class CustomBootstrap {
+export class CustomBootstrap {
     #private;
     static ids: string[];
     static getAllParentNodes(el: HTMLElement): Node[];
@@ -134,7 +136,7 @@ declare class CustomBootstrap {
  *
  * @type {CustomBootstrap}
  */
-declare const CBS: CustomBootstrap;
+export const CBS: CustomBootstrap;
 /**
  * Generic Node
  *
@@ -205,7 +207,7 @@ type CBS_Properties = {
  * @typedef {CBS_Element}
  * @extends {CustomBootstrap}
  */
-declare class CBS_Element extends CustomBootstrap {
+export class CBS_Element extends CustomBootstrap {
     /**
      * All templates for this class
      *
@@ -865,7 +867,7 @@ type CBS_SubComponentContainer = {
  * @typedef {CBS_Component}
  * @extends {CBS_Element}
  */
-declare class CBS_Component extends CBS_Element {
+export class CBS_Component extends CBS_Element {
     /**
      * Description placeholder
      *
@@ -880,10 +882,10 @@ declare class CBS_Component extends CBS_Element {
      */
     constructor(options?: CBS_Options);
 }
-declare class CBS_Document extends CBS_Component {
+export class CBS_Document extends CBS_Component {
     constructor(options?: CBS_Options);
 }
-declare enum CBS_Breakpoint {
+export enum CBS_Breakpoint {
     xs = 0,
     sm = 576,
     md = 768,
@@ -891,7 +893,7 @@ declare enum CBS_Breakpoint {
     xl = 1200,
     xxl = 1400
 }
-declare enum CBS_Color {
+export enum CBS_Color {
     primary = "primary",
     secondary = "secondary",
     success = "success",
@@ -903,7 +905,7 @@ declare enum CBS_Color {
     white = "white",
     transparent = "transparent"
 }
-declare enum CBS_Size {
+export enum CBS_Size {
     xs = "xs",
     sm = "sm",
     md = "md",
@@ -911,13 +913,13 @@ declare enum CBS_Size {
     xl = "xl",
     xxl = "xxl"
 }
-declare enum CBS_Weight {
+export enum CBS_Weight {
     normal = "normal",
     bold = "bold",
     bolder = "bolder",
     lighter = "lighter"
 }
-declare enum CBS_Align {
+export enum CBS_Align {
     left = "left",
     center = "center",
     right = "right",
@@ -952,7 +954,7 @@ type CBS_BreakpointMap = {
  * @typedef {CBS_Col}
  * @extends {CBS_Element}
  */
-declare class CBS_Col extends CBS_Element {
+export class CBS_Col extends CBS_Element {
     /**
      * Description placeholder
      *
@@ -1005,7 +1007,7 @@ type CBS_ContainerOptions = {
  * @typedef {CBS_Container}
  * @extends {CBS_Element}
  */
-declare class CBS_Container extends CBS_Element {
+export class CBS_Container extends CBS_Element {
     /**
      * Creates an instance of CBS_Container.
      *
@@ -1053,7 +1055,7 @@ type CBS_RowOptions = {
  * @typedef {CBS_Row}
  * @extends {CBS_Element}
  */
-declare class CBS_Row extends CBS_Element {
+export class CBS_Row extends CBS_Element {
     /**
      * Creates an instance of CBS_Row.
      *
@@ -1095,7 +1097,7 @@ type CBS_TextOptions = {
  * @typedef {CBS_Component}
  * @extends {CBS_Element}
  */
-declare class CBS_Text extends CBS_Element {
+export class CBS_Text extends CBS_Element {
     __color?: CBS_Color;
     __size?: CBS_Size;
     __weight?: CBS_Weight;
@@ -1140,7 +1142,7 @@ type CBS_AnchorOptions = {
  * @typedef {CBS_Anchor}
  * @extends {CBS_Component}
  */
-declare class CBS_Anchor extends CBS_Component {
+export class CBS_Anchor extends CBS_Component {
     /**
      * Creates an instance of CBS_Anchor.
      *
@@ -1169,7 +1171,7 @@ type CBS_HeadingOptions = {
  * @typedef {CBS_Heading}
  * @extends {CBS_Component}
  */
-declare class CBS_Heading extends CBS_Text {
+export class CBS_Heading extends CBS_Text {
     /**
      * Creates an instance of CBS_Heading.
      *
@@ -1185,7 +1187,7 @@ declare class CBS_Heading extends CBS_Text {
  * @typedef {CBS_H1}
  * @extends {CBS_Heading}
  */
-declare class CBS_H1 extends CBS_Heading {
+export class CBS_H1 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H1.
      *
@@ -1201,7 +1203,7 @@ declare class CBS_H1 extends CBS_Heading {
  * @typedef {CBS_H2}
  * @extends {CBS_Heading}
  */
-declare class CBS_H2 extends CBS_Heading {
+export class CBS_H2 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H2.
      *
@@ -1217,7 +1219,7 @@ declare class CBS_H2 extends CBS_Heading {
  * @typedef {CBS_H3}
  * @extends {CBS_Heading}
  */
-declare class CBS_H3 extends CBS_Heading {
+export class CBS_H3 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H3.
      *
@@ -1233,7 +1235,7 @@ declare class CBS_H3 extends CBS_Heading {
  * @typedef {CBS_H4}
  * @extends {CBS_Heading}
  */
-declare class CBS_H4 extends CBS_Heading {
+export class CBS_H4 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H4.
      *
@@ -1249,7 +1251,7 @@ declare class CBS_H4 extends CBS_Heading {
  * @typedef {CBS_H5}
  * @extends {CBS_Heading}
  */
-declare class CBS_H5 extends CBS_Heading {
+export class CBS_H5 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H5.
      *
@@ -1265,7 +1267,7 @@ declare class CBS_H5 extends CBS_Heading {
  * @typedef {CBS_H6}
  * @extends {CBS_Heading}
  */
-declare class CBS_H6 extends CBS_Heading {
+export class CBS_H6 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H6.
      *
@@ -1294,7 +1296,7 @@ type CBS_ParagraphOptions = {
  * @typedef {CBS_Component}
  * @extends {CBS_Component}
  */
-declare class CBS_Paragraph extends CBS_Text {
+export class CBS_Paragraph extends CBS_Text {
     /**
      * Creates an instance of CBS_Paragraph.
      *
@@ -1303,7 +1305,7 @@ declare class CBS_Paragraph extends CBS_Text {
      */
     constructor(options?: CBS_ParagraphOptions);
 }
-declare class CBS_Span extends CBS_Element {
+export class CBS_Span extends CBS_Element {
     constructor(options?: CBS_TextOptions);
 }
 /**
@@ -1331,7 +1333,7 @@ type CBS_ButtonOptions = {
  * @typedef {CBS_Button}
  * @extends {CBS_Component}
  */
-declare class CBS_Button extends CBS_Element {
+export class CBS_Button extends CBS_Element {
     /**
      * Creates an instance of CBS_Button.
      *
@@ -1376,7 +1378,7 @@ declare class CBS_Button extends CBS_Element {
  * @typedef {CBS_CardHeader}
  * @extends {CBS_Element}
  */
-declare class CBS_CardHeader extends CBS_Element {
+export class CBS_CardHeader extends CBS_Element {
     /**
      * Creates an instance of CBS_CardHeader.
      *
@@ -1392,7 +1394,7 @@ declare class CBS_CardHeader extends CBS_Element {
  * @typedef {CBS_CardBody}
  * @extends {CBS_Element}
  */
-declare class CBS_CardBody extends CBS_Element {
+export class CBS_CardBody extends CBS_Element {
     /**
      * Creates an instance of CBS_CardBody.
      *
@@ -1408,7 +1410,7 @@ declare class CBS_CardBody extends CBS_Element {
  * @typedef {CBS_CardFooter}
  * @extends {CBS_Element}
  */
-declare class CBS_CardFooter extends CBS_Element {
+export class CBS_CardFooter extends CBS_Element {
     /**
      * Creates an instance of CBS_CardFooter.
      *
@@ -1437,7 +1439,7 @@ type CBS_CardOptions = {
  * @typedef {CBS_Card}
  * @extends {CBS_Component}
  */
-declare class CBS_Card extends CBS_Component {
+export class CBS_Card extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -1473,7 +1475,7 @@ type CBS_ModalOptions = {
  * @typedef {CBS_ModalHeader}
  * @extends {CBS_Element}
  */
-declare class CBS_ModalHeader extends CBS_Component {
+export class CBS_ModalHeader extends CBS_Component {
     subcomponents: CBS_ElementContainer;
     /**
      * Creates an instance of CBS_ModalTitle.
@@ -1492,7 +1494,7 @@ declare class CBS_ModalHeader extends CBS_Component {
  * @typedef {CBS_ModalBody}
  * @extends {CBS_Element}
  */
-declare class CBS_ModalBody extends CBS_Element {
+export class CBS_ModalBody extends CBS_Element {
     /**
      * Creates an instance of CBS_ModalBody.
      *
@@ -1508,7 +1510,7 @@ declare class CBS_ModalBody extends CBS_Element {
  * @typedef {CBS_ModalFooter}
  * @extends {CBS_Element}
  */
-declare class CBS_ModalFooter extends CBS_Element {
+export class CBS_ModalFooter extends CBS_Element {
     /**
      * Creates an instance of CBS_ModalFooter.
      *
@@ -1524,7 +1526,7 @@ declare class CBS_ModalFooter extends CBS_Element {
  * @typedef {CBS_ModalDialog}
  * @extends {CBS_Component}
  */
-declare class CBS_ModalDialog extends CBS_Component {
+export class CBS_ModalDialog extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -1539,7 +1541,7 @@ declare class CBS_ModalDialog extends CBS_Component {
      */
     constructor(options?: CBS_Options);
 }
-declare class CBS_ModalContent extends CBS_Component {
+export class CBS_ModalContent extends CBS_Component {
     subcomponents: CBS_ElementContainer;
     constructor(options?: CBS_Options);
 }
@@ -1550,7 +1552,7 @@ declare class CBS_ModalContent extends CBS_Component {
  * @typedef {CBS_Modal}
  * @extends {CBS_Component}
  */
-declare class CBS_Modal extends CBS_Component {
+export class CBS_Modal extends CBS_Component {
     /**
      * Creates an instance of CBS_Modal.
      *
@@ -1600,7 +1602,7 @@ type CBS_ProgressBarOptions = {
  * @typedef {CBS_ProgressBar}
  * @extends {CBS_Component}
  */
-declare class CBS_ProgressBar extends CBS_Component {
+export class CBS_ProgressBar extends CBS_Component {
     /**
      * Creates an instance of CBS_ProgressBar.
      *
@@ -1616,7 +1618,7 @@ declare class CBS_ProgressBar extends CBS_Component {
  * @typedef {CBS_Progress}
  * @extends {CBS_Component}
  */
-declare class CBS_Progress extends CBS_Component {
+export class CBS_Progress extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -1656,42 +1658,42 @@ type CBS_TableOptions = {
     };
     responsive?: boolean;
 };
-declare class CBS_TableBody extends CBS_Element {
+export class CBS_TableBody extends CBS_Element {
     constructor(options?: CBS_Options);
     addRow(options?: CBS_Options): CBS_TableRow;
 }
-declare class CBS_TableData extends CBS_Element {
+export class CBS_TableData extends CBS_Element {
     constructor(options?: CBS_Options);
 }
-declare class CBS_TableHeader extends CBS_Element {
+export class CBS_TableHeader extends CBS_Element {
     constructor(options?: CBS_Options);
 }
-declare class CBS_TableHead extends CBS_Element {
+export class CBS_TableHead extends CBS_Element {
     constructor(options?: CBS_Options);
     addRow(options?: CBS_Options): CBS_TableHeadRow;
 }
-declare class CBS_TableFoot extends CBS_TableHead {
+export class CBS_TableFoot extends CBS_TableHead {
     constructor(options?: CBS_Options);
     addRow(options?: CBS_Options): CBS_TableFootRow;
 }
-declare class CBS_TableRow extends CBS_Element {
+export class CBS_TableRow extends CBS_Element {
     constructor(options?: CBS_Options);
     addData(options?: CBS_Options): CBS_TableData;
 }
-declare class CBS_TableHeadRow extends CBS_Element {
+export class CBS_TableHeadRow extends CBS_Element {
     constructor(options?: CBS_Options);
     addHeader(options?: CBS_Options): CBS_TableHeader;
 }
-declare class CBS_TableFootRow extends CBS_TableHeadRow {
+export class CBS_TableFootRow extends CBS_TableHeadRow {
     constructor(options?: CBS_Options);
 }
-declare class CBS_TableCaption extends CBS_Text {
+export class CBS_TableCaption extends CBS_Text {
     constructor(options?: CBS_Options);
 }
-declare class CBS_SubTable extends CBS_Element {
+export class CBS_SubTable extends CBS_Element {
     constructor(options?: CBS_Options);
 }
-declare class CBS_Table extends CBS_Component {
+export class CBS_Table extends CBS_Component {
     static from(table: HTMLTableElement): void;
     subcomponents: CBS_ElementContainer;
     constructor(options?: CBS_TableOptions);
@@ -1728,7 +1730,7 @@ type CBS_InputList = {
  * @typedef {CBS_Form}
  * @extends {CBS_Component}
  */
-declare class CBS_Form extends CBS_Component {
+export class CBS_Form extends CBS_Component {
     subcomponents: CBS_ElementContainer;
     /**
      * Creates an instance of CBS_Form.
@@ -1822,7 +1824,7 @@ type CBS_InputMirrorValueMap = {
  * @extends {CBS_Element}
  * @implements {CBS_InputInterface}
  */
-declare class CBS_Input extends CBS_Component implements CBS_InputInterface {
+export class CBS_Input extends CBS_Component implements CBS_InputInterface {
     /**
      * Description placeholder
      *
@@ -1899,7 +1901,7 @@ type CBS_LabelOptions = {
  * @typedef {CBS_Label}
  * @extends {CBS_Element}
  */
-declare class CBS_Label extends CBS_Element {
+export class CBS_Label extends CBS_Element {
     #private;
     /**
      * Creates an instance of CBS_Label.
@@ -1942,7 +1944,7 @@ type CBS_InputGroupOptions = {
  * @typedef {CBS_InputGroupLabel}
  * @extends {CBS_Element}
  */
-declare class CBS_InputGroupLabel extends CBS_Element {
+export class CBS_InputGroupLabel extends CBS_Element {
     #private;
     /**
      * Creates an instance of CBS_InputGroupLabel.
@@ -1971,7 +1973,7 @@ declare class CBS_InputGroupLabel extends CBS_Element {
  * @typedef {CBS_InputGroup}
  * @extends {CBS_Component}
  */
-declare class CBS_InputGroup extends CBS_Component {
+export class CBS_InputGroup extends CBS_Component {
     /**
      * Creates an instance of CBS_InputGroup.
      *
@@ -2014,7 +2016,7 @@ type CBS_InputLabelContainerOptions = {
  * @extends {CBS_Component}
  * @implements {CBS_InputInterface}
  */
-declare class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
+export class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
     #private;
     /**
      * Description placeholder
@@ -2096,7 +2098,7 @@ type CBS_CheckboxOptions = {
  * @typedef {CBS_CheckboxLabel}
  * @extends {CBS_Element}
  */
-declare class CBS_CheckboxLabel extends CBS_Element {
+export class CBS_CheckboxLabel extends CBS_Element {
     #private;
     /**
      * Creates an instance of CBS_CheckboxLabel.
@@ -2125,7 +2127,7 @@ declare class CBS_CheckboxLabel extends CBS_Element {
  * @typedef {CBS_CheckboxInput}
  * @extends {CBS_Input}
  */
-declare class CBS_CheckboxInput extends CBS_Input {
+export class CBS_CheckboxInput extends CBS_Input {
     #private;
     /**
      * Creates an instance of CBS_CheckboxInput.
@@ -2180,7 +2182,7 @@ declare class CBS_CheckboxInput extends CBS_Input {
  * @typedef {CBS_Checkbox}
  * @extends {CBS_Input}
  */
-declare class CBS_Checkbox extends CBS_Input {
+export class CBS_Checkbox extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -2252,7 +2254,7 @@ declare class CBS_Checkbox extends CBS_Input {
  * @typedef {CBS_CheckboxGroup}
  * @extends {CBS_Component}
  */
-declare class CBS_CheckboxGroup extends CBS_Input {
+export class CBS_CheckboxGroup extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -2393,7 +2395,7 @@ type CBS_ColorInputOptions = {
  * @typedef {CBS_ColorInput}
  * @extends {CBS_Input}
  */
-declare class CBS_ColorInput extends CBS_Input {
+export class CBS_ColorInput extends CBS_Input {
     /**
      * Creates an instance of CBS_ColorInput.
      *
@@ -2441,7 +2443,7 @@ type CBS_DateInputOptions = {
  * @typedef {CBS_DateInput}
  * @extends {CBS_Input}
  */
-declare class CBS_DateInput extends CBS_Input {
+export class CBS_DateInput extends CBS_Input {
     /**
      * Creates an instance of CBS_DateInput.
      *
@@ -2489,7 +2491,7 @@ type CBS_EmailInputOptions = {
  * @typedef {CBS_EmailInput}
  * @extends {CBS_Input}
  */
-declare class CBS_EmailInput extends CBS_Input {
+export class CBS_EmailInput extends CBS_Input {
     /**
      * Creates an instance of CBS_EmailInput.
      *
@@ -2544,7 +2546,7 @@ type CBS_FileInputOptions = {
  * @typedef {CBS_FileInput}
  * @extends {CBS_Input}
  */
-declare class CBS_FileInput extends CBS_Input {
+export class CBS_FileInput extends CBS_Input {
     /**
      * Creates an instance of CBS_FileInput.
      *
@@ -2578,7 +2580,7 @@ declare class CBS_FileInput extends CBS_Input {
  * @typedef {CBS_FormText}
  * @extends {CBS_Element}
  */
-declare class CBS_FormText extends CBS_Element {
+export class CBS_FormText extends CBS_Element {
     /**
      * Creates an instance of CBS_FormText.
      *
@@ -2619,7 +2621,7 @@ type CBS_NumberInputOptions = {
  * @typedef {CBS_NumberInput}
  * @extends {CBS_Input}
  */
-declare class CBS_NumberInput extends CBS_Input {
+export class CBS_NumberInput extends CBS_Input {
     /**
      * Creates an instance of CBS_NumberInput.
      *
@@ -2657,7 +2659,7 @@ type CBS_PasswordInputOptions = {
  * @typedef {CBS_PasswordInput}
  * @extends {CBS_Input}
  */
-declare class CBS_PasswordInput extends CBS_Input {
+export class CBS_PasswordInput extends CBS_Input {
     /**
      * Creates an instance of CBS_PasswordInput.
      *
@@ -2700,7 +2702,7 @@ type CBS_RadioOptions = {
     mirrorValue?: any;
     label?: string;
 };
-declare class CBS_RadioLabel extends CBS_CheckboxLabel {
+export class CBS_RadioLabel extends CBS_CheckboxLabel {
     /**
      * Creates an instance of CBS_RadioLabel.
      *
@@ -2716,7 +2718,7 @@ declare class CBS_RadioLabel extends CBS_CheckboxLabel {
  * @typedef {CBS_RadioInput}
  * @extends {CBS_Input}
  */
-declare class CBS_RadioInput extends CBS_Input {
+export class CBS_RadioInput extends CBS_Input {
     /**
      * Creates an instance of CBS_RadioInput.
      *
@@ -2755,7 +2757,7 @@ declare class CBS_RadioInput extends CBS_Input {
  * @typedef {CBS_Radio}
  * @extends {CBS_Input}
  */
-declare class CBS_Radio extends CBS_Input {
+export class CBS_Radio extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -2812,7 +2814,7 @@ declare class CBS_Radio extends CBS_Input {
  * @typedef {CBS_RadioGroup}
  * @extends {CBS_Input}
  */
-declare class CBS_RadioGroup extends CBS_Input {
+export class CBS_RadioGroup extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -2916,7 +2918,7 @@ type CBS_RangeInputOptions = {
  * @typedef {CBS_RangeInput}
  * @extends {CBS_Input}
  */
-declare class CBS_RangeInput extends CBS_Input {
+export class CBS_RangeInput extends CBS_Input {
     /**
      * Creates an instance of CBS_RangeInput.
      *
@@ -3000,7 +3002,7 @@ type CBS_SelectOptions = {
  * @typedef {CBS_SelectOption}
  * @extends {CBS_Element}
  */
-declare class CBS_SelectOption extends CBS_Element {
+export class CBS_SelectOption extends CBS_Element {
     /**
      * Description placeholder
      *
@@ -3059,7 +3061,7 @@ declare class CBS_SelectOption extends CBS_Element {
  * @typedef {CBS_SelectInput}
  * @extends {CBS_Input}
  */
-declare class CBS_SelectInput extends CBS_Input {
+export class CBS_SelectInput extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -3137,7 +3139,7 @@ type CBS_TextInputOptions = {
  * @typedef {CBS_TextInput}
  * @extends {CBS_Input}
  */
-declare class CBS_TextInput extends CBS_Input {
+export class CBS_TextInput extends CBS_Input {
     /**
      * Creates an instance of CBS_TextInput.
      *
@@ -3185,7 +3187,7 @@ type CBS_TextareaOptions = {
  * @typedef {CBS_TextareaInput}
  * @extends {CBS_Input}
  */
-declare class CBS_TextareaInput extends CBS_Input {
+export class CBS_TextareaInput extends CBS_Input {
     /**
      * Creates an instance of CBS_TextAreaInput.
      *
@@ -3257,7 +3259,7 @@ type CBS_ListItemOptions = {
  * @typedef {CBS_ListItem}
  * @extends {CBS_Component}
  */
-declare class CBS_ListItem extends CBS_Component {
+export class CBS_ListItem extends CBS_Component {
     /**
      * Creates an instance of CBS_ListItem
      *
@@ -3287,7 +3289,7 @@ type CBS_ListOptions = {
  * @typedef {CBS_List}
  * @extends {CBS_Component}
  */
-declare class CBS_List extends CBS_Component {
+export class CBS_List extends CBS_Component {
     /**
      * Creates an instance of CBS_List
      *
@@ -3337,7 +3339,7 @@ type CBS_AudioOptions = {
  * @typedef {CBS_AudioSource}
  * @extends {CBS_Element}
  */
-declare class CBS_AudioSource extends CBS_Element {
+export class CBS_AudioSource extends CBS_Element {
     /**
      * Creates an instance of CBS_AudioSource.
      *
@@ -3365,7 +3367,7 @@ declare class CBS_AudioSource extends CBS_Element {
  * @typedef {CBS_AudioElement}
  * @extends {CBS_Component}
  */
-declare class CBS_AudioElement extends CBS_Component {
+export class CBS_AudioElement extends CBS_Component {
     #private;
     /**
      * Description placeholder
@@ -3506,7 +3508,7 @@ declare class CBS_AudioElement extends CBS_Component {
  * @typedef {CBS_AudioPlayhead}
  * @extends {CBS_Element}
  */
-declare class CBS_AudioPlayhead extends CBS_Element {
+export class CBS_AudioPlayhead extends CBS_Element {
     /**
      * Creates an instance of CBS_AudioPlayhead.
      *
@@ -3522,7 +3524,7 @@ declare class CBS_AudioPlayhead extends CBS_Element {
  * @typedef {CBS_AudioTimeline}
  * @extends {CBS_Component}
  */
-declare class CBS_AudioTimeline extends CBS_Component {
+export class CBS_AudioTimeline extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -3559,7 +3561,7 @@ declare class CBS_AudioTimeline extends CBS_Component {
  * @typedef {CBS_AudioButton}
  * @extends {CBS_Element}
  */
-declare class CBS_AudioButton extends CBS_Component {
+export class CBS_AudioButton extends CBS_Component {
     /**
      * Creates an instance of CBS_AudioButton.
      *
@@ -3576,7 +3578,7 @@ declare class CBS_AudioButton extends CBS_Component {
  * @typedef {CBS_AudioPlayer}
  * @extends {CBS_Component}
  */
-declare class CBS_AudioPlayer extends CBS_Component {
+export class CBS_AudioPlayer extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -3598,7 +3600,7 @@ declare class CBS_AudioPlayer extends CBS_Component {
  * @typedef {CBS_AudioCardBody}
  * @extends {CBS_CardBody}
  */
-declare class CBS_AudioCardBody extends CBS_CardBody {
+export class CBS_AudioCardBody extends CBS_CardBody {
     /**
      * Description placeholder
      *
@@ -3620,7 +3622,7 @@ declare class CBS_AudioCardBody extends CBS_CardBody {
  * @typedef {CBS_AudioCard}
  * @extends {CBS_Card}
  */
-declare class CBS_AudioCard extends CBS_Card {
+export class CBS_AudioCard extends CBS_Card {
     /**
      * Description placeholder
      *
@@ -3656,7 +3658,7 @@ type CBS_ImageOptions = {
  * @typedef {CBS_Image}
  * @extends {CBS_Component}
  */
-declare class CBS_Image extends CBS_Component {
+export class CBS_Image extends CBS_Component {
     /**
      * Creates an instance of CBS_Image.
      *
@@ -3686,7 +3688,7 @@ type CBS_VideoOptions = {
         [key: string]: string;
     };
 };
-declare class CBS_Video extends CBS_Component {
+export class CBS_Video extends CBS_Component {
     constructor(options?: CBS_VideoOptions);
 }
 /**
@@ -3696,7 +3698,7 @@ declare class CBS_Video extends CBS_Component {
  * @typedef {CBS_ContextMenuItem}
  * @extends {CBS_Paragraph}
  */
-declare class CBS_ContextMenuItem extends CBS_Paragraph {
+export class CBS_ContextMenuItem extends CBS_Paragraph {
     /**
      * Creates an instance of CBS_ContextMenuItem.
      *
@@ -3721,7 +3723,7 @@ type CBS_ContextmenuSections = {
  * @typedef {CBS_ContextmenuSection}
  * @extends {CBS_Component}
  */
-declare class CBS_ContextmenuSection extends CBS_Component {
+export class CBS_ContextmenuSection extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -3819,7 +3821,7 @@ type CBS_ContextmenuOptions = {
     color?: CBS_Color;
     ignoreList?: string[];
 };
-declare class CBS_SubContextmenu extends CBS_Component {
+export class CBS_SubContextmenu extends CBS_Component {
     constructor(options?: CBS_ContextmenuOptions);
     /**
      * Description placeholder
@@ -3842,7 +3844,7 @@ declare class CBS_SubContextmenu extends CBS_Component {
  * @typedef {CBS_Contextmenu}
  * @extends {CBS_Component}
  */
-declare class CBS_Contextmenu extends CBS_Component {
+export class CBS_Contextmenu extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -3905,7 +3907,7 @@ type CBS_ListenerCallback = (event: Event) => Promise<boolean | void> | void;
  * @class CBS_Listener
  * @typedef {CBS_Listener}
  */
-declare class CBS_Listener {
+export class CBS_Listener {
     /**
      * Description placeholder
      *
@@ -3959,7 +3961,7 @@ type CBS_MaterialIconFontSettings = {
  * @typedef {CBS_MaterialIcon}
  * @extends {CBS_Component}
  */
-declare class CBS_MaterialIcon extends CBS_Component {
+export class CBS_MaterialIcon extends CBS_Component {
     /**
      * Creates an instance of CBS_MaterialIcon.
      *
@@ -4053,6 +4055,6 @@ declare class CBS_MaterialIcon extends CBS_Component {
  *
  * @param {?string} [prefix]
  */
-declare const CBS_GenerateMaterialIcons: (prefix?: string) => void;
+export const CBS_GenerateMaterialIcons: (prefix?: string) => void;
 //# sourceMappingURL=index.d.ts.map
-}
+     }
