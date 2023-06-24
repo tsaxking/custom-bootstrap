@@ -60,7 +60,7 @@ interface CBS_ElementNameMap {
     // dom
     'dom': CBS_Document;
 
-    [key: string]: CBS_Element|CBS_Component;
+    [key: string]: CBS_Element;
 }
 
 type CBS_ElementName = keyof CBS_ElementNameMap;

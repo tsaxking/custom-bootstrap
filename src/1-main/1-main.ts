@@ -250,7 +250,9 @@ class CustomBootstrap {
         const element = this.#elements[tag];
 
         if (!element) {
-            throw new Error(`Element ${tag} does not exist`);
+            const err = new Error('Element not found: ' + tag + ' Returning a CBS_Element instead');
+            console.warn(err);
+            return new CBS_Element(options);
         }
 
         return new element(options);
