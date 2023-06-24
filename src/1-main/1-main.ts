@@ -329,6 +329,7 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
+    createElement<K extends CBS_ElementName>(selector: K, options?: CBS_Options): CBS_ElementNameMap[K];
     createElement(selector: string, options?: CBS_Options): CBS_Element {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
@@ -354,7 +355,7 @@ class CustomBootstrap {
      * @param {string} text
      * @returns {(ChildNode|null)}
      */
-    createElementFromText(text: string): (ChildNode|CBS_Element)[] {
+    createElementFromText(text: string): (Element|ChildNode|CBS_ElementNameMap[keyof CBS_ElementNameMap])[] {
         const div = document.createElement('div');
         div.innerHTML = text;
         const fullArray = Array.from(div.querySelectorAll('*'));
@@ -366,7 +367,7 @@ class CustomBootstrap {
             const tag = el.tagName.toLowerCase();
             if (tag.includes('cbs-')) {
             const [,element] = tag.split('cbs-');
-            const cbsEl = CBS.createElement(element);
+            const cbsEl = CBS.createElement(element as keyof CBS_ElementNameMap);
 
             // defining properties
             Array.from(el.attributes).forEach((attr) => {
