@@ -1,15 +1,3 @@
-(() => {
-    // test for jQuery and popper
-    try {
-        $('hello-world');
-    } catch {
-        console.error('jQuery is not loaded!');
-    }
-
-    if (!$('.any').toast) {
-        console.error('Popper is not loaded!');
-    }
-})();
 
 
 // Generic types
@@ -52,118 +40,6 @@ type CBS_Parameters = {
 
 
 
-
-// // Is not currently used, but may be useful in the future?
-// /**
-//  * Description placeholder
-//  *
-//  * @interface CBS_ElementNameMap
-//  * @typedef {CBS_ElementNameMap}
-//  */
-// interface CBS_ElementNameMap {
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_AudioCard}
-//      */
-//     'audio': CBS_AudioCard;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Video}
-//      */
-//     'video': CBS_Video;
-
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Modal}
-//      */
-//     'modal': CBS_Modal;
-
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Card}
-//      */
-//     'card': CBS_Card;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Form}
-//      */
-//     'form': CBS_Form;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_List}
-//      */
-//     'list': CBS_List;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Progress}
-//      */
-//     'progress-bar': CBS_Progress;
-
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_CheckboxInput}
-//      */
-//     'checkbox': CBS_CheckboxInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_RadioInput}
-//      */
-//     'radio': CBS_RadioInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Input}
-//      */
-//     'input': CBS_Input;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_TextareaInput}
-//      */
-//     'textarea': CBS_TextareaInput;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_Button}
-//      */
-//     'button': CBS_Button;
-//     /**
-//      * Description placeholder
-//      *
-//      * @type {CBS_SelectInput}
-//      */
-//     'select': CBS_SelectInput;
-
-// }
-
-
-// TODO: Add all the elements to this interface
-// /**
-//  * Description placeholder
-//  *
-//  * @interface CBS
-//  * @typedef {CBS}
-//  */
-// interface CBS {
-//     /**
-//      * Description placeholder
-//      *
-//      * @template K
-//      * @param {K} tagName
-//      * @returns {CBS_ElementNameMap[K]}
-//      */
-//     createElement<K extends keyof CBS_ElementNameMap>(tagName: K): CBS_ElementNameMap[K];
-// }
-
 /**
  * Selector object returned by CustomBootstrap.parseSelector()
  *
@@ -194,6 +70,32 @@ type CBS_ElementConstructorMap = {
  * @typedef {CustomBootstrap}
  */
 class CustomBootstrap {
+    static ids: string[] = [];
+
+    static getAllParentNodes(el: HTMLElement): Node[] {
+        const nodeList: Node[] = [];
+
+        let prevLength = nodeList.length;
+
+        while(prevLength === nodeList.length) {
+            if (el.parentElement) nodeList.push(el.parentElement);
+
+            prevLength = nodeList.length;
+        }
+
+        return nodeList;
+    }
+
+    static newID(): string {
+        let id: string;
+        do {
+            id = 'cbs-' + Math.random().toString(36).substring(2, 9);
+        } while (CustomBootstrap.ids.includes(id));
+
+        CustomBootstrap.ids.push(id);
+        return id;
+    }
+
     /**
      * Parses a string into a selector object
      *
@@ -334,10 +236,15 @@ class CustomBootstrap {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
         options = {
-            ...(options || {}),
-            id,
-            classes,
-            attributes
+            classes: [
+                ...(classes || []),
+                ...(options?.classes || [])
+            ],
+            id: id || options?.id,
+            attributes: {
+                ...(options?.attributes || {}),
+                ...(attributes || {})
+            }
         }
 
         const element = this.#elements[tag];
@@ -366,48 +273,58 @@ class CustomBootstrap {
             // console.log(el);
             const tag = el.tagName.toLowerCase();
             if (tag.includes('cbs-')) {
-            const [,element] = tag.split('cbs-');
-            const cbsEl = CBS.createElement(element as keyof CBS_ElementNameMap);
+                const [,element] = tag.split('cbs-');
+                let cbsEl = CBS.createElement(element);
 
-            // defining properties
-            Array.from(el.attributes).forEach((attr) => {
-                cbsEl.setAttribute(attr.name, attr.value);
-            });
-            cbsEl.addClass(...Array.from(el.classList));
-            cbsEl.style = Object.keys((el as HTMLElement).style).reduce((acc, key) => {
-                if (!(el as HTMLElement).style[key]) return acc;
-                acc[key] = (el as HTMLElement).style[key];
-                return acc;
-            }, {} as { [key: string]: string });
+                // if ((el as HTMLElement).dataset.template) {
+                //     cbsEl = cbsEl.constructor.fromTemplate((el as HTMLElement).dataset.template);
+                // }
 
-            if (cbsEl instanceof CBS_Component) {
-                Object.keys(cbsEl.subcomponents).forEach(name => {
-                    const subEl = el.querySelector(`${element}-${name}`);
-                    // console.log(name, subEl);
-                    if (subEl) {
-                        // console.log(subEl);
-
-                        // get all text nodes and children in correct order
-                        const textNodes = Array.from(subEl.childNodes).filter(n => n.nodeType === 3);
-                        const children = Array.from(subEl.childNodes).filter(n => n.nodeType !== 3);
-
-                        const subElements = [...textNodes, ...children];
-                        subElements.sort((a, b) => {
-                        if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING) {
-                            return 1;
-                        } else {
-                            return -1;
-                        }
-                        });
-
-                        cbsEl.subcomponents[name].el.append(...subElements);
-                        collected.push(subEl);
-                    }
+                // defining properties
+                Array.from(el.attributes).forEach((attr) => {
+                    cbsEl.setAttribute(attr.name, attr.value);
                 });
-            }
+                cbsEl.addClass(...Array.from(el.classList));
+                cbsEl.style = Object.keys((el as HTMLElement).style).reduce((acc, key) => {
+                    if (!(el as HTMLElement).style[key]) return acc;
+                    acc[key] = (el as HTMLElement).style[key];
+                    return acc;
+                }, {} as { [key: string]: string });
 
-            el.replaceWith(cbsEl.el);
-            return cbsEl;
+                if (cbsEl instanceof CBS_Component) {
+                    Object.keys(cbsEl.subcomponents).forEach(name => {
+                        const subEl = el.querySelector(`${element}-${name}`);
+                        // console.log(name, subEl);
+                        if (subEl) {
+                            // console.log(subEl);
+
+                            // get all text nodes and children in correct order
+                            const textNodes = Array.from(subEl.childNodes).filter(n => n.nodeType === 3);
+                            const children = Array.from(subEl.childNodes).filter(n => n.nodeType !== 3);
+
+                            const subElements = [...textNodes, ...children];
+                            subElements.sort((a, b) => {
+                                if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING) {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+                            });
+
+                            (cbsEl as CBS_Component).subcomponents[name].el.append(...subElements);
+                            collected.push(subEl);
+                        } else {
+                            try {
+                                cbsEl.removeElement((cbsEl as CBS_Component).subcomponents[name]);
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                    });
+                }
+
+                el.replaceWith(cbsEl.el);
+                return cbsEl;
             }
             return el;
         }).filter(e => (e && !collected.includes(e)));
@@ -529,9 +446,16 @@ class CustomBootstrap {
 
             submit.content = 'Submit';
 
+            const cancel = new CBS_Button({
+                color: 'secondary'
+            });
+
+            cancel.content = 'Cancel';
+
             const modal = new CBS_Modal({
                 buttons: [
-                    submit
+                    submit,
+                    cancel
                 ]
             });
 
@@ -546,6 +470,14 @@ class CustomBootstrap {
                     modal.destroy();
                 });
                 res(form.value);
+            });
+
+            cancel.on('click', () => {
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(null);
             });
 
             form.on('submit', (e) => {
@@ -574,15 +506,20 @@ class CustomBootstrap {
      */
     async prompt(message?: any): Promise<string|null> {
         return new Promise((res, rej) => {
-            const ok = new CBS_Button({
+            const submit = new CBS_Button({
                 color: 'primary'
             });
 
-            ok.content = 'Okay';
+            const cancel = new CBS_Button({
+                color: 'secondary'
+            });
+
+            submit.content = 'Submit';
+            cancel.content = 'Cancel';
 
             const modal = new CBS_Modal({
                 buttons: [
-                    ok
+                    submit
                 ]
             });
 
@@ -595,11 +532,11 @@ class CustomBootstrap {
 
             input.on('keydown', (e) => {
                 if ((e as KeyboardEvent).key === 'Enter') {
-                    ok.el.click();
+                    submit.el.click();
                 }
             })
 
-            ok.on('click', () => {
+            submit.on('click', () => {
                 modal.hide();
                 modal.on('animationend', () => {
                     modal.destroy();
@@ -607,12 +544,27 @@ class CustomBootstrap {
                 res(input.value);
             });
 
-            modal.subcomponents.footer.append(ok);
+            cancel.on('click', () => {
+                modal.hide();
+                modal.on('animationend', () => {
+                    modal.destroy();
+                });
+                res(null);
+            });
+
+            modal.subcomponents.footer.append(submit);
 
             modal.on('hidden.bs.modal', () => res(null));
             modal.on('destroyed', () => res(null));
             modal.show();
         });
+    }
+
+    modal(container: CBS_Container) {
+        const modal = new CBS_Modal();
+        modal.subcomponents.body.append(container);
+        modal.show();
+        return modal;
     }
 }
 
@@ -623,3 +575,15 @@ class CustomBootstrap {
  * @type {CustomBootstrap}
  */
 const CBS = new CustomBootstrap();
+(() => {
+    // test for jQuery and popper
+    try {
+        $('hello-world');
+    } catch {
+        console.error('jQuery is not loaded!');
+    }
+
+    if (!$(document.createElement('button')).toast) {
+        console.error('Popper is not loaded!');
+    }
+});

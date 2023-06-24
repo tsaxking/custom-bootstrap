@@ -35,4 +35,4 @@ class CBS_Paragraph extends CBS_Text {
 }
 
 
-CBS.addElement('paragraph', CBS_Component);
+CBS.addElement('p', CBS_Paragraph);

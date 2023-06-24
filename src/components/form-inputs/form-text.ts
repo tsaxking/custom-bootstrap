@@ -41,3 +41,5 @@ class CBS_FormText extends CBS_Element {
         return this.el.innerHTML;
     }
 }
+
+CBS.addElement('cbs-form-text', CBS_FormText);

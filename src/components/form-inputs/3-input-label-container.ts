@@ -23,7 +23,7 @@ type CBS_InputLabelContainerOptions = {
  * @extends {CBS_Component}
  * @implements {CBS_InputInterface}
  */
-class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
+class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
     /**
      * Description placeholder
      *
@@ -45,8 +45,16 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
      */
     constructor(options?: CBS_Options) {
         super(options);
+        this.append(this.subcomponents.label);
+        this.append(this.subcomponents.input);
+        this.append(this.subcomponents.text);
 
-        this.el = document.createElement('div');
+        // random string id
+        this.id = 'input-label-container-' + CustomBootstrap.newID();
+        this.subcomponents.input.id = this.id + '-input';
+        this.subcomponents.label.setAttribute('for', this.subcomponents.input.id);
+
+        this.type = 'label';
     }
 
     /**
@@ -55,9 +63,11 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
      * @type {CBS_Input}
      */
     set input(input: CBS_Input) {
+        this.replace(this.subcomponents.input, input);
         this.subcomponents.input = input;
-        this.options = this.options || {};
-        this.append(input);
+
+        this.subcomponents.input.id = this.id + '-input';
+        this.subcomponents.label.setAttribute('for', this.subcomponents.input.id);
     }
 
     get input() {
@@ -70,9 +80,10 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
      * @type {*}
      */
     set label(label: CBS_Label) {
+        this.replace(this.subcomponents.label, label);
         this.subcomponents.label = label;
-        this.options = this.options || {};
-        this.append(label);
+
+        this.subcomponents.label.setAttribute('for', this.subcomponents.input.id);
     }
 
     get label() {
@@ -80,37 +91,24 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
     }
 
 
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_InputLabelContainerOptions}
-     */
-    set options(options: CBS_InputLabelContainerOptions) {
-        super.options = options;
 
-        let {
-            type
-        } = options;
+    #type: string = 'label';
+    set type(type: string) {
+        this.#type = type;
 
-        let {
-            input, 
+        const {
+            input,
             label
         } = this.subcomponents;
 
-        if (!input) input = new CBS_Input();
-        if (!label) label = new CBS_Label();
-
         this.clearElements();
-
-        // inline
-        // label (default)
-        // floating
-
-        if (!type) type = 'label';
 
         switch (type) {
             case 'label':
                 (() => {
+                    this.classes = [
+                        'form-group'
+                    ];
                     this.marginB = 3;
                     this.append(
                         label,
@@ -120,6 +118,9 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
                 break;
             case 'inline': 
                 (() => {
+                    this.classes = [
+                        'form-group'
+                    ];
                     const row = new CBS_Row({
                         classes: [
                             'g-3',
@@ -140,7 +141,9 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
                 break;
             case 'floating':
                 (() => {
-                    this.addClass('form-floating');
+                    this.classes = [
+                        'form-floating'
+                    ];
                     this.append(
                         input,
                         label
@@ -148,6 +151,10 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
                 })();
                 break;
         }
+    }
+
+    get type() {
+        return this.#type;
     }
 
     /**
@@ -188,3 +195,5 @@ class CBS_InputLabelContainer extends CBS_Input implements CBS_InputInterface {
         (this.subcomponents.text as CBS_FormText).content = content;
     }
 }
+
+CBS.addElement('cbs-input-label-container', CBS_InputLabelContainer);

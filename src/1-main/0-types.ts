@@ -57,6 +57,9 @@ interface CBS_ElementNameMap {
     // menus
     'contextmenu': CBS_Contextmenu;
 
+    // dom
+    'dom': CBS_Document;
+
     [key: string]: CBS_Element|CBS_Component;
 }
 

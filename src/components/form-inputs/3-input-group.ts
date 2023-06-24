@@ -63,6 +63,8 @@ class CBS_InputGroupLabel extends CBS_Element {
     }
 }
 
+CBS.addElement('cbs-input-group-label', CBS_InputGroupLabel);
+
 
 
 /**
@@ -113,3 +115,5 @@ class CBS_InputGroup extends CBS_Component {
         this.trigger('input:add');
     }
 }
+
+CBS.addElement('cbs-input-group', CBS_InputGroup);

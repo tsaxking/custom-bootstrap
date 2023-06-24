@@ -64,6 +64,8 @@ class CBS_CheckboxLabel extends CBS_Element {
     }
 };
 
+CBS.addElement('cbs-checkbox-label', CBS_CheckboxLabel);
+
 /**
  * Description placeholder
  *
@@ -165,6 +167,9 @@ class CBS_CheckboxInput extends CBS_Input {
         (this.el as HTMLInputElement).indeterminate = true;
     }
 }
+
+
+CBS.addElement('cbs-checkbox', CBS_CheckboxInput);
 
 
 
@@ -279,6 +284,8 @@ class CBS_Checkbox extends CBS_Input {
         (this.subcomponents.input as CBS_CheckboxInput).semiCheck();
     }
 };
+
+CBS.addElement('checkbox', CBS_Checkbox);
 
 
 

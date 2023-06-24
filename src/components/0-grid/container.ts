@@ -54,6 +54,10 @@ class CBS_Container extends CBS_Element {
         }
     }
 
+    get options() {
+        return this._options;
+    }
+
     /**
      * Description placeholder
      *
@@ -71,9 +75,11 @@ class CBS_Container extends CBS_Element {
      *
      * @returns {*}
      */
-    addRow(options?: CBS_Options) {
+    addRow(options?: CBS_Options): CBS_Row {
         const row = new CBS_Row(options);
         this.append(row);
         return row;
     }
 }
+
+CBS.addElement('container', CBS_Container);

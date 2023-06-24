@@ -195,7 +195,7 @@ const CBS_GenerateMaterialIcons = (prefix?: string) => {
         const btn = new CBS_Button();
 
         i.icon = icon;
-        btn.subcomponents.content.append(i.clone());
+        btn.content = i;
 
         CBS_Button.addTemplate(icon, btn);
 

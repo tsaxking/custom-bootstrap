@@ -67,6 +67,9 @@ class CBS_List extends CBS_Component {
         }
     }
 
+    get options() {
+        return this._options;
+    }
     /**
      * Changes element to an <ol> element or <ul> element
      *

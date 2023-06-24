@@ -13,15 +13,21 @@ class CBS_ContextMenuItem extends CBS_Paragraph {
      * @param {CBS_ContextmenuSelectOptions} options
      * @param {() => void} callback
      */
-    constructor( options: CBS_ContextmenuSelectOptions, callback: () => void) {
-        super();
+    constructor(options: CBS_ContextmenuSelectOptions, callback: () => void) {
+        super({
+            style: {
+                cursor: 'pointer'
+            }
+        });
 
-        this.text = options.name;
+        this.content = options.name;
 
         if (options.color) {
             this.addClass(`text-${options.color}`);
             this.color = options.color;
         }
+
+        this.addClass('fw-normal');
 
         this.on('click', callback);
         this.on('mouseover', () => this.addClass('bg-secondary'));
@@ -94,7 +100,9 @@ class CBS_ContextmenuSection extends CBS_Component {
             this.color = options.color;
         }
 
-        this.name = options.name;
+        this.addClass('fw-bold');
+
+        this.content = options.name;
     }
 
     /**
@@ -107,6 +115,7 @@ class CBS_ContextmenuSection extends CBS_Component {
     addItem(name: string, callback: () => void): CBS_ContextMenuItem {
         const item = new CBS_ContextMenuItem({ name, color: this.color }, callback);
         this.items.push(item);
+        this.append(item);
         return item;
     }
 
@@ -120,6 +129,7 @@ class CBS_ContextmenuSection extends CBS_Component {
         const index = this.items.findIndex((item) => item.text === name);
         if (index >= 0) {
             this.items.splice(index, 1);
+            this.removeElement(this.items[index]);
             return true
         }
         return false;
@@ -188,6 +198,49 @@ type CBS_ContextmenuOptions = {
     }
 
     color?: CBS_Color;
+
+    ignoreList?: string[];
+}
+
+class CBS_SubContextmenu extends CBS_Component {
+    constructor(options?: CBS_ContextmenuOptions) {
+        super(options);
+
+        this.addClass('position-absolute', 'rounded', 'shadow', 'bg-light');
+        this.padding = 2;
+        this.hide();
+
+        if (options?.color) {
+            options.color = CBS_Color.light;
+        }
+    }
+    /**
+     * Description placeholder
+     *
+     * @type {?CBS_Color}
+     */
+    color?: CBS_Color;
+
+    
+    /**
+     * Description placeholder
+     *
+     * @type {CBS_ContextmenuOptions}
+     */
+    set options(options: CBS_ContextmenuOptions) {
+        super.options = options;
+        const { color } = this;
+        if (color) this.removeClass(`bg-${color}`);
+
+        if (options.color) {
+            this.color = options.color;
+            this.addClass(`bg-${options.color}`);
+        }
+    }
+
+    get options() {
+        return this._options;
+    }
 }
 
 /**
@@ -210,12 +263,10 @@ class CBS_Contextmenu extends CBS_Component {
      * @type {?(CBS_Element|HTMLElement)}
      */
     actionElement?: CBS_Element|HTMLElement;
-    /**
-     * Description placeholder
-     *
-     * @type {?CBS_Color}
-     */
-    color?: CBS_Color;
+
+    ignoreList: string[] = [];
+
+    subcomponents: CBS_ElementContainer = {}
 
     /**
      * Creates an instance of CBS_Contextmenu.
@@ -223,25 +274,15 @@ class CBS_Contextmenu extends CBS_Component {
      * @constructor
      * @param {?CBS_Options} [options]
      */
-    constructor(options?: CBS_Options) {
-        super(options);
-    }
+    constructor(options?: CBS_ContextmenuOptions) {
+        super();
 
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_ContextmenuOptions}
-     */
-    set options(options: CBS_ContextmenuOptions) {
-        const { color } = this;
-        if (color) this.removeClass(`bg-${color}`);
+        this.ignoreList = options?.ignoreList || [];
 
-        super.options = options;
+        this.subcomponents.menu = new CBS_SubContextmenu(options);
+        this.append(this.subcomponents.menu);
 
-        if (options.color) {
-            this.color = options.color;
-            this.addClass(`bg-${options.color}`);
-        }
+        this.addClass('position-relative');
     }
 
     /**
@@ -251,7 +292,9 @@ class CBS_Contextmenu extends CBS_Component {
      * @returns {CBS_ContextmenuSection}
      */
     addSection(name: string): CBS_ContextmenuSection {
-        this.sections[name] = new CBS_ContextmenuSection({ color: this.color, name });
+        if (this.sections[name]) console.warn('There is already a section with the name:', name, 'on your context menu. It has been replaced');
+        this.sections[name] = new CBS_ContextmenuSection({ color: (this.subcomponents.menu as CBS_SubContextmenu).color, name });
+        this.subcomponents.menu.append(this.sections[name]);
         return this.sections[name];
     }
 
@@ -264,6 +307,7 @@ class CBS_Contextmenu extends CBS_Component {
     removeSection(name: string): boolean {
         if (this.sections[name]) {
             delete this.sections[name];
+            this.subcomponents.menu.removeElement(this.sections[name]);
             return true;
         }
         return false;
@@ -274,23 +318,23 @@ class CBS_Contextmenu extends CBS_Component {
      *
      * @param {(CBS_Element|HTMLElement)} element
      */
-    applyTo(element: CBS_Element|HTMLElement) {
+    apply(element: CBS_Element|HTMLElement) {
         try {
             if (this.actionElement) {
                 if (this.actionElement instanceof CBS_Element) {
-                    this.actionElement.off('contextmenu', this._show);
+                    this.actionElement.off('contextmenu', this._show.bind(this));
                 } else {
-                    this.actionElement.removeEventListener('contextmenu', this.show);
+                    this.actionElement.removeEventListener('contextmenu', this.show.bind(this));
                 }
             }
 
             if (element instanceof CBS_Element) {
-                element.on('contextmenu', this._show);
+                element.on('contextmenu', this._show.bind(this));
             } else {
-                element.addEventListener('contextmenu', this._show);
+                element.addEventListener('contextmenu', this._show.bind(this));
             }
         } catch {
-            console.warn('Error applying contextmenu to:', element, 'Was it an HTML element or CBS element?');
+            console.error('Error applying contextmenu to:', element, 'Was it an HTML element or CBS element?');
         }
     }
 
@@ -302,49 +346,76 @@ class CBS_Contextmenu extends CBS_Component {
      */
     private _show(e: Event) {
         e.preventDefault();
+        document.body.appendChild(this.el);
 
         this.style = {
             '--animate-duration': '0.2s'
-        }
+        };
 
-        this.addClass('animate__animated', 'animate__faster');
+        this.subcomponents.menu.addClass('animate__animated', 'animate__faster');
 
         const { x, y } = this.getXY(e as MouseEvent|TouchEvent);
 
-        const { width, height } = this.el.getBoundingClientRect();
+        const { width, height } = this.subcomponents.menu.el.getBoundingClientRect();
 
         const { innerWidth, innerHeight } = window;
 
         let up: string, left: string;
 
         if (x + width > innerWidth) {
-            this.el.style.left = `${x - width}px`;
+            this.subcomponents.menu.el.style.left = `${x - width}px`;
             left = 'Right';
         } else {
-            this.el.style.left = `${x}px`;
+            this.subcomponents.menu.el.style.left = `${x}px`;
             left = 'Left';
         }
 
-        if (y + height > innerHeight) {
-            this.el.style.top = `${y - height}px`;
+        if (y + height < innerHeight) {
+            this.subcomponents.menu.el.style.top = `${y - height}px`;
             up = 'Down';
         } else {
-            this.el.style.top = `${y}px`;
+            this.subcomponents.menu.el.style.top = `${y}px`;
             up = 'Up';
         }
 
-        this.addClass(`animate__rotateIn${up}${left}`);
+        this.subcomponents.menu.addClass(`animate__rotateIn${up}${left}`);
 
-        this.show();
+        this.subcomponents.menu.show();
 
-        const animateCB = () => {
-            this.removeClass(`animate__rotateIn${up}${left}`, 'animate__animated', 'animate__faster');
-            this.off('animationend', animateCB);
-        }
+        // const animateCB = () => {
+        //     this.subcomponents.menu.removeClass(`animate__rotateIn${up}${left}`, 'animate__animated', 'animate__faster');
+        //     this.off('animationend', animateCB);
+        // }
 
-        setTimeout(animateCB, 200);
+        // setTimeout(animateCB, 200);
 
-        this.on('animationend', animateCB);
+        // this.subcomponents.menu.on('animationend', animateCB);
+
+        document.addEventListener('click', this._hide.bind(this));
+        // document.addEventListener('contextmenu', this._hide.bind(this));
+    }
+
+    private _hide() {
+        this.style = {
+            '--animate-duration': '0.2s'
+        };
+        this.subcomponents.menu.addClass('animate__fade', 'animate__animated', 'animate__faster');
+
+        // const animateCB = () => {
+        //     this.subcomponents.menu.removeClass(`animate__fade`, 'animate__animated', 'animate__faster');
+        //     this.subcomponents.menu.off('animationend', animateCB);
+        //     this.subcomponents.menu.hide();
+        // }
+
+        // setTimeout(animateCB, 200);
+
+        // this.subcomponents.menu.on('animationend', animateCB);
+
+        this.subcomponents.menu.hide();
+
+        document.removeEventListener('click', this._hide.bind(this));
+        document.removeEventListener('contextmenu', this._hide.bind(this));
+
     }
 }
 

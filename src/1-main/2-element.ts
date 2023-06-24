@@ -76,7 +76,7 @@ type CBS_Properties = {
  * @typedef {CBS_Element}
  * @extends {CustomBootstrap}
  */
-class CBS_Element extends CustomBootstrap {
+class CBS_Element  {
     /**
      * All templates for this class
      *
@@ -599,7 +599,6 @@ class CBS_Element extends CustomBootstrap {
 
 
 
-    
     // ▄▀▀ █ █ ▄▀▀ ▀█▀ ▄▀▄ █▄ ▄█    ██▀ █ █ ██▀ █▄ █ ▀█▀ ▄▀▀ 
     // ▀▄▄ ▀▄█ ▄█▀  █  ▀▄▀ █ ▀ █    █▄▄ ▀▄▀ █▄▄ █ ▀█  █  ▄█▀ 
 
@@ -695,38 +694,11 @@ class CBS_Element extends CustomBootstrap {
      * @param {?CBS_Options} [options]
      */
     constructor(options?: CBS_Options) {
-        super();
+        // console.log('CBS_Element Constructor', JSON.stringify(options));
 
-        this.__options = options || {};
+        this.options = options || {};
     }
 
-    set __options(options: CBS_Options) {
-        if (!this._el) return;
-
-        this._options = options;
-
-        const { classes, id, style, attributes } = options;
-
-        if (classes?.length) {
-            this._el.classList.add(...classes);
-        }
-
-        if (id) {
-            this._el.id = id;
-        }
-
-        if (style) {
-            this._el.setAttribute('style', Object.entries(style).map(([key, val]) => {
-                return `${key}: ${val};`;
-            }).join() || '');
-        }
-
-        if (attributes) {
-            Object.entries(attributes).forEach(([value, key]) => {
-                this._el.setAttribute(key, value);
-            });
-        }
-    }
 
     /**
      * Gets the options for this element
@@ -744,32 +716,13 @@ class CBS_Element extends CustomBootstrap {
      */
     set options(options: CBS_Options) {
         if (!this._el) return;
-
+        const { classes, attributes, style, id } = options;
         this._options = options;
 
-        const { classes, id, style, attributes } = options;
-
-        if (classes?.length) {
-            this._el.classList.add(...classes);
-        }
-
-        if (id) {
-            this._el.id = id;
-        }
-
-        if (style) {
-            this._el.setAttribute('style', Object.entries(style).map(([key, val]) => {
-                return `${key}: ${val};`;
-            }).join() || '');
-        }
-
-        if (attributes) {
-            Object.entries(attributes).forEach(([key, value]) => {
-                this._el.setAttribute(key, value);
-            });
-        }
-
-        this.trigger('options:change');
+        if (classes) this.classes = classes;
+        if (attributes) this.attributes = attributes;
+        if (style) this.style = style;
+        if (id) this.id = id;
     }
 
     /**
@@ -795,18 +748,30 @@ class CBS_Element extends CustomBootstrap {
         this.clearElements();
 
         this._el = el;
-        this.__options = this._options;
+        this.options = this._options;
         this.allPadding = this.allPadding;
         this.allMargin = this.allMargin;
+
+        // console.log('el set', this._el, this.options);
 
         Object.entries(this._events).forEach(([event, callback]) => {
             this._el.addEventListener(event, callback);
         });
 
-        this.trigger('element:change');
+        this.trigger('element.change');
     }
 
+    _id: string = '';
 
+    get id(): string {
+        return this._id;
+    }
+
+    set id(id: string) {
+        if (!this._el) return;
+        this._id = id;
+        this._el.id = id;
+    }
 
 
 
@@ -825,6 +790,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.appendChild(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML += el;
             } else {
@@ -846,6 +812,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.removeChild(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML = this._el.innerHTML.replace(el, '');
             } else {
@@ -865,6 +832,7 @@ class CBS_Element extends CustomBootstrap {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.prepend(el._el);
+                el.render();
             } else if (typeof el === 'string') {
                 this._el.innerHTML = el + this._el.innerHTML;
             } else {
@@ -910,7 +878,7 @@ class CBS_Element extends CustomBootstrap {
             if (nodeToInsertBefore instanceof CBS_Element) {
                 node = nodeToInsertBefore._el;
             } else if (typeof nodeToInsertBefore === 'string') { 
-                [node] = this.createElementFromText(nodeToInsertBefore);
+                [node] = CBS.createElementFromText(nodeToInsertBefore);
             } else {
                 node = nodeToInsertBefore as ChildNode;
             }
@@ -919,6 +887,7 @@ class CBS_Element extends CustomBootstrap {
             elementsToAdd.forEach((el, i) => {
                 if (el instanceof CBS_Element) {
                     this._el.insertBefore(el._el, (node instanceof CBS_Element) ? node._el : node);
+                    el.render();
                 } else if (typeof el === 'string') {
                     const div = document.createElement('div');
                     div.innerHTML = el;
@@ -962,16 +931,6 @@ class CBS_Element extends CustomBootstrap {
     }
 
     /**
-     * Gets all children of this element as their repspective classes
-     *
-     * @readonly
-     * @type {CBS_NodeMap}
-     */
-    get children(): CBS_NodeMap {
-        return this._components;
-    }
-
-    /**
      * Gets the parent of this element
      *
      * @readonly
@@ -988,24 +947,19 @@ class CBS_Element extends CustomBootstrap {
 
 
 
-
-
-
     // █▀▄ ▄▀▄ █▀▄ ▄▀▄ █▄ ▄█ ██▀ ▀█▀ ██▀ █▀▄ ▄▀▀ 
     // █▀  █▀█ █▀▄ █▀█ █ ▀ █ █▄▄  █  █▄▄ █▀▄ ▄█▀ 
 
     /**
      * Creates all <span> and <div> to replace {{}} in the HTML
      */
-    render() {
-        const { parameters } = this;
-        
+    render() {        
         const isShallow = (el: Element): boolean => !el.children.length;
 
         if (this._el) {
             this._el.querySelectorAll('[data-cbs-replace]').forEach(e => {
                 const replacement = document.createElement('div');
-                replacement.dataset[`cbs-${this.constructor.name}`] = e.getAttribute('data-cbs-replace') || '';
+                replacement.dataset[`cbs-${this.constructor.name.toLowerCase()}`] = e.getAttribute('data-cbs-replace') || '';
 
                 e.replaceWith(replacement);
             });
@@ -1017,7 +971,7 @@ class CBS_Element extends CustomBootstrap {
                     const params = match.innerHTML.match(/{{.*}}/g);
                     params?.forEach(param => {
                         const key = param.replace(/[{}]/g, '');
-                        const value = `<span data-cbs-${this.constructor.name}="${key}"></span>`;
+                        const value = `<span data-cbs-${this.constructor.name.toLowerCase()}="${key}"></span>`;
                         match.innerHTML = match.innerHTML.replace(param, value);
                     });
                 }
@@ -1036,18 +990,19 @@ class CBS_Element extends CustomBootstrap {
      */
     write(key: string, value: CBS_ParameterValue, trigger: boolean = true) {
         if (this._el) {
-            this._el.querySelectorAll(`[data-cbs-${this.constructor.name}="${key}"]`).forEach(el => {
-                if (typeof value === 'string' || typeof value === 'number') {
+            this._el.querySelectorAll(`*[data-cbs-${this.constructor.name.toLowerCase()}="${key}"]`).forEach(el => {
+                if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
                     el.innerHTML = value.toString();
-                } else if (typeof value === 'boolean') {
-                    el.innerHTML = value ? 'true' : 'false';
-                } else if (typeof value === 'undefined') {
+                } else if (typeof value === 'undefined' || value === null) {
                     el.innerHTML = '';
                 } else if (value instanceof HTMLElement) {
+                    el.innerHTML = '';
+                    el.appendChild(value);
+                } else if (value instanceof CBS_Element) {
                     while (el.firstChild) {
                         el.removeChild(el.firstChild);
                     }
-                    el.appendChild(value);
+                    el.appendChild(value.el);
                 } else {
                     console.error('Invalid value type', value);
                 }
@@ -1057,6 +1012,10 @@ class CBS_Element extends CustomBootstrap {
 
             this.trigger(`parameter.write:${key}`);
             if (trigger) this.trigger('parameters.write');
+
+            for (const c of this.components) {
+                if (c instanceof CBS_Element) c.write(key, value, trigger);
+            }
         }
     }
 
@@ -1071,7 +1030,7 @@ class CBS_Element extends CustomBootstrap {
      */
     read(param: string, asHTML:boolean = false): CBS_ParameterValue[] {
         if (this._el) {
-            this.trigger('param:read');
+            this.trigger('parameter.read');
 
             const arr = Array.from(this._el.querySelectorAll(`[data-cbs-${this.constructor.name}="${param}"]`));
             if (asHTML) return arr.map(el => el.children[0] || el);
@@ -1137,39 +1096,44 @@ class CBS_Element extends CustomBootstrap {
      * @param {CBS_ListenerCallback} callback
      * @param {boolean} [isAsync=false]
      */
-    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = false) {
+    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true) {
         if (!this._el) throw new Error('No element to add listener to');
-        if (typeof event !== 'string') throw new Error('Event must be a string');
-        if (typeof callback !== 'function') throw new Error('Callback must be a function');
+        // if (!event && !callback) {
+        //     reset all .off() listeners
+        // }
         // if (options && typeof options !== 'object') throw new Error('Options must be an object');
 
         const errCallback = async(e: Event): Promise<boolean> => {
-            return new Promise((res,rej) => {
+            return new Promise(async (res, rej) => {
                 let success = true;
                 const listeners = this.listeners.filter(l => l.event === event);
 
-                listeners.filter(l => l.isAsync).forEach(async l => l.callback(e));
+                const promises = listeners.filter(l => l.isAsync).map(async l => l.callback(e)?.catch((err) => {
+                    success = false;
+                    console.error(err);
+                }));
 
                 for (const listener of listeners.filter(l => !l.isAsync)) {
                     try {
-                        listener.callback(e);
+                        await listener.callback(e);
                     } catch (err) {
                         success = false;
                         console.error(err);
                     }
                 }
 
-                return res(success);
+                await Promise.all(promises);
+
+                res(success);
             });
         }
 
         this.listeners.push(new CBS_Listener(event, callback, isAsync));
 
-        if (!this.has(event)) {
+        if (!this.hasListener(event)) {
             this._events[event] = errCallback;
             this._el.addEventListener(event, errCallback);
         }
-
     }
 
     /**
@@ -1178,7 +1142,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} event
      * @returns {boolean}
      */
-    has(event: string): boolean {
+    hasListener(event: string): boolean {
         return !!this._events[event];
     }
 
@@ -1268,7 +1232,7 @@ class CBS_Element extends CustomBootstrap {
     hide() {
         this._el.classList.add('d-none');
 
-        this.trigger('el:hide');
+        this.trigger('el.hide');
     }
 
     /**
@@ -1277,7 +1241,7 @@ class CBS_Element extends CustomBootstrap {
     show() {
         this._el.classList.remove('d-none');
 
-        this.trigger('el:show');
+        this.trigger('el.show');
     }
 
     /**
@@ -1298,7 +1262,7 @@ class CBS_Element extends CustomBootstrap {
      * Description placeholder
      */
     destroy() {
-        this.trigger('el:destroy');
+        this.trigger('el.destroy');
 
         this.off();
         this._components.forEach(c => {
@@ -1329,7 +1293,7 @@ class CBS_Element extends CustomBootstrap {
             clone.on(listener.event, listener.callback);
         });
 
-        this.trigger('el:clone');
+        this.trigger('el.clone');
 
         return clone;
     }
@@ -1374,10 +1338,10 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     removeClass(...classes: string[]) {
-        if (!this.options) this.options = {};
-        if (!this.options.classes) this.options.classes = [];
+        if (!this._options) this.options = {};
+        if (!this._options.classes) this._options.classes = [];
 
-        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        this._options.classes = this._options.classes.filter(c => !classes.includes(c));
         this.el.classList.remove(...classes);
     }
 
@@ -1387,9 +1351,9 @@ class CBS_Element extends CustomBootstrap {
      * @param {...string[]} classes
      */
     toggleClass(...classes: string[]) {
-        if (!this.options.classes) this.options.classes = [];
+        if (!this._options.classes) this._options.classes = [];
 
-        this.options.classes = this.options.classes.filter(c => !classes.includes(c));
+        this._options.classes = this._options.classes.filter(c => !classes.includes(c));
         classes.forEach(c => {
             this.el.classList.toggle(c);
         });
@@ -1402,7 +1366,17 @@ class CBS_Element extends CustomBootstrap {
      * @type {{}}
      */
     get classes() {
-        return this.options.classes || [];
+        return Array.from(this.el.classList);
+    }
+
+
+    set classes(classes: string[]) {
+        this.clearClasses();
+        this.addClass(...classes);
+    }
+
+    clearClasses() {
+        this.el.classList.remove(...this.classes);
     }
 
     /**
@@ -1411,8 +1385,8 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      * @returns {*}
      */
-    hasClass(name: string): any {
-        return this.classes.includes(name);
+    hasClass(...name: string[]): any {
+        return name.every(c => this.el.classList.contains(c));
     }
 
 
@@ -1422,33 +1396,22 @@ class CBS_Element extends CustomBootstrap {
     // ▄█▀  █   █  █▄▄ █▄▄ 
 
 
-    get style() {
-        return this.options.style || {};
+    get style(): object {
+        return this.el.style;
     }
 
     set style(style: object) {
-        this.options = {
-            ...this.options,
-            style: {
-                ...(this.options.style || {}),
-                ...style
-            }
-        }
+        Object.assign(this.el.style, style);
     }
-
-    get id():string|undefined {
-        return this.options.id;
-    }
-
-    set id(id: string|undefined) {
-        this.options.id = id;
-    }
-
 
 
 
     // ▄▀▄ ▀█▀ ▀█▀ █▀▄ █ ██▄ █ █ ▀█▀ ██▀ ▄▀▀ 
     // █▀█  █   █  █▀▄ █ █▄█ ▀▄█  █  █▄▄ ▄█▀ 
+
+    _attributes: {
+        [key: string]: string;
+    } = {};
 
     /**
      * Description placeholder
@@ -1457,13 +1420,8 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} value
      */
     setAttribute(name: string, value: string) {
-        this.options = {
-            ...this.options,
-            attributes: {
-                ...(this.options?.attributes || {}),
-                [name]: value
-            }
-        }
+        this._el.setAttribute(name, value);
+        this._attributes[name] = value;
     }
 
     /**
@@ -1472,22 +1430,10 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      */
     removeAttribute(name: string) {
-        if (this.options.attributes) {
-            delete this.options.attributes[name];
-        }
-
-        this.options = this.options;
+        this._el.removeAttribute(name);
+        delete this._attributes[name];
     }
 
-    /**
-     * Description placeholder
-     *
-     * @readonly
-     * @type {{ [key: string]: string; }}
-     */
-    get attributes() {
-        return this.options.attributes || {};
-    }
 
     /**
      * Description placeholder
@@ -1495,8 +1441,25 @@ class CBS_Element extends CustomBootstrap {
      * @param {string} name
      * @returns {string}
      */
-    getAttribute(name: string) {
-        return this.attributes[name];
+    getAttribute(name: string): string {
+        return this._attributes[name];
+    }
+
+    clearAttributes() {
+        Object.keys(this._attributes).forEach(this.removeAttribute.bind(this));
+    }
+
+    get attributes(): { [key: string]: string } {
+        return this._attributes;
+    }
+
+    set attributes(attributes: { [key: string]: string }) {
+        this.clearAttributes();
+        this._attributes = attributes;
+
+        Object.keys(attributes).forEach(key => {
+            this.setAttribute(key, attributes[key]);
+        });
     }
 
 
@@ -1513,9 +1476,9 @@ class CBS_Element extends CustomBootstrap {
      * Description placeholder
      *
      * @param {(MouseEvent|TouchEvent)} e
-     * @returns {{ x: any; y: any; }}
+     * @returns {{ x: number; y: number; }}
      */
-    getXY(e: MouseEvent|TouchEvent) {
+    getXY(e: MouseEvent|TouchEvent): { x: number; y: number; } {
         if ((e as TouchEvent).touches) {
             return {
                 x: (e as TouchEvent).touches[0].clientX,
@@ -1535,7 +1498,7 @@ class CBS_Element extends CustomBootstrap {
      * @param {TouchEvent} e
      * @returns {*}
      */
-    getXYList(e: TouchEvent) {
+    getXYList(e: TouchEvent): { x: number; y: number; }[] {
         return Array.from((e as TouchEvent).touches).map(t => {
             return {
                 x: t.clientX,

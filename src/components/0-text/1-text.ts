@@ -91,6 +91,3 @@ class CBS_Text extends CBS_Element {
         return this.__align;
     }
 }
-
-
-CBS.addElement('text', CBS_Component);

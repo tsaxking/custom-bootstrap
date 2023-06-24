@@ -52,12 +52,13 @@ class CBS_Form extends CBS_Component {
         this.el = document.createElement('form');
 
         this.subcomponents.submit = new CBS_Button({
-            text: 'Submit',
             color: 'primary',
             attributes: {
                 type: 'submit'
             }
         });
+
+        this.subcomponents.submit.content = 'Submit';
 
         this.append(this.subcomponents.container);
     }
@@ -70,14 +71,6 @@ class CBS_Form extends CBS_Component {
      * @returns {CBS_Input}
      */
     createInput(name: string, type: string, options?: CBS_Options): CBS_InputLabelContainer {
-        options = {
-            ...options,
-            attributes: {
-                ...(options?.attributes || {}),
-                name: name
-            }
-        };
-
         let i: CBS_Input;
 
         switch (type) {
@@ -122,6 +115,8 @@ class CBS_Form extends CBS_Component {
                 break;
         }
 
+        i.setAttribute('name', name);
+
         const c = new CBS_InputLabelContainer();
         c.input = i;
         c.label.text = name;
@@ -132,9 +127,12 @@ class CBS_Form extends CBS_Component {
 
     get inputs() {
         const reduce = (acc: CBS_InputList, element: CBS_Node) => {
-            if (element instanceof CBS_Input || element instanceof CBS_InputLabelContainer) {
+            if (element instanceof CBS_Input) {
                 if (acc[element.getAttribute('name')]) console.warn('Duplicate input, name:', element.getAttribute('name'), 'The previous will be overwritten');
                 acc[element.getAttribute('name') || ''] = element;
+            } else if (element instanceof CBS_InputLabelContainer) {
+                if (acc[element.input.getAttribute('name')]) console.warn('Duplicate input, name:', element.input.getAttribute('name'), 'The previous will be overwritten');
+                acc[element.input.getAttribute('name') || ''] = element;
             } else if (element instanceof CBS_Element) {
                 element.components.forEach(el => reduce(acc, el));
             }

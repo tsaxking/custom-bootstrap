@@ -37,4 +37,4 @@ class CBS_Anchor extends CBS_Component {
 
 
 
-CBS.addElement('anchor', CBS_Anchor);
+CBS.addElement('a', CBS_Anchor);

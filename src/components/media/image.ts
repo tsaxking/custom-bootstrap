@@ -48,6 +48,10 @@ class CBS_Image extends CBS_Component {
         (this.el as HTMLImageElement).src = options.src || '';
     }
 
+    get options() {
+        return this._options;
+    }
+
     /**
      * Description placeholder
      *
