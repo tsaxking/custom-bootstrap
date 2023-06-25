@@ -791,6 +791,8 @@ class CBS_Element  {
             if (el instanceof CBS_Element) {
                 this._el.appendChild(el._el);
                 el.render();
+
+                el.parent = this;
             } else if (typeof el === 'string') {
                 this._el.innerHTML += el;
             } else {
@@ -813,6 +815,7 @@ class CBS_Element  {
             if (el instanceof CBS_Element) {
                 this._el.removeChild(el._el);
                 el.render();
+                el.parent = null;
             } else if (typeof el === 'string') {
                 this._el.innerHTML = this._el.innerHTML.replace(el, '');
             } else {
@@ -833,6 +836,7 @@ class CBS_Element  {
             if (el instanceof CBS_Element) {
                 this._el.prepend(el._el);
                 el.render();
+                el.parent = this;
             } else if (typeof el === 'string') {
                 this._el.innerHTML = el + this._el.innerHTML;
             } else {
@@ -853,7 +857,6 @@ class CBS_Element  {
      */
     replace(nodeToReplace: CBS_Node, ...elementsToAdd: CBS_NodeMap) {
         if (this._components.includes(nodeToReplace)) {
-            const index = this._components.indexOf(nodeToReplace);
             this.insertAfter(nodeToReplace, ...elementsToAdd);
             this.removeElement(nodeToReplace);
         }
@@ -888,6 +891,7 @@ class CBS_Element  {
                 if (el instanceof CBS_Element) {
                     this._el.insertBefore(el._el, (node instanceof CBS_Element) ? node._el : node);
                     el.render();
+                    el.parent = this;
                 } else if (typeof el === 'string') {
                     const div = document.createElement('div');
                     div.innerHTML = el;
@@ -930,17 +934,22 @@ class CBS_Element  {
         this.trigger('element:clear');
     }
 
+
+    private _parent: CBS_Element|null = null;
+
     /**
      * Gets the parent of this element
      *
      * @readonly
      * @type {(HTMLElement|null)}
      */
-    get parent(): HTMLElement|null {
-        return this._el.parentElement;
+    get parent(): CBS_Element|null {
+        return this._parent;
     }
 
-
+    set parent(parent: CBS_Element|null) {
+        this._parent = parent;
+    }
 
 
 
@@ -1263,6 +1272,8 @@ class CBS_Element  {
      */
     destroy() {
         this.trigger('el.destroy');
+
+        this.parent?.removeElement(this);
 
         this.off();
         this._components.forEach(c => {

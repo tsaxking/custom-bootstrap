@@ -60,6 +60,10 @@ interface CBS_ElementNameMap {
     // dom
     'dom': CBS_Document;
 
+    // notifications
+    'alert': CBS_Alert;
+    'toast': CBS_Toast;
+
     [key: string]: CBS_Element;
 }
 

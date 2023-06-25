@@ -157,59 +157,6 @@ class CustomBootstrap {
      * @type {CBS_ElementConstructorMap}
      */
     #elements: CBS_ElementConstructorMap = {
-        // // media
-        // 'audio': CBS_Audio,
-        // 'video': CBS_Video,
-        // 'picture': CBS_Picture,
-
-        // // modals
-        // 'modal-alert': CBS_ModalAlert,
-        // 'modal-confirm': CBS_ModalConfirm,
-        // 'modal-select': CBS_ModalSelect,
-        // 'modal': CBS_Modal,
-
-        // // card
-        // 'card': CBS_Card,
-
-        // // form
-        // 'form': CBS_Form,
-        // 'input': CBS_Input,
-        // 'input-textarea': CBS_TextAreaInput,
-        // 'input-select': CBS_SelectInput,
-        // 'input-radio': CBS_RadioInput,
-        // 'input-checkbox': CBS_CheckboxInput,
-        // 'input-email': CBS_EmailInput,
-        // 'input-password': CBS_PasswordInput,
-        // 'input-number': CBS_NumberInput,
-        // 'input-range': CBS_RangeInput,
-        // 'input-date': CBS_DateInput,
-        // 'input-color': CBS_ColorInput,
-        // 'input-file': CBS_FileInput,
-        // 'input-text': CBS_TextInput,
-        
-        // // list
-        // 'list': CBS_List,
-        // 'list-item': CBS_ListItem,
-
-        // // text
-        // 'a': CBS_Anchor,
-        // 'p': CBS_Paragraph,
-        // 'h': CBS_Heading,
-        // 'h1': CBS_H1,
-        // 'h2': CBS_H2,
-        // 'h3': CBS_H3,
-        // 'h4': CBS_H4,
-        // 'h5': CBS_H5,
-        // 'h6': CBS_H6,
-
-        // // progress
-        // 'progress-bar': CBS_ProgressBar,
-
-        // // button
-        // 'button': CBS_Button,
-
-        // // table
-        // 'table': CBS_Table,
     };
 
     /**
