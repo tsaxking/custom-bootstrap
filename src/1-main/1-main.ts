@@ -40,119 +40,6 @@ type CBS_Parameters = {
 
 
 
-
-// // Is not currently used, but may be useful in the future?
-/**
- * Description placeholder
- *
- * @interface CBS_ElementNameMap
- * @typedef {CBS_ElementNameMap}
- */
-interface CBS_ElementNameMap {
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_AudioCard}
-     */
-    'audio': CBS_AudioCard;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Video}
-     */
-    'video': CBS_Video;
-
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Modal}
-     */
-    'modal': CBS_Modal;
-
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Card}
-     */
-    'card': CBS_Card;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Form}
-     */
-    'form': CBS_Form;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_List}
-     */
-    'list': CBS_List;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Progress}
-     */
-    'progress-bar': CBS_Progress;
-
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_CheckboxInput}
-     */
-    'checkbox': CBS_CheckboxInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_RadioInput}
-     */
-    'radio': CBS_RadioInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Input}
-     */
-    'input': CBS_Input;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_TextareaInput}
-     */
-    'textarea': CBS_TextareaInput;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_Button}
-     */
-    'button': CBS_Button;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_SelectInput}
-     */
-    'select': CBS_SelectInput;
-
-    // set key to string so that it can be used as a type
-}
-
-
-// TODO: Add all the elements to this interface
-/**
- * Description placeholder
- *
- * @interface CBS
- * @typedef {CBS}
- */
-interface CBS {
-    /**
-     * Description placeholder
-     *
-     * @template K
-     * @param {K} selector
-     * @returns {CBS_ElementNameMap[K]}
-     */
-    createElement<K extends keyof CBS_ElementNameMap>(selector: K, options?: CBS_Options): CBS_ElementNameMap[K];
-}
-
 /**
  * Selector object returned by CustomBootstrap.parseSelector()
  *
@@ -182,7 +69,7 @@ type CBS_ElementConstructorMap = {
  * @class CustomBootstrap
  * @typedef {CustomBootstrap}
  */
-class CustomBootstrap /* implements CBS */ {
+class CustomBootstrap {
     static ids: string[] = [];
 
     static getAllParentNodes(el: HTMLElement): Node[] {
@@ -270,59 +157,6 @@ class CustomBootstrap /* implements CBS */ {
      * @type {CBS_ElementConstructorMap}
      */
     #elements: CBS_ElementConstructorMap = {
-        // // media
-        // 'audio': CBS_Audio,
-        // 'video': CBS_Video,
-        // 'picture': CBS_Picture,
-
-        // // modals
-        // 'modal-alert': CBS_ModalAlert,
-        // 'modal-confirm': CBS_ModalConfirm,
-        // 'modal-select': CBS_ModalSelect,
-        // 'modal': CBS_Modal,
-
-        // // card
-        // 'card': CBS_Card,
-
-        // // form
-        // 'form': CBS_Form,
-        // 'input': CBS_Input,
-        // 'input-textarea': CBS_TextAreaInput,
-        // 'input-select': CBS_SelectInput,
-        // 'input-radio': CBS_RadioInput,
-        // 'input-checkbox': CBS_CheckboxInput,
-        // 'input-email': CBS_EmailInput,
-        // 'input-password': CBS_PasswordInput,
-        // 'input-number': CBS_NumberInput,
-        // 'input-range': CBS_RangeInput,
-        // 'input-date': CBS_DateInput,
-        // 'input-color': CBS_ColorInput,
-        // 'input-file': CBS_FileInput,
-        // 'input-text': CBS_TextInput,
-        
-        // // list
-        // 'list': CBS_List,
-        // 'list-item': CBS_ListItem,
-
-        // // text
-        // 'a': CBS_Anchor,
-        // 'p': CBS_Paragraph,
-        // 'h': CBS_Heading,
-        // 'h1': CBS_H1,
-        // 'h2': CBS_H2,
-        // 'h3': CBS_H3,
-        // 'h4': CBS_H4,
-        // 'h5': CBS_H5,
-        // 'h6': CBS_H6,
-
-        // // progress
-        // 'progress-bar': CBS_ProgressBar,
-
-        // // button
-        // 'button': CBS_Button,
-
-        // // table
-        // 'table': CBS_Table,
     };
 
     /**
@@ -344,7 +178,8 @@ class CustomBootstrap /* implements CBS */ {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement(selector: string /* extends keyof CBS_ElementNameMap */, options?: CBS_Options): CBS_Element|CBS_Component {
+    createElement<K extends CBS_ElementName>(selector: K, options?: CBS_Options): CBS_ElementNameMap[K];
+    createElement(selector: string, options?: CBS_Options): CBS_Element {
         const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
         options = {
@@ -362,7 +197,9 @@ class CustomBootstrap /* implements CBS */ {
         const element = this.#elements[tag];
 
         if (!element) {
-            throw new Error(`Element ${tag} does not exist`);
+            const err = new Error('Element not found: ' + tag + ' Returning a CBS_Element instead');
+            console.warn(err);
+            return new CBS_Element(options);
         }
 
         return new element(options);
@@ -374,7 +211,7 @@ class CustomBootstrap /* implements CBS */ {
      * @param {string} text
      * @returns {(ChildNode|null)}
      */
-    createElementFromText(text: string): (ChildNode|CBS_Element)[] {
+    createElementFromText(text: string): (Element|ChildNode|CBS_ElementNameMap[keyof CBS_ElementNameMap])[] {
         const div = document.createElement('div');
         div.innerHTML = text;
         const fullArray = Array.from(div.querySelectorAll('*'));
