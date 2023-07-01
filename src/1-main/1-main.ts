@@ -1,4 +1,4 @@
-
+declare global;
 
 // Generic types
 /**

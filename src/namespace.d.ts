@@ -1,6 +1,9 @@
-export {}
-
 declare global {
+    interface Window {
+        CustomBootstrap: CustomBootstrap;
+        CBS: CustomBootstrap;
+    }
+}
 /**
  * Generic types for the library
  *
@@ -4057,4 +4060,4 @@ export class CBS_MaterialIcon extends CBS_Component {
  */
 export const CBS_GenerateMaterialIcons: (prefix?: string) => void;
 //# sourceMappingURL=index.d.ts.map
-     }
+
