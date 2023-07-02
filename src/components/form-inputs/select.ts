@@ -5,22 +5,23 @@
  * @typedef {CBS_SelectOptions}
  */
 type CBS_SelectOptions = {
+}
+
+type CBS_OptionOptions = {
     classes?: string[];
     id?: string;
     style?: object;
     attributes?: {
         [key: string]: string;
     }
+
+
+    text?: string;
+    value?: string;
+    mirrorValue?: any;
 }
 
 
-/**
- * Description placeholder
- *
- * @class CBS_SelectOption
- * @typedef {CBS_SelectOption}
- * @extends {CBS_Element}
- */
 class CBS_SelectOption extends CBS_Element {
     /**
      * Description placeholder
@@ -49,18 +50,14 @@ class CBS_SelectOption extends CBS_Element {
      * @param {string} value
      * @param {*} [mirrorValue=null]
      */
-    constructor(text: string, value: string, mirrorValue: any = null) {
-        super();
+    constructor(options?: CBS_OptionOptions) {
+        super(options);
 
-        this.value = value;
-        this.text = text;
+        this.el = document.createElement('option');
 
-        const el = document.createElement('option');
-        el.value = value;
-        el.textContent = text;
-
-        this.el = el;
-        this.mirrorValue = mirrorValue;
+        this.value = options?.value || '';
+        this.text = options?.text || '';
+        this.mirrorValue = options?.mirrorValue || null;
     }
 
     /**
@@ -101,8 +98,6 @@ class CBS_SelectOption extends CBS_Element {
         this.removeAttribute('disabled');
     }
 }
-
-CBS.addElement('input-option', CBS_SelectOption);
 
 
 /**
@@ -147,7 +142,11 @@ class CBS_SelectInput extends CBS_Input {
             return null;
         }
 
-        const option = new CBS_SelectOption(text, value, mirrorValue);
+        const option = new CBS_SelectOption({
+            text,
+            value,
+            mirrorValue
+        });
         this.selectOptions.push(option);
         this.append(option);
 
