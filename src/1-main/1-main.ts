@@ -1,5 +1,3 @@
-declare global;
-
 // Generic types
 /**
  * Generic types for the library
