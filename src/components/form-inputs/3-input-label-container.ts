@@ -167,6 +167,10 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
         return (this.subcomponents.input as CBS_Input).value;
     }
 
+    set value(value: any) {
+        (this.subcomponents.input as CBS_Input).value = value;
+    }
+
     /**
      * Description placeholder
      *
