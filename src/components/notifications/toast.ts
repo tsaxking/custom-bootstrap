@@ -1,3 +1,17 @@
+type CBS_ToastOptions = {
+    classes?: string[];
+    id?: string;
+    style?: object;
+    attributes?: {
+        [key: string]: string;
+    }
+
+    color?: CBS_Color;
+}
+
+
+
+
 class CBS_Toast extends CBS_Component {
     subcomponents: CBS_ElementContainer = {
         container: new CBS_ToastContainer()
@@ -6,12 +20,25 @@ class CBS_Toast extends CBS_Component {
     private headerContent: CBS_NodeMap = [];
     private bodyContent: CBS_NodeMap = [];
 
-    constructor() {
-        super();
+    constructor(options?: CBS_ToastOptions) {
+        super(options);
 
         this.addClass('position-relative');
         this.setAttribute('aria-live', 'polite');
         this.setAttribute('aria-atomic', 'true');
+
+
+        ((this.subcomponents
+            .container as CBS_Component)
+            .subcomponents
+            .card as CBS_Component)
+            .subcomponents
+            .body.addClass(`bg-${options?.color || 'info'}`);
+
+
+        this.append(
+            this.subcomponents.container
+        );
     }
 
 
@@ -43,6 +70,18 @@ class CBS_Toast extends CBS_Component {
     }
 
     set body(content: CBS_Node|CBS_NodeMap) {
+        if (this.bodyContent) {
+            this.bodyContent.forEach(node => {
+                if (node instanceof HTMLElement) {
+                    node.remove();
+                } else if (node instanceof CBS_Element) {
+                    node.destroy();
+                }
+                // and strings are automatically removed
+            });
+        }
+
+
         if (Array.isArray(content)) {
             ((
                 this.subcomponents.container as CBS_ToastContainer
@@ -54,6 +93,27 @@ class CBS_Toast extends CBS_Component {
                 ).subcomponents.card as CBS_ToastCard
                 ).subcomponents.body.append(content);
         }
+    }
+
+
+
+
+    show() {
+        document.body.append(this.el);
+
+        (this.subcomponents
+            .container as CBS_Component)
+            .subcomponents
+            .card
+            .addClass('show');
+    }
+
+    hide() {
+        (this.subcomponents
+            .container as CBS_Component)
+            .subcomponents
+            .card
+            .addClass('hide');
     }
 };
 
@@ -67,6 +127,10 @@ class CBS_ToastContainer extends CBS_Component {
         super();
 
         this.addClass('toast-container', 'position-absolute', 'p-3');
+
+        this.append(
+            this.subcomponents.card
+        );
     }
 };
 
@@ -80,14 +144,36 @@ class CBS_ToastCard extends CBS_Component {
         super();
 
         this.addClass('toast');
+
+        this.append(
+            this.subcomponents.header,
+            this.subcomponents.body
+        );
     }
 }
 
-class CBS_ToastHeader extends CBS_Element {
+class CBS_ToastHeader extends CBS_Component {
+    subcomponents: CBS_ElementContainer = {
+        close: new CBS_Button({
+            classes: ['ml-2', 'mb-1'],
+            attributes: {
+                'data-dismiss': 'toast',
+                'aria-label': 'Close'
+            },
+            style: {
+                'outline': 'none'
+            }
+        })
+    }
+
     constructor() {
         super();
 
         this.addClass('toast-header');
+    
+        this.append(
+            this.subcomponents.close
+        );
     }
 }
 
