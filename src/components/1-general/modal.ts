@@ -131,7 +131,8 @@ class CBS_ModalDialog extends CBS_Component {
             content: content,
             title: content.subcomponents.header,
             body: content.subcomponents.body,
-            footer: content.subcomponents.footer
+            footer: content.subcomponents.footer,
+            hide: CBS_Button.fromTemplate('modal-close')
         }
 
         content.append(
@@ -145,7 +146,9 @@ class CBS_ModalDialog extends CBS_Component {
             content
         );
 
-        this.subcomponents.title.append(CBS_Button.fromTemplate('modal-close'));
+        this.subcomponents.title.append(
+            this.subcomponents.hide
+        );
     }
 }
 
@@ -191,6 +194,10 @@ class CBS_Modal extends CBS_Component {
         this.setAttribute('aria-labelledby', 'modal-title');
         
         const dialog = new CBS_ModalDialog();
+
+        dialog.subcomponents.hide.on('click', () => {
+            this.hide();
+        });
 
         this.subcomponents = {
             dialog,
