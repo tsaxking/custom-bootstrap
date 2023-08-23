@@ -59,9 +59,9 @@ class CBS_List extends CBS_Component {
      */
     set options(options: CBS_ListOptions) {
         if (this.options.ordered) {
-            this.el = document.createElement('ol');
+            this._el = document.createElement('ol');
         } else {
-            this.el = document.createElement('ul');
+            this._el = document.createElement('ul');
         }
         super.options = options;
     }
