@@ -49,4 +49,4 @@ class CBS_ListItem extends CBS_Component {
 }
 
 
-CBS.addElement('list-item', CBS_ListItem);
+CBS.addElement('li', CBS_ListItem);

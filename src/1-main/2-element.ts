@@ -803,6 +803,8 @@ class CBS_Element  {
         this._components.push(...elements);
 
         this.render();
+
+        return this;
     }
 
     /**

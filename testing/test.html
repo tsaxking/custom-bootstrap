@@ -34,18 +34,17 @@
 
 
 
-    <script src="../index.js"></script>
+    <script src="../src/index.js"></script>
     <script>
-      class Thing {
-        static doThis() {
-          console.log('DID THIS');
-        }
-      }
+      const nav = CBS.createElement('tab-nav');
+      nav.addClass('nav-tabs')
+      document.querySelector('header').append(nav.el);
 
+      document.querySelector('main').append(nav.container.el);
 
-      const thing = new Thing();
-
-      thing.constructor.doThis();
+      const tab1 = nav.addPage('Tab 1', 'tab 1');
+      const tab2 = nav.addPage('Tab 2', 'tab 2');
+      const tab3 = nav.addPage('Tab 3', 'tab 3');
     </script>
 </body>
 

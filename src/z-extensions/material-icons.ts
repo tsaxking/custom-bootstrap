@@ -207,7 +207,6 @@ const CBS_GenerateMaterialIcons = (prefix?: string) => {
             CBS_H4,
             CBS_H5,
             CBS_H6,
-            CBS_Component,
             CBS_Anchor
         ].forEach(c => {
             const el = new c();
