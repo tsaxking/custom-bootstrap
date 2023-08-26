@@ -64,6 +64,9 @@ interface CBS_ElementNameMap {
     'alert': CBS_Alert;
     'toast': CBS_Toast;
 
+    // tabs
+    'tab-nav': CBS_TabNav;
+
     [key: string]: CBS_Element;
 }
 
