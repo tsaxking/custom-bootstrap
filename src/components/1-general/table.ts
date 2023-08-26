@@ -73,8 +73,9 @@ class CBS_TableRow extends CBS_Element {
         this.el = document.createElement('tr');
     }
 
-    addData(options?: CBS_Options): CBS_TableData {
+    addCell(content: CBS_Node, options?: CBS_Options): CBS_TableData {
         const d = new CBS_TableData(options);
+        d.append(content);
         this.append(d);
         return d;
     }
@@ -85,8 +86,9 @@ class CBS_TableHeadRow extends CBS_Element {
         super(options);
     }
 
-    addHeader(options?: CBS_Options): CBS_TableHeader {
+    addHeader(content: CBS_Node, options?: CBS_Options): CBS_TableHeader {
         const d = new CBS_TableHeader(options);
+        d.append(content);
         this.append(d);
         return d;
     }

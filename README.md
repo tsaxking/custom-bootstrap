@@ -13,30 +13,30 @@ A CBS_Element a wrapper around DOM elements where each instance of this class ha
 <hr>
 
 ### General
-`.el: HTMLElement` - The element this class instance represents
+`(CBS_Element).el: HTMLElement` - The element this class instance represents
 - If changed, this will apply every `Listener` and property from `.options` onto the new element.
 - Runs `.trigger('element.change')`
 
-`.options: {}` - Options containing `.classes`, `.id`, `.attributes`, and `.style`, along with more depending on the extended class. Used to change many aspects of a class in a quick and efficient manner.
+`(CBS_Element).options: {}` - Options containing `.classes`, `.id`, `.attributes`, and `.style`, along with more depending on the extended class. Used to change many aspects of a class in a quick and efficient manner.
 
-`.id: string` - Id of the object
+`(CBS_Element).id: string` - Id of the object
 
-`.createElementFromText(html)` - Returns an array of all `HTMLElement`s, or `CBS_Element`s created from an html string. See [usage](#cbscreateelementfromtexthtml-string)
+`(CBS_Element).createElementFromText(html)` - Returns an array of all `HTMLElement`s, or `CBS_Element`s created from an html string. See [usage](#cbscreateelementfromtexthtml-string)
 - html: `string`
 
-`.hide()` - Adds `d-none` to classes
+`(CBS_Element).hide()` - Adds `d-none` to classes
 
-`.show()` - Removes `d-none` from classes
+`(CBS_Element).show()` - Removes `d-none` from classes
 
-`.toggleHide()` - Toggles `d-none`
+`(CBS_Element).toggleHide()` - Toggles `d-none`
 
-`.isHidden: boolean` - Whether the classes contains `d-none`
+`(CBS_Element).isHidden: boolean` - Whether the classes contains `d-none`
 
-`.destroy()` - removes event listeners, destroys all components, and runs `.el.remove()`
+`(CBS_Element).destroy()` - removes event listeners, destroys all components, and runs `.el.remove()`
 
-`.clone()` - Clones the element
+`(CBS_Element).clone()` - Clones the element
 
-`.clone(listeners)` - Clones the element
+`(CBS_Element).clone(listeners)` - Clones the element
 - listeners: `boolean` - (default: `true`) clones with the listeners
 
 
@@ -45,7 +45,7 @@ A CBS_Element a wrapper around DOM elements where each instance of this class ha
 
 ### Elements
 
-`.el: HTMLElement` The element `CBS_Element` represents
+`(CBS_Element).el: HTMLElement` The element `CBS_Element` represents
 
 Just for ease, I'll use `CBS_Node` to represent `Node|CBS_Element|String|Boolean|Number`
 
@@ -55,76 +55,76 @@ Just for ease, I'll use `CBS_Node` to represent `Node|CBS_Element|String|Boolean
 
 `set .content: CBS_Node[]` - Removes all elements and replaces them with several (in order)
 
-`.append(...element)` - adds element(s) onto `.el` in order
+`(CBS_Element).append(...element)` - adds element(s) onto `.el` in order
 - element: `CBS_Node`
 
-`.removeElement(...element)` - removes element(s) from `.el`
+`(CBS_Element).removeElement(...element)` - removes element(s) from `.el`
 - element: `CBS_Node`
 
-`.prepend(...element)` - prepends elements (in order) before the first element
+`(CBS_Element).prepend(...element)` - prepends elements (in order) before the first element
 - element: `CBS_Node`
 
-`replace(nodeToReplace, ...elementsToAdd)` - replaces a node with one/multiple
+`(CBS_Element).replace(nodeToReplace, ...elementsToAdd)` - replaces a node with one/multiple
 - nodeToReplace: `CBS_Node`
 - elementsToAdd: `CBS_Node`
 
-`insertBefore(nodeToInsertBefore, ...elementsToAdd)` - inserts multiple/one nodes before another node
+`(CBS_Element).insertBefore(nodeToInsertBefore, ...elementsToAdd)` - inserts multiple/one nodes before another node
 - nodeToReplace: `CBS_Node`
 - elementsToAdd: `CBS_Node`
 
-`insertAfter(nodeToInsertAfter, ...elementsToAdd)` - inserts multiple/one nodes after another node
+`(CBS_Element).insertAfter(nodeToInsertAfter, ...elementsToAdd)` - inserts multiple/one nodes after another node
 
-`.parent: Node` - The parent of this element
+`(CBS_Element).parent: Node` - The parent of this element
 
 <hr>
 
 ### Listeners
 Instead of `.addEventListener()` and `.removeEventListener()`, this uses `.on()` and `.off()`
 
-`.listeners: Listener[]` - The list of event listeners that this element has
+`(CBS_Element).listeners: Listener[]` - The list of event listeners that this element has
 
-`.on(event, callback)` - adds an event listener
+`(CBS_Element).on(event, callback)` - adds an event listener
 - event: `string`
 - callback: `(event: Event) => {}`
 
-`.on(event, callback, isAsync)` - adds an event listener
+`(CBS_Element).on(event, callback, isAsync)` - adds an event listener
 - event: `string`
 - callback: `(event: Event) => {}`
 - isAsync: `boolean` (default: `true`) - Whether this function should be run in async/sync
 
-`.hasListener(event)` - returns whether this element has a listener of that name
+`(CBS_Element).hasListener(event)` - returns whether this element has a listener of that name
 - event: `string`
 - returns: `boolean`
 
-`.off()` - removes all event listeners
+`(CBS_Element).off()` - removes all event listeners
 
-`.off(event)` - removes all events with that name
+`(CBS_Element).off(event)` - removes all events with that name
 - event: `string`
 
-`.off(event, callback)` - removes all event listeners with that name and callback
+`(CBS_Element).off(event, callback)` - removes all event listeners with that name and callback
 - event: `string`
 - callback: `(event: Event) => {}`
 
-`.trigger(event)` - triggers an event
+`(CBS_Element).trigger(event)` - triggers an event
 - event: `string`
 - returns: `Promise<boolean>` true if there was no error
 <hr>
 
 ### Classes
-`.addClass(...classes)` - Adds classes to `.options` and to classes
+`(CBS_Element).addClass(...classes)` - Adds classes to `.options` and to classes
 - classes: `string`
 
-`.removeClass(...classes)` - Removes classes from `.options` and from classes
+`(CBS_Element).removeClass(...classes)` - Removes classes from `.options` and from classes
 - classes: `string`
 
-`.toggleClass(...classes)` - Toggles classes in `.options` and in classes
+`(CBS_Element).toggleClass(...classes)` - Toggles classes in `.options` and in classes
 - classes: `string`
 
-`.classes: string[]` - Array of classes from `.el`
+`(CBS_Element).classes: string[]` - Array of classes from `.el`
 
-`.clearClasses()` - Removes all classes
+`(CBS_Element).clearClasses()` - Removes all classes
 
-`.hasClass(...name)` - Whether the element has that class
+`(CBS_Element).hasClass(...name)` - Whether the element has that class
 - name: `string`
 - returns: `boolean`
 
@@ -133,13 +133,13 @@ Instead of `.addEventListener()` and `.removeEventListener()`, this uses `.on()`
 ### Parameters
 Parameters allow you to edit multiple parts of a `CBS_Element` at once from one method. This is very useful when used in tandem with `CBS.createElementFromText()`
 
-`.parameters: { [key: string]: Node|CBS_Element|String|Boolean|Number }` - Key/value pairs for writable parameters on the object
+`(CBS_Element).parameters: { [key: string]: Node|CBS_Element|String|Boolean|Number }` - Key/value pairs for writable parameters on the object
 
-`.write(key, value)` - Writes that key/value pair onto the element and subElements
+`(CBS_Element).write(key, value)` - Writes that key/value pair onto the element and subElements
 - key: `string`
 - value: `Node|CBS_Element|String|Boolean|Number`
 
-`.write(key, value, trigger)` - Writes that key/value pair onto the element and subElements
+`(CBS_Element).write(key, value, trigger)` - Writes that key/value pair onto the element and subElements
 - key: `string`
 - value: `Node|CBS_Element|String|Boolean|Number`
 - trigger: `boolean` - (default: `true`) Will run `.trigger('parameters.write')`
@@ -149,33 +149,33 @@ Parameters allow you to edit multiple parts of a `CBS_Element` at once from one 
 ### Padding and Margin
 Utilizing Bootstrap's `p-#` and `m-#` classes, CBS_Element contains the following properties:
 
-`.paddingS`: - Padding Start
+`(CBS_Element).paddingS`: - Padding Start
 
-`.paddingE`: - Padding End
+`(CBS_Element).paddingE`: - Padding End
 
-`.paddingT`: - Padding Top
+`(CBS_Element).paddingT`: - Padding Top
 
-`.paddingB`: - Padding Bottom
+`(CBS_Element).paddingB`: - Padding Bottom
 
-`.paddingX`: - Padding X
+`(CBS_Element).paddingX`: - Padding X
 
-`.paddingY`: - Padding Y
+`(CBS_Element).paddingY`: - Padding Y
 
-`.padding`: - Global Padding (deletes all other `.padding[value]` properties)
+`(CBS_Element).padding`: - Global Padding (deletes all other `.padding[value]` properties)
 
-`.marginS`: - Margin Start
+`(CBS_Element).marginS`: - Margin Start
 
-`.marginE`: - Margin End
+`(CBS_Element).marginE`: - Margin End
 
-`.marginT`: - Margin Top
+`(CBS_Element).marginT`: - Margin Top
 
-`.marginB`: - Margin Bottom
+`(CBS_Element).marginB`: - Margin Bottom
 
-`.marginX`: - Margin X
+`(CBS_Element).marginX`: - Margin X
 
-`.marginY`: - Margin Y
+`(CBS_Element).marginY`: - Margin Y
 
-`.margin`: - Global Margin (deletes all other `.margin[value]` properties)
+`(CBS_Element).margin`: - Global Margin (deletes all other `.margin[value]` properties)
 
 <hr>
 
