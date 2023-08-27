@@ -1,5 +1,5 @@
 /**
- * Description placeholder
+ * Row component Options
  *
  * @typedef {CBS_RowOptions}
  */
@@ -13,7 +13,7 @@ type CBS_RowOptions = {
 }
 
 /**
- * Description placeholder
+ * Row Component
  *
  * @class CBS_Row
  * @typedef {CBS_Row}
@@ -21,7 +21,7 @@ type CBS_RowOptions = {
  */
 class CBS_Row extends CBS_Element {
     /**
-     * Creates an instance of CBS_Row.
+     * Creates an instance of CBS_Row
      *
      * @constructor
      * @param {?CBS_RowOptions} [options]
@@ -34,7 +34,7 @@ class CBS_Row extends CBS_Element {
     }
 
     /**
-     * Description placeholder
+     * Adds a column to the row and returns it
      *
      * @param {?CBS_BreakpointMap} [breakpoints]
      * @returns {CBS_Col}
@@ -50,7 +50,7 @@ class CBS_Row extends CBS_Element {
     }
 
     /**
-     * Description placeholder
+     * Removes the given column from the row
      *
      * @param {CBS_Col} col
      */

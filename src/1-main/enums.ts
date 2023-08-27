@@ -40,7 +40,9 @@ enum CBS_Align {
     left = 'left',
     center = 'center',
     right = 'right',
-    justify = 'justify'
+    justify = 'justify',
+    start = 'start',
+    end = 'end'
 }
 
 enum CBS_Icons {

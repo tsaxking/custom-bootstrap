@@ -50,16 +50,23 @@ type CBS_Options = {
 }
 
 /**
- * Description placeholder
+ * Parameters used in padding/margin
  *
  * @typedef {CBS_PropertyMap}
  */
 type CBS_PropertyMap = {
-    [key: string]: number|undefined;
+    // [key: string]: number|undefined;
+    s?: number;
+    e?: number;
+    t?: number;
+    b?: number;
+    x?: number;
+    y?: number;
+    global?: number;
 }
 
 /**
- * Description placeholder
+ * Margin/Padding
  *
  * @typedef {CBS_Properties}
  */
@@ -76,7 +83,7 @@ type CBS_Properties = {
  * @typedef {CBS_Element}
  * @extends {CustomBootstrap}
  */
-class CBS_Element  {
+class CBS_Element {
     /**
      * All templates for this class
      *
@@ -178,7 +185,7 @@ class CBS_Element  {
      *
      * @type {CBS_Parameters}
      */
-    _parameters: CBS_Parameters = {};
+    private _parameters: CBS_Parameters = {};
     /**
      * The element this class represents
      *
@@ -196,13 +203,13 @@ class CBS_Element  {
      *
      * @type {{ [key: string]: CBS_ListenerCallback }}
      */
-    _events: { [key: string]: CBS_ListenerCallback } = {};
+    private _events: { [key: string]: CBS_ListenerCallback } = {};
     /**
      * All components
      *
      * @type {CBS_NodeMap}
      */
-    _components: CBS_NodeMap = [];
+    private _components: CBS_NodeMap = [];
     /**
      * All options for this element
      *
@@ -212,7 +219,7 @@ class CBS_Element  {
 
 
     /**
-     * Description placeholder
+     * Array of elements that are the immediate children of this element
      *
      * @readonly
      * @type {CBS_NodeMap}
@@ -235,20 +242,20 @@ class CBS_Element  {
     // █▀  █▀█ █▄▀ █▄▀ █ █ ▀█ ▀▄█    █▀█ █ ▀█ █▄▀    █ ▀ █ █▀█ █▀▄ ▀▄█ █ █ ▀█ 
 
     /**
-     * Description placeholder
+     * Padding properties
      *
      * @type {CBS_PropertyMap}
      */
-    _padding: CBS_PropertyMap = {};
+    private _padding: CBS_PropertyMap = {};
     /**
-     * Description placeholder
+     * Margin properties
      *
      * @type {CBS_PropertyMap}
      */
-    _margin: CBS_PropertyMap = {};
+    private _margin: CBS_PropertyMap = {};
 
     /**
-     * Description placeholder
+     * Applies padding/margin to the element
      *
      * @private
      * @param {string} paddingOrMargin
@@ -299,7 +306,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Applies the full padding properties to the element
      *
      * @type {CBS_PropertyMap}
      */
@@ -316,7 +323,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Full padding properties
      *
      * @type {CBS_PropertyMap}
      */
@@ -325,7 +332,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Applies the full margin properties to the element
      *
      * @type {CBS_PropertyMap}
      */
@@ -342,7 +349,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Full margin properties
      *
      * @type {CBS_PropertyMap}
      */
@@ -351,7 +358,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Global padding
      *
      * @type {number}
      */
@@ -360,7 +367,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding x
      *
      * @type {number}
      */
@@ -369,7 +376,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding y
      *
      * @type {number}
      */
@@ -378,7 +385,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Start
      *
      * @type {number}
      */
@@ -387,7 +394,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding End
      *
      * @type {number}
      */
@@ -396,7 +403,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Top
      *
      * @type {number}
      */
@@ -405,7 +412,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Bottom
      *
      * @type {number}
      */
@@ -414,7 +421,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Global margin
      *
      * @type {number}
      */
@@ -423,7 +430,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin x
      *
      * @type {number}
      */
@@ -432,7 +439,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin y
      *
      * @type {number}
      */
@@ -441,7 +448,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin Start
      *
      * @type {number}
      */
@@ -450,7 +457,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin End
      *
      * @type {number}
      */
@@ -459,7 +466,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin Top
      *
      * @type {number}
      */
@@ -468,7 +475,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin Bottom
      *
      * @type {number}
      */
@@ -477,7 +484,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding global
      *
      * @type {(number|undefined)}
      */
@@ -486,7 +493,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding x
      *
      * @type {(number|undefined)}
      */
@@ -495,7 +502,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding y
      *
      * @type {(number|undefined)}
      */
@@ -504,7 +511,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Start
      *
      * @type {(number|undefined)}
      */
@@ -513,7 +520,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding End
      *
      * @type {(number|undefined)}
      */
@@ -522,7 +529,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Top
      *
      * @type {(number|undefined)}
      */
@@ -531,7 +538,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Padding Bottom
      *
      * @type {(number|undefined)}
      */
@@ -540,7 +547,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin global
      *
      * @type {(number|undefined)}
      */
@@ -549,7 +556,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin x
      *
      * @type {(number|undefined)}
      */
@@ -558,7 +565,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin y
      *
      * @type {(number|undefined)}
      */
@@ -567,7 +574,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin Start
      *
      * @type {(number|undefined)}
      */
@@ -576,7 +583,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin End
      *
      * @type {(number|undefined)}
      */
@@ -585,7 +592,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Margin Top
      *
      * @type {(number|undefined)}
      */
@@ -721,7 +728,11 @@ class CBS_Element  {
 
         if (classes) this.classes = classes;
         if (attributes) this.attributes = attributes;
-        if (style) this.style = style;
+        if (style) {
+            for (const key in style) {
+                this._el.style[key] = style[key];
+            }
+        }
         if (id) this.id = id;
     }
 
@@ -761,12 +772,30 @@ class CBS_Element  {
         this.trigger('element.change');
     }
 
+    /**
+     * Element id
+     * @date 8/26/2023
+     *
+     * @type {string}
+     */
     _id: string = '';
 
+    /**
+     * Element id
+     * @date 8/26/2023
+     *
+     * @type {string}
+     */
     get id(): string {
         return this._id;
     }
 
+    /**
+     * Element id
+     * @date 8/26/2023
+     *
+     * @type {string}
+     */
     set id(id: string) {
         if (!this._el) return;
         this._id = id;
@@ -786,7 +815,7 @@ class CBS_Element  {
      *
      * @param {...CBS_NodeMap} elements
      */
-    append(...elements: CBS_NodeMap) {
+    append(...elements: CBS_NodeMap): this {
         elements.forEach(el => {
             if (el instanceof CBS_Element) {
                 this._el.appendChild(el._el);
@@ -927,7 +956,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Removes all elements from this element
      */
     clearElements() {
         this._components = [];
@@ -937,6 +966,13 @@ class CBS_Element  {
     }
 
 
+    /**
+     * The parent of this element (if it exists)
+     * @date 8/26/2023
+     *
+     * @private
+     * @type {(CBS_Element|null)}
+     */
     private _parent: CBS_Element|null = null;
 
     /**
@@ -949,6 +985,9 @@ class CBS_Element  {
         return this._parent;
     }
 
+    /**
+     * Gets the parent of this element
+     */
     set parent(parent: CBS_Element|null) {
         this._parent = parent;
     }
@@ -1270,7 +1309,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Removes the element from the DOM
      */
     destroy() {
         this.trigger('el.destroy');
@@ -1333,7 +1372,7 @@ class CBS_Element  {
     // ▀▄▄ █▄▄ █▀█ ▄█▀ ▄█▀ █▄▄ ▄█▀ 
 
     /**
-     * Description placeholder
+     * Adds classes to the element
      *
      * @param {...string[]} classes
      */
@@ -1346,7 +1385,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Removes classes from the element
      *
      * @param {...string[]} classes
      */
@@ -1359,7 +1398,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Toggles classes on the element
      *
      * @param {...string[]} classes
      */
@@ -1373,27 +1412,34 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Gets all classes on the element
      *
      * @readonly
-     * @type {{}}
+     * @type {string[]}
      */
     get classes() {
         return Array.from(this.el.classList);
     }
 
 
+    /**
+     * Replaces all classes on the element
+     */
     set classes(classes: string[]) {
         this.clearClasses();
         this.addClass(...classes);
     }
 
+    /**
+     * Deletes all classes on the element
+     * @date 8/26/2023
+     */
     clearClasses() {
         this.el.classList.remove(...this.classes);
     }
 
     /**
-     * Description placeholder
+     * Returns true if the element has all classes
      *
      * @param {string} name
      * @returns {*}
@@ -1409,25 +1455,45 @@ class CBS_Element  {
     // ▄█▀  █   █  █▄▄ █▄▄ 
 
 
-    get style(): object {
-        return this.el.style;
-    }
+    // /**
+    //  * 
+    //  * @date 8/26/2023
+    //  *
+    //  * @type {CSSStyleDeclaration}
+    //  */
+    // get style(): CSSStyleDeclaration {
+    //     return this.el.style;
+    // }
 
-    set style(style: object) {
-        Object.assign(this.el.style, style);
-    }
+    // /**
+    //  * 
+    //  * @date 8/26/2023
+    //  *
+    //  * @type {CSSStyleDeclaration}
+    //  */
+    // set style(style: object) {
+    //     for (const [key, value] of Object.entries(style)) {
+    //         this.el.style[key] = value;
+    //     }
+    // }
 
 
 
     // ▄▀▄ ▀█▀ ▀█▀ █▀▄ █ ██▄ █ █ ▀█▀ ██▀ ▄▀▀ 
     // █▀█  █   █  █▀▄ █ █▄█ ▀▄█  █  █▄▄ ▄█▀ 
 
-    _attributes: {
+    /**
+     * Attributes on the element
+     * @date 8/26/2023
+     *
+     * @type 
+     */
+    private _attributes: {
         [key: string]: string;
     } = {};
 
     /**
-     * Description placeholder
+     * Adds an attribute to the element
      *
      * @param {string} name
      * @param {string} value
@@ -1438,7 +1504,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Removes an attribute from the element
      *
      * @param {string} name
      */
@@ -1449,7 +1515,7 @@ class CBS_Element  {
 
 
     /**
-     * Description placeholder
+     * Returns true if the element has the attribute
      *
      * @param {string} name
      * @returns {string}
@@ -1458,14 +1524,30 @@ class CBS_Element  {
         return this._attributes[name];
     }
 
+    /**
+     * Clears all attributes on the element
+     * @date 8/26/2023
+     */
     clearAttributes() {
         Object.keys(this._attributes).forEach(this.removeAttribute.bind(this));
     }
 
+    /**
+     * Attributes on the element
+     * @date 8/26/2023
+     *
+     * @type {{ [key: string]: string }}
+     */
     get attributes(): { [key: string]: string } {
         return this._attributes;
     }
 
+    /**
+     * Replaces all attributes on the element
+     * @date 8/26/2023
+     *
+     * @type {{ [key: string]: string; }}
+     */
     set attributes(attributes: { [key: string]: string }) {
         this.clearAttributes();
         this._attributes = attributes;
@@ -1486,7 +1568,7 @@ class CBS_Element  {
     // █▄▄ ▀▄▀ █▄▄ █ ▀█  █  ▄█▀ 
 
     /**
-     * Description placeholder
+     * Given click/touch event, it returns the x and y coordinates of the event on the element
      *
      * @param {(MouseEvent|TouchEvent)} e
      * @returns {{ x: number; y: number; }}
@@ -1506,7 +1588,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Given a touch event, it returns the x and y coordinates of all touches on the element in order
      *
      * @param {TouchEvent} e
      * @returns {*}
@@ -1530,14 +1612,14 @@ class CBS_Element  {
     // ▀▄▄ ▀▄▀ █▄▄ ▀▄▀ █▀▄ 
 
     /**
-     * Description placeholder
+     * Background color of the element
      *
      * @type {(CBS_Color|undefined)}
      */
-    _background: CBS_Color|undefined;
+    private _background: CBS_Color|undefined;
 
     /**
-     * Description placeholder
+     * Background color of the element
      *
      * @type {*}
      */
@@ -1548,7 +1630,7 @@ class CBS_Element  {
     }
 
     /**
-     * Description placeholder
+     * Background color of the element
      *
      * @type {(CBS_Color|undefined)}
      */
@@ -1556,18 +1638,44 @@ class CBS_Element  {
         return this._background;
     }
 
+    /**
+     * Inner html of the element
+     * @date 8/26/2023
+     *
+     * @type {string}
+     */
     get html() {
         return this.el.innerHTML;
     }
 
+    /**
+     * Inner html of the element
+     * @date 8/26/2023
+     *
+     * @type {string}
+     */
     set html(text: string) {
-        this.el.innerHTML = text;
+        const els = CBS.createElementFromText(text);
+        this.clearElements();
+        this.append(...els);
     }
 
-    get content() {
+    /**
+     * The content of the element
+     * @date 8/26/2023
+     *
+     * @type {CBS_NodeMap}
+     */
+    get content(): CBS_NodeMap {
         return this.components;
     }
 
+    /**
+     * The content of the element
+     * @date 8/26/2023
+     *
+     * @type {*}
+     */
     set content(content: CBS_Node|CBS_NodeMap) {
         this.clearElements();
         if (Array.isArray(content)) this.append(...content);

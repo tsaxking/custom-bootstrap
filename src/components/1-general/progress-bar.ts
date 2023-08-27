@@ -28,7 +28,6 @@ class CBS_ProgressBar extends CBS_Component {
      */
     constructor(options?: CBS_ProgressBarOptions) {
         super(options);
-        this.el = document.createElement('div');
 
         this.addClass('progress-bar', 'rounded', 'shadow');
         this.setAttribute('aria-valuenow', '0');
@@ -115,31 +114,34 @@ class CBS_Progress extends CBS_Component {
     }
 
     /**
-     * Description placeholder
+     * Sets the width of the progress bar as a number between 0 and 100
      *
      * @type {number}
      */
     set progress(progress: number) {
-        this.parameters = {
-            ...this.parameters,
-            progress
-        }
+        if (progress < 0 || progress > 100) console.error('Progress must be between 0 and 100');
+        else {
+            this.parameters = {
+                ...this.parameters,
+                progress
+            }
 
-        this.subcomponents.bar.options = {
-            ...this.subcomponents.bar.options,
-            style: {
-                ...this.subcomponents.bar.options.style,
-                width: `${progress}%`
-            },
-            attributes: {
-                ...this.subcomponents.bar.options.attributes,
-                'aria-valuenow': `${progress}`
+            this.subcomponents.bar.options = {
+                ...this.subcomponents.bar.options,
+                style: {
+                    ...this.subcomponents.bar.options.style,
+                    width: `${progress}%`
+                },
+                attributes: {
+                    ...this.subcomponents.bar.options.attributes,
+                    'aria-valuenow': `${progress}`
+                }
             }
         }
     }
 
     /**
-     * Description placeholder
+     * Gets the width of the progress bar
      *
      * @type {number}
      */
@@ -148,7 +150,7 @@ class CBS_Progress extends CBS_Component {
     }
 
     /**
-     * Description placeholder
+     * Removes the progress bar from the DOM with a fade out animation
      */
     destroy(): void {
         setTimeout(super.destroy, 1000); // in case the animation doesn't work

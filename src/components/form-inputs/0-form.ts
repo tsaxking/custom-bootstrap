@@ -52,7 +52,7 @@ class CBS_Form extends CBS_Component {
         this.el = document.createElement('form');
 
         this.subcomponents.submit = new CBS_Button({
-            color: 'primary',
+            color: CBS_Color.primary,
             attributes: {
                 type: 'submit'
             }
@@ -157,7 +157,7 @@ class CBS_Form extends CBS_Component {
         }, {} as {[key: string]: any});
     }
 
-    append(...elements: CBS_Node[]) {
+    append(...elements: CBS_NodeMap): this {
         super.append(...elements);
         elements.forEach(el => {
             if (el instanceof CBS_Input) {
@@ -166,6 +166,7 @@ class CBS_Form extends CBS_Component {
                 }
             }
         });
+        return this;
     }
 }
 

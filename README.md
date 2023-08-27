@@ -5,6 +5,13 @@ Hello, and welcome to Custom Bootstrap! This is a resource for developers who us
 When you import this package into your DOM, you will be given a global constant `CBS` (Custom Bootstrap) which is an instance of `CustomBootstrap`. This constant is the equivalent of `document` in the DOM, it allows you to make elements and manage them.
 
 
+<hr>
+
+## Enums
+`CBS_Color` - Colors for Bootstrap elements (primary, secondary, success, etc.)
+`CBS_Size` - Sizes for Bootstrap elements (sm, md, lg, etc.)
+`CBS_Align` - Alignments for Bootstrap elements (start, end, center, etc.)
+`CBS_Weight` - Weights for Bootstrap text elements (bold, bolder, etc.)
 
 
 ## `CBS_Element`
@@ -90,7 +97,7 @@ Instead of `.addEventListener()` and `.removeEventListener()`, this uses `.on()`
 `(CBS_Element).on(event, callback, isAsync)` - adds an event listener
 - event: `string`
 - callback: `(event: Event) => {}`
-- isAsync: `boolean` (default: `true`) - Whether this function should be run in async/sync
+- isAsync: `boolean` (default: `true`) - Whether this function should be run in async/sync, all event listeners that are `false` will run synchronously, regardless if the callback is async/sync
 
 `(CBS_Element).hasListener(event)` - returns whether this element has a listener of that name
 - event: `string`

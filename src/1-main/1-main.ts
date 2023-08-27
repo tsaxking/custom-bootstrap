@@ -232,11 +232,11 @@ class CustomBootstrap {
                     cbsEl.setAttribute(attr.name, attr.value);
                 });
                 cbsEl.addClass(...Array.from(el.classList));
-                cbsEl.style = Object.keys((el as HTMLElement).style).reduce((acc, key) => {
-                    if (!(el as HTMLElement).style[key]) return acc;
-                    acc[key] = (el as HTMLElement).style[key];
-                    return acc;
-                }, {} as { [key: string]: string });
+
+                for (const key in Object.keys((el as HTMLElement).style)) {
+                    if (!(el as HTMLElement).style[key]) continue;
+                    cbsEl.el.style[key] = (el as HTMLElement).style[key];
+                }
 
                 if (cbsEl instanceof CBS_Component) {
                     Object.keys(cbsEl.subcomponents).forEach(name => {
@@ -290,7 +290,7 @@ class CustomBootstrap {
     async alert(message: any): Promise<void> {
         return new Promise((res, rej) => {
             const ok = new CBS_Button({
-                color: 'primary'
+                color: CBS_Color.primary
             });
 
             ok.content = 'Okay';
@@ -332,13 +332,13 @@ class CustomBootstrap {
     async confirm(message: any): Promise<boolean> {
         return new Promise((res, rej) => {
             const yes = new CBS_Button({
-                color: 'primary'
+                color: CBS_Color.primary
             });
 
             yes.content = 'Okay';
 
             const no = new CBS_Button({
-                color: 'secondary'
+                color: CBS_Color.secondary
             });
 
             no.content = 'Cancel';
@@ -388,13 +388,13 @@ class CustomBootstrap {
     async modalForm(form: CBS_Form): Promise<any> {
         return new Promise((res, rej) => {
             const submit = new CBS_Button({
-                color: 'primary'
+                color: CBS_Color.primary
             });
 
             submit.content = 'Submit';
 
             const cancel = new CBS_Button({
-                color: 'secondary'
+                color: CBS_Color.secondary
             });
 
             cancel.content = 'Cancel';
@@ -454,11 +454,11 @@ class CustomBootstrap {
     async prompt(message?: any): Promise<string|null> {
         return new Promise((res, rej) => {
             const submit = new CBS_Button({
-                color: 'primary'
+                color: CBS_Color.primary
             });
 
             const cancel = new CBS_Button({
-                color: 'secondary'
+                color: CBS_Color.secondary
             });
 
             submit.content = 'Submit';

@@ -1,5 +1,5 @@
 /**
- * Description placeholder
+ * Column Options
  *
  * @typedef {CBS_ColOptions}
  */
@@ -15,16 +15,21 @@ type CBS_ColOptions = {
 }
 
 /**
- * Description placeholder
+ * Breakpoint Map (for cols)
  *
  * @typedef {CBS_BreakpointMap}
  */
 type CBS_BreakpointMap = {
-    [key: string]: number;
+    xs?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+    xxl?: number;
 }
 
 /**
- * Description placeholder
+ * Container Column
  *
  * @class CBS_Col
  * @typedef {CBS_Col}
@@ -32,33 +37,28 @@ type CBS_BreakpointMap = {
  */
 class CBS_Col extends CBS_Element {
     /**
-     * Description placeholder
+     * All breakpoints for this column
      *
-     * @type {{
-            [key: string]: number;
-        }}
+     * @type {CBS_BreakpointMap}
      */
-    private breakpoints: {
-        [key: string]: number;
-    } = {};
+    private breakpoints: CBS_BreakpointMap = {};
 
     /**
-     * Creates an instance of CBS_Col.
+     * Creates an instance of CBS_Col
      *
      * @constructor
      * @param {?CBS_ColOptions} [options]
      */
     constructor(options?: CBS_ColOptions) {
-        super(options);
-
-        this.options = {
+        options = {
             classes: ['col'],
             ...options
         }
+        super(options);
     }
 
     /**
-     * Description placeholder
+     * Add a breakpoint to this column
      *
      * @param {string} breakpoint
      * @param {number} size
@@ -69,7 +69,7 @@ class CBS_Col extends CBS_Element {
     }
 
     /**
-     * Description placeholder
+     * Remove a breakpoint from this column
      *
      * @param {string} breakpoint
      */
@@ -78,6 +78,12 @@ class CBS_Col extends CBS_Element {
         delete this.breakpoints[breakpoint];
     }
 
+    /**
+     * Adds the options (including breakpoints) to this column
+     * @date 8/26/2023
+     *
+     * @type {CBS_ColOptions}
+     */
     set options(options: CBS_ColOptions) {
         super.options = options;
 
@@ -89,6 +95,12 @@ class CBS_Col extends CBS_Element {
         }
     }
 
+    /**
+     * Returns the options (including breakpoints) of this column
+     * @date 8/26/2023
+     *
+     * @type {CBS_ColOptions}
+     */
     get options() {
         return this._options;
     }

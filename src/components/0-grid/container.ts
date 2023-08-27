@@ -1,5 +1,5 @@
 /**
- * Description placeholder
+ * Container Component Options
  *
  * @typedef {CBS_ContainerOptions}
  */
@@ -12,11 +12,13 @@ type CBS_ContainerOptions = {
     }
 
     fluid?: boolean;
+
+    breakpoints?: CBS_BreakpointMap;
 }
 
 
 /**
- * Description placeholder
+ * Bootstrap Container Element
  *
  * @class CBS_Container
  * @typedef {CBS_Container}
@@ -24,42 +26,61 @@ type CBS_ContainerOptions = {
  */
 class CBS_Container extends CBS_Element {
     /**
-     * Creates an instance of CBS_Container.
+     * Creates an instance of CBS_Container
      *
      * @constructor
      * @param {?CBS_ContainerOptions} [options]
      */
     constructor(options?: CBS_ContainerOptions) {
-        super(options);
-
-        if (options?.fluid) {
-            this.addClass('container-fluid');
-        } else {
-            this.addClass('container');
-        }
+        super();
+        if (options) this.options = options;
     }
 
     /**
-     * Description placeholder
+     * Adds the given options to the element
      *
      * @type {CBS_ContainerOptions}
      */
     set options(options: CBS_ContainerOptions) {
-        super.options = options;
+        if (options?.fluid) {
+            this.addClass('container-fluid');
+        } else {
+            this.addClass('container');
+        }
 
         if (options?.fluid) {
             this.addClass('container-fluid');
         } else {
             this.addClass('container');
         }
+
+        if (options?.breakpoints) {
+            this.removeClass(
+                'container',
+                'container-sm',
+                'container-md',
+                'container-lg',
+                'container-xl',
+                'container-xxl'
+            );
+            this.addClass(...Object.keys(options.breakpoints).map((key) => {
+                if (options.breakpoints && options.breakpoints[key]) 
+                    return `container-${key}-${options.breakpoints[key]}`;
+            }).filter(Boolean) as string[]);
+        }
+
+        super.options = options;
     }
 
+    /**
+     * Adds the given options to the element
+     */
     get options() {
         return this._options;
     }
 
     /**
-     * Description placeholder
+     * Makes the container fluid
      *
      * @type {boolean}
      */
@@ -71,7 +92,7 @@ class CBS_Container extends CBS_Element {
     }
 
     /**
-     * Description placeholder
+     * Adds a row to the container and returns it
      *
      * @returns {*}
      */

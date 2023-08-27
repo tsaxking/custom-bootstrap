@@ -24,7 +24,7 @@ type CBS_SubComponentContainer = {
  */
 class CBS_Component extends CBS_Element {
     /**
-     * Description placeholder
+     * The subcomponents of this component
      *
      * @type {CBS_ElementContainer}
      */
@@ -38,9 +38,5 @@ class CBS_Component extends CBS_Element {
      */
     constructor(options?: CBS_Options) {
         super(options);
-
-        // Object.values(this.subcomponents).forEach((value) => {
-        //     this.append(value);
-        // });
     }
 }

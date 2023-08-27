@@ -50,6 +50,8 @@ const players = [{
     score: 300
 }];
 ```
+
+
 Here is the output we want:
 ```html
 <table class="table">
@@ -89,8 +91,10 @@ header.addHeader('Name');
 header.addHeader('Age');
 header.addHeader('Score');
 
+const body = table.addBody();
+
 for (const player of players) {
-    const row = table.addBody().addRow();
+    const row = body.addRow();
 
     row.addCell(player.name);
     row.addCell(player.age);
