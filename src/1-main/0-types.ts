@@ -23,6 +23,7 @@ interface CBS_ElementNameMap {
     'modal': CBS_Modal;
     'progress-bar': CBS_ProgressBar;
     'table': CBS_Table;
+    'hr': CBS_HorizontalLine;
 
     // form-inputs
     'form': CBS_Form;
