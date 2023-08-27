@@ -32,8 +32,31 @@ class CBS_Container extends CBS_Element {
      * @param {?CBS_ContainerOptions} [options]
      */
     constructor(options?: CBS_ContainerOptions) {
-        super();
-        this.options = options || {};
+        super(options);
+        // this.options = options || {};
+        this.setContainerOptions(options || {});
+    }
+
+    private setContainerOptions(options: CBS_ContainerOptions) {
+        if (options.fluid) {
+            this.addClass('container-fluid');
+        } else if (options.breakpoints) {
+            this.removeClass(
+                'container',
+                'container-sm',
+                'container-md',
+                'container-lg',
+                'container-xl',
+                'container-xxl',
+                'container-fluid'
+            );
+            this.addClass(...Object.keys(options.breakpoints).map((key) => {
+                if (options.breakpoints && options.breakpoints[key]) 
+                    return `container-${key}-${options.breakpoints[key]}`;
+            }).filter(Boolean) as string[]);
+        } else {
+            this.addClass('container');
+        }
     }
 
     /**
@@ -42,33 +65,7 @@ class CBS_Container extends CBS_Element {
      * @type {CBS_ContainerOptions}
      */
     set options(options: CBS_ContainerOptions) {
-        if (options?.fluid) {
-            this.addClass('container-fluid');
-        } else {
-            this.addClass('container');
-        }
-
-        if (options?.fluid) {
-            this.addClass('container-fluid');
-        } else {
-            this.addClass('container');
-        }
-
-        if (options?.breakpoints) {
-            this.removeClass(
-                'container',
-                'container-sm',
-                'container-md',
-                'container-lg',
-                'container-xl',
-                'container-xxl'
-            );
-            this.addClass(...Object.keys(options.breakpoints).map((key) => {
-                if (options.breakpoints && options.breakpoints[key]) 
-                    return `container-${key}-${options.breakpoints[key]}`;
-            }).filter(Boolean) as string[]);
-        }
-
+        this.setContainerOptions(options);
         super.options = options;
     }
 
