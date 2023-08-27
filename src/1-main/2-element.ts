@@ -1193,7 +1193,7 @@ class CBS_Element {
      * @param {CBS_ListenerCallback} callback
      * @param {boolean} [isAsync=false]
      */
-    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true) {
+    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true): this {
         if (!this._el) throw new Error('No element to add listener to');
         // if (!event && !callback) {
         //     reset all .off() listeners
@@ -1231,6 +1231,8 @@ class CBS_Element {
             this._events[event] = errCallback;
             this._el.addEventListener(event, errCallback);
         }
+
+        return this;
     }
 
     /**

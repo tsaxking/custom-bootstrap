@@ -84,6 +84,8 @@ class CBS_TableRow extends CBS_Element {
 class CBS_TableHeadRow extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
+
+        this.el = document.createElement('tr');
     }
 
     addHeader(content: CBS_Node, options?: CBS_Options): CBS_TableHeader {
