@@ -279,11 +279,11 @@ class CBS_Element {
             this.el.classList.remove(`${abbr}-${property.global}`); // removes glbal property
 
             if (key === 'global') {
-                properties.forEach(p => {
-                    this.el.classList.remove(`${abbr}${p}-${property[p]}`);
+                for (const property in properties) {
+                    this.el.classList.remove(`${abbr}${property}-${property[property]}`);
 
-                    delete property[p];
-                });
+                    delete properties[property];
+                }
 
                 property.global = value;
                 this.el.classList.add(`${abbr}-${value}`);
@@ -956,7 +956,54 @@ class CBS_Element {
     }
 
     /**
-     * Removes all elements from this element
+     * Injects an element at a specific index
+     * @param {CBS_Node} index 
+     * @param {CBS_NodeMap} elementsToAdd 
+     */
+    inject(index: number, ...elementsToAdd: CBS_NodeMap) {
+        const node = this._components[index];
+
+        if (node) {
+            this.insertBefore(node, ...elementsToAdd);
+        } else {
+            this.append(...elementsToAdd);
+        }
+    }
+
+    /**
+     * Removes an element at a specific index and replaces it other element(s)
+     * @param {Number} start 
+     * @param {Number} deleteCount 
+     * @param {...CBS_NodeMap} elementsToAdd 
+     */
+    splice(start: number, deleteCount: number, ...elementsToAdd: CBS_NodeMap) {
+        const s = this._components[start];
+        const e = this._components[start + deleteCount];
+
+        if (s && e) {
+            // removes all elements between start and end
+            for (let i = start; i < start + deleteCount; i++) {
+                this.removeElement(this._components[i]);
+            }
+
+            // s is the new index for the elements to be added
+            this.inject(start, ...elementsToAdd);
+        } else if (s) {
+            // removes all elements between start and the end of the array
+            for (let i = start; i < this._components.length; i++) {
+                this.removeElement(this._components[i]);
+            }
+
+            // s is the new index for the elements to be added
+            this.inject(start, ...elementsToAdd);
+        } else {
+            // appends all elements to the end of the array
+            this.append(...elementsToAdd);
+        }
+    }
+
+    /**
+     * Description placeholder
      */
     clearElements() {
         this._components = [];
@@ -1317,9 +1364,9 @@ class CBS_Element {
         this.parent?.removeElement(this);
 
         this.off();
-        this._components.forEach(c => {
+        for (const c of this.components) {
             if (c instanceof CBS_Element) c.destroy();
-        });
+        }
         this._el.remove();
     }
 
@@ -1341,9 +1388,11 @@ class CBS_Element {
         clone._el = this._el.cloneNode(true) as HTMLElement;
 
         // clones all listeners too
-        if (listeners) this.listeners.forEach(listener => {
-            clone.on(listener.event, listener.callback);
-        });
+        if (listeners) {
+            for (const event of this.listeners) {
+                clone.on(event.event, event.callback);
+            }
+        }
 
         this.trigger('el.clone');
 
@@ -1406,9 +1455,9 @@ class CBS_Element {
         if (!this._options.classes) this._options.classes = [];
 
         this._options.classes = this._options.classes.filter(c => !classes.includes(c));
-        classes.forEach(c => {
+        for (const c of classes) {
             this.el.classList.toggle(c);
-        });
+        }
     }
 
     /**
@@ -1529,7 +1578,9 @@ class CBS_Element {
      * @date 8/26/2023
      */
     clearAttributes() {
-        Object.keys(this._attributes).forEach(this.removeAttribute.bind(this));
+        for (const key in Object.keys(this._attributes)) {
+            this.removeAttribute(key);
+        }
     }
 
     /**
@@ -1552,9 +1603,9 @@ class CBS_Element {
         this.clearAttributes();
         this._attributes = attributes;
 
-        Object.keys(attributes).forEach(key => {
+        for (const key in attributes) {
             this.setAttribute(key, attributes[key]);
-        });
+        }
     }
 
 

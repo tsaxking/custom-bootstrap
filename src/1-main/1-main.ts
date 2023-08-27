@@ -203,6 +203,13 @@ class CustomBootstrap {
         return new element(options);
     }
 
+    createDomFromElement(el: HTMLDivElement) {
+        const dom = this.createElement('dom');
+        dom.el = el;
+        return dom;
+    }
+
+
     /**
      * Creates an element from an html string
      * 

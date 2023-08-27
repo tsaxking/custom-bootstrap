@@ -16,8 +16,7 @@ enum CBS_Color {
     info = 'info',
     light = 'light',
     dark = 'dark',
-    white = 'white',
-    transparent = 'transparent'
+    white = 'white'
 }
 
 enum CBS_Size {

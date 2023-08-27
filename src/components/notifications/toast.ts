@@ -7,6 +7,10 @@ type CBS_ToastOptions = {
     }
 
     color?: CBS_Color;
+<<<<<<< Updated upstream
+=======
+    dismiss?: number; // in milliseconds
+>>>>>>> Stashed changes
 }
 
 
@@ -27,6 +31,7 @@ class CBS_Toast extends CBS_Component {
         this.setAttribute('aria-live', 'polite');
         this.setAttribute('aria-atomic', 'true');
 
+<<<<<<< Updated upstream
 
         ((this.subcomponents
             .container as CBS_Component)
@@ -35,6 +40,19 @@ class CBS_Toast extends CBS_Component {
             .subcomponents
             .body.addClass(`bg-${options?.color || 'info'}`);
 
+=======
+        if (options?.color) {
+            ((this.subcomponents.container as CBS_ToastContainer)
+            .subcomponents.card as CBS_ToastCard)
+            .addClass(`bg-${options.color}`);
+        }
+
+        if (options?.dismiss) {
+            setTimeout(() => {
+                this.destroy();
+            }, options.dismiss);
+        }
+>>>>>>> Stashed changes
 
         this.append(
             this.subcomponents.container
@@ -81,7 +99,10 @@ class CBS_Toast extends CBS_Component {
             });
         }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         if (Array.isArray(content)) {
             ((
                 this.subcomponents.container as CBS_ToastContainer
@@ -154,6 +175,7 @@ class CBS_ToastCard extends CBS_Component {
 
 class CBS_ToastHeader extends CBS_Component {
     subcomponents: CBS_ElementContainer = {
+<<<<<<< Updated upstream
         close: new CBS_Button({
             classes: ['ml-2', 'mb-1'],
             attributes: {
@@ -174,6 +196,69 @@ class CBS_ToastHeader extends CBS_Component {
         this.append(
             this.subcomponents.close
         );
+=======
+        title: new CBS_Span(),
+        button: new CBS_Button({
+            classes: ['btn-close'],
+            attributes: {
+                'data-bs-dismiss': 'toast',
+                'aria-label': 'Close'
+            }
+        }),
+        time: new CBS_Span()
+    }
+
+    interval: number = 0;
+
+    constructor() {
+        super();
+
+        this.addClass('toast-header', 'bg-dark', 'text-light', 'border-0');
+
+        this.subcomponents.title.addClass('me-auto');
+        this.subcomponents.time.addClass('text-muted');
+
+        this.subcomponents.button.on('click', () => {
+            this.parent?.destroy();
+        });
+
+        const text = document.createTextNode('just now');
+        const start = Date.now();
+
+        this.interval = setInterval(() => {
+            const now = Date.now();
+            const diff = now - start;
+            const seconds = Math.floor(diff / 1000);
+
+            if (seconds < 60) {
+                text.textContent = `${seconds} seconds ago`;
+            } else if (seconds < 3600) {
+                const minutes = Math.floor(seconds / 60);
+                text.textContent = `${minutes} minutes ago`;
+            } else if (seconds < 86400) {
+                const hours = Math.floor(seconds / 3600);
+                text.textContent = `${hours} hours ago`;
+            } else {
+                const days = Math.floor(seconds / 86400);
+                text.textContent = `${days} days ago`;
+            }
+        }, 1000 * 30);
+
+        this.subcomponents.time.append(
+            text
+        );
+        
+        this.append(
+            this.subcomponents.title,
+            this.subcomponents.button,
+            this.subcomponents.time
+        );
+    }
+
+    destroy() {
+        clearInterval(this.interval);
+        super.destroy();
+>>>>>>> Stashed changes
     }
 }
 
