@@ -19,27 +19,6 @@ class CBS_FormText extends CBS_Element {
 
         this.addClass('form-text');
     }
-
-    /**
-     * Description placeholder
-     *
-     * @type {string}
-     */
-    set content(content: string) {
-        this.el.innerHTML = content;
-
-        if (content) this.show();
-        else this.hide();
-    }
-
-    /**
-     * Description placeholder
-     *
-     * @type {string}
-     */
-    get content() {
-        return this.el.innerHTML;
-    }
 }
 
 CBS.addElement('cbs-form-text', CBS_FormText);

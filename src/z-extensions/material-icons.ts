@@ -190,16 +190,16 @@ const CBS_GenerateMaterialIcons = (prefix?: string) => {
     const i = new CBS_MaterialIcon();
 
     icons.forEach(icon => {
-        icon = prefix + icon;
+        const name = prefix + icon;
         // buttons
         const btn = new CBS_Button();
 
 
         i.icon = icon;
-        CBS_MaterialIcon.addTemplate(icon, i.clone());
+        CBS_MaterialIcon.addTemplate(name, i.clone());
         btn.content = i;
 
-        CBS_Button.addTemplate(icon, btn);
+        CBS_Button.addTemplate(name, btn);
 
         // texts
         [
@@ -214,7 +214,7 @@ const CBS_GenerateMaterialIcons = (prefix?: string) => {
             const el = new c();
             el.append(i.clone());
 
-            c.addTemplate(icon, el);
+            c.addTemplate(name, el);
         });
     });
 };
