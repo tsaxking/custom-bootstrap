@@ -33,7 +33,7 @@ class CBS_Container extends CBS_Element {
      */
     constructor(options?: CBS_ContainerOptions) {
         super();
-        if (options) this.options = options;
+        this.options = options || {};
     }
 
     /**
