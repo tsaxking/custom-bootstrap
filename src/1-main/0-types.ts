@@ -30,18 +30,18 @@ interface CBS_ElementNameMap {
     'label': CBS_Label;
     'input-group': CBS_InputGroup;
     'input-label-container': CBS_InputLabelContainer;
-    'checkbox': CBS_Checkbox;
-    'color': CBS_ColorInput;
-    'date': CBS_DateInput;
-    'email': CBS_EmailInput;
-    'file': CBS_FileInput;
-    'form-text': CBS_FormText;
-    'number': CBS_NumberInput;
-    'password': CBS_PasswordInput;
-    'radio': CBS_Radio;
-    'range': CBS_RangeInput;
-    'select': CBS_SelectInput;
-    'textarea': CBS_TextareaInput;
+    'input-checkbox': CBS_Checkbox;
+    'input-color': CBS_ColorInput;
+    'input-date': CBS_DateInput;
+    'input-email': CBS_EmailInput;
+    'input-file': CBS_FileInput;
+    'input-form-text': CBS_FormText;
+    'input-number': CBS_NumberInput;
+    'input-password': CBS_PasswordInput;
+    'input-radio': CBS_Radio;
+    'input-range': CBS_RangeInput;
+    'input-select': CBS_SelectInput;
+    'input-textarea': CBS_TextareaInput;
 
     // list
     'li': CBS_ListItem;
