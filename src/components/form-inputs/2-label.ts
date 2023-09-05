@@ -11,6 +11,10 @@ type CBS_LabelOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     name?: string;
 }
 

@@ -7,10 +7,7 @@ type CBS_ToastOptions = {
     }
 
     color?: CBS_Color;
-<<<<<<< Updated upstream
-=======
     dismiss?: number; // in milliseconds
->>>>>>> Stashed changes
 }
 
 
@@ -31,16 +28,6 @@ class CBS_Toast extends CBS_Component {
         this.setAttribute('aria-live', 'polite');
         this.setAttribute('aria-atomic', 'true');
 
-<<<<<<< Updated upstream
-
-        ((this.subcomponents
-            .container as CBS_Component)
-            .subcomponents
-            .card as CBS_Component)
-            .subcomponents
-            .body.addClass(`bg-${options?.color || 'info'}`);
-
-=======
         if (options?.color) {
             ((this.subcomponents.container as CBS_ToastContainer)
             .subcomponents.card as CBS_ToastCard)
@@ -52,7 +39,6 @@ class CBS_Toast extends CBS_Component {
                 this.destroy();
             }, options.dismiss);
         }
->>>>>>> Stashed changes
 
         this.append(
             this.subcomponents.container
@@ -99,10 +85,6 @@ class CBS_Toast extends CBS_Component {
             });
         }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         if (Array.isArray(content)) {
             ((
                 this.subcomponents.container as CBS_ToastContainer
@@ -175,28 +157,6 @@ class CBS_ToastCard extends CBS_Component {
 
 class CBS_ToastHeader extends CBS_Component {
     subcomponents: CBS_ElementContainer = {
-<<<<<<< Updated upstream
-        close: new CBS_Button({
-            classes: ['ml-2', 'mb-1'],
-            attributes: {
-                'data-dismiss': 'toast',
-                'aria-label': 'Close'
-            },
-            style: {
-                'outline': 'none'
-            }
-        })
-    }
-
-    constructor() {
-        super();
-
-        this.addClass('toast-header');
-    
-        this.append(
-            this.subcomponents.close
-        );
-=======
         title: new CBS_Span(),
         button: new CBS_Button({
             classes: ['btn-close'],
@@ -258,7 +218,6 @@ class CBS_ToastHeader extends CBS_Component {
     destroy() {
         clearInterval(this.interval);
         super.destroy();
->>>>>>> Stashed changes
     }
 }
 

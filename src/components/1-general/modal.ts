@@ -11,6 +11,10 @@ type CBS_ModalOptions = {
         [key: string]: string;
     }
     buttons?: CBS_Button[];
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 

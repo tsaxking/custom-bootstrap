@@ -11,6 +11,10 @@ type CBS_TextInputOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     // TODO: add these
     name?: string;
     label?: string;

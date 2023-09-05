@@ -11,6 +11,10 @@ type CBS_ListOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     ordered?: boolean;
 }
 

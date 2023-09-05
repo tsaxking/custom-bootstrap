@@ -11,6 +11,10 @@ type CBS_RangeInputOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     min?: number;
     max?: number;
     step?: number;

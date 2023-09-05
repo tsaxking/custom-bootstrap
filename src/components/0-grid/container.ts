@@ -14,6 +14,10 @@ type CBS_ContainerOptions = {
     fluid?: boolean;
 
     breakpoints?: CBS_BreakpointMap;
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 

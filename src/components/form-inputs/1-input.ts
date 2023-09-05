@@ -12,6 +12,10 @@ type CBS_InputOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     name?: string;
     label?: string;
     value?: string;

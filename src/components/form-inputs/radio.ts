@@ -12,6 +12,10 @@ type CBS_RadioOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     mirrorValue?: any;
     label?: string;
 }

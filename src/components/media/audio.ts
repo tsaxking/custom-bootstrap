@@ -11,6 +11,10 @@ type CBS_AudioOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     fadeTime?: number;
 }
 

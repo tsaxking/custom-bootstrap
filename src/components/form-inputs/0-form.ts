@@ -14,6 +14,10 @@ type CBS_FormOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 

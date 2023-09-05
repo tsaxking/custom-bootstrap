@@ -6,6 +6,10 @@ type CBS_AlertOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     color?: CBS_Color
     text?: string;
 }

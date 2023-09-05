@@ -5,6 +5,10 @@ type CBS_VideoOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 class CBS_Video extends CBS_Component {

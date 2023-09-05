@@ -11,6 +11,10 @@ type CBS_InputGroupOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     type?: string;
 }
 

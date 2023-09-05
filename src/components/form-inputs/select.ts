@@ -15,6 +15,10 @@ type CBS_OptionOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
 
     text?: string;
     value?: string;

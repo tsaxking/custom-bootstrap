@@ -11,6 +11,10 @@ type CBS_ButtonOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     outlined?: boolean;
     rounded?: boolean;
     size?: CBS_Size;

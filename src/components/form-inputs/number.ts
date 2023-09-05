@@ -16,6 +16,10 @@ type CBS_NumberInputOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 /**

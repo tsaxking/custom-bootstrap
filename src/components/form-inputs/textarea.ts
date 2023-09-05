@@ -15,6 +15,10 @@ type CBS_TextareaOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 /**

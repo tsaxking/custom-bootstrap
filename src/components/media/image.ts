@@ -11,6 +11,10 @@ type CBS_ImageOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     src?: string
 }
 

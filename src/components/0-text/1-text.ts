@@ -10,6 +10,10 @@ type CBS_TextOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 

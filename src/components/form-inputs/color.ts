@@ -11,6 +11,10 @@ type CBS_ColorInputOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 };
 
 /**

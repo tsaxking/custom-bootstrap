@@ -6,6 +6,10 @@ type CBS_NotificationOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     color?: CBS_Color
     type?: 'alert' | 'toast';
 }

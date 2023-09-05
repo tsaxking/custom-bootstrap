@@ -10,6 +10,10 @@ type CBS_DateInputOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 };
 
 /**

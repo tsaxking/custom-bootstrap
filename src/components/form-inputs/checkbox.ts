@@ -11,6 +11,10 @@ type CBS_CheckboxOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     label?: string;
     mirrorValue?: any;
 }

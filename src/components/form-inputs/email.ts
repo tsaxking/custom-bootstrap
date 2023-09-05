@@ -12,6 +12,10 @@ type CBS_EmailInputOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 /**

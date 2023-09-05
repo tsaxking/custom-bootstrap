@@ -197,6 +197,10 @@ type CBS_ContextmenuOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     color?: CBS_Color;
 
     ignoreList?: string[];
@@ -348,9 +352,9 @@ class CBS_Contextmenu extends CBS_Component {
         e.preventDefault();
         document.body.appendChild(this.el);
 
-        this.style = {
-            '--animate-duration': '0.2s'
-        };
+        // this.style = {
+        //     '--animate-duration': '0.2s'
+        // };
 
         this.subcomponents.menu.addClass('animate__animated', 'animate__faster');
 
@@ -378,7 +382,7 @@ class CBS_Contextmenu extends CBS_Component {
             up = 'Up';
         }
 
-        this.subcomponents.menu.addClass(`animate__rotateIn${up}${left}`);
+        // this.subcomponents.menu.addClass(`animate__rotateIn${up}${left}`);
 
         this.subcomponents.menu.show();
 
@@ -396,10 +400,10 @@ class CBS_Contextmenu extends CBS_Component {
     }
 
     private _hide() {
-        this.style = {
-            '--animate-duration': '0.2s'
-        };
-        this.subcomponents.menu.addClass('animate__fade', 'animate__animated', 'animate__faster');
+        // this.style = {
+        //     '--animate-duration': '0.2s'
+        // };
+        // this.subcomponents.menu.addClass('animate__fade', 'animate__animated', 'animate__faster');
 
         // const animateCB = () => {
         //     this.subcomponents.menu.removeClass(`animate__fade`, 'animate__animated', 'animate__faster');

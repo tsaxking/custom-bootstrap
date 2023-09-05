@@ -12,6 +12,10 @@ type CBS_ColOptions = {
     }
 
     breakpoints?: CBS_BreakpointMap;
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 /**

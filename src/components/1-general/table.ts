@@ -6,7 +6,33 @@ type CBS_TableOptions = {
         [key: string]: string;
     }
     responsive?: boolean;
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 };
+
+
+
+
+type CBS_TableRowCellOptions = {
+    classes?: string[];
+    id?: string;
+    style?: object;
+    attributes?: {
+        [key: string]: string;
+    }
+
+    colspan?: number;
+    rowspan?: number;
+    scope?: 'col' | 'row' | 'colgroup' | 'rowgroup';
+
+    getData: (data: any) => CBS_Node;
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+}
 
 class CBS_TableBody extends CBS_Element {
     constructor(options?: CBS_Options) {
@@ -20,18 +46,64 @@ class CBS_TableBody extends CBS_Element {
         this.append(row);
         return row;
     }
+
+    addRows(cellOptions: CBS_TableRowCellOptions[], data: any[]): CBS_TableRow[] {
+        return data.map(d => {
+            const r = this.addRow();
+            for (const cell of cellOptions) {
+                const c = r.addCell(cell.getData(d), cell);
+            }
+            return r;
+        });;
+    }
 }
 
 class CBS_TableData extends CBS_Element {
-    constructor(options?: CBS_Options) {
+    constructor(options?: CBS_TableRowCellOptions) {
         super(options);
 
         this.el = document.createElement('td');
     }
+
+    set options(options: CBS_TableRowCellOptions) {
+        super.options = options;
+
+        if (options?.colspan) this.colspan = options.colspan;
+        if (options?.rowspan) this.rowspan = options.rowspan;
+        if (options?.scope) this.scope = options.scope;
+    }
+
+    get options(): CBS_TableRowCellOptions {
+        return this._options as CBS_TableRowCellOptions;
+    }
+
+    set colspan(colspan: number) {
+        this.el.setAttribute('colspan', colspan.toString());
+    }
+
+    get colspan(): number {
+        return parseInt(this.el.getAttribute('colspan') || '');
+    }
+
+    set rowspan(rowspan: number) {
+        this.el.setAttribute('rowspan', rowspan.toString());
+    }
+
+    get rowspan(): number {
+        return parseInt(this.el.getAttribute('rowspan') || '');
+    }
+
+    set scope(scope: 'col' | 'row' | 'colgroup' | 'rowgroup') {
+        this.el.setAttribute('scope', scope);
+    }
+
+    get scope(): 'col' | 'row' | 'colgroup' | 'rowgroup' {
+        return this.el.getAttribute('scope') as 'col' | 'row' | 'colgroup' | 'rowgroup';
+    }
 }
 
 class CBS_TableHeader extends CBS_Element {
-    constructor(options?: CBS_Options) {
+    constructor(options?: CBS_TableHeaderOptions) {
         super(options);
 
         this.el = document.createElement('th');
@@ -73,13 +145,32 @@ class CBS_TableRow extends CBS_Element {
         this.el = document.createElement('tr');
     }
 
-    addCell(content: CBS_Node, options?: CBS_Options): CBS_TableData {
+    addCell(content: CBS_Node, options?: CBS_TableRowCellOptions): CBS_TableData {
         const d = new CBS_TableData(options);
         d.append(content);
         this.append(d);
         return d;
     }
 }
+
+
+type CBS_TableHeaderOptions = {
+    classes?: string[];
+    id?: string;
+    style?: object;
+    attributes?: {
+        [key: string]: string;
+    }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
+    content: CBS_Node;
+}
+
+
+
 
 class CBS_TableHeadRow extends CBS_Element {
     constructor(options?: CBS_Options) {
@@ -88,11 +179,18 @@ class CBS_TableHeadRow extends CBS_Element {
         this.el = document.createElement('tr');
     }
 
-    addHeader(content: CBS_Node, options?: CBS_Options): CBS_TableHeader {
+    addHeader(content: CBS_Node, options?: CBS_TableHeaderOptions): CBS_TableHeader {
         const d = new CBS_TableHeader(options);
         d.append(content);
         this.append(d);
         return d;
+    }
+
+    addHeaders(...headers: CBS_TableHeaderOptions[]): CBS_TableHeader[] {
+        return headers.map(c => {
+            const h = this.addHeader(c.content, c);
+            return h;
+        });
     }
 }
 
@@ -125,6 +223,15 @@ class CBS_Table extends CBS_Component {
     static from(table: HTMLTableElement) {}
 
     subcomponents: CBS_ElementContainer = {}
+    buildData?: {
+        headers: CBS_TableHeaderOptions[],
+        rows: CBS_TableRowCellOptions[],
+        data: any[]
+    } = {
+        headers: [],
+        rows: [],
+        data: []
+    };
 
     constructor(options?: CBS_TableOptions) {
         super();
@@ -159,6 +266,47 @@ class CBS_Table extends CBS_Component {
         const caption = new CBS_TableCaption(options);
         this.subcomponents.table.append(caption);
         return caption;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    build(headers: CBS_TableHeaderOptions[], rows: CBS_TableRowCellOptions[], data: any[]): { headers: CBS_TableHeader[], body: CBS_TableBody } {
+        if (!this.buildData) {
+            this.buildData = {
+                headers,
+                rows,
+                data
+            };
+        }
+        const head = this.addHead();
+        const _headers = head.addRow().addHeaders(...headers);
+
+        const body = this.addBody();
+        body.addRows(rows, data);
+
+        return {
+            headers: _headers,
+            body: body
+        }
+    }
+
+    update(data?: any[]) {
+        if (!this.buildData) return console.error('No build data');
+
+        if (data) this.buildData.data = data;
+        this.build(
+            this.buildData.headers,
+            this.buildData.rows,
+            this.buildData.data
+        );
     }
 }
 

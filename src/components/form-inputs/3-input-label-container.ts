@@ -11,6 +11,10 @@ type CBS_InputLabelContainerOptions = {
         [key: string]: string;
     }
 
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
+
     type?: string;
 }
 
@@ -187,7 +191,7 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
      * @type {string}
      */
     get formText() {
-        return (this.subcomponents.text as CBS_FormText).content;
+        return (this.subcomponents.text as CBS_FormText).content[0] as string;
     }
 
     /**

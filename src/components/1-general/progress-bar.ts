@@ -10,6 +10,10 @@ type CBS_ProgressBarOptions = {
     attributes?: {
         [key: string]: string;
     }
+
+    listeners?: {
+        [key: string]: (e: Event) => void;
+    }
 }
 
 /**
@@ -33,10 +37,10 @@ class CBS_ProgressBar extends CBS_Component {
         this.setAttribute('aria-valuenow', '0');
         this.setAttribute('aria-valuemin', '0');
         this.setAttribute('aria-valuemax', '100');
-        this.style = {
-            width: '0%',
-            height: '24px'
-        }
+        // this.style = {
+        //     width: '0%',
+        //     height: '24px'
+        // }
     }
 }
 

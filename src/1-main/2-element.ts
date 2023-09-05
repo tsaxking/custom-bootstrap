@@ -47,6 +47,11 @@ type CBS_Options = {
     attributes?: {
         [key: string]: string;
     }
+
+
+    listeners?: {
+        [key: string]: CBS_ListenerCallback;
+    }
 }
 
 /**
@@ -734,6 +739,12 @@ class CBS_Element {
             }
         }
         if (id) this.id = id;
+
+        if (options?.listeners) {
+            Object.entries(options.listeners).forEach(([event, callback]) => {
+                this.on(event, callback);
+            });
+        }
     }
 
     /**
