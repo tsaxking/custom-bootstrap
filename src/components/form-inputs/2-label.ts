@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_LabelOptions}
  */
-type CBS_LabelOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_LabelOptions = CBS_Options & {
     name?: string;
 }
 

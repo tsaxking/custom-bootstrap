@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_TextInputOptions}
  */
-type CBS_TextInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_TextInputOptions = CBS_Options & {
     // TODO: add these
     name?: string;
     label?: string;

@@ -169,38 +169,7 @@ type CBS_ContextmenuSelectOptions = {
  *
  * @typedef {CBS_ContextmenuOptions}
  */
-type CBS_ContextmenuOptions = {
-    /**
-     * Classes to be added to the element
-     *
-     * @type {?string[]}
-     */
-    classes?: string[];
-    /**
-     * Id to be added to the element
-     *
-     * @type {?string}
-     */
-    id?: string;
-    /**
-     * Style to be added to the element
-     *
-     * @type {?object}
-     */
-    style?: object;
-    /**
-     * Attributes to be added to the element
-     *
-     * @type {?object}
-     */
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_ContextmenuOptions = CBS_Options & {
     color?: CBS_Color;
 
     ignoreList?: string[];

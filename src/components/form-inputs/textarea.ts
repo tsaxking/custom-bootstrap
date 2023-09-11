@@ -8,17 +8,7 @@
  *
  * @typedef {CBS_TextareaOptions}
  */
-type CBS_TextareaOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_TextareaOptions = CBS_Options & {
 }
 
 /**

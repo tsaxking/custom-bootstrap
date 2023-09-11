@@ -138,3 +138,4 @@ class CBS_RangeInput extends CBS_Input {
 
 
 CBS.addElement('input-range', CBS_RangeInput);
+CBS.addElement('range', CBS_RangeInput);

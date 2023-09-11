@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_RowOptions}
  */
-type CBS_RowOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_RowOptions = CBS_Options & {
 }
 
 /**

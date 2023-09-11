@@ -19,6 +19,8 @@ interface CBS_ElementNameMap {
 
     // general
     'button': CBS_Button;
+    'button-group': CBS_ButtonGroup;
+    'button-toolbar': CBS_ButtonToolbar;
     'card': CBS_Card;
     'modal': CBS_Modal;
     'progress-bar': CBS_ProgressBar;
@@ -41,7 +43,9 @@ interface CBS_ElementNameMap {
     'input-password': CBS_PasswordInput;
     'input-radio': CBS_Radio;
     'input-range': CBS_RangeInput;
+    'range': CBS_RangeInput;
     'input-select': CBS_SelectInput;
+    'select': CBS_SelectInput;
     'input-textarea': CBS_TextareaInput;
 
     // list

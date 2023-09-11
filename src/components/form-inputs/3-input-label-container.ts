@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_InputLabelContainerOptions}
  */
-type CBS_InputLabelContainerOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_InputLabelContainerOptions = CBS_Options & {
     type?: string;
 }
 

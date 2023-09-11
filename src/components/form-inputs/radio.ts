@@ -4,18 +4,7 @@
  *
  * @typedef {CBS_RadioOptions}
  */
-type CBS_RadioOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_RadioOptions = CBS_Options & {
     mirrorValue?: any;
     label?: string;
 }

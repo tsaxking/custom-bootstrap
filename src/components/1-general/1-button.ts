@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_ButtonOptions}
  */
-type CBS_ButtonOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_ButtonOptions = CBS_Options & {
     outlined?: boolean;
     rounded?: boolean;
     size?: CBS_Size;

@@ -5,17 +5,7 @@
  *
  * @typedef {CBS_EmailInputOptions}
  */
-type CBS_EmailInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_EmailInputOptions = CBS_Options & {
 }
 
 /**

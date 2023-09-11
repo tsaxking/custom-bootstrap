@@ -1,15 +1,4 @@
-type CBS_AlertOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_AlertOptions = CBS_Options & {
     color?: CBS_Color
     text?: string;
 }

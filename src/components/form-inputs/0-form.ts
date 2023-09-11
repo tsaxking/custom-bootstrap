@@ -7,17 +7,7 @@
  *
  * @typedef {CBS_FormOptions}
  */
-type CBS_FormOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_FormOptions = CBS_Options & {
 }
 
 

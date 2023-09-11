@@ -4,17 +4,7 @@
  *
  * @typedef {CBS_AnchorOptions}
  */
-type CBS_AnchorOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_AnchorOptions = CBS_Options & {
 }
 
 /**

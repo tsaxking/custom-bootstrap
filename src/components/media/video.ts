@@ -1,14 +1,4 @@
-type CBS_VideoOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_VideoOptions = CBS_Options & {
 }
 
 class CBS_Video extends CBS_Component {

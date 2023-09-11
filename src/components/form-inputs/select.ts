@@ -7,19 +7,7 @@
 type CBS_SelectOptions = {
 }
 
-type CBS_OptionOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
-
+type CBS_OptionOptions = CBS_Options & {
     text?: string;
     value?: string;
     mirrorValue?: any;
@@ -219,3 +207,4 @@ class CBS_SelectInput extends CBS_Input {
 
 
 CBS.addElement('input-select', CBS_SelectInput);
+CBS.addElement('select', CBS_SelectInput);

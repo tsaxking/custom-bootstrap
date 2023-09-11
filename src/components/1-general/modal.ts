@@ -3,18 +3,8 @@
  *
  * @typedef {CBS_ModalOptions}
  */
-type CBS_ModalOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
+type CBS_ModalOptions = CBS_Options & {
     buttons?: CBS_Button[];
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
 }
 
 

@@ -3,19 +3,8 @@
  *
  * @typedef {CBS_ColOptions}
  */
-type CBS_ColOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
+type CBS_ColOptions = CBS_Options & {
     breakpoints?: CBS_BreakpointMap;
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
 }
 
 /**

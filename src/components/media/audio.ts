@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_AudioOptions}
  */
-type CBS_AudioOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_AudioOptions = CBS_Options & {
     fadeTime?: number;
 }
 

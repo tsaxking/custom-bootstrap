@@ -1,11 +1,4 @@
-type CBS_ToastOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
+type CBS_ToastOptions = CBS_Options & {
     color?: CBS_Color;
     dismiss?: number; // in milliseconds
 }

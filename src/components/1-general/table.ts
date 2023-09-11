@@ -1,15 +1,5 @@
-type CBS_TableOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
+type CBS_TableOptions = CBS_Options & {
     responsive?: boolean;
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
 };
 
 
@@ -154,18 +144,7 @@ class CBS_TableRow extends CBS_Element {
 }
 
 
-type CBS_TableHeaderOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_TableHeaderOptions = CBS_Options & {
     content: CBS_Node;
 }
 

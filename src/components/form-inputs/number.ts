@@ -9,17 +9,7 @@
  *
  * @typedef {CBS_NumberInputOptions}
  */
-type CBS_NumberInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_NumberInputOptions = CBS_Options & {
 }
 
 /**
