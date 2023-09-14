@@ -176,21 +176,21 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement<K extends CBS_ElementName>(selector: K, options?: CBS_Options): CBS_ElementNameMap[K];
-    createElement(selector: string, options?: CBS_Options): CBS_Element {
-        const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
+    createElement<K extends CBS_ElementName>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap[K];
+    createElement(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
+        // const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
 
-        options = {
-            classes: [
-                ...(classes || []),
-                ...(options?.classes || [])
-            ],
-            id: id || options?.id,
-            attributes: {
-                ...(options?.attributes || {}),
-                ...(attributes || {})
-            }
-        }
+        // options = {
+        //     classes: [
+        //         ...(classes || []),
+        //         ...(options?.classes || [])
+        //     ],
+        //     id: id || options?.id,
+        //     attributes: {
+        //         ...(options?.attributes || {}),
+        //         ...(attributes || {})
+        //     }
+        // }
 
         const element = this.#elements[tag];
 
@@ -228,7 +228,7 @@ class CustomBootstrap {
             const tag = el.tagName.toLowerCase();
             if (tag.includes('cbs-')) {
                 const [,element] = tag.split('cbs-');
-                let cbsEl = CBS.createElement(element);
+                let cbsEl = CBS.createElement(element as CBS_ElementName);
 
                 // if ((el as HTMLElement).dataset.template) {
                 //     cbsEl = cbsEl.constructor.fromTemplate((el as HTMLElement).dataset.template);
