@@ -52,8 +52,8 @@ class CBS_TabNav extends CBS_Component {
      * @param {?CBS_ListItemOptions} [options]
      * @returns {*}
      */
-    addPage(name: string, content: CBS_Node, options?: CBS_ListItemOptions) {
-        if (this.pages[name]) return console.error(`Page ${name} already exists`);
+    addPage(name: string, content: CBS_Node, options?: CBS_ListItemOptions): CBS_TabPage {
+        if (this.pages[name]) throw new Error('A page with that name already exists');
         const li = CBS.createElement('li', options);
         li.addClass('nav-item');
 
