@@ -533,11 +533,11 @@ const CBS = new CustomBootstrap();
     // test for jQuery and popper
     try {
         $('hello-world');
+
+        if (!$(document.createElement('button')).toast) {
+            console.error('Popper is not loaded!');
+        }
     } catch {
         console.error('jQuery is not loaded!');
-    }
-
-    if (!$(document.createElement('button')).toast) {
-        console.error('Popper is not loaded!');
     }
 });

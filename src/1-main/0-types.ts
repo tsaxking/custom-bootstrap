@@ -1,4 +1,6 @@
 type CBS_ElementNameMap = {
+    'div': CBS_Element;
+
     // grid
     'col': CBS_Col;
     'container': CBS_Container;
@@ -76,6 +78,10 @@ type CBS_ElementNameMap = {
 }
 
 type CBS_ElementOptionMap = {
+    'div': CBS_Options;
+
+
+
     'col': CBS_ColOptions;
     'container': CBS_ContainerOptions;
     'row': CBS_RowOptions;
