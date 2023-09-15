@@ -1216,7 +1216,7 @@ class CBS_Element {
                 let success = true;
                 const listeners = this.listeners.filter(l => l.event === event);
 
-                const promises = listeners.filter(l => l.isAsync).map(async l => l.callback(e)?.catch((err) => {
+                const promises = listeners.filter(l => l.isAsync).map(async l => l.callback(e)?.catch((err: Error) => {
                     success = false;
                     console.error(err);
                 }));

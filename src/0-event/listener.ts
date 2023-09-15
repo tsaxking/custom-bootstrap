@@ -3,7 +3,7 @@
  *
  * @typedef {CBS_ListenerCallback}
  */
-type CBS_ListenerCallback = (event: Event) => Promise<boolean|void>|void;
+type CBS_ListenerCallback = (event: Event) => Promise<any>|any;
 
 /**
  * Description placeholder
