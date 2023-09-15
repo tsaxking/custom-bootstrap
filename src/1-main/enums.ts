@@ -7,42 +7,13 @@ enum CBS_Breakpoint {
     xxl = 1400
 }
 
-enum CBS_Color {
-    primary = 'primary',
-    secondary = 'secondary',
-    success = 'success',
-    danger = 'danger',
-    warning = 'warning',
-    info = 'info',
-    light = 'light',
-    dark = 'dark',
-    white = 'white'
-}
+type CBS_Color = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'white';
 
-enum CBS_Size {
-    xs = 'xs',
-    sm = 'sm',
-    md = 'md',
-    lg = 'lg',
-    xl = 'xl',
-    xxl = 'xxl'
-}
+type CBS_Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-enum CBS_Weight {
-    normal = 'normal',
-    bold = 'bold',
-    bolder = 'bolder',
-    lighter = 'lighter'
-}
+type CBS_Weight = 'normal' | 'bold' | 'bolder' | 'lighter';
 
-enum CBS_Align {
-    left = 'left',
-    center = 'center',
-    right = 'right',
-    justify = 'justify',
-    start = 'start',
-    end = 'end'
-}
+type CBS_Align = 'left' | 'center' | 'right' | 'justify' | 'start' | 'end';
 
 enum CBS_Icons {
     success = `

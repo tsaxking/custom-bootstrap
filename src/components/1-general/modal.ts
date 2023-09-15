@@ -6,6 +6,8 @@
 type CBS_ModalOptions = CBS_Options & {
     title?: string;
     buttons?: CBS_Button[];
+
+    size?: CBS_Size;
 }
 
 
@@ -193,6 +195,8 @@ class CBS_Modal extends CBS_Component {
         footer: CBS_ModalFooter;
     }
 
+    private _size: CBS_Size = 'md';
+
 
     /**
      * Creates an instance of CBS_Modal.
@@ -222,6 +226,8 @@ class CBS_Modal extends CBS_Component {
             footer: dialog.subcomponents.footer
         }
 
+        this.size = 'md';
+
         this.append(
             this.subcomponents.dialog
         );
@@ -249,6 +255,16 @@ class CBS_Modal extends CBS_Component {
 
     set footer(footer: CBS_Element) {
         this.subcomponents.footer = footer;
+    }
+
+    set size(size: CBS_Size) {
+        this.subcomponents.dialog.removeClass(`modal-${this._size}`);
+        this._size = size;
+        this.subcomponents.dialog.addClass(`modal-${size}`);
+    }
+
+    get size() {
+        return this._size;
     }
 
 

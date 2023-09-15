@@ -40,7 +40,7 @@ class CBS_Form extends CBS_Component {
     } = {
         container: new CBS_Container(),
         submit: new CBS_Button({
-            color: CBS_Color.primary,
+            color: 'primary', 
             attributes: {
                 type: 'submit'
             }

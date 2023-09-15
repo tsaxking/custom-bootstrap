@@ -297,7 +297,7 @@ class CustomBootstrap {
     async alert(message: any): Promise<void> {
         return new Promise((res, rej) => {
             const ok = new CBS_Button({
-                color: CBS_Color.primary
+                color: 'primary'
             });
 
             ok.content = 'Okay';
@@ -339,13 +339,13 @@ class CustomBootstrap {
     async confirm(message: any): Promise<boolean> {
         return new Promise((res, rej) => {
             const yes = new CBS_Button({
-                color: CBS_Color.primary
+                color: 'primary'
             });
 
             yes.content = 'Okay';
 
             const no = new CBS_Button({
-                color: CBS_Color.secondary
+                color: 'secondary'
             });
 
             no.content = 'Cancel';
@@ -395,13 +395,13 @@ class CustomBootstrap {
     async modalForm(form: CBS_Form): Promise<any> {
         return new Promise((res, rej) => {
             const submit = new CBS_Button({
-                color: CBS_Color.primary
+                color: 'primary'
             });
 
             submit.content = 'Submit';
 
             const cancel = new CBS_Button({
-                color: CBS_Color.secondary
+                color: 'secondary'
             });
 
             cancel.content = 'Cancel';
@@ -461,11 +461,11 @@ class CustomBootstrap {
     async prompt(message?: any): Promise<string|null> {
         return new Promise((res, rej) => {
             const submit = new CBS_Button({
-                color: CBS_Color.primary
+                color: 'primary'
             });
 
             const cancel = new CBS_Button({
-                color: CBS_Color.secondary
+                color: 'secondary'
             });
 
             submit.content = 'Submit';

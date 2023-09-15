@@ -186,7 +186,7 @@ class CBS_SubContextmenu extends CBS_Component {
         this.hide();
 
         if (options?.color) {
-            options.color = CBS_Color.light;
+            options.color = 'light';
         }
     }
     /**
