@@ -514,8 +514,8 @@ class CustomBootstrap {
         });
     }
 
-    modal(container: CBS_Container) {
-        const modal = new CBS_Modal();
+    modal(container: CBS_Container, options?: CBS_ModalOptions) {
+        const modal = new CBS_Modal(options);
         modal.subcomponents.body.append(container);
         modal.show();
         return modal;

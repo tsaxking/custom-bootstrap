@@ -4,6 +4,7 @@
  * @typedef {CBS_ModalOptions}
  */
 type CBS_ModalOptions = CBS_Options & {
+    title?: string;
     buttons?: CBS_Button[];
 }
 
@@ -227,11 +228,11 @@ class CBS_Modal extends CBS_Component {
     }
 
     get title() {
-        return ((this.subcomponents.title as CBS_ModalHeader).subcomponents.title as CBS_Text).text;
+        return this.subcomponents.title.subcomponents.title.text;
     }
 
     set title(title: string) {
-        ((this.subcomponents.title as CBS_ModalHeader).subcomponents.title as CBS_Text).text = title;
+        this.subcomponents.title.subcomponents.title.text = title;
     }
 
     get body() {
@@ -260,9 +261,13 @@ class CBS_Modal extends CBS_Component {
         super.options = options;
 
         if (options.buttons && this.subcomponents?.dialog) {
-            (this.subcomponents.dialog as CBS_ModalDialog).subcomponents.footer.append(
+            this.subcomponents.dialog.subcomponents.footer.append(
                 ...options.buttons
             );
+        }
+
+        if (options.title) {
+            this.title = options.title;
         }
     }
 
