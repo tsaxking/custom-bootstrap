@@ -30,8 +30,17 @@ type CBS_InputList = {
  * @extends {CBS_Component}
  */
 class CBS_Form extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
-        container: new CBS_Container()
+    subcomponents: {
+        container: CBS_Container;
+        submit: CBS_Button;
+    } = {
+        container: new CBS_Container(),
+        submit: new CBS_Button({
+            color: CBS_Color.primary,
+            attributes: {
+                type: 'submit'
+            }
+        })
     }
 
     /**
@@ -44,13 +53,6 @@ class CBS_Form extends CBS_Component {
         super(options);
 
         this.el = document.createElement('form');
-
-        this.subcomponents.submit = new CBS_Button({
-            color: CBS_Color.primary,
-            attributes: {
-                type: 'submit'
-            }
-        });
 
         this.subcomponents.submit.content = 'Submit';
 

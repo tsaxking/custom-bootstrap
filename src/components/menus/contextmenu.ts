@@ -80,7 +80,9 @@ class CBS_ContextmenuSection extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        title: CBS_H6;
+    } = {
         title: new CBS_H6()
     }
 
@@ -239,7 +241,9 @@ class CBS_Contextmenu extends CBS_Component {
 
     ignoreList: string[] = [];
 
-    subcomponents: CBS_ElementContainer = {}
+    subcomponents: {
+        menu: CBS_SubContextmenu;
+    };
 
     /**
      * Creates an instance of CBS_Contextmenu.
@@ -252,7 +256,10 @@ class CBS_Contextmenu extends CBS_Component {
 
         this.ignoreList = options?.ignoreList || [];
 
-        this.subcomponents.menu = new CBS_SubContextmenu(options);
+        this.subcomponents = {
+            menu: new CBS_SubContextmenu(options)
+        }
+
         this.append(this.subcomponents.menu);
 
         this.addClass('position-relative');

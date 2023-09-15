@@ -59,7 +59,9 @@ class CBS_AudioElement extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        source: CBS_AudioSource;
+    } = {
         source: new CBS_AudioSource()
     }
 
@@ -346,7 +348,9 @@ class CBS_AudioTimeline extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        playhead: CBS_AudioPlayhead;
+    } = {
         playhead: new CBS_AudioPlayhead()
     }
 
@@ -463,7 +467,12 @@ class CBS_AudioPlayer extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        audio: CBS_AudioElement;
+        toggleButton: CBS_AudioButton;
+        stopButton: CBS_AudioButton;
+        timeline: CBS_AudioTimeline;
+    } = {
         audio: new CBS_AudioElement(),
         toggleButton: new CBS_AudioButton('toggle'),
         stopButton: new CBS_AudioButton('stop'),
@@ -565,7 +574,11 @@ class CBS_AudioCardBody extends CBS_CardBody {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        title: CBS_H5;
+        subtitle: CBS_Component;
+        player: CBS_AudioPlayer;
+    } = {
         title: new CBS_H5(),
         subtitle: new CBS_Component(),
         player: new CBS_AudioPlayer()
@@ -598,13 +611,16 @@ class CBS_AudioCardBody extends CBS_CardBody {
  * @typedef {CBS_AudioCard}
  * @extends {CBS_Card}
  */
-class CBS_AudioCard extends CBS_Card {
+class CBS_AudioCard extends CBS_Component {
     /**
      * Description placeholder
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        image: CBS_Image;
+        body: CBS_AudioCardBody;
+    } = {
         image: new CBS_Image(),
         body: new CBS_AudioCardBody()
     }

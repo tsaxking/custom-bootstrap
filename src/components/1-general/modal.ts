@@ -17,7 +17,9 @@ type CBS_ModalOptions = CBS_Options & {
  * @extends {CBS_Element}
  */
 class CBS_ModalHeader extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        title: CBS_H5;
+    } = {
         title: new CBS_H5()
     }
 
@@ -101,7 +103,13 @@ class CBS_ModalDialog extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer;
+    subcomponents: {
+        content: CBS_ModalContent;
+        title: CBS_ModalHeader;
+        body: CBS_ModalBody;
+        footer: CBS_ModalFooter;
+        hide: CBS_Button;
+    };
 
 
     /**
@@ -126,7 +134,7 @@ class CBS_ModalDialog extends CBS_Component {
             title: content.subcomponents.header,
             body: content.subcomponents.body,
             footer: content.subcomponents.footer,
-            hide: CBS_Button.fromTemplate('modal-close')
+            hide: CBS_Button.fromTemplate('modal-close') as CBS_Button
         }
 
         content.append(
@@ -149,7 +157,11 @@ class CBS_ModalDialog extends CBS_Component {
 
 
 class CBS_ModalContent extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        header: CBS_ModalHeader;
+        body: CBS_ModalBody;
+        footer: CBS_ModalFooter;
+    } = {
         header: new CBS_ModalHeader(),
         body: new CBS_ModalBody(),
         footer: new CBS_ModalFooter()
@@ -172,6 +184,15 @@ class CBS_ModalContent extends CBS_Component {
  * @extends {CBS_Component}
  */
 class CBS_Modal extends CBS_Component {
+
+    subcomponents: {
+        dialog: CBS_ModalDialog;
+        body: CBS_ModalBody;
+        title: CBS_ModalHeader;
+        footer: CBS_ModalFooter;
+    }
+
+
     /**
      * Creates an instance of CBS_Modal.
      *

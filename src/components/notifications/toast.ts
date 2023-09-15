@@ -7,7 +7,9 @@ type CBS_ToastOptions = CBS_Options & {
 
 
 class CBS_Toast extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        container: CBS_ToastContainer;
+    } = {
         container: new CBS_ToastContainer()
     }
 
@@ -114,7 +116,9 @@ class CBS_Toast extends CBS_Component {
 };
 
 class CBS_ToastContainer extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        card: CBS_ToastCard;
+    } = {
         card: new CBS_ToastCard()
     }
 
@@ -131,7 +135,10 @@ class CBS_ToastContainer extends CBS_Component {
 };
 
 class CBS_ToastCard extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        header: CBS_ToastHeader;
+        body: CBS_ToastBody;
+    } = {
         header: new CBS_ToastHeader(),
         body: new CBS_ToastBody()
     };
@@ -149,7 +156,11 @@ class CBS_ToastCard extends CBS_Component {
 }
 
 class CBS_ToastHeader extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        title: CBS_Span;
+        button: CBS_Button;
+        time: CBS_Span;
+    } = {
         title: new CBS_Span(),
         button: new CBS_Button({
             classes: ['btn-close'],

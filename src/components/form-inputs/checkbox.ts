@@ -190,7 +190,10 @@ class CBS_Checkbox extends CBS_Input {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        input: CBS_CheckboxInput;
+        label: CBS_CheckboxLabel;
+    } = {
         input: new CBS_CheckboxInput(),
         label: new CBS_CheckboxLabel()
     }

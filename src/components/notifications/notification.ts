@@ -16,13 +16,15 @@ type CBS_NotificationOptions = {
 
 
 class CBS_Notification extends CBS_Component {
-    subcomponents: CBS_ElementContainer;
+    subcomponents: {
+        notification: CBS_Alert | CBS_Toast;
+    };
 
     constructor(options?: CBS_NotificationOptions) {
         super(options);
 
         if (options?.type) {
-            let notification: CBS_Component;
+            let notification: CBS_Alert | CBS_Toast;
             switch (options.type) {
                 case 'alert':
                     notification = new CBS_Alert(options);
@@ -39,7 +41,7 @@ class CBS_Notification extends CBS_Component {
             }
         } else {
             this.subcomponents = {
-                container: new CBS_Alert()
+                notification: new CBS_Alert()
             };
         }
     }

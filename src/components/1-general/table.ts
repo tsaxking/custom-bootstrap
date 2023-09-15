@@ -201,7 +201,9 @@ class CBS_SubTable extends CBS_Element {
 class CBS_Table extends CBS_Component {
     static from(table: HTMLTableElement) {}
 
-    subcomponents: CBS_ElementContainer = {}
+    subcomponents: {
+        table: CBS_SubTable;
+    }
     buildData?: {
         headers: CBS_TableHeaderOptions[],
         rows: CBS_TableRowCellOptions[],
@@ -218,7 +220,9 @@ class CBS_Table extends CBS_Component {
         this.el = document.createElement('div');
         if (options?.responsive) this.addClass('table-responsive');
 
-        this.subcomponents.table = new CBS_SubTable(options);
+        this.subcomponents = {
+            table: new CBS_SubTable(options)
+        }
 
         this.append(this.subcomponents.table);
     }

@@ -96,7 +96,11 @@ class CBS_Card extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        header: CBS_CardHeader;
+        body: CBS_CardBody;
+        footer: CBS_CardFooter;
+    } = {
         header: new CBS_CardHeader(),
         body: new CBS_CardBody(),
         footer: new CBS_CardFooter()

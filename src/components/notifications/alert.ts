@@ -5,7 +5,10 @@ type CBS_AlertOptions = CBS_Options & {
 
 
 class CBS_Alert extends CBS_Component {
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        text: CBS_Span;
+        close: CBS_Button;
+    } = {
         text: new CBS_Span(),
         close: new CBS_Button({
             classes: ['btn-close'],

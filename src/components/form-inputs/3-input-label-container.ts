@@ -22,7 +22,7 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+     CBS_ElementContainer = {
         input: new CBS_Input(),
         label: new CBS_Label(),
         text: new CBS_FormText()

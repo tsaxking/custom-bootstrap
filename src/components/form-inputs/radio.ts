@@ -112,7 +112,10 @@ class CBS_Radio extends CBS_Input {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        label: CBS_RadioLabel;
+        input: CBS_RadioInput;
+    } = {
         label: new CBS_RadioLabel(),
         input: new CBS_RadioInput()
     }

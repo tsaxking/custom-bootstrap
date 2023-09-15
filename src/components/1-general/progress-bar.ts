@@ -57,7 +57,10 @@ class CBS_Progress extends CBS_Component {
      *
      * @type {CBS_ElementContainer}
      */
-    subcomponents: CBS_ElementContainer = {
+    subcomponents: {
+        text: CBS_Component;
+        bar: CBS_ProgressBar;
+    } = {
         text: new CBS_Component({
             classes: [
                 'm-2'
