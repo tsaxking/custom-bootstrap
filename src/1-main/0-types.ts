@@ -46,7 +46,6 @@ type CBS_ElementNameMap = {
     'input-radio': CBS_Radio;
     'input-range': CBS_RangeInput;
     'range': CBS_RangeInput;
-    'input-select': CBS_SelectInput;
     'select': CBS_SelectInput;
     'input-textarea': CBS_TextareaInput;
 
@@ -126,7 +125,6 @@ type CBS_ElementOptionMap = {
     'input-radio': CBS_RadioOptions;
     'input-range': CBS_RangeInputOptions;
     'range': CBS_RangeInputOptions;
-    'input-select': CBS_InputOptions;
     'select': CBS_InputOptions;
     'input-textarea': CBS_InputOptions;
 

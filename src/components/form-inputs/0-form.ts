@@ -22,6 +22,10 @@ type CBS_InputList = {
 }
 
 
+type CBS_FormInputType = 'text'|'password'|'email'|'select'|'textarea'|'checkbox'|'checkbox-group'|'radio'|'file'|'range'|'color'|'date';
+
+
+
 /**
  * Description placeholder
  *
@@ -66,7 +70,7 @@ class CBS_Form extends CBS_Component {
      * @param {CBS_Options} options
      * @returns {CBS_Input}
      */
-    createInput(name: string, type: string, options?: CBS_Options): CBS_InputLabelContainer {
+    createInput(name: string, type: CBS_FormInputType, options?: CBS_Options): CBS_InputLabelContainer {
         let i: CBS_Input;
 
         switch (type) {

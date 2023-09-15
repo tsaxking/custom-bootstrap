@@ -121,16 +121,17 @@ class CBS_SelectInput extends CBS_Input {
     }
 
     /**
-     * Description placeholder
+     * 
      *
-     * @param {string} text
-     * @param {string} value
-     * @param {*} [mirrorValue=null]
+     * @param {string} text The text to display for the option
+     * @param {string} value The value of the option
+     * @param {*} [mirrorValue=null] The data this option represents
      * @returns {(CBS_SelectOption|null)}
      */
     addOption(text: string, value: string, mirrorValue: any = null): CBS_SelectOption|null {
         const has = this.selectOptions.find(option => option.value === value);
         if (has) {
+            console.error('CBS_Select cannot have multiple options with the same value');
             return null;
         }
 
@@ -206,5 +207,4 @@ class CBS_SelectInput extends CBS_Input {
 
 
 
-CBS.addElement('input-select', CBS_SelectInput);
 CBS.addElement('select', CBS_SelectInput);
