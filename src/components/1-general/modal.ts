@@ -193,6 +193,11 @@ class CBS_Modal extends CBS_Component {
         body: CBS_ModalBody;
         title: CBS_ModalHeader;
         footer: CBS_ModalFooter;
+    } = {
+        dialog: new CBS_ModalDialog(),
+        body: new CBS_ModalBody(),
+        title: new CBS_ModalHeader(),
+        footer: new CBS_ModalFooter()
     }
 
     private _size: CBS_Size = 'md';
@@ -218,13 +223,6 @@ class CBS_Modal extends CBS_Component {
         dialog.subcomponents.hide.on('click', () => {
             this.hide();
         });
-
-        this.subcomponents = {
-            dialog,
-            body: dialog.subcomponents.body,
-            title: dialog.subcomponents.title,
-            footer: dialog.subcomponents.footer
-        }
 
         this.size = 'md';
 
