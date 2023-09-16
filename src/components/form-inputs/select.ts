@@ -99,7 +99,7 @@ class CBS_SelectOption extends CBS_Element {
  * @typedef {CBS_SelectInput}
  * @extends {CBS_Input}
  */
-class CBS_SelectInput extends CBS_Input {
+class CBS_SelectInput<MirrorValueType> extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -195,7 +195,7 @@ class CBS_SelectInput extends CBS_Input {
      * @readonly
      * @type {*}
      */
-    get mirrorValue():any {
+    get mirrorValue(): MirrorValueType|null {
         const option = this.selectOptions.find(option => option.value === this.value);
         if (option) {
             return option.mirrorValue;
