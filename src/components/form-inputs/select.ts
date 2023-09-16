@@ -203,6 +203,12 @@ class CBS_SelectInput<MirrorValueType> extends CBS_Input {
 
         return null;
     }
+
+
+    clearElements() {
+        super.clearElements();
+        this.selectOptions = [];
+    }
 }
 
 
