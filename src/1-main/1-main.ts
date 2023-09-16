@@ -176,8 +176,8 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement<type = unknown, K extends CBS_ElementName = CBS_ElementName>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap<type>[K];
-    createElement<type>(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
+    createElement<K extends CBS_ElementName = CBS_ElementName, type = unknown>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap<type>[K];
+    createElement<K extends CBS_ElementName = CBS_ElementName, type = unknown>(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
         const element = this.#elements[tag];
 
         if (!element) {
@@ -214,7 +214,7 @@ class CustomBootstrap {
             const tag = el.tagName.toLowerCase();
             if (tag.includes('cbs-')) {
                 const [,element] = tag.split('cbs-');
-                let cbsEl = CBS.createElement<type>(element as CBS_ElementName);
+                let cbsEl = CBS.createElement<CBS_ElementName, type>(element as CBS_ElementName);
 
                 // if ((el as HTMLElement).dataset.template) {
                 //     cbsEl = cbsEl.constructor.fromTemplate((el as HTMLElement).dataset.template);

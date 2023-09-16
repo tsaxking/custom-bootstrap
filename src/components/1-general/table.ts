@@ -199,7 +199,36 @@ class CBS_SubTable extends CBS_Element {
 }
 
 class CBS_Table extends CBS_Component {
-    static from(table: HTMLTableElement) {}
+    static fromHTML(table: HTMLTableElement) {}
+
+    
+    fromData<T>(data: T[]): CBS_Table {
+        if (!data.length) throw new Error('No data. To use this method, there must be at least one element in the array.');
+
+        const table = CBS.createElement('table');
+
+        const isArray = Array.isArray(data[0]);
+
+        const headers = isArray ? data[0] as any[] : Object.keys(data[0] as object);
+
+        const thead = table.addHead();
+        thead.addRow().addHeaders(...headers.map(h => ({ content: h })));
+
+        const tbody = table.addBody();
+        tbody.addRows(
+            headers.map((h, i) => {
+                if (isArray) return {
+                    getData: (d: any) => d[i]
+                };
+                else return {
+                    getData: (d: any) => d[h]
+                }
+            })
+            , data);
+
+        return table;
+    }
+
 
     subcomponents: {
         table: CBS_SubTable;
