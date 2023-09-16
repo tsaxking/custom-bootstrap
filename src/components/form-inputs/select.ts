@@ -26,7 +26,7 @@ class CBS_SelectOption extends CBS_Element {
      *
      * @type {string}
      */
-    text: string;
+    _text: string = '';
     /**
      * Description placeholder
      *
@@ -50,6 +50,16 @@ class CBS_SelectOption extends CBS_Element {
         this.value = options?.value || '';
         this.text = options?.text || '';
         this.mirrorValue = options?.mirrorValue || null;
+    }
+
+    get text(): string {
+        return this._text;
+    }
+
+    set text(text: string) {
+        this._text = text;
+        this.clearElements();
+        this.append(text);
     }
 
     /**
