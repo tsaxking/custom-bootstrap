@@ -109,7 +109,7 @@ class CBS_SelectOption extends CBS_Element {
  * @typedef {CBS_SelectInput}
  * @extends {CBS_Input}
  */
-class CBS_SelectInput<MirrorValueType> extends CBS_Input {
+class CBS_SelectInput<MirrorValueType = unknown> extends CBS_Input {
     /**
      * Description placeholder
      *

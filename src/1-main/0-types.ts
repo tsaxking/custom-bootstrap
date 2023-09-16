@@ -1,4 +1,4 @@
-type CBS_ElementNameMap = {
+type CBS_ElementNameMap<type = unknown> = {
     'div': CBS_Element;
 
     // grid
@@ -46,7 +46,7 @@ type CBS_ElementNameMap = {
     'input-radio': CBS_Radio;
     'input-range': CBS_RangeInput;
     'range': CBS_RangeInput;
-    'select': CBS_SelectInput;
+    'select': CBS_SelectInput<type>;
     'input-textarea': CBS_TextareaInput;
 
     // list

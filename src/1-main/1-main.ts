@@ -58,7 +58,7 @@ type Selector = {
  * @typedef {CBS_ElementConstructorMap}
  */
 type CBS_ElementConstructorMap = {
-    [key: string]: new (options?: CBS_Options) => CBS_Element;
+    [key: string]: new <type = unknown>(options?: CBS_Options) => CBS_Element;
 }
 
 /**
@@ -176,22 +176,8 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement<K extends CBS_ElementName>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap[K];
-    createElement(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
-        // const { tag, id, classes, attributes } = CustomBootstrap.parseSelector(selector);
-
-        // options = {
-        //     classes: [
-        //         ...(classes || []),
-        //         ...(options?.classes || [])
-        //     ],
-        //     id: id || options?.id,
-        //     attributes: {
-        //         ...(options?.attributes || {}),
-        //         ...(attributes || {})
-        //     }
-        // }
-
+    createElement<type = unknown, K extends CBS_ElementName = CBS_ElementName>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap<type>[K];
+    createElement<type>(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
         const element = this.#elements[tag];
 
         if (!element) {
@@ -200,7 +186,7 @@ class CustomBootstrap {
             return new CBS_Element(options);
         }
 
-        return new element(options);
+        return new element<type>(options);
     }
 
     createDomFromElement(el: HTMLDivElement) {
@@ -216,7 +202,7 @@ class CustomBootstrap {
      * @param {string} text
      * @returns {(ChildNode|null)}
      */
-    createElementFromText(text: string): (Element|ChildNode|CBS_ElementNameMap[keyof CBS_ElementNameMap])[] {
+    createElementFromText<type>(text: string): (Element|ChildNode|CBS_ElementNameMap<type>[keyof CBS_ElementNameMap])[] {
         const div = document.createElement('div');
         div.innerHTML = text;
         const fullArray = Array.from(div.querySelectorAll('*'));
@@ -228,7 +214,7 @@ class CustomBootstrap {
             const tag = el.tagName.toLowerCase();
             if (tag.includes('cbs-')) {
                 const [,element] = tag.split('cbs-');
-                let cbsEl = CBS.createElement(element as CBS_ElementName);
+                let cbsEl = CBS.createElement<type>(element as CBS_ElementName);
 
                 // if ((el as HTMLElement).dataset.template) {
                 //     cbsEl = cbsEl.constructor.fromTemplate((el as HTMLElement).dataset.template);
