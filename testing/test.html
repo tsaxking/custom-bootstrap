@@ -36,27 +36,9 @@
 
     <script src="../src/index.js"></script>
     <script>
-      const pitScoutingForm = CBS.createElement('form');
-      pitScoutingForm.append('pitScoutingForm')
-      const electricalScoutingForm = CBS.createElement('form');
-      electricalScoutingForm.append('electricalScoutingForm')
-      const mechanicalScoutingForm = CBS.createElement('form');
-      mechanicalScoutingForm.append('mechanicalScoutingForm')
-
-      const tabNav = CBS.createElement('tab-nav');
-      document.querySelector('header').append(tabNav.el);
-      document.querySelector('main').append(tabNav.container.el);
-
-      tabNav.addPage('Pit Scouting', pitScoutingForm);
-      tabNav.addPage('Electrical Scouting', electricalScoutingForm);
-      tabNav.addPage('Mechanical Scouting', mechanicalScoutingForm);
-
-
-
-
-
-
-
+      const modal = CBS.modal(CBS.createElement('container'), {
+        title: 'test'
+      })
     </script>
 </body>
 
