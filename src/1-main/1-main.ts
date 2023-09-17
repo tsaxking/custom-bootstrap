@@ -286,19 +286,16 @@ class CustomBootstrap {
                 color: 'primary'
             });
 
-            ok.content = 'Okay';
+            ok.append('Okay');
 
             const modal = new CBS_Modal({
                 buttons: [
                     ok
-                ]
+                ],
+                title: 'Alert'
             });
 
-            modal.title = 'Alert';
-
-            modal.subcomponents.body.append(message);
-
-            modal.subcomponents.footer.append(ok);
+            modal.body = message;
 
             ok.on('click', () => {
                 modal.hide();
