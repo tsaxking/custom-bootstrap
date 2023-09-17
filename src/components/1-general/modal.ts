@@ -229,7 +229,8 @@ class CBS_Modal extends CBS_Component {
             this.hide();
         });
 
-        this.size = 'md';
+        if (options?.size) this.size = options.size;
+        else this.size = 'md';
 
         this.append(
             this.subcomponents.dialog
