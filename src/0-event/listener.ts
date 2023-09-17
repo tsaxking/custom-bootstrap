@@ -13,26 +13,6 @@ type CBS_ListenerCallback = (event: Event) => Promise<any>|any;
  */
 class CBS_Listener {
     /**
-     * Description placeholder
-     *
-     * @type {string}
-     */
-    event: string;
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_ListenerCallback}
-     */
-    callback: CBS_ListenerCallback;
-    // options?: AddEventListenerOptions;
-    /**
-     * Description placeholder
-     *
-     * @type {boolean}
-     */
-    isAsync: boolean = true;
-
-    /**
      * Creates an instance of CBS_Listener.
      *
      * @constructor
@@ -40,20 +20,20 @@ class CBS_Listener {
      * @param {CBS_ListenerCallback} callback
      * @param {boolean} [isAsync=true]
      */
-    constructor(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true) {
-        this.event = event;
-        this.callback = callback;
-        this.isAsync = isAsync;
+    constructor(
+        public readonly event: CBS_Event,
+        public readonly callback: CBS_ListenerCallback, 
+        public readonly isAsync: boolean = true) {
     }
 }
 
 /**
  * Description placeholder
  *
- * @typedef {CBS_Event}
+ * @typedef {CBS_EventCallback}
  */
-type CBS_Event = {
-    event: string;
+type CBS_EventCallback = {
+    event: CBS_Event;
     callback: CBS_ListenerCallback;
     // options?: AddEventListenerOptions;
     isAsync: boolean;

@@ -306,7 +306,7 @@ class CustomBootstrap {
             });
 
             modal.on('hidden.bs.modal', () => res());
-            modal.on('destroyed', () => res());
+            modal.on('el.destroy', () => res());
             modal.show();
         });
     }
@@ -363,7 +363,7 @@ class CustomBootstrap {
             modal.footer.append(yes, no);
 
             modal.on('hidden.bs.modal', () => res(false));
-            modal.on('destroyed', () => res(false));
+            modal.on('el.destroy', () => res(false));
             modal.show();
         });
     }
@@ -427,7 +427,7 @@ class CustomBootstrap {
             });
 
             modal.on('hidden.bs.modal', () => res(null));
-            modal.on('destroyed', () => res(null));
+            modal.on('el.destroy', () => res(null));
             modal.show();
         });
     }
@@ -492,7 +492,7 @@ class CustomBootstrap {
             modal.footer.append(submit);
 
             modal.on('hidden.bs.modal', () => res(null));
-            modal.on('destroyed', () => res(null));
+            modal.on('el.destroy', () => res(null));
             modal.show();
         });
     }

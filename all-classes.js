@@ -122,3 +122,85 @@ allClasses = allClasses
 const fs = require('fs');
 const path = require('path');
 fs.writeFileSync(path.join(__dirname, './src/1-main/classes.ts'), 'type CBS_Class = \n' + allClasses + ';');
+
+
+
+
+
+
+let allEvents = ["abort","ended","addtrack","change","removetrack","messageerror","message","messageerror","message","animationcancel","animationend","animationiteration","animationstart","copy","cut","DOMContentLoaded","dragend","dragenter","dragleave","dragover","dragstart","drag","drop","fullscreenchange","fullscreenerror","gotpointercapture","keydown","keypress","keyup","lostpointercapture","paste","pointercancel","pointerdown","pointerenter","pointerleave","pointerlockchange","pointerlockerror","pointermove","pointerout","pointerover","pointerup","readystatechange","scroll","selectionchange","touchcancel","touchend","touchmove","touchstart","transitioncancel","transitionend","transitionrun","transitionstart","visibilitychange","wheel","animationcancel","animationend","animationiteration","animationstart","afterscriptexecute","auxclick","beforescriptexecute","blur","click","compositionend","compositionstart","compositionupdate","contextmenu","copy","cut","dblclick","DOMActivate","DOMMouseScroll","error","focusin","focusout","focus","fullscreenchange","fullscreenerror","gesturechange","gestureend","gesturestart","gotpointercapture","keydown","keypress","keyup","lostpointercapture","mousedown","mouseenter","mouseleave","mousemove","mouseout","mouseover","mouseup","mousewheel","paste","pointercancel","pointerdown","pointerenter","pointerleave","pointermove","pointerout","pointerover","pointerup","scroll","select","touchcancel","touchend","touchmove","touchstart","transitioncancel","transitionend","transitionrun","transitionstart","webkitmouseforcechanged","webkitmouseforcedown","webkitmouseforceup","webkitmouseforcewillbegin","wheel","error","message","open","abort","error","loadend","loadstart","load","progress","webglcontextcreationerror","webglcontextlost","webglcontextrestored","toggle","cancel","close","beforeinput","change","input","formdata","reset","submit","invalid","search","abort","canplaythrough","canplay","durationchange","emptied","ended","error","loadeddata","loadedmetadata","loadstart","pause","playing","play","progress","ratechange","seeked","seeking","stalled","suspend","timeupdate","volumechange","waiting","slotchange","cuechange","enterpictureinpicture","leavepictureinpicture","abort","close","error","versionchange","blocked","upgradeneeded","error","success","abort","complete","error","devicechange","error","addtrack","removetrack","ended","mute","unmute","change","messageerror","message","complete","merchantvalidation","paymentmethodchange","shippingaddresschange","shippingoptionchange","payerdetailchange","resourcetimingbufferfull","resize","bufferedamountlow","close","closing","error","message","open","error","tonechange","gatheringstatechange","selectedcandidatepairchange","statechange","addstream","connectionstatechange","datachannel","icecandidateerror","icecandidate","iceconnectionstatechange","icegatheringstatechange","negotiationneeded","removestream","signalingstatechange","track","audioprocess","message","activate","contentdelete","install","message","notificationclick","pushsubscriptionchange","push","connect","audioend","audiostart","end","error","nomatch","result","soundend","soundstart","speechend","speechstart","start","voiceschanged","boundary","end","error","mark","pause","resume","start","beginEvent","endEvent","repeatEvent","abort","error","load","resize","scroll","unload","copy","cut","paste","cuechange","addtrack","change","removeTrack","addtrack","change","removetrack","resize","scroll","close","error","message","open","afterprint","animationcancel","animationend","animationiteration","animationstart","appinstalled","beforeprint","beforeunload","blur","copy","cut","devicemotion","deviceorientation","error","focus","gamepadconnected","gamepaddisconnected","hashchange","languagechange","load","messageerror","message","offline","online","orientationchange","pagehide","pageshow","paste","popstate","rejectionhandled","resize","storage","transitioncancel","transitionend","transitionrun","transitionstart","unhandledrejection","unload","vrdisplayactivate","vrdisplayblur","vrdisplayconnect","vrdisplaydeactivate","vrdisplaydisconnect","vrdisplayfocus","vrdisplaypointerrestricted","vrdisplaypointerunrestricted","vrdisplaypresentchange","messageerror","message","languagechange","abort","error","loadend","loadstart","load","progress","timeout","reset","end","inputsourceschange","selectend","selectstart","select","squeezeend","squeezestart","squeeze","visibilitychange","devicechange"];
+
+
+const elEvents = [
+    'change',
+    'destroy',
+    'clear',
+    'hide',
+    'show',
+    'clone',
+    'render',
+    'append',
+    'appendChild',
+    'removeChild'
+];
+
+const labelEvents = [
+    'add'
+];
+
+const inputEvents = [
+    'save',
+    'add'
+];
+
+const parameterEvents = [
+    'write',
+    'read'
+]
+
+allEvents.push(...elEvents.map(e => `el.${e}`));
+allEvents.push(...labelEvents.map(e => `label.${e}`));
+allEvents.push(...inputEvents.map(e => `input.${e}`));
+allEvents.push(...parameterEvents.map(e => `parameter.${e}`));
+
+
+
+const bootstrapEvents = [
+    'shown.bs.modal',
+    'hidden.bs.modal',
+    'shown.bs.toast',
+    'hidden.bs.toast',
+    'shown.bs.tab',
+    'hidden.bs.tab',
+    'shown.bs.dropdown',
+    'hidden.bs.dropdown',
+    'shown.bs.collapse',
+    'hidden.bs.collapse',
+    'shown.bs.carousel',
+    'hidden.bs.carousel',
+    'slide.bs.carousel',
+    'slid.bs.carousel',
+    'shown.bs.popover',
+    'hidden.bs.popover',
+    'shown.bs.tooltip',
+    'hidden.bs.tooltip'
+];
+
+allEvents.push(...bootstrapEvents);
+
+
+allEvents = allEvents
+    .filter(e => !e.includes('&') && !e.includes('*') && !e.includes('#'))
+    .map(e => e.split(' ')[0])
+    // remove duplicates
+    .filter((e, i, a) => a.indexOf(e) === i)
+    .map(e => `'${e}'`)
+    .sort((a, b) => a.localeCompare(b))
+    .join(d);
+
+
+
+
+
+
+fs.writeFileSync(path.join(__dirname, './src/1-main/events.ts'), 'type CBS_Event = \n' + allEvents + ';');

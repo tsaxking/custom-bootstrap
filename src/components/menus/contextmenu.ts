@@ -36,9 +36,9 @@ class CBS_ContextMenuItem extends CBS_Paragraph {
         this.on('touchend', () => this.removeClass('bg-secondary'));
         this.on('touchcancel', () => this.removeClass('bg-secondary'));
         this.on('touchmove', () => this.removeClass('bg-secondary'));
-        this.on('touchleave', () => this.removeClass('bg-secondary'));
-        this.on('touchenter', () => this.addClass('bg-secondary'));
-        this.on('touchforcechange', () => this.removeClass('bg-secondary'));
+        // this.on('touchleave', () => this.removeClass('bg-secondary'));
+        // this.on('touchenter', () => this.addClass('bg-secondary'));
+        // this.on('touchforcechange', () => this.removeClass('bg-secondary'));
         this.on('touchend', () => this.removeClass('bg-secondary'));
     }
 }

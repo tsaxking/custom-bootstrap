@@ -94,7 +94,7 @@ class CBS_InputGroup extends CBS_Component {
         groupLabel.text = label;
         this.append(groupLabel);
 
-        this.trigger('label:add');
+        this.trigger('label.add');
     }
 
     /**
@@ -105,7 +105,7 @@ class CBS_InputGroup extends CBS_Component {
     addInput(input: CBS_Input|CBS_InputLabelContainer) {
         this.append(input);
 
-        this.trigger('input:add');
+        this.trigger('input.add');
     }
 }
 

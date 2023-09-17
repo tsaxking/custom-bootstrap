@@ -39,7 +39,7 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
         });
 
         this.save.on('click', () => {
-            this.trigger('save');
+            this.trigger('input.save');
         })
 
         this.append(

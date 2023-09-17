@@ -739,7 +739,7 @@ class CBS_Element {
 
         if (options?.listeners) {
             Object.entries(options.listeners).forEach(([event, callback]) => {
-                this.on(event, callback);
+                this.on(event as CBS_Event, callback);
             });
         }
     }
@@ -777,7 +777,7 @@ class CBS_Element {
             this._el.addEventListener(event, callback);
         });
 
-        this.trigger('element.change');
+        this.trigger('el.change');
     }
 
     /**
@@ -840,6 +840,7 @@ class CBS_Element {
         this._components.push(...elements);
 
         this.render();
+        this.trigger('el.appendChild');
 
         return this;
     }
@@ -863,6 +864,7 @@ class CBS_Element {
         });
 
         this._components = this._components.filter(e => !elements.includes(e));
+        this.trigger('el.removeChild');
     }
 
     /**
@@ -886,6 +888,7 @@ class CBS_Element {
         this._components.unshift(...elements);
 
         this.render();
+        this.trigger('el.appendChild');
     }
 
     /**
@@ -901,6 +904,7 @@ class CBS_Element {
         }
 
         this.render();
+        this.trigger('el.appendChild');
     }
 
     /**
@@ -942,6 +946,7 @@ class CBS_Element {
         }
 
         this.render();
+        this.trigger('el.appendChild');
     }
 
     /**
@@ -1017,7 +1022,7 @@ class CBS_Element {
         this._components = [];
         this._el.innerHTML = '';
 
-        this.trigger('element:clear');
+        this.trigger('el.clear');
     }
 
 
@@ -1045,6 +1050,7 @@ class CBS_Element {
      */
     set parent(parent: CBS_Element|null) {
         this._parent = parent;
+        this.trigger('el.append');
     }
 
 
@@ -1083,6 +1089,8 @@ class CBS_Element {
             });
         }
 
+        this.trigger('el.render');
+
         this.writeAll();
     }
     
@@ -1115,8 +1123,8 @@ class CBS_Element {
 
             this.parameters[key] = value;
 
-            this.trigger(`parameter.write:${key}`);
-            if (trigger) this.trigger('parameters.write');
+            this.trigger(`parameter.write:${key}` as CBS_Event);
+            if (trigger) this.trigger('parameter.write');
 
             for (const c of this.components) {
                 if (c instanceof CBS_Element) c.write(key, value, trigger);
@@ -1170,7 +1178,7 @@ class CBS_Element {
             this.write(key, value, false);
         });
 
-        this.trigger('parameters.write');
+        this.trigger('parameter.write');
     }
 
 
@@ -1201,7 +1209,7 @@ class CBS_Element {
      * @param {CBS_ListenerCallback} callback
      * @param {boolean} [isAsync=false]
      */
-    on(event: string, callback: CBS_ListenerCallback, isAsync: boolean = true): this {
+    on(event: CBS_Event, callback: CBS_ListenerCallback, isAsync: boolean = true): this {
         if (!this._el) throw new Error('No element to add listener to');
         // if (!event && !callback) {
         //     reset all .off() listeners
@@ -1259,7 +1267,7 @@ class CBS_Element {
      * @param {?string} [event]
      * @param {?CBS_ListenerCallback} [callback]
      */
-    off(event?: string, callback?: CBS_ListenerCallback) {
+    off(event?: CBS_Event, callback?: CBS_ListenerCallback) {
         if (!this._el) throw new Error('No element to remove event listener from');
 
         if (!event) {
@@ -1304,7 +1312,7 @@ class CBS_Element {
      * @param {?EventInit} [options]
      * @returns {Promise<boolean>}
      */
-    async trigger(event: string, options?: EventInit): Promise<boolean> {
+    async trigger(event: CBS_Event, options?: EventInit): Promise<boolean> {
         return new Promise((res,rej) => {
             if (!this._el) throw new Error('No element to trigger event on');
 
