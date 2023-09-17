@@ -4,11 +4,6 @@ const d = ' |\n';
 
 allClasses = JSON.parse(allClasses);
 
-allClasses = allClasses
-    .filter((e, i) => allClasses.indexOf(e) === i)
-    .filter(e => !e.includes('&'));
-
-
 // const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 // const nums = Array.from(Array(13).keys()).slice(1);
 
@@ -61,7 +56,8 @@ allClasses.push(...moreClasses);
 allClasses = allClasses
     .filter(e => !e.includes('&'))
     .map(e => e.split(' ')[0])
-    .filter((e, i) => allClasses.indexOf(e) === i)
+    // remove duplicates
+    .filter((e, i, a) => a.indexOf(e) === i)
     .map(e => `'${e.slice(1)}'`)
     .sort((a, b) => a.localeCompare(b))
     .join(d);
