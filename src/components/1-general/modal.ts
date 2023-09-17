@@ -235,6 +235,12 @@ class CBS_Modal extends CBS_Component {
         this.append(
             this.subcomponents.dialog
         );
+
+        if (options?.destroyOnHide) {
+            this.on('hidden.bs.modal', () => {
+                this.destroy();
+            });
+        }
     }
 
     get title() {
@@ -312,7 +318,6 @@ class CBS_Modal extends CBS_Component {
      */
     hide() {
         $(this._el).modal('hide');
-        if (this.options.destroyOnHide) this.on('animationend', () => this.destroy());
     }
 }
 
