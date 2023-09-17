@@ -6,8 +6,8 @@
 type CBS_ModalOptions = CBS_Options & {
     title?: string;
     buttons?: CBS_Button[];
-
     size?: CBS_Size;
+    destroyOnHide?: boolean;
 }
 
 
@@ -312,6 +312,7 @@ class CBS_Modal extends CBS_Component {
      */
     hide() {
         $(this._el).modal('hide');
+        if (this.options.destroyOnHide) this.on('animationend', () => this.destroy());
     }
 }
 
