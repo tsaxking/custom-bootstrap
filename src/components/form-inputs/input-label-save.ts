@@ -47,6 +47,8 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
             this.subcomponents.save,
             this.subcomponents.clear
         );
+
+        if (options) this.options = options;
     }
 
     get options() {
