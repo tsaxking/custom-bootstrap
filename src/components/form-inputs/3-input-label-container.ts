@@ -120,7 +120,7 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
                     ];
                     const row = new CBS_Row({
                         classes: [
-                            'g-3',
+                            'mb-3',
                             'align-items-center'
                         ]
                     });

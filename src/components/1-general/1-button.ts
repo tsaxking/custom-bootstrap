@@ -9,6 +9,8 @@ type CBS_ButtonOptions = CBS_Options & {
     size?: CBS_Size;
     color?: CBS_Color;
     shadow?: boolean;
+
+    text?: string;
 }
 
 
@@ -56,18 +58,21 @@ class CBS_Button extends CBS_Element {
         }
 
         if (options.size) {
-            this.addClass(`btn-${options.size}`);
+            this.addClass(`btn-${options.size}` as CBS_Class);
             // this.el.classList.add(`btn-${options.size}`);
         }
 
         if (options.rounded) {
-            this.addClass(`btn-rounded`);
-            // this.el.classList.add(`btn-rounded`);
+            this.addClass(`rounded`);
         }
 
         if (options.shadow) {
-            this.addClass(`btn-shadow`);
-            // this.el.classList.add(`btn-shadow`);
+            this.addClass(`shadow`);
+        }
+
+        if (options.text) {
+            this.clearElements();
+            this.append(options.text);
         }
     }
 

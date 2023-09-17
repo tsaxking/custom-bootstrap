@@ -4,17 +4,7 @@
  *
  * @typedef {CBS_FileInputOptions}
  */
-type CBS_FileInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_FileInputOptions = CBS_Options & {
 }
 
 /**
@@ -48,13 +38,17 @@ class CBS_FileInput extends CBS_Input {
         return (this.el as HTMLInputElement).files as FileList;
     }
 
+    set value(value: FileList) {
+        (this.el as HTMLInputElement).files = value;
+    }
+
     /**
      * Description placeholder
      */
     clearFiles() {
         // clear all files from input
         try { 
-            (this.el as HTMLInputElement).value = '';
+            (this.el as HTMLInputElement).value = null as any;
         } catch (e) {
             console.warn('You must be using an older browser, attempting to clear files again...');
             this.setAttribute('type', 'text');

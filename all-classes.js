@@ -70,10 +70,6 @@ allClasses.push(...textTypes.flatMap(t => sizes.map(s => `.text-${s}-${t}`)));
 
 const moreClasses = [
     '.modal-content',
-    '.container-md',
-    '.container-lg',
-    '.container-xl',
-    '.container-xxl',
     '.d-flex'
 ];
 

@@ -1,5 +1,8 @@
 {
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "jsdoc-generator.includeTime": false
+    "jsdoc-generator.includeTime": false,
+    "cSpell.words": [
+        "subcomponents"
+    ]
 }
