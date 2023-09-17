@@ -744,7 +744,11 @@ class CBS_Element {
         if (attributes) this.attributes = attributes;
         if (style) {
             for (const key in style) {
-                this._el.style[key] = style[key];
+                try {
+                    this._el.style[key] = style[key];
+                } catch (e) {
+                    console.log('Cannot apply style', key, style[key], 'to', this._el);
+                }
             }
         }
         if (id) this.id = id;

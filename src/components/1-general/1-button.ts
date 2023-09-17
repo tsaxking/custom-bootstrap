@@ -117,20 +117,3 @@ class CBS_Button extends CBS_Element {
 
 
 CBS.addElement('button', CBS_Button);
-
-(() => {
-    const modalClose = new CBS_Button({
-        color: 'secondary',
-        size: 'sm',
-        classes: ['btn-close'],
-        attributes: {
-            'type': 'button',
-            'data-bs-dismiss': 'modal',
-            'aria-label': 'Close'
-        }
-    });
-
-    // modalClose.removeClass('btn');
-
-    CBS_Button.addTemplate('modal-close', modalClose);
-})();
