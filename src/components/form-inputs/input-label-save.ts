@@ -56,7 +56,7 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
     set options(options: CBS_InputLabelSaveOptions) {
         super.options = options;
 
-        if (options.clear) {
+        if (options.clear && this.subcomponents.clear) {
             this.subcomponents.clear.show();
         } else {
             this.subcomponents.clear.hide();
