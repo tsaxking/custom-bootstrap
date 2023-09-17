@@ -1,5 +1,6 @@
 type CBS_InputLabelSaveOptions = CBS_Options & {
     clear?: boolean;
+    input?: CBS_Input;
 };
 
 
@@ -16,7 +17,7 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
     };
 
 
-    constructor(input: CBS_Input, options?: CBS_InputLabelSaveOptions) {
+    constructor(options?: CBS_InputLabelSaveOptions) {
         super(options);
 
         this.subcomponents = {
@@ -30,8 +31,6 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
                 text: 'Clear'
             })
         }
-
-        this.subcomponents.container.input = input;
 
         this.addClass('d-flex', 'flex-row', 'align-items-center', 'justify-content-between');
 
@@ -86,3 +85,6 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
         this.subcomponents.container.input = input;
     }
 }
+
+
+CBS.addElement('input-label-save', CBS_InputLabelSave);

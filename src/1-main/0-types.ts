@@ -48,6 +48,7 @@ type CBS_ElementNameMap<type = unknown> = {
     'range': CBS_RangeInput;
     'select': CBS_SelectInput<type>;
     'input-textarea': CBS_TextareaInput;
+    'input-label-save': CBS_InputLabelSave;
 
     // list
     'li': CBS_ListItem;
@@ -127,6 +128,7 @@ type CBS_ElementOptionMap = {
     'range': CBS_RangeInputOptions;
     'select': CBS_InputOptions;
     'input-textarea': CBS_InputOptions;
+    'input-label-save': CBS_InputLabelSaveOptions;
 
     // list
     'li': CBS_ListItemOptions;

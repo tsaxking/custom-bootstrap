@@ -164,7 +164,7 @@ class CustomBootstrap {
      * @param {new (options?: CBS_Options) => CBS_Element} element
      * @returns {(CBS_Element) => void}
      */
-    addElement(name: string, element: new (options?: CBS_Options) => CBS_Element) {
+    addElement(name: keyof CBS_ElementNameMap, element: new (options?: CBS_Options) => CBS_Element) {
         this.#elements[name] = element;
     }
 
