@@ -291,11 +291,11 @@ class CustomBootstrap {
             const modal = new CBS_Modal({
                 buttons: [
                     ok
-                ],
-                title: 'Alert'
+                ]
             });
 
-            modal.body = message;
+            modal.title.append('Alert');
+            modal.body.append(message);
 
             ok.on('click', () => {
                 modal.hide();
