@@ -258,7 +258,7 @@ CBS.addElement('toast', CBS_Toast);
 
     for (const [key, value] of Object.entries(toasts)) {
         const toast = new CBS_Toast();
-        toast.addClass(`bg-${key}`, `text-${value.textColor}`, 'border-0');
+        toast.addClass(`bg-${key}` as CBS_Class, `text-${value.textColor}` as CBS_Class, 'border-0');
         ((toast.subcomponents.container as CBS_ToastContainer).subcomponents.card as CBS_ToastCard)
         .subcomponents.header.append(
             value.svg

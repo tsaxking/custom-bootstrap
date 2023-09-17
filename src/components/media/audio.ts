@@ -314,22 +314,13 @@ class CBS_AudioPlayhead extends CBS_Element {
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
-        this.options = {
-            ...this.options,
-            classes: [
-                ...(this.options?.classes || [])
-            ],
-            style: {
-                ...this.options?.style,
-                width: '8px',
-                height: '8px',
-                '-webkit-border-radius': '50%',
-                'border-radius': '50%',
-                background: 'black',
-                cursor: 'pointer',
-                'margin-top': '-3px'
-            }
-        }
+        this.el.style.width = '8px';
+        this.el.style.height = '8px';
+        this.el.style['-webkit-border-radius'] = '50%';
+        this.el.style['border-radius'] = '50%';
+        this.el.style.background = 'black';
+        this.el.style.cursor = 'pointer';
+        this.el.style['margin-top'] = '-3px';
 
         this.el = document.createElement('div');
     }
@@ -363,6 +354,11 @@ class CBS_AudioTimeline extends CBS_Component {
     constructor(options?: CBS_AudioOptions) {
         super(options);
 
+        this.el.style.width = '90%';
+        this.el.style.height = '2px';
+        this.el.style.float = 'left';
+        this.el.style.background = 'rgba(0, 0, 0, 0.3)';
+
         this.options = {
             ...this.options,
             classes: [
@@ -370,14 +366,7 @@ class CBS_AudioTimeline extends CBS_Component {
                 'mt-2',
                 'ms-1',
                 'rounded'
-            ],
-            style: {
-                ...this.options?.style,
-                width: '90%',
-                height: '2px',
-                float: 'left',
-                background: 'rgba(0, 0, 0, 0.3)',
-            }
+            ]
         }
 
         this.el = document.createElement('div');
@@ -429,16 +418,11 @@ class CBS_AudioButton extends CBS_Component {
     constructor(type: string, options?: CBS_AudioOptions) {
         super(options);
 
-        this.options = {
-            ...this.options,
-            classes: ['material-icons'],
-            style: {
-                ...this.options?.style,
-                cursor: 'pointer',
-                float: 'left',
-                'margin-top': '12px'
-            }
-        }
+        this.el.style.cursor = 'pointer';
+        this.el.style.float = 'left';
+        this.el.style['margin-top'] = '12px';
+
+        this.addClass('material-icons');
 
         this.el = document.createElement('i');
 

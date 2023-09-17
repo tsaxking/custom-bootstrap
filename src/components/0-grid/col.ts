@@ -57,7 +57,7 @@ class CBS_Col extends CBS_Element {
      * @param {number} size
      */
     addBreakpoint(breakpoint: string, size: number) {
-        this.addClass(`col-${breakpoint}-${size}`);
+        this.addClass(`col-${breakpoint}-${size}` as CBS_Class);
         this.breakpoints[breakpoint] = size;
     }
 
@@ -67,7 +67,7 @@ class CBS_Col extends CBS_Element {
      * @param {string} breakpoint
      */
     removeBreakpoint(breakpoint: string) {
-        this.removeClass(`col-${breakpoint}-${this.breakpoints[breakpoint]}`);
+        this.removeClass(`col-${breakpoint}-${this.breakpoints[breakpoint]}` as CBS_Class);
         delete this.breakpoints[breakpoint];
     }
 

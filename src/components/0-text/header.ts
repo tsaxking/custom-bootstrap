@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_HeadingOptions}
  */
-type CBS_HeadingOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_HeadingOptions = CBS_Options & {
 }
 
 /**

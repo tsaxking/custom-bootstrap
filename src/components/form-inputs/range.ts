@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_RangeInputOptions}
  */
-type CBS_RangeInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_RangeInputOptions = CBS_InputOptions & {
 
     min?: number;
     max?: number;

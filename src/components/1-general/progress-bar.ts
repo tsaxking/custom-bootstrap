@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_ProgressBarOptions}
  */
-type CBS_ProgressBarOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_ProgressBarOptions = CBS_Options & {
 }
 
 /**
@@ -78,35 +68,23 @@ class CBS_Progress extends CBS_Component {
      * @param {?CBS_ProgressBarOptions} [options]
      */
     constructor(options?: CBS_ProgressBarOptions) {
+
         super(options);
 
         this.el = document.createElement('div');
 
-        this.options = {
-            ...this.options,
-            classes: [
-                ...(this.options.classes || []),
-                'd-flex',
-                'justify-content-between',
-                'align-items-center',
-                'mb-3',
-                'w-100',
-                'p-2',
-                'position-fixed',
-                'bg-secondary',
-                'rounded',
-                'text-light',
-
-
-                // To be used with animate.css
-                'animate__animated',
-                'animate__fadeInDown'
-            ],
-            style: {
-                ...this.options.style,
-                opacity: '0.9'
-            }
-        }
+        this.addClass(
+            'd-flex',
+            'justify-content-between',
+            'align-items-center',
+            'mb-3',
+            'w-100',
+            'p-2',
+            'position-fixed',
+            'bg-secondary',
+            'rounded',
+            'text-light',
+            );
 
         this.append(
             this.subcomponents.text,
@@ -133,12 +111,10 @@ class CBS_Progress extends CBS_Component {
                 progress
             }
 
+            this.subcomponents.bar.el.style.width = `${progress}%`;
+
             this.subcomponents.bar.options = {
                 ...this.subcomponents.bar.options,
-                style: {
-                    ...this.subcomponents.bar.options.style,
-                    width: `${progress}%`
-                },
                 attributes: {
                     ...this.subcomponents.bar.options.attributes,
                     'aria-valuenow': `${progress}`

@@ -14,11 +14,9 @@ class CBS_ContextMenuItem extends CBS_Paragraph {
      * @param {() => void} callback
      */
     constructor(options: CBS_ContextmenuSelectOptions, callback: () => void) {
-        super({
-            style: {
-                cursor: 'pointer'
-            }
-        });
+        super(options);
+
+        this.el.style.cursor = 'pointer';
 
         this.content = options.name;
 
@@ -161,7 +159,7 @@ class CBS_ContextmenuSection extends CBS_Component {
  *
  * @typedef {CBS_ContextmenuSelectOptions}
  */
-type CBS_ContextmenuSelectOptions = {
+type CBS_ContextmenuSelectOptions = CBS_Options & {
     color?: CBS_Color;
     name: string;
 }
@@ -331,8 +329,6 @@ class CBS_Contextmenu extends CBS_Component {
         // this.style = {
         //     '--animate-duration': '0.2s'
         // };
-
-        this.subcomponents.menu.addClass('animate__animated', 'animate__faster');
 
         const { x, y } = this.getXY(e as MouseEvent|TouchEvent);
 

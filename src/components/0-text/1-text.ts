@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_TextOptions}
  */
-type CBS_TextOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_TextOptions = CBS_Options & {
 }
 
 
@@ -132,9 +122,9 @@ class CBS_Text extends CBS_Element {
      * @type {*}
      */
     set size(size: CBS_Size|undefined) {
-        if (this.size) this.removeClass(`text-${this.size}`);
+        if (this.size) this.removeClass(`text-${this.size}` as CBS_Class);
         this.__size = size;
-        if (size) this.addClass(`text-${size}`);
+        if (size) this.addClass(`text-${size}` as CBS_Class);
     }
 
     /**
@@ -154,9 +144,9 @@ class CBS_Text extends CBS_Element {
      * @type {*}
      */
     set weight(weight: CBS_Weight|undefined) {
-        if (this.weight) this.removeClass(`font-${this.weight}`);
+        if (this.weight) this.removeClass(`font-${this.weight}` as CBS_Class);
         this.__weight = weight;
-        if (weight) this.addClass(`font-${weight}`);
+        if (weight) this.addClass(`font-${weight}` as CBS_Class);
     }
 
     /**
@@ -176,9 +166,9 @@ class CBS_Text extends CBS_Element {
      * @type {*}
      */
     set align(align: CBS_Align|undefined) {
-        if (this.align) this.removeClass(`text-${this.align}`);
+        if (this.align) this.removeClass(`text-${this.align}` as CBS_Class);
         this.__align = align;
-        if (align) this.addClass(`text-${align}`);
+        if (align) this.addClass(`text-${align}` as CBS_Class);
     }
 
     /**

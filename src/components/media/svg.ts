@@ -2,7 +2,7 @@ class CBS_SVG extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
-        this.addClass('bi', 'flex-shrink-0', 'me-2');
+        this.addClass('flex-shrink-0', 'me-2');
         this.setAttribute('role', 'img');
         // default size
         this.setAttribute('width', '24');

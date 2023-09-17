@@ -1,14 +1,4 @@
-type CBS_NotificationOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_NotificationOptions = CBS_Options & {
 
     color?: CBS_Color
     type?: 'alert' | 'toast';

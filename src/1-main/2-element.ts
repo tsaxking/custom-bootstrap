@@ -34,12 +34,6 @@ type CBS_Options = {
      */
     id?: string;
     /**
-     * Style to be added to the element
-     *
-     * @type {?object}
-     */
-    style?: object;
-    /**
      * Attributes to be added to the element
      *
      * @type {?object}
@@ -721,7 +715,6 @@ class CBS_Element {
         return {
             classes: this.classes,
             attributes: this.attributes,
-            style: this.el.style,
             id: this.id,
             listeners: this.listeners.reduce((acc, cur) => {
                 acc[cur.event] = cur.callback;
@@ -737,20 +730,11 @@ class CBS_Element {
      */
     set options(options: CBS_Options) {
         if (!this._el) return;
-        const { classes, attributes, style, id } = options;
+        const { classes, attributes, id } = options;
         this._options = options;
 
         if (classes) this.classes = classes;
         if (attributes) this.attributes = attributes;
-        if (style) {
-            for (const key in style) {
-                try {
-                    this._el.style[key] = style[key];
-                } catch (e) {
-                    console.log('Cannot apply style', key, style[key], 'to', this._el);
-                }
-            }
-        }
         if (id) this.id = id;
 
         if (options?.listeners) {

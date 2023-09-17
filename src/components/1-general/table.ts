@@ -5,23 +5,13 @@ type CBS_TableOptions = CBS_Options & {
 
 
 
-type CBS_TableRowCellOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
+type CBS_TableRowCellOptions = CBS_Options & {
 
     colspan?: number;
     rowspan?: number;
     scope?: 'col' | 'row' | 'colgroup' | 'rowgroup';
 
     getData: (data: any) => CBS_Node;
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
 }
 
 class CBS_TableBody extends CBS_Element {

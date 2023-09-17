@@ -22,9 +22,9 @@ class CBS_Alert extends CBS_Component {
     constructor(options?: CBS_AlertOptions) {
         super(options);
 
-        this.addClass('alert', 'd-flex', 'align-items-center', 'alert-dismissible', 'fade', 'show');
+        this.addClass('d-flex', 'align-items-center', 'alert-dismissible', 'fade', 'show');
         if (options?.color) {
-            this.addClass('alert-' + options.color);
+            this.addClass('alert-' + options.color as CBS_Class);
         }
 
         this.append(
@@ -52,7 +52,7 @@ CBS.addElement('alert', CBS_Alert);
 
     for (const [key, value] of Object.entries(alerts)) {
         const svg = new CBS_SVG();
-        svg.addClass(`alert-${key}`);
+        svg.addClass(`alert-${key}` as CBS_Class);
         svg.append(value);
         CBS_SVG.addTemplate(key, svg);
     }

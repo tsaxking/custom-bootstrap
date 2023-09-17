@@ -3,17 +3,7 @@
  *
  * @typedef {CBS_DateInputOptions}
  */
-type CBS_DateInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_DateInputOptions = CBS_InputOptions & {
 };
 
 /**

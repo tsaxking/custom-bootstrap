@@ -69,17 +69,7 @@ class CBS_CardFooter extends CBS_Element {
  *
  * @typedef {CBS_CardOptions}
  */
-type CBS_CardOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_CardOptions = CBS_Options & {
 }
 
 

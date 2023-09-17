@@ -5,10 +5,11 @@ const d = ' |\n';
 allClasses = JSON.parse(allClasses);
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-const nums = Array.from(Array(13).keys()).slice(1);
+const colNums = Array.from(Array(13).keys()).slice(1);
+const sizeNums = Array.from(Array(6).keys());
+const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'white'];
 
-
-allClasses.push(...sizes.flatMap(s => nums.map(n => `.col-${s}-${n}`)));
+allClasses.push(...sizes.flatMap(s => colNums.map(n => `.col-${s}-${n}`)));
 
 
 
@@ -38,39 +39,73 @@ allClasses.push(...align.map(a => `.align-items-${a}`));
 allClasses.push(...align.flatMap(a => sizes.map(s => `.align-items-${s}-${a}`)));
 
 const paddingMargin = ['', 's', 'e', 'x', 'y', 't', 'b'];
-const paddingMarginValues = Array.from(Array(6).keys()).slice(1);
 
-allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.p${p}-${v}`)));
-allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.m${p}-${v}`)));
+allClasses.push(...paddingMargin.flatMap(p => sizeNums.map(v => `.p${p}-${v}`)));
+allClasses.push(...paddingMargin.flatMap(p => sizeNums.map(v => `.m${p}-${v}`)));
 
 
 allClasses.push(...sizes.map(s => `.d-${s}-flex`));
 allClasses.push(...sizes.map(s => `.d-${s}-inline-flex`));
 
 
-const flexTypes = ['row', 'column', 'row-reverse', 'column-reverse'];
+const flexTypes = ['row', 'column', 'row-reverse', 'column-reverse', 'shrink', 'grow', 'nowrap', 'wrap', 'wrap-reverse'];
 
 allClasses.push(...flexTypes.map(f => `.flex-${f}`));
 allClasses.push(...flexTypes.flatMap(f => sizes.map(s => `.flex-${s}-${f}`)));
+allClasses.push(...flexTypes.flatMap(f => sizes.flatMap(s => sizeNums.map(n => `.flex-${s}-${f}-${n}`))));
+allClasses.push(...flexTypes.flatMap(f => sizeNums.map(n => `.flex-${f}-${n}`)));
 
 const floatTypes = ['start', 'end', 'none', 'left', 'right'];
 
 allClasses.push(...floatTypes.map(f => `.float-${f}`));
 allClasses.push(...floatTypes.flatMap(f => sizes.map(s => `.float-${s}-${f}`)));
 
-allClasses.push(...paddingMarginValues.map(v => `.offset-${v}`));
-allClasses.push(...paddingMarginValues.map(v => `.order-${v}`));
-allClasses.push(...paddingMarginValues.flatMap(v => sizes.map(s => `.order-${s}-${v}`)));
-allClasses.push(...paddingMarginValues.flatMap(v => sizes.map(s => `.offset-${s}-${v}`)));
+allClasses.push(...sizeNums.map(v => `.offset-${v}`));
+allClasses.push(...sizeNums.map(v => `.order-${v}`));
+allClasses.push(...sizeNums.flatMap(v => sizes.map(s => `.order-${s}-${v}`)));
+allClasses.push(...sizeNums.flatMap(v => sizes.map(s => `.offset-${s}-${v}`)));
 
 const textTypes = ['start', 'end', 'center', 'justify'];
-
 allClasses.push(...textTypes.map(t => `.text-${t}`));
 allClasses.push(...textTypes.flatMap(t => sizes.map(s => `.text-${s}-${t}`)));
 
+
+
+const positionTypes = ['absolute', 'relative', 'fixed', 'sticky'];
+allClasses.push(...positionTypes.map(p => `.position-${p}`));
+
+
+const tableTypes = ['active', 'striped', 'hover', 'bordered', 'dark', 'sm', 'responsive'];
+allClasses.push(...tableTypes.map(t => `.table-${t}`));
+
+const fwTypes = ['bold', 'bolder', 'light', 'lighter', 'normal'];
+allClasses.push(...fwTypes.map(f => `.fw-${f}`));
+
+const lhTypes = ['base', '1', 'sm', 'lg'];
+allClasses.push(...lhTypes.map(l => `.lh-${l}`));
+
+const wsTypes = ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'];
+allClasses.push(...wsTypes.map(w => `.text-${w}`));
+
+allClasses.push(...colors.map(c => `.alert-${c}`));
+
+const textColorTypes = [...colors, 'muted', 'white', 'body', 'black-50', 'white-50'];
+allClasses.push(...textColorTypes.map(t => `.text-${t}`));
+
+const toastTypes = ['container', 'body', 'header'];
+allClasses.push(...toastTypes.map(t => `.toast-${t}`));
+
+const borders = ['', 'end', 'top', 'bottom', 'start'];
+
+allClasses.push(...borders.flatMap(b => sizeNums.map(n => `.border${b ? '-' + b : ''}-${n}`)));
+
 const moreClasses = [
     '.modal-content',
-    '.d-flex'
+    '.d-flex',
+    '.material-icons',
+    '.material-symbols-outlined',
+    '.show',
+    '.hide'
 ];
 
 allClasses.push(...moreClasses);

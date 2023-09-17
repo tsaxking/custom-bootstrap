@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_CheckboxOptions}
  */
-type CBS_CheckboxOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_CheckboxOptions = CBS_Options & {
     label?: string;
     mirrorValue?: any;
 }

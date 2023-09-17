@@ -8,17 +8,7 @@
  *
  * @typedef {CBS_PasswordInputOptions}
  */
-type CBS_PasswordInputOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
+type CBS_PasswordInputOptions = CBS_InputOptions & {
 }
 
 /**
