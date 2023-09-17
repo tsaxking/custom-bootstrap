@@ -109,4 +109,4 @@ class CBS_InputGroup extends CBS_Component {
     }
 }
 
-CBS.addElement('cbs-input-group', CBS_InputGroup);
+CBS.addElement('input-group', CBS_InputGroup);
