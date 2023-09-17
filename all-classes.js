@@ -4,43 +4,69 @@ const d = ' |\n';
 
 allClasses = JSON.parse(allClasses);
 
-// const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-// const nums = Array.from(Array(13).keys()).slice(1);
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+const nums = Array.from(Array(13).keys()).slice(1);
 
 
-// allClasses.push(...sizes.flatMap(s => nums.map(n => `.col-${s}-${n}`)));
+allClasses.push(...sizes.flatMap(s => nums.map(n => `.col-${s}-${n}`)));
 
 
 
-// const containerSizes = ['', 'fluid', 'sm', 'md', 'lg', 'xl', 'xxl'];
+const containerSizes = ['', 'fluid', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
-// allClasses.push(...containerSizes.map(s => `.container${s ? '-' + s : ''}`));
-
-
-// const buttons = ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link','xs', 'sm', 'lg'];
-
-// allClasses.push(...buttons.flatMap(b => ['.btn', `.btn-${b}`]));
+allClasses.push(...containerSizes.map(s => `.container${s ? '-' + s : ''}`));
 
 
-// const dTypes = ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'table', 'table-cell', 'table-row', 'none'];
+const buttons = ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link','xs', 'sm', 'lg'];
 
-// allClasses.push(...dTypes.map(d => `.d-${d}`));
-
-
-// const justify = ['start', 'end', 'center', 'between', 'around'];
-
-// allClasses.push(...justify.map(j => `.justify-content-${j}`));
+allClasses.push(...buttons.flatMap(b => ['.btn', `.btn-${b}`]));
 
 
-// const align = ['start', 'end', 'center', 'baseline', 'stretch'];
+const dTypes = ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'table', 'table-cell', 'table-row', 'none'];
 
-// allClasses.push(...align.map(a => `.align-items-${a}`));
+allClasses.push(...dTypes.map(d => `.d-${d}`));
 
-// const paddingMargin = ['', 's', 'e', 'x', 'y', 't', 'b'];
-// const paddingMarginValues = Array.from(Array(6).keys()).slice(1);
 
-// allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.p${p}-${v}`)));
-// allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.m${p}-${v}`)));
+const justify = ['start', 'end', 'center', 'between', 'around'];
+
+allClasses.push(...justify.map(j => `.justify-content-${j}`));
+
+
+const align = ['start', 'end', 'center', 'baseline', 'stretch'];
+
+allClasses.push(...align.map(a => `.align-items-${a}`));
+allClasses.push(...align.flatMap(a => sizes.map(s => `.align-items-${s}-${a}`)));
+
+const paddingMargin = ['', 's', 'e', 'x', 'y', 't', 'b'];
+const paddingMarginValues = Array.from(Array(6).keys()).slice(1);
+
+allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.p${p}-${v}`)));
+allClasses.push(...paddingMargin.flatMap(p => paddingMarginValues.map(v => `.m${p}-${v}`)));
+
+
+allClasses.push(...sizes.map(s => `.d-${s}-flex`));
+allClasses.push(...sizes.map(s => `.d-${s}-inline-flex`));
+
+
+const flexTypes = ['row', 'column', 'row-reverse', 'column-reverse'];
+
+allClasses.push(...flexTypes.map(f => `.flex-${f}`));
+allClasses.push(...flexTypes.flatMap(f => sizes.map(s => `.flex-${s}-${f}`)));
+
+const floatTypes = ['start', 'end', 'none', 'left', 'right'];
+
+allClasses.push(...floatTypes.map(f => `.float-${f}`));
+allClasses.push(...floatTypes.flatMap(f => sizes.map(s => `.float-${s}-${f}`)));
+
+allClasses.push(...paddingMarginValues.map(v => `.offset-${v}`));
+allClasses.push(...paddingMarginValues.map(v => `.order-${v}`));
+allClasses.push(...paddingMarginValues.flatMap(v => sizes.map(s => `.order-${s}-${v}`)));
+allClasses.push(...paddingMarginValues.flatMap(v => sizes.map(s => `.offset-${s}-${v}`)));
+
+const textTypes = ['start', 'end', 'center', 'justify'];
+
+allClasses.push(...textTypes.map(t => `.text-${t}`));
+allClasses.push(...textTypes.flatMap(t => sizes.map(s => `.text-${s}-${t}`)));
 
 const moreClasses = [
     '.modal-content',
@@ -48,13 +74,13 @@ const moreClasses = [
     '.container-lg',
     '.container-xl',
     '.container-xxl',
-    'd-flex'
+    '.d-flex'
 ];
 
 allClasses.push(...moreClasses);
 
 allClasses = allClasses
-    .filter(e => !e.includes('&'))
+    .filter(e => !e.includes('&') && !e.includes('*') && !e.includes('#'))
     .map(e => e.split(' ')[0])
     // remove duplicates
     .filter((e, i, a) => a.indexOf(e) === i)
