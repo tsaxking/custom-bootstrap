@@ -1,3 +1,13 @@
+type CBS_InputLabelSaveOptions = CBS_Options & {
+    clear?: boolean;
+};
+
+
+
+
+
+
+
 class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
     subcomponents: {
         container: CBS_InputLabelContainer;
@@ -6,7 +16,7 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
     };
 
 
-    constructor(input: CBS_Input, options?: CBS_Options) {
+    constructor(input: CBS_Input, options?: CBS_InputLabelSaveOptions) {
         super(options);
 
         this.subcomponents = {
@@ -35,6 +45,21 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
             this.subcomponents.clear
         );
     }
+
+    get options() {
+        return this._options;
+    }
+
+    set options(options: CBS_InputLabelSaveOptions) {
+        super.options = options;
+
+        if (options.clear) {
+            this.subcomponents.clear.show();
+        } else {
+            this.subcomponents.clear.hide();
+        }
+    }
+
 
 
     get value() {
