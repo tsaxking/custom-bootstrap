@@ -1,4 +1,5 @@
 type CBS_Class = 
+'-flex' |
 'accordion-body' |
 'accordion-button' |
 'accordion-collapse' |
@@ -6,7 +7,6 @@ type CBS_Class =
 'accordion-header' |
 'accordion-item' |
 'accordion' |
-'active button' |
 'alert-danger' |
 'alert-dark' |
 'alert-dismissible' |
@@ -81,7 +81,6 @@ type CBS_Class =
 'btn-close' |
 'btn-danger' |
 'btn-dark' |
-'btn-group (nested)' |
 'btn-group-lg' |
 'btn-group-sm' |
 'btn-group-vertical' |
@@ -106,7 +105,6 @@ type CBS_Class =
 'btn-warning' |
 'btn' |
 'caption-top' |
-'card bg-... text-...' |
 'card-body' |
 'card-columns' |
 'card-deck' |
@@ -123,7 +121,6 @@ type CBS_Class =
 'card-text' |
 'card-title' |
 'card' |
-'carousel slide' |
 'carousel-caption' |
 'carousel-control-next-icon' |
 'carousel-control-next' |
@@ -134,7 +131,6 @@ type CBS_Class =
 'carousel-indicators' |
 'carousel-inner' |
 'carousel-item' |
-'checkbox as button' |
 'checkbox' |
 'clearfix' |
 'close' |
@@ -155,17 +151,12 @@ type CBS_Class =
 'col-form-label-lg' |
 'col-form-label-sm' |
 'col-form-label' |
-'col-lg-# (≥992px)' |
 'col-lg-1' |
-'col-md-# (≥768px)' |
 'col-md-1' |
-'col-sm-# (≥576px)' |
 'col-sm-1' |
-'col-xl-# (≥1200px)' |
 'col-xl-1' |
 'col-xxl-1' |
 'col' |
-'collapse navbar-collapse' |
 'collapse' |
 'collapsed' |
 'container-fluid' |
@@ -193,9 +184,6 @@ type CBS_Class =
 'd-*-none' |
 'd-*-table-cell' |
 'd-*-table' |
-'d-flex align-self-center' |
-'d-flex align-self-end' |
-'d-flex align-self-start' |
 'd-grid' |
 'd-lg-grid' |
 'd-lg-table-row' |
@@ -224,10 +212,6 @@ type CBS_Class =
 'd-xxl-table-row' |
 'd-xxl-table' |
 'data-spy' |
-'disabled button' |
-'disabled items' |
-'dismissible popover' |
-'display-# (1-4)' |
 'display-1' |
 'display-2' |
 'display-3' |
@@ -235,10 +219,8 @@ type CBS_Class =
 'display-5' |
 'display-6' |
 'dl-horizontal' |
-'dropdown (split)' |
 'dropdown-divider' |
 'dropdown-header' |
-'dropdown-item disabled' |
 'dropdown-item-text' |
 'dropdown-item' |
 'dropdown-menu-dark' |
@@ -259,7 +241,6 @@ type CBS_Class =
 'dropdown' |
 'dropleft' |
 'dropright' |
-'dropup (split)' |
 'dropup' |
 'embed-responsive' |
 'end-0' |
@@ -327,7 +308,6 @@ type CBS_Class =
 'font-weight-light' |
 'font-weight-lighter' |
 'font-weight-normal' |
-'form using the grid' |
 'form-check-inline' |
 'form-check-input' |
 'form-check-label' |
@@ -462,8 +442,6 @@ type CBS_Class =
 'link-secondary' |
 'link-success' |
 'link-warning' |
-'list-group with badges' |
-'list-group with d-flex' |
 'list-group-flush' |
 'list-group-horizontal-lg' |
 'list-group-horizontal-md' |
@@ -471,8 +449,6 @@ type CBS_Class =
 'list-group-horizontal-xl' |
 'list-group-horizontal-xxl' |
 'list-group-horizontal' |
-'list-group-item active' |
-'list-group-item disabled' |
 'list-group-item-action' |
 'list-group-item-danger' |
 'list-group-item-dark' |
@@ -486,20 +462,17 @@ type CBS_Class =
 'list-group' |
 'list-inline' |
 'list-unstyled' |
-'m-1 / m-*-#' |
 'm-auto' |
 'm-lg-0' |
 'm-lg-auto' |
 'm-md-0' |
 'm-md-auto' |
-'m-n1 / m-*-n#' |
 'm-sm-0' |
 'm-sm-auto' |
 'm-xl-0' |
 'm-xl-auto' |
 'm-xxl-0' |
 'm-xxl-auto' |
-'mb-1 / mb-*-#' |
 'mb-auto' |
 'mb-lg-0' |
 'mb-lg-auto' |
@@ -524,10 +497,7 @@ type CBS_Class =
 'me-xxl-auto' |
 'media' |
 'mh-100' |
-'middle image' |
 'min-vw-100' |
-'ml-1 / ml-*-#' |
-'modal fade' |
 'modal-body' |
 'modal-contant' |
 'modal-content' |
@@ -548,7 +518,6 @@ type CBS_Class =
 'modal-title' |
 'modal-xl' |
 'modal' |
-'mr-1 / mr-*-#' |
 'ms-auto' |
 'ms-lg-0' |
 'ms-lg-auto' |
@@ -560,7 +529,6 @@ type CBS_Class =
 'ms-xl-auto' |
 'ms-xxl-0' |
 'ms-xxl-auto' |
-'mt-1 / mt-*-#' |
 'mt-auto' |
 'mt-lg-0' |
 'mt-lg-auto' |
@@ -572,9 +540,7 @@ type CBS_Class =
 'mt-xl-auto' |
 'mt-xxl-0' |
 'mt-xxl-auto' |
-'multiple progress-bar' |
 'mw-100' |
-'mx-1 / mx-*-#' |
 'mx-auto' |
 'mx-lg-0' |
 'mx-lg-auto' |
@@ -586,7 +552,6 @@ type CBS_Class =
 'mx-xl-auto' |
 'mx-xxl-0' |
 'mx-xxl-auto' |
-'my-1 / my-*-#' |
 'my-auto' |
 'my-lg-0' |
 'my-lg-auto' |
@@ -598,25 +563,15 @@ type CBS_Class =
 'my-xl-auto' |
 'my-xxl-0' |
 'my-xxl-auto' |
-'nav flex-column' |
-'nav justify-content-*' |
-'nav with flex utils' |
 'nav-fill' |
 'nav-item' |
 'nav-justified' |
 'nav-link' |
-'nav-pills with dropdown' |
 'nav-pills' |
-'nav-tabs with dropdown' |
 'nav-tabs' |
 'nav.nav' |
-'navbar fixed-bottom' |
-'navbar fixed-top' |
-'navbar sticky-top' |
-'navbar with form' |
 'navbar-brand' |
 'navbar-collapse' |
-'navbar-dark bg-dark' |
 'navbar-dark' |
 'navbar-expand-*' |
 'navbar-expand-lg' |
@@ -630,8 +585,6 @@ type CBS_Class =
 'navbar-toggler-icon' |
 'navbar-toggler' |
 'navbar' |
-'nested columns' |
-'nested media' |
 'no-gutters' |
 'offset-*-#' |
 'offset-0' |
@@ -659,24 +612,19 @@ type CBS_Class =
 'order-xxl-0' |
 'order-xxl-first' |
 'order-xxl-last' |
-'orm (full example)' |
 'overflow-auto' |
 'overflow-hidden' |
 'overflow-scroll' |
 'overflow-visible' |
-'p-1 / p-*-#' |
 'p-lg-0' |
 'p-md-0' |
 'p-sm-0' |
 'p-xl-0' |
 'p-xxl-0' |
-'page-item active' |
-'page-item disabled' |
 'pagination-lg' |
 'pagination-sm' |
 'pagination' |
 'pb-0' |
-'pb-1 / pb-*-#' |
 'pb-lg-0' |
 'pb-md-0' |
 'pb-sm-0' |
@@ -690,17 +638,11 @@ type CBS_Class =
 'pe-sm-0' |
 'pe-xl-0' |
 'pe-xxl-0' |
-'pl-1 / pl-*-#' |
 'popovers' |
 'position-absolute' |
 'position-relative' |
 'position-static' |
-'pr-1 / pr-*-#' |
-'progress-bar bg-*' |
-'progress-bar with height' |
-'progress-bar with label' |
 'progress-bar-animated' |
-'progress-bar-striped bg-*' |
 'progress-bar-striped' |
 'progress-bar' |
 'progress' |
@@ -711,30 +653,25 @@ type CBS_Class =
 'ps-xl-0' |
 'ps-xxl-0' |
 'pt-0' |
-'pt-1 / pt-*-#' |
 'pt-lg-0' |
 'pt-md-0' |
 'pt-sm-0' |
 'pt-xl-0' |
 'pt-xxl-0' |
 'px-0' |
-'px-1 / px-*-#' |
 'px-lg-0' |
 'px-md-0' |
 'px-sm-0' |
 'px-xl-0' |
 'px-xxl-0' |
 'py-0' |
-'py-1 / py-*-#' |
 'py-lg-0' |
 'py-md-0' |
 'py-sm-0' |
 'py-xl-0' |
 'py-xxl-0' |
-'radio as button' |
 'radio' |
 'readonly' |
-'right aligned media' |
 'rounded-*' |
 'rounded-0' |
 'rounded-1' |
@@ -760,15 +697,12 @@ type CBS_Class =
 'row-cols-xxl-1' |
 'row-cols-xxl-auto' |
 'row' |
-'segmented buttons' |
 'shadow-lg' |
 'shadow-none' |
 'shadow-sm' |
 'shadow' |
-'spinner-border text-*' |
 'spinner-border-sm' |
 'spinner-border' |
-'spinner-grow text-*' |
 'spinner-grow-sm' |
 'spinner-grow' |
 'sr-only-focusable' |

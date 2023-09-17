@@ -52,14 +52,16 @@ const moreClasses = [
     '.container-md',
     '.container-lg',
     '.container-xl',
-    '.container-xxl'
+    '.container-xxl',
+    'd-flex'
 ];
 
 allClasses.push(...moreClasses);
 
 allClasses = allClasses
-    .filter((e, i) => allClasses.indexOf(e) === i)
     .filter(e => !e.includes('&'))
+    .map(e => e.split(' ')[0])
+    .filter((e, i) => allClasses.indexOf(e) === i)
     .map(e => `'${e.slice(1)}'`)
     .sort((a, b) => a.localeCompare(b))
     .join(d);
