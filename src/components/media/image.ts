@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_ImageOptions}
  */
-type CBS_ImageOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_ImageOptions = CBS_Options & {
     src?: string
 }
 

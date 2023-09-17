@@ -3,18 +3,7 @@
  *
  * @typedef {CBS_ListOptions}
  */
-type CBS_ListOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
-
-    listeners?: {
-        [key: string]: (e: Event) => void;
-    }
-
+type CBS_ListOptions = CBS_Options & {
     ordered?: boolean;
 }
 

@@ -224,7 +224,7 @@ class CustomBootstrap {
                 Array.from(el.attributes).forEach((attr) => {
                     cbsEl.setAttribute(attr.name, attr.value);
                 });
-                cbsEl.addClass(...Array.from(el.classList));
+                cbsEl.addClass(...Array.from(el.classList) as CBS_Class[]);
 
                 for (const key in Object.keys((el as HTMLElement).style)) {
                     if (!(el as HTMLElement).style[key]) continue;

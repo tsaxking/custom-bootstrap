@@ -255,9 +255,9 @@ class CBS_Modal extends CBS_Component {
     }
 
     set size(size: CBS_Size) {
-        this.subcomponents.dialog.removeClass(`modal-${this._size}`);
+        this.subcomponents.dialog.removeClass(`modal-${this._size}` as CBS_Class);
         this._size = size;
-        this.subcomponents.dialog.addClass(`modal-${size}`);
+        this.subcomponents.dialog.addClass(`modal-${size}` as CBS_Class);
     }
 
     get size() {

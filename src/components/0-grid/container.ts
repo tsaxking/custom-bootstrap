@@ -3,13 +3,7 @@
  *
  * @typedef {CBS_ContainerOptions}
  */
-type CBS_ContainerOptions = {
-    classes?: string[];
-    id?: string;
-    style?: object;
-    attributes?: {
-        [key: string]: string;
-    }
+type CBS_ContainerOptions = CBS_Options & {
 
     fluid?: boolean;
 
@@ -57,7 +51,7 @@ class CBS_Container extends CBS_Element {
             this.addClass(...Object.keys(options.breakpoints).map((key) => {
                 if (options.breakpoints && options.breakpoints[key]) 
                     return `container-${key}-${options.breakpoints[key]}`;
-            }).filter(Boolean) as string[]);
+            }).filter(Boolean) as CBS_Class[]);
         } else {
             this.addClass('container');
         }

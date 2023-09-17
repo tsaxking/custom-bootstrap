@@ -26,7 +26,7 @@ type CBS_Options = {
      *
      * @type {?string[]}
      */
-    classes?: string[];
+    classes?: CBS_Class[];
     /**
      * Id to be added to the element
      *
@@ -1438,7 +1438,7 @@ class CBS_Element {
      *
      * @param {...string[]} classes
      */
-    addClass(...classes: string[]) {
+    addClass(...classes: CBS_Class[]) {
         if (!this._options) this.options = {};
         if (!this._options.classes) this._options.classes = [];
 
@@ -1451,7 +1451,7 @@ class CBS_Element {
      *
      * @param {...string[]} classes
      */
-    removeClass(...classes: string[]) {
+    removeClass(...classes: CBS_Class[]) {
         if (!this._options) this.options = {};
         if (!this._options.classes) this._options.classes = [];
 
@@ -1464,7 +1464,7 @@ class CBS_Element {
      *
      * @param {...string[]} classes
      */
-    toggleClass(...classes: string[]) {
+    toggleClass(...classes: CBS_Class[]) {
         if (!this._options.classes) this._options.classes = [];
 
         this._options.classes = this._options.classes.filter(c => !classes.includes(c));
@@ -1479,15 +1479,15 @@ class CBS_Element {
      * @readonly
      * @type {string[]}
      */
-    get classes() {
-        return Array.from(this.el.classList);
+    get classes(): CBS_Class[] {
+        return Array.from(this.el.classList) as CBS_Class[];
     }
 
 
     /**
      * Replaces all classes on the element
      */
-    set classes(classes: string[]) {
+    set classes(classes: CBS_Class[]) {
         this.clearClasses();
         this.addClass(...classes);
     }
