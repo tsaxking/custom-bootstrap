@@ -38,6 +38,10 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
             this.input.value = '';
         });
 
+        this.save.on('click', () => {
+            this.trigger('save');
+        })
+
         this.append(
             this.subcomponents.container,
             this.subcomponents.save,
@@ -83,6 +87,14 @@ class CBS_InputLabelSave extends CBS_Component implements CBS_InputInterface {
 
     set input(input: CBS_Input) {
         this.subcomponents.container.input = input;
+    }
+
+    get label() {
+        return this.subcomponents.container.label;
+    }
+
+    set label(label: CBS_Label) {
+        this.subcomponents.container.label = label;
     }
 }
 

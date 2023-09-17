@@ -42,6 +42,16 @@ class CBS_FileInput extends CBS_Input {
         (this.el as HTMLInputElement).files = value;
     }
 
+    get accept(): string[] {
+        return (this.el as HTMLInputElement).accept.split(',');
+    }
+
+    set accept(value: string[]) {
+        (this.el as HTMLInputElement).accept = value.join(',');
+    }
+
+
+
     /**
      * Description placeholder
      */
