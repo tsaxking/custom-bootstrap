@@ -77,7 +77,8 @@ class CBS_TabNav extends CBS_Component {
             page.hide();
         }
 
-        li.on('click', () => {
+        li.on('click', (e) => {
+            e.preventDefault();
             page.show();
             for (const key in this.pages) {
                 if (key !== name) this.pages[key].hide();

@@ -137,7 +137,16 @@ class CBS_ModalDialog extends CBS_Component {
             title: content.subcomponents.header,
             body: content.subcomponents.body,
             footer: content.subcomponents.footer,
-            hide: CBS_Button.fromTemplate('modal-close') as CBS_Button
+            hide: new CBS_Button({
+                color: 'secondary',
+                attributes: {
+                    type: 'button',
+                    'data-bs-dismiss': 'modal',
+                    'aria-label': 'Close'
+                },
+                size: 'sm',
+                classes: ['btn-close']
+            })
         }
 
         content.append(

@@ -718,7 +718,16 @@ class CBS_Element {
      * @type {CBS_Options}
      */
     get options(): CBS_Options {
-        return this._options;
+        return {
+            classes: this.classes,
+            attributes: this.attributes,
+            style: this.el.style,
+            id: this.id,
+            listeners: this.listeners.reduce((acc, cur) => {
+                acc[cur.event] = cur.callback;
+                return acc;
+            }, {} as { [key: string]: CBS_ListenerCallback })
+        };
     }
 
     /**
@@ -1439,7 +1448,6 @@ class CBS_Element {
      * @param {...string[]} classes
      */
     addClass(...classes: CBS_Class[]) {
-        if (!this._options) this.options = {};
         if (!this._options.classes) this._options.classes = [];
 
         this._options.classes = [...this._options.classes, ...classes];
@@ -1452,7 +1460,6 @@ class CBS_Element {
      * @param {...string[]} classes
      */
     removeClass(...classes: CBS_Class[]) {
-        if (!this._options) this.options = {};
         if (!this._options.classes) this._options.classes = [];
 
         this._options.classes = this._options.classes.filter(c => !classes.includes(c));
