@@ -190,14 +190,10 @@ class CBS_Modal extends CBS_Component {
 
     subcomponents: {
         dialog: CBS_ModalDialog;
-        body: CBS_ModalBody;
         title: CBS_ModalHeader;
-        footer: CBS_ModalFooter;
     } = {
         dialog: new CBS_ModalDialog(),
-        body: new CBS_ModalBody(),
-        title: new CBS_ModalHeader(),
-        footer: new CBS_ModalFooter()
+        title: new CBS_ModalHeader()
     }
 
     private _size: CBS_Size = 'md';
@@ -232,27 +228,30 @@ class CBS_Modal extends CBS_Component {
     }
 
     get title() {
-        return this.subcomponents.title.subcomponents.title.text;
+        return this.subcomponents.dialog.subcomponents.content.subcomponents.header.subcomponents.title;
     }
 
-    set title(title: string) {
-        this.subcomponents.title.subcomponents.title.text = title;
+    set title(title: CBS_Element) {
+        this.title.clearElements();
+        this.title.append(title);
     }
 
     get body() {
-        return this.subcomponents.body;
+        return this.subcomponents.dialog.subcomponents.content.subcomponents.body;
     }
 
     set body(body: CBS_Element) {
-        this.subcomponents.body = body;
+        this.body.clearElements();
+        this.body.append(body);
     }
 
     get footer() {
-        return this.subcomponents.footer;
+        return this.subcomponents.dialog.subcomponents.content.subcomponents.footer;
     }
 
     set footer(footer: CBS_Element) {
-        this.subcomponents.footer = footer;
+        this.footer.clearElements();
+        this.footer.append(footer);
     }
 
     set size(size: CBS_Size) {
@@ -282,7 +281,8 @@ class CBS_Modal extends CBS_Component {
         }
 
         if (options.title) {
-            this.title = options.title;
+            this.title.clearElements();
+            this.title.append(options.title);
         }
     }
 

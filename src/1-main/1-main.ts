@@ -340,9 +340,9 @@ class CustomBootstrap {
                 ]
             });
 
-            modal.title = 'Confirm';
+            modal.title.append('Confirm');
 
-            modal.subcomponents.body.append(message);
+            modal.body.append(message);
 
             yes.on('click', () => {
                 modal.hide();
@@ -396,10 +396,10 @@ class CustomBootstrap {
                 ]
             });
 
-            modal.title = 'Fill out form';
+            modal.title.append('Fill out form');
 
-            modal.subcomponents.body.append(form);
-            modal.subcomponents.footer.append(submit);
+            modal.body.append(form);
+            modal.footer.append(submit);
 
             submit.on('click', () => {
                 modal.hide();
@@ -460,12 +460,12 @@ class CustomBootstrap {
                 ]
             });
 
-            modal.title = 'Prompt';
+            modal.title.append('Prompt');
     
             const input = new CBS_TextInput();
 
-            modal.subcomponents.body.append(message);
-            modal.subcomponents.body.append(input);
+            modal.body.append(message);
+            modal.body.append(input);
 
             input.on('keydown', (e) => {
                 if ((e as KeyboardEvent).key === 'Enter') {
@@ -489,7 +489,7 @@ class CustomBootstrap {
                 res(null);
             });
 
-            modal.subcomponents.footer.append(submit);
+            modal.footer.append(submit);
 
             modal.on('hidden.bs.modal', () => res(null));
             modal.on('destroyed', () => res(null));
@@ -499,7 +499,7 @@ class CustomBootstrap {
 
     modal(container: CBS_Container, options?: CBS_ModalOptions) {
         const modal = new CBS_Modal(options);
-        modal.subcomponents.body.append(container);
+        modal.body.append(container);
         modal.show();
         return modal;
     }
