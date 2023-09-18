@@ -115,6 +115,16 @@ class CBS_ToastPolite extends CBS_Component {
         container: new CBS_ToastContainer()
     }
 
+    constructor() {
+        super();
+
+        this.setAttribute('aria-live', 'polite');
+        this.setAttribute('aria-atomic', 'true');
+
+        this.append(
+            this.subcomponents.container
+        );
+    }
 };
 
 
