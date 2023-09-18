@@ -1,157 +1,17 @@
 type CBS_ToastOptions = CBS_Options & {
     color?: CBS_Color;
     dismiss?: number; // in milliseconds
+
+    title?: CBS_Node;
+    body?: CBS_Node;
 }
 
 
-
-
-class CBS_Toast extends CBS_Component {
-    subcomponents: {
-        container: CBS_ToastContainer;
-    } = {
-        container: new CBS_ToastContainer()
-    }
-
-    private headerContent: CBS_NodeMap = [];
-    private bodyContent: CBS_NodeMap = [];
-
-    constructor(options?: CBS_ToastOptions) {
-        super(options);
-
-        this.addClass('position-relative');
-        this.setAttribute('aria-live', 'polite');
-        this.setAttribute('aria-atomic', 'true');
-
-        if (options?.color) {
-            ((this.subcomponents.container as CBS_ToastContainer)
-            .subcomponents.card as CBS_ToastCard)
-            .addClass(`bg-${options.color}`);
-        }
-
-        if (options?.dismiss) {
-            setTimeout(() => {
-                this.destroy();
-            }, options.dismiss);
-        }
-
-        this.append(
-            this.subcomponents.container
-        );
-    }
-
-
-    set header(content: CBS_Node|CBS_NodeMap) {
-        if (this.headerContent) {
-            this.headerContent.forEach(node => {
-                if (node instanceof HTMLElement) {
-                    node.remove();
-                } else if (node instanceof CBS_Element) {
-                    node.destroy();
-                }
-                // and strings are automatically removed
-            });
-        }
-
-        if (Array.isArray(content)) {
-            this.headerContent = content;
-            ((
-                this.subcomponents.container as CBS_ToastContainer
-                ).subcomponents.card as CBS_ToastCard
-                ).subcomponents.header.append(...content);
-        } else {
-            this.headerContent = [content];
-            ((
-                this.subcomponents.container as CBS_ToastContainer
-                ).subcomponents.card as CBS_ToastCard
-                ).subcomponents.header.append(content);
-        }
-    }
-
-    set body(content: CBS_Node|CBS_NodeMap) {
-        if (this.bodyContent) {
-            this.bodyContent.forEach(node => {
-                if (node instanceof HTMLElement) {
-                    node.remove();
-                } else if (node instanceof CBS_Element) {
-                    node.destroy();
-                }
-                // and strings are automatically removed
-            });
-        }
-
-        if (Array.isArray(content)) {
-            ((
-                this.subcomponents.container as CBS_ToastContainer
-                ).subcomponents.card as CBS_ToastCard
-                ).subcomponents.body.append(...content);
-        } else {
-            ((
-                this.subcomponents.container as CBS_ToastContainer
-                ).subcomponents.card as CBS_ToastCard
-                ).subcomponents.body.append(content);
-        }
-    }
-
-
-
-
-    show() {
-        document.body.append(this.el);
-
-        (this.subcomponents
-            .container as CBS_Component)
-            .subcomponents
-            .card
-            .addClass('show');
-    }
-
-    hide() {
-        (this.subcomponents
-            .container as CBS_Component)
-            .subcomponents
-            .card
-            .addClass('hide');
-    }
-};
-
-class CBS_ToastContainer extends CBS_Component {
-    subcomponents: {
-        card: CBS_ToastCard;
-    } = {
-        card: new CBS_ToastCard()
-    }
-
-
+class CBS_ToastBody extends CBS_Element {
     constructor() {
         super();
 
-        this.addClass('toast-container', 'position-absolute', 'p-3');
-
-        this.append(
-            this.subcomponents.card
-        );
-    }
-};
-
-class CBS_ToastCard extends CBS_Component {
-    subcomponents: {
-        header: CBS_ToastHeader;
-        body: CBS_ToastBody;
-    } = {
-        header: new CBS_ToastHeader(),
-        body: new CBS_ToastBody()
-    };
-
-    constructor() {
-        super();
-
-        this.addClass('toast');
-
-        this.append(
-            this.subcomponents.header,
-            this.subcomponents.body
-        );
+        this.addClass('toast-body');
     }
 }
 
@@ -161,9 +21,11 @@ class CBS_ToastHeader extends CBS_Component {
         button: CBS_Button;
         time: CBS_Span;
     } = {
-        title: new CBS_Span(),
+        title: new CBS_Span({
+            classes: ['me-auto', 'fw-bold']
+        }),
         button: new CBS_Button({
-            classes: ['btn-close'],
+            classes: ['btn-close', 'btn-close-white'],
             attributes: {
                 'data-bs-dismiss': 'toast',
                 'aria-label': 'Close'
@@ -177,10 +39,9 @@ class CBS_ToastHeader extends CBS_Component {
     constructor() {
         super();
 
-        this.addClass('toast-header', 'bg-dark', 'text-light', 'border-0');
+        this.addClass('toast-header', 'bg-dark', 'border-0');
 
         this.subcomponents.title.addClass('me-auto');
-        this.subcomponents.time.addClass('text-muted');
 
         this.subcomponents.button.on('click', () => {
             this.parent?.destroy();
@@ -214,8 +75,8 @@ class CBS_ToastHeader extends CBS_Component {
         
         this.append(
             this.subcomponents.title,
-            this.subcomponents.button,
-            this.subcomponents.time
+            this.subcomponents.time,
+            this.subcomponents.button
         );
     }
 
@@ -225,13 +86,128 @@ class CBS_ToastHeader extends CBS_Component {
     }
 }
 
-class CBS_ToastBody extends CBS_Element {
+
+class CBS_ToastCard extends CBS_Component {
+    subcomponents: {
+        header: CBS_ToastHeader;
+        body: CBS_ToastBody;
+    } = {
+        header: new CBS_ToastHeader(),
+        body: new CBS_ToastBody()
+    };
+
     constructor() {
         super();
 
-        this.addClass('toast-body');
+        this.addClass('toast');
+
+        this.append(
+            this.subcomponents.header,
+            this.subcomponents.body
+        );
     }
 }
+
+class CBS_ToastPolite extends CBS_Component {
+    subcomponents: {
+        container: CBS_ToastContainer;
+    } = {
+        container: new CBS_ToastContainer()
+    }
+
+};
+
+
+
+class CBS_ToastContainer extends CBS_Component {
+    subcomponents: {
+        card: CBS_ToastCard;
+    } = {
+        card: new CBS_ToastCard()
+    }
+
+
+    constructor() {
+        super();
+
+        this.addClass('toast-container', 'position-absolute', 'p-3');
+
+        this.append(
+            this.subcomponents.card
+        );
+    }
+};
+
+
+
+
+class CBS_Toast extends CBS_Component {
+    static container = new CBS_ToastPolite().subcomponents.container;
+
+    subcomponents: {
+        header: CBS_ToastHeader;
+        body: CBS_ToastBody;
+    } = {
+        header: new CBS_ToastHeader(),
+        body: new CBS_ToastBody()
+    };
+
+    constructor(options?: CBS_ToastOptions) {
+        super(options);
+
+        this.addClass('toast');
+
+        if (options?.color) {
+            this.addClass(`bg-${options.color}` as CBS_Class);
+
+            this.subcomponents.header
+                .addClass(`text-${options.color}` as CBS_Class);
+        }
+
+        if (options?.dismiss) {
+            setTimeout(() => {
+                this.destroy();
+            }, options.dismiss);
+        }
+
+        if (options?.body) {
+            this.subcomponents.body.append(options.body);
+        }
+
+        if (options?.title) {
+            this.subcomponents.header
+                .subcomponents.title.append(options.title);
+        }
+
+        this.append(
+            this.subcomponents.header,
+            this.subcomponents.body
+        );
+
+
+        this.on('hidden.bs.toast', () => this.destroy());
+    }
+
+
+
+
+    show() {
+        CBS_Toast.container.append(this);
+
+        this.addClass('show');
+    }
+
+    hide() {
+        this.removeClass('show');
+
+        setTimeout(() => {
+            this.destroy();
+        }, 500);
+    }
+};
+
+
+
 
 CBS.addElement('toast', CBS_Toast);
 
@@ -257,12 +233,6 @@ CBS.addElement('toast', CBS_Toast);
     };
 
     for (const [key, value] of Object.entries(toasts)) {
-        const toast = new CBS_Toast();
-        toast.addClass(`bg-${key}` as CBS_Class, `text-${value.textColor}` as CBS_Class, 'border-0');
-        ((toast.subcomponents.container as CBS_ToastContainer).subcomponents.card as CBS_ToastCard)
-        .subcomponents.header.append(
-            value.svg
-        );
-        CBS_Toast.addTemplate(key, toast);
+
     }
 })();
