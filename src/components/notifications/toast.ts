@@ -178,7 +178,7 @@ class CBS_Toast extends CBS_Component {
 
         if (options?.dismiss) {
             setTimeout(() => {
-                this.destroy();
+                this.hide();
             }, options.dismiss);
         }
 
@@ -215,9 +215,7 @@ class CBS_Toast extends CBS_Component {
     hide() {
         this.removeClass('show');
 
-        setTimeout(() => {
-            this.destroy();
-        }, 500);
+        this.trigger('hidden.bs.toast');
     }
 };
 
