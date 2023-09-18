@@ -4,6 +4,8 @@ type CBS_ToastOptions = CBS_Options & {
 
     title?: CBS_Node;
     body?: CBS_Node;
+
+    destroyOnHide?: boolean;
 }
 
 
@@ -189,13 +191,16 @@ class CBS_Toast extends CBS_Component {
                 .subcomponents.title.append(options.title);
         }
 
+        if (options?.destroyOnHide) {
+            this.on('hidden.bs.toast', () => {
+                this.destroy();
+            });
+        }
+
         this.append(
             this.subcomponents.header,
             this.subcomponents.body
         );
-
-
-        this.on('hidden.bs.toast', () => this.destroy());
     }
 
 
