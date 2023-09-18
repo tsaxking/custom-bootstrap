@@ -4,7 +4,7 @@
  * @typedef {CBS_InputGroupOptions}
  */
 type CBS_InputGroupOptions = CBS_Options & {
-    type?: string;
+    inputs?: (CBS_Input|CBS_InputLabelContainer)[];
 }
 
 /**
@@ -79,7 +79,6 @@ class CBS_InputGroup extends CBS_Component {
     constructor(options?: CBS_InputGroupOptions) {
         super(options);
 
-        this.el = document.createElement('div');
         this.addClass('input-group');
         this.marginB = 3;
     }

@@ -241,6 +241,17 @@ class CBS_Modal extends CBS_Component {
                 this.destroy();
             });
         }
+
+        if (options?.buttons) {
+            options.buttons.forEach(button => {
+                this.footer.append(button);
+            });
+        }
+
+        if (options?.title) {
+            this.title.clearElements();
+            this.title.append(options.title);
+        }
     }
 
     get title() {
@@ -278,32 +289,6 @@ class CBS_Modal extends CBS_Component {
 
     get size() {
         return this._size;
-    }
-
-
-    /**
-     * Description placeholder
-     *
-     * @type {CBS_ModalOptions}
-     */
-    set options(options: CBS_ModalOptions) {
-        super.options = options;
-        if (!this.subcomponents) return;
-
-        if (options.buttons && this.subcomponents?.dialog) {
-            this.subcomponents.dialog.subcomponents.footer.append(
-                ...options.buttons
-            );
-        }
-
-        if (options.title) {
-            this.title.clearElements();
-            this.title.append(options.title);
-        }
-    }
-
-    get options() {
-        return this._options;
     }
 
     /**
