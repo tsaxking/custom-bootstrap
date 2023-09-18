@@ -142,7 +142,7 @@ class CBS_ToastContainer extends CBS_Component {
 
 
 class CBS_Toast extends CBS_Component {
-    static container = new CBS_ToastPolite().subcomponents.container;
+    static container = new CBS_ToastPolite();
 
     subcomponents: {
         header: CBS_ToastHeader;
@@ -192,7 +192,7 @@ class CBS_Toast extends CBS_Component {
 
 
     show() {
-        CBS_Toast.container.append(this);
+        CBS_Toast.container.subcomponents.container.append(this);
 
         this.addClass('show');
     }
