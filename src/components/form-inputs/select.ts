@@ -48,6 +48,11 @@ class CBS_SelectOption extends CBS_Element {
         this.el = document.createElement('option');
 
         this.value = options?.value || '';
+
+        if (options?.value) {
+            this.setAttribute('value', options.value);
+        }
+
         this.text = options?.text || '';
         this.mirrorValue = options?.mirrorValue || null;
     }
