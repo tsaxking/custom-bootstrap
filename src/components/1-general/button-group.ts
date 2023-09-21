@@ -1,9 +1,15 @@
-type CBS_ButtonGroupOptions = CBS_Options & {
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+
+
+
+export type CBS_ButtonGroupOptions = CBS_Options & {
     vertical?: boolean;
 }
 
 
-class CBS_ButtonGroup extends CBS_Element {
+export class CBS_ButtonGroup extends CBS_Element {
     constructor(options?: CBS_ButtonGroupOptions) {
         super(options);
 
@@ -20,7 +26,7 @@ class CBS_ButtonGroup extends CBS_Element {
 CBS.addElement('button-group', CBS_ButtonGroup);
 
 
-class CBS_ButtonToolbar extends CBS_Element {
+export class CBS_ButtonToolbar extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 

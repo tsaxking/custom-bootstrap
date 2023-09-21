@@ -1,395 +1,145 @@
-type CBS_ElementNameMap<type = unknown> = {
-    'div': CBS_Element;
-
-    // grid
-    'col': CBS_Col;
-    'container': CBS_Container;
-    'row': CBS_Row;
-
-    // text
-    'text': CBS_Text;
-    'a': CBS_Anchor;
-    'heading': CBS_Heading;
-    'h1': CBS_H1;
-    'h2': CBS_H2;
-    'h3': CBS_H3;
-    'h4': CBS_H4;
-    'h5': CBS_H5;
-    'h6': CBS_H6;
-    'p': CBS_Paragraph;
-    'span': CBS_Span;
-
-    // general
-    'button': CBS_Button;
-    'button-group': CBS_ButtonGroup;
-    'button-toolbar': CBS_ButtonToolbar;
-    'card': CBS_Card;
-    'modal': CBS_Modal;
-    'progress-bar': CBS_ProgressBar;
-    'table': CBS_Table;
-    'hr': CBS_HorizontalLine;
-
-    // form-inputs
-    'form': CBS_Form;
-    'input': CBS_Input;
-    'label': CBS_Label;
-    'input-group': CBS_InputGroup;
-    'input-label-container': CBS_InputLabelContainer;
-    'input-checkbox': CBS_Checkbox;
-    'input-color': CBS_ColorInput;
-    'input-date': CBS_DateInput;
-    'input-email': CBS_EmailInput;
-    'input-file': CBS_FileInput;
-    'input-form-text': CBS_FormText;
-    'input-number': CBS_NumberInput;
-    'input-password': CBS_PasswordInput;
-    'input-radio': CBS_Radio;
-    'input-range': CBS_RangeInput;
-    'range': CBS_RangeInput;
-    'select': CBS_SelectInput<type>;
-    'input-textarea': CBS_TextareaInput;
-    'input-label-save': CBS_InputLabelSave;
-
-    // list
-    'li': CBS_ListItem;
-    'list': CBS_List;
-
-    // media
-    'audio': CBS_AudioElement;
-    'audio-player': CBS_AudioPlayer;
-    // 'video': CBS_VideoElement;
-    // 'video-player': CBS_VideoPlayer;
-    'image': CBS_Image;
-
-    // menus
-    'contextmenu': CBS_Contextmenu;
-
-    // dom
-    'dom': CBS_Document;
-
-    // notifications
-    'alert': CBS_Alert;
-    'toast': CBS_Toast;
-
-    // tabs
-    'tab-nav': CBS_TabNav;
-
-    [key: string]: CBS_Element;
-}
-
-type CBS_ElementOptionMap = {
-    'div': CBS_Options;
+import { CBS_Element, CBS_Options } from "./2-element";
+import { CBS_Col, CBS_ColOptions } from "../components/0-grid/col";
+import { CBS_Container, CBS_ContainerOptions } from "../components/0-grid/container";
+import { CBS_Row, CBS_RowOptions } from "../components/0-grid/row";
+import { CBS_Text, CBS_TextOptions } from "../components/0-text/1-text";
+import { CBS_Anchor, CBS_AnchorOptions } from "../components/0-text/anchor";
+import { CBS_Heading, CBS_HeadingOptions } from "../components/0-text/header";
+import { CBS_H1, CBS_H2, CBS_H3, CBS_H4, CBS_H5, CBS_H6 } from "../components/0-text/header";
+import { CBS_Paragraph, CBS_ParagraphOptions } from "../components/0-text/paragraph";
+import { CBS_Span } from "../components/0-text/span";
+import { CBS_Button, CBS_ButtonOptions } from "../components/1-general/1-button";
+import { CBS_ButtonGroup, CBS_ButtonGroupOptions } from "../components/1-general/button-group";
+import { CBS_ButtonToolbar } from "../components/1-general/button-group";
+import { CBS_Card, CBS_CardOptions } from "../components/1-general/card";
+import { CBS_Modal, CBS_ModalOptions } from "../components/1-general/modal";
+import { CBS_ProgressBar, CBS_ProgressBarOptions } from "../components/1-general/progress-bar";
+import { CBS_Table, CBS_TableOptions } from "../components/1-general/table";
+import { CBS_HorizontalLine } from "../components/1-general/lines";
+import { CBS_Form, CBS_FormOptions } from "../components/form-inputs/0-form";
+import { CBS_Input, CBS_InputOptions } from "../components/form-inputs/1-input";
+import { CBS_Label, CBS_LabelOptions } from "../components/form-inputs/2-label";
+import { CBS_InputGroup, CBS_InputGroupLabel, CBS_InputGroupOptions } from "../components/form-inputs/3-input-group";
+import { CBS_InputLabelContainer, CBS_InputLabelContainerOptions } from "../components/form-inputs/3-input-label-container";
+import { CBS_Checkbox, CBS_CheckboxInput, CBS_CheckboxLabel, CBS_CheckboxOptions } from "../components/form-inputs/checkbox";
+import { CBS_ColorInput, CBS_ColorInputOptions } from "../components/form-inputs/color";
+import { CBS_DateInput, CBS_DateInputOptions } from "../components/form-inputs/date";
+import { CBS_EmailInput, CBS_EmailInputOptions } from "../components/form-inputs/email";
+import { CBS_FileInput, CBS_FileInputOptions } from "../components/form-inputs/file";
+import { CBS_FormText } from "../components/form-inputs/form-text";
+import { CBS_NumberInput, CBS_NumberInputOptions } from "../components/form-inputs/number";
+import { CBS_PasswordInput, CBS_PasswordInputOptions } from "../components/form-inputs/password";
+import { CBS_Radio, CBS_RadioInput, CBS_RadioLabel, CBS_RadioOptions } from "../components/form-inputs/radio";
+import { CBS_RangeInput, CBS_RangeInputOptions } from "../components/form-inputs/range";
+import { CBS_SelectInput, CBS_SelectOptions } from "../components/form-inputs/select";
+import { CBS_TextareaInput, CBS_TextareaOptions } from "../components/form-inputs/textarea";
+import { CBS_InputLabelSave, CBS_InputLabelSaveOptions } from "../components/form-inputs/input-label-save";
+import { CBS_ListItem, CBS_ListItemOptions } from "../components/list/list-item";
+import { CBS_List, CBS_ListOptions } from "../components/list/list";
+import { CBS_AudioCard, CBS_AudioElement } from "../components/media/audio";
+import { CBS_AudioPlayer } from "../components/media/audio";
+import { CBS_Contextmenu, CBS_ContextmenuOptions } from "../components/menus/contextmenu";
+import { CBS_Document } from "./4-document";
+import { CBS_Alert, CBS_AlertOptions } from "../components/notifications/alert";
+import { CBS_Toast, CBS_ToastOptions } from "../components/notifications/toast";
+import { CBS_TabNav } from "../components/menus/nav";
+import { CBS_TextInput } from "../components/form-inputs/text";
+import { CBS_Image, CBS_ImageOptions } from "../components/media/image";
+import { CBS_SVG } from "../components/media/svg";
+import { CBS_Video, CBS_VideoOptions } from "../components/media/video";
+import { CBS_MaterialIcon } from "../z-extensions/material-icons";
 
 
 
-    'col': CBS_ColOptions;
-    'container': CBS_ContainerOptions;
-    'row': CBS_RowOptions;
+
+
+export type CBS_Elements<type = unknown> = {
+    'div': [CBS_Options, CBS_Element];
+
+
+
+    'col': [CBS_ColOptions, CBS_Col];
+    'container': [CBS_ContainerOptions, CBS_Container];
+    'row': [CBS_RowOptions, CBS_Row];
 
     // text
-    'text': CBS_TextOptions;
-    'a': CBS_AnchorOptions;
-    'heading': CBS_HeadingOptions;
-    'h1': CBS_TextOptions;
-    'h2': CBS_TextOptions;
-    'h3': CBS_TextOptions;
-    'h4': CBS_TextOptions;
-    'h5': CBS_TextOptions;
-    'h6': CBS_TextOptions;
-    'p': CBS_ParagraphOptions;
-    'span': CBS_TextOptions;
+    'text': [CBS_TextOptions, CBS_Text];
+    'a': [CBS_AnchorOptions, CBS_Anchor];
+    'heading': [CBS_HeadingOptions, CBS_Heading];
+    'h1': [CBS_TextOptions, CBS_H1];
+    'h2': [CBS_TextOptions, CBS_H2];
+    'h3': [CBS_TextOptions, CBS_H3];
+    'h4': [CBS_TextOptions, CBS_H4];
+    'h5': [CBS_TextOptions, CBS_H5];
+    'h6': [CBS_TextOptions, CBS_H6];
+    'p': [CBS_ParagraphOptions, CBS_Paragraph];
+    'span': [CBS_TextOptions, CBS_Span];
 
     // general
-    'button': CBS_ButtonOptions;
-    'button-group': CBS_ButtonGroupOptions;
-    'button-toolbar': CBS_Options;
-    'card': CBS_CardOptions;
-    'modal': CBS_ModalOptions;
-    'progress-bar': CBS_ProgressBarOptions;
-    'table': CBS_TableOptions;
-    'hr': CBS_Options;
+    'button': [CBS_ButtonOptions, CBS_Button];
+    'button-group': [CBS_ButtonGroupOptions, CBS_ButtonGroup];
+    'button-toolbar': [CBS_Options, CBS_ButtonToolbar];
+    'card': [CBS_CardOptions, CBS_Card];
+    'modal': [CBS_ModalOptions, CBS_Modal];
+    'progress-bar': [CBS_ProgressBarOptions, CBS_ProgressBar];
+    'table': [CBS_TableOptions, CBS_Table];
+    'hr': [CBS_Options, CBS_HorizontalLine];
     
     // form-inputs
-    'form': CBS_FormOptions;
-    'input': CBS_InputOptions;
-    'label': CBS_LabelOptions;
-    'input-group': CBS_InputGroupOptions;
-    'input-label-container': CBS_InputLabelContainerOptions;
-    'input-checkbox': CBS_CheckboxOptions;
-    'input-color': CBS_ColorInputOptions;
-    'input-date': CBS_DateInputOptions;
-    'input-email': CBS_EmailInputOptions;
-    'input-file': CBS_FileInputOptions;
-    'input-form-text': CBS_InputOptions;
-    'input-number': CBS_NumberInputOptions;
-    'input-password': CBS_PasswordInputOptions;
-    'input-radio': CBS_RadioOptions;
-    'input-range': CBS_RangeInputOptions;
-    'range': CBS_RangeInputOptions;
-    'select': CBS_InputOptions;
-    'input-textarea': CBS_InputOptions;
-    'input-label-save': CBS_InputLabelSaveOptions;
+    'form': [CBS_FormOptions, CBS_Form];
+    'input': [CBS_InputOptions, CBS_Input];
+    'input-text': [CBS_InputOptions, CBS_TextInput];
+    'label': [CBS_LabelOptions, CBS_Label];
+    'input-group': [CBS_InputGroupOptions, CBS_InputGroup];
+    'input-label-container': [CBS_InputLabelContainerOptions, CBS_InputLabelContainer];
+    'input-checkbox': [CBS_Options, CBS_CheckboxInput];
+    'input-color': [CBS_ColorInputOptions, CBS_ColorInput];
+    'input-date': [CBS_DateInputOptions, CBS_DateInput];
+    'input-email': [CBS_EmailInputOptions, CBS_EmailInput];
+    'input-file': [CBS_FileInputOptions, CBS_FileInput];
+    'input-form-text': [CBS_InputOptions, CBS_FormText];
+    'input-number': [CBS_NumberInputOptions, CBS_NumberInput];
+    'input-password': [CBS_PasswordInputOptions, CBS_PasswordInput];
+    'input-radio': [CBS_RadioOptions, CBS_RadioInput];
+    'radio-label': [CBS_Options, CBS_RadioLabel]
+    'input-range': [CBS_RangeInputOptions, CBS_RangeInput];
+    'range': [CBS_RangeInputOptions, CBS_RangeInput];
+    'select': [CBS_SelectOptions, CBS_SelectInput];
+    'input-textarea': [CBS_TextareaOptions, CBS_TextareaInput];
+    'input-label-save': [CBS_InputLabelSaveOptions, CBS_InputLabelSave];
+    'radio': [CBS_RadioOptions, CBS_Radio];
+    'input-group-label': [CBS_InputGroupOptions, CBS_InputGroupLabel];
+    'checkbox-label': [CBS_Options, CBS_CheckboxLabel];
+    'checkbox': [CBS_CheckboxOptions, CBS_Checkbox];
 
     // list
-    'li': CBS_ListItemOptions;
-    'list': CBS_ListOptions;
+    'li': [CBS_ListItemOptions, CBS_ListItem];
+    'list': [CBS_ListOptions, CBS_List];
 
     // media
-    'audio': CBS_Options;
-    'audio-player': CBS_Options;
-    // 'video': CBS_VideoElementOptions;
+    'audio-card': [CBS_Options, CBS_AudioCard];
+    'audio-player': [CBS_Options, CBS_AudioPlayer];
+    'audio': [CBS_Options, CBS_AudioElement];
+    'picture': [CBS_ImageOptions, CBS_Image];
+    'svg': [CBS_Options, CBS_SVG];
+    'video': [CBS_VideoOptions, CBS_Video];
     // 'video-player': CBS_VideoPlayerOptions;
 
     // menus
-    'contextmenu': CBS_ContextmenuOptions;
+    'contextmenu': [CBS_ContextmenuOptions, CBS_Contextmenu];
     
     // dom
-    'dom': CBS_Options;
+    'dom': [CBS_Options, CBS_Document];
 
     // notifications
-    'alert': CBS_AlertOptions;
-    'toast': CBS_ToastOptions;
+    'alert': [CBS_AlertOptions, CBS_Alert];
+    'toast': [CBS_ToastOptions, CBS_Toast];
 
     // tabs
-    'tab-nav': CBS_Options;
+    'tab-nav': [CBS_Options, CBS_TabNav];
+
+    'material-icon': [CBS_Options, CBS_MaterialIcon];
 }
 
 
-
-// type CBS_ElementMap = {
-//     'col': {
-//         options: CBS_ColOptions;
-//         element: CBS_Col;
-//     },
-//     'container': {
-//         options: CBS_ContainerOptions;
-//         element: CBS_Container;
-//     },
-//     'row': {
-//         options: CBS_RowOptions;
-//         element: CBS_Row;
-//     },
-    
-//     // text
-//     'text': {
-//         options: CBS_TextOptions;
-//         element: CBS_Text;
-//     },
-//     'a': {
-//         options: CBS_AnchorOptions;
-//         element: CBS_Anchor;
-//     },
-//     'heading': {
-//         options: CBS_HeadingOptions;
-//         element: CBS_Heading;
-//     },
-//     'h1': {
-//         options: CBS_TextOptions;
-//         element: CBS_H1;
-//     },
-//     'h2': {
-//         options: CBS_TextOptions;
-//         element: CBS_H2;
-//     },
-//     'h3': {
-//         options: CBS_TextOptions;
-//         element: CBS_H3;
-//     },
-//     'h4': {
-//         options: CBS_TextOptions;
-//         element: CBS_H4;
-//     },
-//     'h5': {
-//         options: CBS_TextOptions;
-//         element: CBS_H5;
-//     },
-//     'h6': {
-//         options: CBS_TextOptions;
-//         element: CBS_H6;
-//     },
-//     'p': {
-//         options: CBS_ParagraphOptions;
-//         element: CBS_Paragraph;
-//     },
-//     'span': {
-//         options: CBS_TextOptions;
-//         element: CBS_Span;
-//     },
-
-//     // general
-//     'button': {
-//         options: CBS_ButtonOptions;
-//         element: CBS_Button;
-//     },
-//     'button-group': {
-//         options: CBS_ButtonGroupOptions;
-//         element: CBS_ButtonGroup;
-//     },
-//     'button-toolbar': {
-//         options: CBS_Options;
-//         element: CBS_ButtonToolbar;
-//     },
-//     'card': {
-//         options: CBS_CardOptions;
-//         element: CBS_Card;
-//     },
-//     'modal': {
-//         options: CBS_ModalOptions;
-//         element: CBS_Modal;
-//     },
-//     'progress-bar': {
-//         options: CBS_ProgressBarOptions;
-//         element: CBS_ProgressBar;
-//     },
-//     'table': {
-//         options: CBS_TableOptions;
-//         element: CBS_Table;
-//     },
-//     'hr': {
-//         options: CBS_Options;
-//         element: CBS_HorizontalLine;
-//     },
-
-//     // form-inputs
-//     'form': {
-//         options: CBS_FormOptions;
-//         element: CBS_Form;
-//     },
-//     'input': {
-//         options: CBS_InputOptions;
-//         element: CBS_Input;
-//     },
-//     'label': {
-//         options: CBS_LabelOptions;
-//         element: CBS_Label;
-//     },
-//     'input-group': {
-//         options: CBS_InputGroupOptions;
-//         element: CBS_InputGroup;
-//     },
-//     'input-label-container': {
-//         options: CBS_InputLabelContainerOptions;
-//         element: CBS_InputLabelContainer;
-//     },
-//     'input-checkbox': {
-//         options: CBS_CheckboxOptions;
-//         element: CBS_Checkbox;
-//     },
-//     'input-color': {
-//         options: CBS_ColorInputOptions;
-//         element: CBS_ColorInput;
-//     },
-//     'input-date': {
-//         options: CBS_DateInputOptions;
-//         element: CBS_DateInput;
-//     },
-//     'input-email': {
-//         options: CBS_EmailInputOptions;
-//         element: CBS_EmailInput;
-//     },
-//     'input-file': {
-//         options: CBS_FileInputOptions;
-//         element: CBS_FileInput;
-//     },
-//     'input-form-text': {
-//         options: CBS_InputOptions;
-//         element: CBS_Input;
-//     },
-//     'input-number': {
-//         options: CBS_NumberInputOptions;
-//         element: CBS_NumberInput;
-//     },
-//     'input-password': {
-//         options: CBS_PasswordInputOptions;
-//         element: CBS_PasswordInput;
-//     },
-//     'input-radio': {
-//         options: CBS_RadioOptions;
-//         element: CBS_Radio;
-//     },
-//     'input-range': {
-//         options: CBS_RangeInputOptions;
-//         element: CBS_RangeInput;
-//     },
-//     'range': {
-//         options: CBS_RangeInputOptions;
-//         element: CBS_RangeInput;
-//     },
-//     'input-select': {
-//         options: CBS_InputOptions;
-//         element: CBS_SelectInput;
-//     },
-//     'select': {
-//         options: CBS_InputOptions;
-//         element: CBS_SelectInput;
-//     },
-//     'input-textarea': {
-//         options: CBS_InputOptions;
-//         element: CBS_TextareaInput;
-//     },
-
-//     // list
-//     'li': {
-//         options: CBS_ListItemOptions;
-//         element: CBS_ListItem;
-//     },
-//     'list': {
-//         options: CBS_ListOptions;
-//         element: CBS_List;
-//     },
-
-//     // media
-//     'audio': {
-//         options: CBS_Options;
-//         element: CBS_AudioElement;
-//     },
-//     'audio-player': {
-//         options: CBS_Options;
-//         element: CBS_AudioPlayer;
-//     },
-//     // 'video': {
-//     //     options: CBS_VideoElementOptions;
-//     //     element: CBS_VideoElement;
-//     // },
-//     // 'video-player': {
-//     //     options: CBS_VideoPlayerOptions;
-//     //     element: CBS_VideoPlayer;
-//     // },
-//     'image': {
-//         options: CBS_ImageOptions;
-//         element: CBS_Image;
-//     },
-
-//     // menus
-//     'contextmenu': {
-//         options: CBS_ContextmenuOptions;
-//         element: CBS_Contextmenu;
-//     },
-
-//     // dom
-//     'dom': {
-//         options: CBS_Options;
-//         element: CBS_Document;
-//     },
-
-//     // notifications
-//     'alert': {
-//         options: CBS_AlertOptions;
-//         element: CBS_Alert;
-//     },
-//     'toast': {
-//         options: CBS_ToastOptions;
-//         element: CBS_Toast;
-//     },
-
-//     // tabs
-//     'tab-nav': {
-//         options: CBS_Options;
-//         element: CBS_TabNav;
-//     }
-// };
-
-
-// type CBS_ElementName = keyof CBS_ElementMap;
-
-type CBS_ElementName = keyof CBS_ElementOptionMap;
+export type CBS_ElementName = keyof CBS_Elements;

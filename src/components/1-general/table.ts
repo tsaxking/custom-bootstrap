@@ -1,11 +1,22 @@
-type CBS_TableOptions = CBS_Options & {
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+
+import { CBS_Text } from "../0-text/1-text";
+
+
+
+
+
+
+export type CBS_TableOptions = CBS_Options & {
     responsive?: boolean;
 };
 
 
 
 
-type CBS_TableRowCellOptions = CBS_Options & {
+export type CBS_TableRowCellOptions = CBS_Options & {
 
     colspan?: number;
     rowspan?: number;
@@ -14,7 +25,7 @@ type CBS_TableRowCellOptions = CBS_Options & {
     getData: (data: any) => CBS_Node;
 }
 
-class CBS_TableBody extends CBS_Element {
+export class CBS_TableBody extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -38,7 +49,7 @@ class CBS_TableBody extends CBS_Element {
     }
 }
 
-class CBS_TableData extends CBS_Element {
+export class CBS_TableData extends CBS_Element {
     constructor(options?: CBS_TableRowCellOptions) {
         super(options);
 
@@ -82,7 +93,7 @@ class CBS_TableData extends CBS_Element {
     }
 }
 
-class CBS_TableHeader extends CBS_Element {
+export class CBS_TableHeader extends CBS_Element {
     constructor(options?: CBS_TableHeaderOptions) {
         super(options);
 
@@ -90,7 +101,7 @@ class CBS_TableHeader extends CBS_Element {
     }
 }
 
-class CBS_TableHead extends CBS_Element {
+export class CBS_TableHead extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -104,7 +115,7 @@ class CBS_TableHead extends CBS_Element {
     }
 }
 
-class CBS_TableFoot extends CBS_TableHead {
+export class CBS_TableFoot extends CBS_TableHead {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -118,7 +129,7 @@ class CBS_TableFoot extends CBS_TableHead {
     }
 }
 
-class CBS_TableRow extends CBS_Element {
+export class CBS_TableRow extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -134,14 +145,14 @@ class CBS_TableRow extends CBS_Element {
 }
 
 
-type CBS_TableHeaderOptions = CBS_Options & {
+export type CBS_TableHeaderOptions = CBS_Options & {
     content: CBS_Node;
 }
 
 
 
 
-class CBS_TableHeadRow extends CBS_Element {
+export class CBS_TableHeadRow extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -164,14 +175,14 @@ class CBS_TableHeadRow extends CBS_Element {
 }
 
 
-class CBS_TableFootRow extends CBS_TableHeadRow {
+export class CBS_TableFootRow extends CBS_TableHeadRow {
     constructor(options?: CBS_Options) {
         super(options);
     }
 }
 
 
-class CBS_TableCaption extends CBS_Text {
+export class CBS_TableCaption extends CBS_Text {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -179,7 +190,7 @@ class CBS_TableCaption extends CBS_Text {
     }
 }
 
-class CBS_SubTable extends CBS_Element {
+export class CBS_SubTable extends CBS_Element {
     constructor(options?: CBS_Options) {
         super(options);
 
@@ -188,7 +199,7 @@ class CBS_SubTable extends CBS_Element {
     }
 }
 
-class CBS_Table extends CBS_Component {
+export class CBS_Table extends CBS_Component {
     static fromHTML(table: HTMLTableElement) {}
 
     

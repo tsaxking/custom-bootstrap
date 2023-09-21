@@ -1,9 +1,22 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Button } from "./1-button";
+import { CBS_H5 } from "../0-text/header";
+import { CBS_Text } from "../0-text/1-text";
+import { CBS_Class } from "../../1-main/classes";
+
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums";
+
+
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_ModalOptions}
  */
-type CBS_ModalOptions = CBS_Options & {
+export type CBS_ModalOptions = CBS_Options & {
     title?: string;
     buttons?: CBS_Button[];
     size?: CBS_Size;
@@ -19,7 +32,7 @@ type CBS_ModalOptions = CBS_Options & {
  * @typedef {CBS_ModalHeader}
  * @extends {CBS_Element}
  */
-class CBS_ModalHeader extends CBS_Component {
+export class CBS_ModalHeader extends CBS_Component {
     subcomponents: {
         title: CBS_H5;
     } = {
@@ -58,7 +71,7 @@ class CBS_ModalHeader extends CBS_Component {
  * @typedef {CBS_ModalBody}
  * @extends {CBS_Element}
  */
-class CBS_ModalBody extends CBS_Element {
+export class CBS_ModalBody extends CBS_Element {
     /**
      * Creates an instance of CBS_ModalBody.
      *
@@ -79,7 +92,7 @@ class CBS_ModalBody extends CBS_Element {
  * @typedef {CBS_ModalFooter}
  * @extends {CBS_Element}
  */
-class CBS_ModalFooter extends CBS_Element {
+export class CBS_ModalFooter extends CBS_Element {
     /**
      * Creates an instance of CBS_ModalFooter.
      *
@@ -100,7 +113,7 @@ class CBS_ModalFooter extends CBS_Element {
  * @typedef {CBS_ModalDialog}
  * @extends {CBS_Component}
  */
-class CBS_ModalDialog extends CBS_Component {
+export class CBS_ModalDialog extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -168,7 +181,7 @@ class CBS_ModalDialog extends CBS_Component {
 
 
 
-class CBS_ModalContent extends CBS_Component {
+export class CBS_ModalContent extends CBS_Component {
     subcomponents: {
         header: CBS_ModalHeader;
         body: CBS_ModalBody;
@@ -195,7 +208,7 @@ class CBS_ModalContent extends CBS_Component {
  * @typedef {CBS_Modal}
  * @extends {CBS_Component}
  */
-class CBS_Modal extends CBS_Component {
+export class CBS_Modal extends CBS_Component {
 
     subcomponents: {
         dialog: CBS_ModalDialog;

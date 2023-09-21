@@ -1,9 +1,18 @@
+import { CBS_ListenerCallback, CBS_EventCallback, CBS_Listener } from "../events/listener";
+import { CBS_Event } from "../events/events";
+import CBS from "./1-main";
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../1-main/enums";
+
+import { CBS_ParameterValue, CBS_Parameters } from "./1-main";
+import { CBS_Class } from "../1-main/classes";
+import { CBS_Component } from "./3-components";
+
 /**
  * Generic Node
  *
  * @typedef {CBS_Node}
  */
-type CBS_Node = CBS_Element|Node|string;
+export type CBS_Node = CBS_Element|Node|string;
 
 // used in CBS_Element.components
 /**
@@ -11,7 +20,7 @@ type CBS_Node = CBS_Element|Node|string;
  *
  * @typedef {CBS_NodeMap}
  */
-type CBS_NodeMap = CBS_Node[];
+export type CBS_NodeMap = CBS_Node[];
 
 
 
@@ -23,7 +32,7 @@ type CBS_NodeMap = CBS_Node[];
  * @class CBS_Options
  * @typedef {CBS_Options}
  */
-type CBS_Options = {
+export type CBS_Options = {
     /**
      * Classes to be added to the element
      *
@@ -56,7 +65,7 @@ type CBS_Options = {
  *
  * @typedef {CBS_PropertyMap}
  */
-type CBS_PropertyMap = {
+export type CBS_PropertyMap = {
     // [key: string]: number|undefined;
     s?: number;
     e?: number;
@@ -72,7 +81,7 @@ type CBS_PropertyMap = {
  *
  * @typedef {CBS_Properties}
  */
-type CBS_Properties = {
+export type CBS_Properties = {
     padding: CBS_PropertyMap;
     margin: CBS_PropertyMap;
 }
@@ -85,7 +94,7 @@ type CBS_Properties = {
  * @typedef {CBS_Element}
  * @extends {CustomBootstrap}
  */
-class CBS_Element {
+export class CBS_Element {
     /**
      * All templates for this class
      *
@@ -121,7 +130,7 @@ class CBS_Element {
 
         c.prototype.options = template.options;
         c.prototype.listeners = template.listeners;
-        (c.prototype as CBS_Component).subcomponents = (template as CBS_Component).subcomponents;
+        (c.prototype as unknown as CBS_Component).subcomponents = (template as unknown as CBS_Component).subcomponents;
         c.prototype.parameters = template.parameters;
         c.prototype._el = template._el.cloneNode(true) as HTMLElement;
         c.prototype._options = template._options;

@@ -1,9 +1,33 @@
+import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+
+
+
+
+
+
+
+import { CBS_H5 } from "../0-text/header";
+import { CBS_CardBody } from "../1-general/card";
+import { CBS_Image } from "./image";
+import { CBS_MaterialIcon } from "../../z-extensions/material-icons";
+
+
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_AudioOptions}
  */
-type CBS_AudioOptions = CBS_Options & {
+export type CBS_AudioOptions = CBS_Options & {
     fadeTime?: number;
 }
 
@@ -14,7 +38,7 @@ type CBS_AudioOptions = CBS_Options & {
  * @typedef {CBS_AudioSource}
  * @extends {CBS_Element}
  */
-class CBS_AudioSource extends CBS_Element {
+export class CBS_AudioSource extends CBS_Element {
     /**
      * Creates an instance of CBS_AudioSource.
      *
@@ -53,7 +77,7 @@ class CBS_AudioSource extends CBS_Element {
  * @typedef {CBS_AudioElement}
  * @extends {CBS_Component}
  */
-class CBS_AudioElement extends CBS_Component {
+export class CBS_AudioElement extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -304,7 +328,7 @@ class CBS_AudioElement extends CBS_Component {
  * @typedef {CBS_AudioPlayhead}
  * @extends {CBS_Element}
  */
-class CBS_AudioPlayhead extends CBS_Element {
+export class CBS_AudioPlayhead extends CBS_Element {
     /**
      * Creates an instance of CBS_AudioPlayhead.
      *
@@ -333,7 +357,7 @@ class CBS_AudioPlayhead extends CBS_Element {
  * @typedef {CBS_AudioTimeline}
  * @extends {CBS_Component}
  */
-class CBS_AudioTimeline extends CBS_Component {
+export class CBS_AudioTimeline extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -407,7 +431,7 @@ CBS_AudioTimeline.addCustomEvent('playhead.move');
  * @typedef {CBS_AudioButton}
  * @extends {CBS_Element}
  */
-class CBS_AudioButton extends CBS_Component {
+export class CBS_AudioButton extends CBS_Component {
     /**
      * Creates an instance of CBS_AudioButton.
      *
@@ -445,7 +469,7 @@ class CBS_AudioButton extends CBS_Component {
  * @typedef {CBS_AudioPlayer}
  * @extends {CBS_Component}
  */
-class CBS_AudioPlayer extends CBS_Component {
+export class CBS_AudioPlayer extends CBS_Component {
     /**
      * Description placeholder
      *
@@ -552,7 +576,7 @@ class CBS_AudioPlayer extends CBS_Component {
  * @typedef {CBS_AudioCardBody}
  * @extends {CBS_CardBody}
  */
-class CBS_AudioCardBody extends CBS_CardBody {
+export class CBS_AudioCardBody extends CBS_CardBody {
     /**
      * Description placeholder
      *
@@ -595,7 +619,7 @@ class CBS_AudioCardBody extends CBS_CardBody {
  * @typedef {CBS_AudioCard}
  * @extends {CBS_Card}
  */
-class CBS_AudioCard extends CBS_Component {
+export class CBS_AudioCard extends CBS_Component {
     /**
      * Description placeholder
      *

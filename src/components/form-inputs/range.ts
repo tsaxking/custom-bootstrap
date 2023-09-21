@@ -1,9 +1,27 @@
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_InputOptions, CBS_Input, CBS_InputInterface, CBS_InputMirrorValueMap } from "./1-input";
+
+
+
+import { CBS_Label } from "./2-label";
+
+
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_RangeInputOptions}
  */
-type CBS_RangeInputOptions = CBS_InputOptions & {
+export type CBS_RangeInputOptions = CBS_InputOptions & {
 
     min?: number;
     max?: number;
@@ -17,7 +35,7 @@ type CBS_RangeInputOptions = CBS_InputOptions & {
  * @typedef {CBS_RangeInput}
  * @extends {CBS_Input}
  */
-class CBS_RangeInput extends CBS_Input {
+export class CBS_RangeInput extends CBS_Input {
 
     /**
      * Creates an instance of CBS_RangeInput.

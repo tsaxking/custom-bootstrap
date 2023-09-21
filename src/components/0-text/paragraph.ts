@@ -1,9 +1,15 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Text } from "./1-text";
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_ParagraphOptions}
  */
-type CBS_ParagraphOptions = CBS_Options & {
+export type CBS_ParagraphOptions = CBS_Options & {
 }
 
 
@@ -14,7 +20,7 @@ type CBS_ParagraphOptions = CBS_Options & {
  * @typedef {CBS_Component}
  * @extends {CBS_Component}
  */
-class CBS_Paragraph extends CBS_Text {
+export class CBS_Paragraph extends CBS_Text {
     /**
      * Creates an instance of CBS_Paragraph.
      *

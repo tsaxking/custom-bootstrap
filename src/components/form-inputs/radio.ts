@@ -1,15 +1,31 @@
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_InputOptions, CBS_Input, CBS_InputInterface, CBS_InputMirrorValueMap } from "./1-input";
+
+
+
+import { CBS_Label } from "./2-label";
+import { CBS_CheckboxLabel } from "./checkbox";
+
 
 /**
  * Description placeholder
  *
  * @typedef {CBS_RadioOptions}
  */
-type CBS_RadioOptions = CBS_Options & {
+export type CBS_RadioOptions = CBS_Options & {
     mirrorValue?: any;
     label?: string;
 }
 
-class CBS_RadioLabel extends CBS_CheckboxLabel {
+export class CBS_RadioLabel extends CBS_CheckboxLabel {
     /**
      * Creates an instance of CBS_RadioLabel.
      *
@@ -21,7 +37,7 @@ class CBS_RadioLabel extends CBS_CheckboxLabel {
     }
 }
 
-CBS.addElement('cbs-radio-label', CBS_RadioLabel);
+CBS.addElement('radio-label', CBS_RadioLabel);
 
 
 
@@ -32,7 +48,7 @@ CBS.addElement('cbs-radio-label', CBS_RadioLabel);
  * @typedef {CBS_RadioInput}
  * @extends {CBS_Input}
  */
-class CBS_RadioInput extends CBS_Input {
+export class CBS_RadioInput extends CBS_Input {
     // #mirrorValue: any;
 
     /**
@@ -96,7 +112,7 @@ class CBS_RadioInput extends CBS_Input {
     }
 }
 
-CBS.addElement('cbs-radio-input', CBS_RadioInput);
+CBS.addElement('input-radio', CBS_RadioInput);
 
 
 /**
@@ -106,7 +122,7 @@ CBS.addElement('cbs-radio-input', CBS_RadioInput);
  * @typedef {CBS_Radio}
  * @extends {CBS_Input}
  */
-class CBS_Radio extends CBS_Input {
+export class CBS_Radio extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -193,7 +209,7 @@ class CBS_Radio extends CBS_Input {
     }
 };
 
-CBS.addElement('cbs-radio', CBS_Radio);
+CBS.addElement('radio', CBS_Radio);
 
 
 /**
@@ -203,7 +219,7 @@ CBS.addElement('cbs-radio', CBS_Radio);
  * @typedef {CBS_RadioGroup}
  * @extends {CBS_Input}
  */
-class CBS_RadioGroup extends CBS_Input {
+export class CBS_RadioGroup extends CBS_Input {
     /**
      * Description placeholder
      *

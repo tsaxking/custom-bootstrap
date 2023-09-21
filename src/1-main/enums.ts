@@ -1,4 +1,4 @@
-enum CBS_Breakpoint {
+export enum CBS_Breakpoint {
     xs = 0,
     sm = 576,
     md = 768,
@@ -7,15 +7,15 @@ enum CBS_Breakpoint {
     xxl = 1400
 }
 
-type CBS_Color = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'white';
+export type CBS_Color = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'white';
 
-type CBS_Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type CBS_Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-type CBS_Weight = 'normal' | 'bold' | 'bolder' | 'lighter';
+export type CBS_Weight = 'normal' | 'bold' | 'bolder' | 'lighter';
 
-type CBS_Align = 'left' | 'center' | 'right' | 'justify' | 'start' | 'end';
+export type CBS_Align = 'left' | 'center' | 'right' | 'justify' | 'start' | 'end';
 
-enum CBS_Icons {
+export enum CBS_Icons {
     success = `
         <svg xmlns="http://www.w3.org/2000/svg">
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">

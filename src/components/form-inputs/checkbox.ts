@@ -1,9 +1,25 @@
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_InputOptions, CBS_Input, CBS_InputInterface, CBS_InputMirrorValueMap } from "./1-input";
+
+
+
+import { CBS_Label } from "./2-label";
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_CheckboxOptions}
  */
-type CBS_CheckboxOptions = CBS_Options & {
+export type CBS_CheckboxOptions = CBS_Options & {
     label?: string;
     mirrorValue?: any;
 }
@@ -16,7 +32,7 @@ type CBS_CheckboxOptions = CBS_Options & {
  * @typedef {CBS_CheckboxLabel}
  * @extends {CBS_Element}
  */
-class CBS_CheckboxLabel extends CBS_Element {
+export class CBS_CheckboxLabel extends CBS_Element {
     /**
      * Description placeholder
      *
@@ -57,7 +73,7 @@ class CBS_CheckboxLabel extends CBS_Element {
     }
 };
 
-CBS.addElement('cbs-checkbox-label', CBS_CheckboxLabel);
+CBS.addElement('checkbox-label', CBS_CheckboxLabel);
 
 /**
  * Description placeholder
@@ -66,7 +82,7 @@ CBS.addElement('cbs-checkbox-label', CBS_CheckboxLabel);
  * @typedef {CBS_CheckboxInput}
  * @extends {CBS_Input}
  */
-class CBS_CheckboxInput extends CBS_Input {
+export class CBS_CheckboxInput extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -162,7 +178,7 @@ class CBS_CheckboxInput extends CBS_Input {
 }
 
 
-CBS.addElement('cbs-checkbox', CBS_CheckboxInput);
+CBS.addElement('input-checkbox', CBS_CheckboxInput);
 
 
 
@@ -173,7 +189,7 @@ CBS.addElement('cbs-checkbox', CBS_CheckboxInput);
  * @typedef {CBS_Checkbox}
  * @extends {CBS_Input}
  */
-class CBS_Checkbox extends CBS_Input {
+export class CBS_Checkbox extends CBS_Input {
     /**
      * Description placeholder
      *
@@ -292,7 +308,7 @@ CBS.addElement('checkbox', CBS_Checkbox);
  * @typedef {CBS_CheckboxGroup}
  * @extends {CBS_Component}
  */
-class CBS_CheckboxGroup extends CBS_Input {
+export class CBS_CheckboxGroup extends CBS_Input {
     /**
      * Description placeholder
      *

@@ -1,9 +1,11 @@
+import { CBS_Event } from "./events";
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_ListenerCallback}
  */
-type CBS_ListenerCallback = (event: Event) => Promise<any>|any;
+export type CBS_ListenerCallback = (event: Event) => Promise<any>|any;
 
 /**
  * Description placeholder
@@ -11,7 +13,7 @@ type CBS_ListenerCallback = (event: Event) => Promise<any>|any;
  * @class CBS_Listener
  * @typedef {CBS_Listener}
  */
-class CBS_Listener {
+export class CBS_Listener {
     /**
      * Creates an instance of CBS_Listener.
      *
@@ -32,7 +34,7 @@ class CBS_Listener {
  *
  * @typedef {CBS_EventCallback}
  */
-type CBS_EventCallback = {
+export type CBS_EventCallback = {
     event: CBS_Event;
     callback: CBS_ListenerCallback;
     // options?: AddEventListenerOptions;

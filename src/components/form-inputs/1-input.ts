@@ -1,10 +1,28 @@
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Description placeholder
  *
  * @typedef {CBS_InputOptions}
  */
-type CBS_InputOptions = CBS_Options & {
+export type CBS_InputOptions = CBS_Options & {
     name?: string;
     label?: string;
     value?: string;
@@ -20,7 +38,7 @@ type CBS_InputOptions = CBS_Options & {
  * @interface CBS_InputInterface
  * @typedef {CBS_InputInterface}
  */
-interface CBS_InputInterface {
+export interface CBS_InputInterface {
     /**
      * Description placeholder
      *
@@ -54,7 +72,7 @@ interface CBS_InputInterface {
  *
  * @typedef {CBS_InputMirrorValueMap}
  */
-type CBS_InputMirrorValueMap = {
+export type CBS_InputMirrorValueMap = {
     [key: string]: any;
 }
 
@@ -66,7 +84,7 @@ type CBS_InputMirrorValueMap = {
  * @extends {CBS_Element}
  * @implements {CBS_InputInterface}
  */
-class CBS_Input extends CBS_Component implements CBS_InputInterface {
+export class CBS_Input extends CBS_Component implements CBS_InputInterface {
     /**
      * Description placeholder
      *

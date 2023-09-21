@@ -1,9 +1,15 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Class } from "../../1-main/classes";
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums";
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_TextOptions}
  */
-type CBS_TextOptions = CBS_Options & {
+export type CBS_TextOptions = CBS_Options & {
 }
 
 
@@ -14,7 +20,7 @@ type CBS_TextOptions = CBS_Options & {
  * @typedef {CBS_Component}
  * @extends {CBS_Element}
  */
-class CBS_Text extends CBS_Element {
+export class CBS_Text extends CBS_Element {
     /**
      * Description placeholder
      * @date 8/26/2023

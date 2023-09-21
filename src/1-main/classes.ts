@@ -1,1536 +1,1536 @@
-type CBS_Class = 
+export type CBS_Class = 
 'accordion-body' |
-'accordion-button' |
-'accordion-collapse' |
-'accordion-flush' |
-'accordion-header' |
-'accordion-item' |
-'accordion' |
-'active' |
-'alert-danger' |
-'alert-dark' |
-'alert-dismissible' |
-'alert-heading' |
-'alert-info' |
-'alert-light' |
-'alert-link' |
-'alert-primary' |
-'alert-secondary' |
-'alert-success' |
-'alert-warning' |
-'alert-white' |
-'align-items-baseline' |
-'align-items-center' |
-'align-items-end' |
-'align-items-lg-baseline' |
-'align-items-lg-center' |
-'align-items-lg-end' |
-'align-items-lg-start' |
-'align-items-lg-stretch' |
-'align-items-md-baseline' |
-'align-items-md-center' |
-'align-items-md-end' |
-'align-items-md-start' |
-'align-items-md-stretch' |
-'align-items-sm-baseline' |
-'align-items-sm-center' |
-'align-items-sm-end' |
-'align-items-sm-start' |
-'align-items-sm-stretch' |
-'align-items-start' |
-'align-items-stretch' |
-'align-items-xl-baseline' |
-'align-items-xl-center' |
-'align-items-xl-end' |
-'align-items-xl-start' |
-'align-items-xl-stretch' |
-'align-items-xs-baseline' |
-'align-items-xs-center' |
-'align-items-xs-end' |
-'align-items-xs-start' |
-'align-items-xs-stretch' |
-'align-items-xxl-baseline' |
-'align-items-xxl-center' |
-'align-items-xxl-end' |
-'align-items-xxl-start' |
-'align-items-xxl-stretch' |
-'badge-danger' |
-'badge-dark' |
-'badge-info' |
-'badge-light' |
-'badge-pill' |
-'badge-primary' |
-'badge-secondary' |
-'badge-success' |
-'badge-warning' |
-'badge' |
-'bg-body' |
-'bg-danger' |
-'bg-dark' |
-'bg-gradient' |
-'bg-info' |
-'bg-light' |
-'bg-primary' |
-'bg-secondary' |
-'bg-success' |
-'bg-transparent' |
-'bg-warning' |
-'bg-white' |
-'blockquote-footer' |
-'blockquote-reverse' |
-'blockquote' |
-'border-0' |
-'border-1' |
-'border-2' |
-'border-3' |
-'border-4' |
-'border-5' |
-'border-bottom-0' |
-'border-bottom-1' |
-'border-bottom-2' |
-'border-bottom-3' |
-'border-bottom-4' |
-'border-bottom-5' |
-'border-danger' |
-'border-dark' |
-'border-end-0' |
-'border-end-1' |
-'border-end-2' |
-'border-end-3' |
-'border-end-4' |
-'border-end-5' |
-'border-info' |
-'border-light' |
-'border-primary' |
-'border-secondary' |
-'border-start-0' |
-'border-start-1' |
-'border-start-2' |
-'border-start-3' |
-'border-start-4' |
-'border-start-5' |
-'border-success' |
-'border-top-0' |
-'border-top-1' |
-'border-top-2' |
-'border-top-3' |
-'border-top-4' |
-'border-top-5' |
-'border-warning' |
-'border-white' |
-'border' |
-'bottom-0' |
-'bottom-100' |
-'bottom-50' |
-'breadcrumb-item' |
-'breadcrumb' |
-'btn-block' |
-'btn-close-white' |
-'btn-close' |
-'btn-danger' |
-'btn-dark' |
-'btn-default' |
-'btn-group-lg' |
-'btn-group-sm' |
-'btn-group-vertical' |
-'btn-group' |
-'btn-info' |
-'btn-lg' |
-'btn-light' |
-'btn-link' |
-'btn-outline-danger' |
-'btn-outline-dark' |
-'btn-outline-info' |
-'btn-outline-light' |
-'btn-outline-primary' |
-'btn-outline-secondary' |
-'btn-outline-success' |
-'btn-outline-warning' |
-'btn-primary' |
-'btn-secondary' |
-'btn-sm' |
-'btn-success' |
-'btn-toolbar' |
-'btn-warning' |
-'btn-xs' |
-'btn' |
-'caption-top' |
-'card-body' |
-'card-columns' |
-'card-deck' |
-'card-footer' |
-'card-group' |
-'card-header-pills' |
-'card-header-tabs' |
-'card-header' |
-'card-img-bottom' |
-'card-img-overlay' |
-'card-img-top' |
-'card-link' |
-'card-subtitle' |
-'card-text' |
-'card-title' |
-'card' |
-'carousel-caption' |
-'carousel-control-next-icon' |
-'carousel-control-next' |
-'carousel-control-prev-icon' |
-'carousel-control-prev' |
-'carousel-dark' |
-'carousel-fade' |
-'carousel-indicators' |
-'carousel-inner' |
-'carousel-item' |
-'carousel' |
-'checkbox' |
-'clearfix' |
-'close' |
-'col-1' |
-'col-10' |
-'col-11' |
-'col-12' |
-'col-2' |
-'col-3' |
-'col-4' |
-'col-5' |
-'col-6' |
-'col-7' |
-'col-8' |
-'col-9' |
-'col-auto' |
-'col-form-label-lg' |
-'col-form-label-sm' |
-'col-form-label' |
-'col-lg-1' |
-'col-lg-10' |
-'col-lg-11' |
-'col-lg-12' |
-'col-lg-2' |
-'col-lg-3' |
-'col-lg-4' |
-'col-lg-5' |
-'col-lg-6' |
-'col-lg-7' |
-'col-lg-8' |
-'col-lg-9' |
-'col-md-1' |
-'col-md-10' |
-'col-md-11' |
-'col-md-12' |
-'col-md-2' |
-'col-md-3' |
-'col-md-4' |
-'col-md-5' |
-'col-md-6' |
-'col-md-7' |
-'col-md-8' |
-'col-md-9' |
-'col-sm-1' |
-'col-sm-10' |
-'col-sm-11' |
-'col-sm-12' |
-'col-sm-2' |
-'col-sm-3' |
-'col-sm-4' |
-'col-sm-5' |
-'col-sm-6' |
-'col-sm-7' |
-'col-sm-8' |
-'col-sm-9' |
-'col-xl-1' |
-'col-xl-10' |
-'col-xl-11' |
-'col-xl-12' |
-'col-xl-2' |
-'col-xl-3' |
-'col-xl-4' |
-'col-xl-5' |
-'col-xl-6' |
-'col-xl-7' |
-'col-xl-8' |
-'col-xl-9' |
-'col-xs-1' |
-'col-xs-10' |
-'col-xs-11' |
-'col-xs-12' |
-'col-xs-2' |
-'col-xs-3' |
-'col-xs-4' |
-'col-xs-5' |
-'col-xs-6' |
-'col-xs-7' |
-'col-xs-8' |
-'col-xs-9' |
-'col-xxl-1' |
-'col-xxl-10' |
-'col-xxl-11' |
-'col-xxl-12' |
-'col-xxl-2' |
-'col-xxl-3' |
-'col-xxl-4' |
-'col-xxl-5' |
-'col-xxl-6' |
-'col-xxl-7' |
-'col-xxl-8' |
-'col-xxl-9' |
-'col' |
-'collapse' |
-'collapsed' |
-'container-fluid' |
-'container-lg' |
-'container-md' |
-'container-sm' |
-'container-xl' |
-'container-xxl' |
-'container' |
-'contanier-lg' |
-'contanier-md' |
-'contanier-xl' |
-'contanier-xxl' |
-'custom-checkbox' |
-'custom-file' |
-'custom-radio' |
-'custom-range' |
-'custom-select' |
-'custom-switch' |
-'d-block' |
-'d-flex' |
-'d-grid' |
-'d-inline-block' |
-'d-inline-flex' |
-'d-inline' |
-'d-lg-flex' |
-'d-lg-grid' |
-'d-lg-inline-flex' |
-'d-lg-table-row' |
-'d-md-flex' |
-'d-md-grid' |
-'d-md-inline-flex' |
-'d-md-table-row' |
-'d-none' |
-'d-print-...' |
-'d-print-flex' |
-'d-print-grid' |
-'d-print-inline-flex' |
-'d-print-table-cell' |
-'d-print-table-row' |
-'d-print-table' |
-'d-sm-flex' |
-'d-sm-grid' |
-'d-sm-inline-flex' |
-'d-sm-table-row' |
-'d-table-cell' |
-'d-table-row' |
-'d-table' |
-'d-xl-flex' |
-'d-xl-grid' |
-'d-xl-inline-flex' |
-'d-xl-table-row' |
-'d-xs-flex' |
-'d-xs-inline-flex' |
-'d-xxl-block' |
-'d-xxl-flex' |
-'d-xxl-grid' |
-'d-xxl-inline-block' |
-'d-xxl-inline-flex' |
-'d-xxl-inline' |
-'d-xxl-none' |
-'d-xxl-table-cell' |
-'d-xxl-table-row' |
-'d-xxl-table' |
-'data-spy' |
-'disabled' |
-'dismissible' |
-'display-1' |
-'display-2' |
-'display-3' |
-'display-4' |
-'display-5' |
-'display-6' |
-'dl-horizontal' |
-'dropdown-divider' |
-'dropdown-header' |
-'dropdown-item-text' |
-'dropdown-item' |
-'dropdown-menu-dark' |
-'dropdown-menu-end' |
-'dropdown-menu-lg-end' |
-'dropdown-menu-lg-start' |
-'dropdown-menu-md-end' |
-'dropdown-menu-md-start' |
-'dropdown-menu-right' |
-'dropdown-menu-sm-end' |
-'dropdown-menu-sm-start' |
-'dropdown-menu-start' |
-'dropdown-menu-xl-end' |
-'dropdown-menu-xl-start' |
-'dropdown-menu' |
-'dropdown-toggle-split' |
-'dropdown-toggle' |
-'dropdown' |
-'dropleft' |
-'dropright' |
-'dropup' |
-'embed-responsive' |
-'end-0' |
-'end-100' |
-'end-50' |
-'fade' |
-'figure-caption' |
-'figure-img' |
-'figure' |
-'fixed-bottom' |
-'fixed-top' |
-'flex-column-0' |
-'flex-column-1' |
-'flex-column-2' |
-'flex-column-3' |
-'flex-column-4' |
-'flex-column-5' |
-'flex-column-reverse-0' |
-'flex-column-reverse-1' |
-'flex-column-reverse-2' |
-'flex-column-reverse-3' |
-'flex-column-reverse-4' |
-'flex-column-reverse-5' |
-'flex-column-reverse' |
-'flex-column' |
-'flex-fill' |
-'flex-grow-0' |
-'flex-grow-1' |
-'flex-grow-2' |
-'flex-grow-3' |
-'flex-grow-4' |
-'flex-grow-5' |
-'flex-grow' |
-'flex-lg-column-0' |
-'flex-lg-column-1' |
-'flex-lg-column-2' |
-'flex-lg-column-3' |
-'flex-lg-column-4' |
-'flex-lg-column-5' |
-'flex-lg-column-reverse-0' |
-'flex-lg-column-reverse-1' |
-'flex-lg-column-reverse-2' |
-'flex-lg-column-reverse-3' |
-'flex-lg-column-reverse-4' |
-'flex-lg-column-reverse-5' |
-'flex-lg-column-reverse' |
-'flex-lg-column' |
-'flex-lg-fill' |
-'flex-lg-grow-0' |
-'flex-lg-grow-1' |
-'flex-lg-grow-2' |
-'flex-lg-grow-3' |
-'flex-lg-grow-4' |
-'flex-lg-grow-5' |
-'flex-lg-grow' |
-'flex-lg-nowrap-0' |
-'flex-lg-nowrap-1' |
-'flex-lg-nowrap-2' |
-'flex-lg-nowrap-3' |
-'flex-lg-nowrap-4' |
-'flex-lg-nowrap-5' |
-'flex-lg-nowrap' |
-'flex-lg-row-0' |
-'flex-lg-row-1' |
-'flex-lg-row-2' |
-'flex-lg-row-3' |
-'flex-lg-row-4' |
-'flex-lg-row-5' |
-'flex-lg-row-reverse-0' |
-'flex-lg-row-reverse-1' |
-'flex-lg-row-reverse-2' |
-'flex-lg-row-reverse-3' |
-'flex-lg-row-reverse-4' |
-'flex-lg-row-reverse-5' |
-'flex-lg-row-reverse' |
-'flex-lg-row' |
-'flex-lg-shrink-0' |
-'flex-lg-shrink-1' |
-'flex-lg-shrink-2' |
-'flex-lg-shrink-3' |
-'flex-lg-shrink-4' |
-'flex-lg-shrink-5' |
-'flex-lg-shrink' |
-'flex-lg-wrap-0' |
-'flex-lg-wrap-1' |
-'flex-lg-wrap-2' |
-'flex-lg-wrap-3' |
-'flex-lg-wrap-4' |
-'flex-lg-wrap-5' |
-'flex-lg-wrap-reverse-0' |
-'flex-lg-wrap-reverse-1' |
-'flex-lg-wrap-reverse-2' |
-'flex-lg-wrap-reverse-3' |
-'flex-lg-wrap-reverse-4' |
-'flex-lg-wrap-reverse-5' |
-'flex-lg-wrap-reverse' |
-'flex-lg-wrap' |
-'flex-md-column-0' |
-'flex-md-column-1' |
-'flex-md-column-2' |
-'flex-md-column-3' |
-'flex-md-column-4' |
-'flex-md-column-5' |
-'flex-md-column-reverse-0' |
-'flex-md-column-reverse-1' |
-'flex-md-column-reverse-2' |
-'flex-md-column-reverse-3' |
-'flex-md-column-reverse-4' |
-'flex-md-column-reverse-5' |
-'flex-md-column-reverse' |
-'flex-md-column' |
-'flex-md-fill' |
-'flex-md-grow-0' |
-'flex-md-grow-1' |
-'flex-md-grow-2' |
-'flex-md-grow-3' |
-'flex-md-grow-4' |
-'flex-md-grow-5' |
-'flex-md-grow' |
-'flex-md-nowrap-0' |
-'flex-md-nowrap-1' |
-'flex-md-nowrap-2' |
-'flex-md-nowrap-3' |
-'flex-md-nowrap-4' |
-'flex-md-nowrap-5' |
-'flex-md-nowrap' |
-'flex-md-row-0' |
-'flex-md-row-1' |
-'flex-md-row-2' |
-'flex-md-row-3' |
-'flex-md-row-4' |
-'flex-md-row-5' |
-'flex-md-row-reverse-0' |
-'flex-md-row-reverse-1' |
-'flex-md-row-reverse-2' |
-'flex-md-row-reverse-3' |
-'flex-md-row-reverse-4' |
-'flex-md-row-reverse-5' |
-'flex-md-row-reverse' |
-'flex-md-row' |
-'flex-md-shrink-0' |
-'flex-md-shrink-1' |
-'flex-md-shrink-2' |
-'flex-md-shrink-3' |
-'flex-md-shrink-4' |
-'flex-md-shrink-5' |
-'flex-md-shrink' |
-'flex-md-wrap-0' |
-'flex-md-wrap-1' |
-'flex-md-wrap-2' |
-'flex-md-wrap-3' |
-'flex-md-wrap-4' |
-'flex-md-wrap-5' |
-'flex-md-wrap-reverse-0' |
-'flex-md-wrap-reverse-1' |
-'flex-md-wrap-reverse-2' |
-'flex-md-wrap-reverse-3' |
-'flex-md-wrap-reverse-4' |
-'flex-md-wrap-reverse-5' |
-'flex-md-wrap-reverse' |
-'flex-md-wrap' |
-'flex-nowrap-0' |
-'flex-nowrap-1' |
-'flex-nowrap-2' |
-'flex-nowrap-3' |
-'flex-nowrap-4' |
-'flex-nowrap-5' |
-'flex-nowrap' |
-'flex-row-0' |
-'flex-row-1' |
-'flex-row-2' |
-'flex-row-3' |
-'flex-row-4' |
-'flex-row-5' |
-'flex-row-reverse-0' |
-'flex-row-reverse-1' |
-'flex-row-reverse-2' |
-'flex-row-reverse-3' |
-'flex-row-reverse-4' |
-'flex-row-reverse-5' |
-'flex-row-reverse' |
-'flex-row' |
-'flex-shrink-0' |
-'flex-shrink-1' |
-'flex-shrink-2' |
-'flex-shrink-3' |
-'flex-shrink-4' |
-'flex-shrink-5' |
-'flex-shrink' |
-'flex-sm-column-0' |
-'flex-sm-column-1' |
-'flex-sm-column-2' |
-'flex-sm-column-3' |
-'flex-sm-column-4' |
-'flex-sm-column-5' |
-'flex-sm-column-reverse-0' |
-'flex-sm-column-reverse-1' |
-'flex-sm-column-reverse-2' |
-'flex-sm-column-reverse-3' |
-'flex-sm-column-reverse-4' |
-'flex-sm-column-reverse-5' |
-'flex-sm-column-reverse' |
-'flex-sm-column' |
-'flex-sm-fill' |
-'flex-sm-grow-0' |
-'flex-sm-grow-1' |
-'flex-sm-grow-2' |
-'flex-sm-grow-3' |
-'flex-sm-grow-4' |
-'flex-sm-grow-5' |
-'flex-sm-grow' |
-'flex-sm-nowrap-0' |
-'flex-sm-nowrap-1' |
-'flex-sm-nowrap-2' |
-'flex-sm-nowrap-3' |
-'flex-sm-nowrap-4' |
-'flex-sm-nowrap-5' |
-'flex-sm-nowrap' |
-'flex-sm-row-0' |
-'flex-sm-row-1' |
-'flex-sm-row-2' |
-'flex-sm-row-3' |
-'flex-sm-row-4' |
-'flex-sm-row-5' |
-'flex-sm-row-reverse-0' |
-'flex-sm-row-reverse-1' |
-'flex-sm-row-reverse-2' |
-'flex-sm-row-reverse-3' |
-'flex-sm-row-reverse-4' |
-'flex-sm-row-reverse-5' |
-'flex-sm-row-reverse' |
-'flex-sm-row' |
-'flex-sm-shrink-0' |
-'flex-sm-shrink-1' |
-'flex-sm-shrink-2' |
-'flex-sm-shrink-3' |
-'flex-sm-shrink-4' |
-'flex-sm-shrink-5' |
-'flex-sm-shrink' |
-'flex-sm-wrap-0' |
-'flex-sm-wrap-1' |
-'flex-sm-wrap-2' |
-'flex-sm-wrap-3' |
-'flex-sm-wrap-4' |
-'flex-sm-wrap-5' |
-'flex-sm-wrap-reverse-0' |
-'flex-sm-wrap-reverse-1' |
-'flex-sm-wrap-reverse-2' |
-'flex-sm-wrap-reverse-3' |
-'flex-sm-wrap-reverse-4' |
-'flex-sm-wrap-reverse-5' |
-'flex-sm-wrap-reverse' |
-'flex-sm-wrap' |
-'flex-wrap-0' |
-'flex-wrap-1' |
-'flex-wrap-2' |
-'flex-wrap-3' |
-'flex-wrap-4' |
-'flex-wrap-5' |
-'flex-wrap-reverse-0' |
-'flex-wrap-reverse-1' |
-'flex-wrap-reverse-2' |
-'flex-wrap-reverse-3' |
-'flex-wrap-reverse-4' |
-'flex-wrap-reverse-5' |
-'flex-wrap-reverse' |
-'flex-wrap' |
-'flex-xl-column-0' |
-'flex-xl-column-1' |
-'flex-xl-column-2' |
-'flex-xl-column-3' |
-'flex-xl-column-4' |
-'flex-xl-column-5' |
-'flex-xl-column-reverse-0' |
-'flex-xl-column-reverse-1' |
-'flex-xl-column-reverse-2' |
-'flex-xl-column-reverse-3' |
-'flex-xl-column-reverse-4' |
-'flex-xl-column-reverse-5' |
-'flex-xl-column-reverse' |
-'flex-xl-column' |
-'flex-xl-fill' |
-'flex-xl-grow-0' |
-'flex-xl-grow-1' |
-'flex-xl-grow-2' |
-'flex-xl-grow-3' |
-'flex-xl-grow-4' |
-'flex-xl-grow-5' |
-'flex-xl-grow' |
-'flex-xl-nowrap-0' |
-'flex-xl-nowrap-1' |
-'flex-xl-nowrap-2' |
-'flex-xl-nowrap-3' |
-'flex-xl-nowrap-4' |
-'flex-xl-nowrap-5' |
-'flex-xl-nowrap' |
-'flex-xl-row-0' |
-'flex-xl-row-1' |
-'flex-xl-row-2' |
-'flex-xl-row-3' |
-'flex-xl-row-4' |
-'flex-xl-row-5' |
-'flex-xl-row-reverse-0' |
-'flex-xl-row-reverse-1' |
-'flex-xl-row-reverse-2' |
-'flex-xl-row-reverse-3' |
-'flex-xl-row-reverse-4' |
-'flex-xl-row-reverse-5' |
-'flex-xl-row-reverse' |
-'flex-xl-row' |
-'flex-xl-shrink-0' |
-'flex-xl-shrink-1' |
-'flex-xl-shrink-2' |
-'flex-xl-shrink-3' |
-'flex-xl-shrink-4' |
-'flex-xl-shrink-5' |
-'flex-xl-shrink' |
-'flex-xl-wrap-0' |
-'flex-xl-wrap-1' |
-'flex-xl-wrap-2' |
-'flex-xl-wrap-3' |
-'flex-xl-wrap-4' |
-'flex-xl-wrap-5' |
-'flex-xl-wrap-reverse-0' |
-'flex-xl-wrap-reverse-1' |
-'flex-xl-wrap-reverse-2' |
-'flex-xl-wrap-reverse-3' |
-'flex-xl-wrap-reverse-4' |
-'flex-xl-wrap-reverse-5' |
-'flex-xl-wrap-reverse' |
-'flex-xl-wrap' |
-'flex-xs-column-0' |
-'flex-xs-column-1' |
-'flex-xs-column-2' |
-'flex-xs-column-3' |
-'flex-xs-column-4' |
-'flex-xs-column-5' |
-'flex-xs-column-reverse-0' |
-'flex-xs-column-reverse-1' |
-'flex-xs-column-reverse-2' |
-'flex-xs-column-reverse-3' |
-'flex-xs-column-reverse-4' |
-'flex-xs-column-reverse-5' |
-'flex-xs-column-reverse' |
-'flex-xs-column' |
-'flex-xs-grow-0' |
-'flex-xs-grow-1' |
-'flex-xs-grow-2' |
-'flex-xs-grow-3' |
-'flex-xs-grow-4' |
-'flex-xs-grow-5' |
-'flex-xs-grow' |
-'flex-xs-nowrap-0' |
-'flex-xs-nowrap-1' |
-'flex-xs-nowrap-2' |
-'flex-xs-nowrap-3' |
-'flex-xs-nowrap-4' |
-'flex-xs-nowrap-5' |
-'flex-xs-nowrap' |
-'flex-xs-row-0' |
-'flex-xs-row-1' |
-'flex-xs-row-2' |
-'flex-xs-row-3' |
-'flex-xs-row-4' |
-'flex-xs-row-5' |
-'flex-xs-row-reverse-0' |
-'flex-xs-row-reverse-1' |
-'flex-xs-row-reverse-2' |
-'flex-xs-row-reverse-3' |
-'flex-xs-row-reverse-4' |
-'flex-xs-row-reverse-5' |
-'flex-xs-row-reverse' |
-'flex-xs-row' |
-'flex-xs-shrink-0' |
-'flex-xs-shrink-1' |
-'flex-xs-shrink-2' |
-'flex-xs-shrink-3' |
-'flex-xs-shrink-4' |
-'flex-xs-shrink-5' |
-'flex-xs-shrink' |
-'flex-xs-wrap-0' |
-'flex-xs-wrap-1' |
-'flex-xs-wrap-2' |
-'flex-xs-wrap-3' |
-'flex-xs-wrap-4' |
-'flex-xs-wrap-5' |
-'flex-xs-wrap-reverse-0' |
-'flex-xs-wrap-reverse-1' |
-'flex-xs-wrap-reverse-2' |
-'flex-xs-wrap-reverse-3' |
-'flex-xs-wrap-reverse-4' |
-'flex-xs-wrap-reverse-5' |
-'flex-xs-wrap-reverse' |
-'flex-xs-wrap' |
-'flex-xxl-column-0' |
-'flex-xxl-column-1' |
-'flex-xxl-column-2' |
-'flex-xxl-column-3' |
-'flex-xxl-column-4' |
-'flex-xxl-column-5' |
-'flex-xxl-column-reverse-0' |
-'flex-xxl-column-reverse-1' |
-'flex-xxl-column-reverse-2' |
-'flex-xxl-column-reverse-3' |
-'flex-xxl-column-reverse-4' |
-'flex-xxl-column-reverse-5' |
-'flex-xxl-column-reverse' |
-'flex-xxl-column' |
-'flex-xxl-fill' |
-'flex-xxl-grow-0' |
-'flex-xxl-grow-1' |
-'flex-xxl-grow-2' |
-'flex-xxl-grow-3' |
-'flex-xxl-grow-4' |
-'flex-xxl-grow-5' |
-'flex-xxl-grow' |
-'flex-xxl-nowrap-0' |
-'flex-xxl-nowrap-1' |
-'flex-xxl-nowrap-2' |
-'flex-xxl-nowrap-3' |
-'flex-xxl-nowrap-4' |
-'flex-xxl-nowrap-5' |
-'flex-xxl-nowrap' |
-'flex-xxl-row-0' |
-'flex-xxl-row-1' |
-'flex-xxl-row-2' |
-'flex-xxl-row-3' |
-'flex-xxl-row-4' |
-'flex-xxl-row-5' |
-'flex-xxl-row-reverse-0' |
-'flex-xxl-row-reverse-1' |
-'flex-xxl-row-reverse-2' |
-'flex-xxl-row-reverse-3' |
-'flex-xxl-row-reverse-4' |
-'flex-xxl-row-reverse-5' |
-'flex-xxl-row-reverse' |
-'flex-xxl-row' |
-'flex-xxl-shrink-0' |
-'flex-xxl-shrink-1' |
-'flex-xxl-shrink-2' |
-'flex-xxl-shrink-3' |
-'flex-xxl-shrink-4' |
-'flex-xxl-shrink-5' |
-'flex-xxl-shrink' |
-'flex-xxl-wrap-0' |
-'flex-xxl-wrap-1' |
-'flex-xxl-wrap-2' |
-'flex-xxl-wrap-3' |
-'flex-xxl-wrap-4' |
-'flex-xxl-wrap-5' |
-'flex-xxl-wrap-reverse-0' |
-'flex-xxl-wrap-reverse-1' |
-'flex-xxl-wrap-reverse-2' |
-'flex-xxl-wrap-reverse-3' |
-'flex-xxl-wrap-reverse-4' |
-'flex-xxl-wrap-reverse-5' |
-'flex-xxl-wrap-reverse' |
-'flex-xxl-wrap' |
-'float-end' |
-'float-left' |
-'float-lg-end' |
-'float-lg-left' |
-'float-lg-none' |
-'float-lg-right' |
-'float-lg-start' |
-'float-md-end' |
-'float-md-left' |
-'float-md-none' |
-'float-md-right' |
-'float-md-start' |
-'float-none' |
-'float-right' |
-'float-sm-end' |
-'float-sm-left' |
-'float-sm-none' |
-'float-sm-right' |
-'float-sm-start' |
-'float-start' |
-'float-xl-end' |
-'float-xl-left' |
-'float-xl-none' |
-'float-xl-right' |
-'float-xl-start' |
-'float-xs-end' |
-'float-xs-left' |
-'float-xs-none' |
-'float-xs-right' |
-'float-xs-start' |
-'float-xxl-end' |
-'float-xxl-left' |
-'float-xxl-none' |
-'float-xxl-right' |
-'float-xxl-start' |
-'font-italic' |
-'font-monospace' |
-'font-weight-bold' |
-'font-weight-bolder' |
-'font-weight-light' |
-'font-weight-lighter' |
-'font-weight-normal' |
-'form-check-inline' |
-'form-check-input' |
-'form-check-label' |
-'form-check' |
-'form-control-color' |
-'form-control-file' |
-'form-control-lg' |
-'form-control-plaintext' |
-'form-control-range' |
-'form-control-sm' |
-'form-control' |
-'form-floating' |
-'form-group' |
-'form-inline' |
-'form-label' |
-'form-select-lg' |
-'form-select-sm' |
-'form-select' |
-'form-switch' |
-'form-text' |
-'form' |
-'fs-1' |
-'fs-2' |
-'fs-3' |
-'fs-4' |
-'fs-5' |
-'fs-6' |
-'fs-lg-1' |
-'fs-md-1' |
-'fs-sm-1' |
-'fst-italic' |
-'fst-normal' |
-'fw-bold' |
-'fw-bolder' |
-'fw-light' |
-'fw-lighter' |
-'fw-normal' |
-'g-0' |
-'g-lg-0' |
-'g-md-0' |
-'g-sm-0' |
-'g-xl-0' |
-'g-xxl-0' |
-'gap-0' |
-'gap-lg-0' |
-'gap-md-0' |
-'gap-sm-0' |
-'gap-xl-0' |
-'gap-xxl-0' |
-'gx-0' |
-'gx-lg-0' |
-'gx-md-0' |
-'gx-sm-0' |
-'gx-xl-0' |
-'gx-xxl-0' |
-'gy-xxl-0' |
-'h-100' |
-'h-25' |
-'h-50' |
-'h-75' |
-'h-auto' |
-'h1' |
-'h2' |
-'h3' |
-'h4' |
-'h5' |
-'h6' |
-'hide' |
-'img-fluid' |
-'img-thumbnail' |
-'initialism' |
-'input-group-append' |
-'input-group-lg' |
-'input-group-prepend' |
-'input-group-sm' |
-'input-group-text' |
-'input-group' |
-'invisible' |
-'is-invalid' |
-'is-valid' |
-'jumbotron-fluid' |
-'jumbotron' |
-'justify-content-around' |
-'justify-content-between' |
-'justify-content-center' |
-'justify-content-end' |
-'justify-content-evenly' |
-'justify-content-lg-around' |
-'justify-content-lg-between' |
-'justify-content-lg-center' |
-'justify-content-lg-end' |
-'justify-content-lg-evenly' |
-'justify-content-lg-start' |
-'justify-content-md-around' |
-'justify-content-md-between' |
-'justify-content-md-center' |
-'justify-content-md-end' |
-'justify-content-md-evenly' |
-'justify-content-md-start' |
-'justify-content-sm-around' |
-'justify-content-sm-between' |
-'justify-content-sm-center' |
-'justify-content-sm-end' |
-'justify-content-sm-evenly' |
-'justify-content-sm-start' |
-'justify-content-start' |
-'justify-content-xl-around' |
-'justify-content-xl-between' |
-'justify-content-xl-center' |
-'justify-content-xl-end' |
-'justify-content-xl-evenly' |
-'justify-content-xl-start' |
-'justify-content-xxl-around' |
-'justify-content-xxl-between' |
-'justify-content-xxl-center' |
-'justify-content-xxl-end' |
-'justify-content-xxl-evenly' |
-'justify-content-xxl-start' |
-'lead' |
-'lh-1' |
-'lh-base' |
-'lh-lg' |
-'lh-sm' |
-'link-danger' |
-'link-dark' |
-'link-info' |
-'link-light' |
-'link-primary' |
-'link-secondary' |
-'link-success' |
-'link-warning' |
-'list-group-flush' |
-'list-group-horizontal-lg' |
-'list-group-horizontal-md' |
-'list-group-horizontal-sm' |
-'list-group-horizontal-xl' |
-'list-group-horizontal-xxl' |
-'list-group-horizontal' |
-'list-group-item-action' |
-'list-group-item-danger' |
-'list-group-item-dark' |
-'list-group-item-info' |
-'list-group-item-light' |
-'list-group-item-primary' |
-'list-group-item-secondary' |
-'list-group-item-success' |
-'list-group-item-warning' |
-'list-group-item' |
-'list-group' |
-'list-inline' |
-'list-unstyled' |
-'m-0' |
-'m-1' |
-'m-2' |
-'m-3' |
-'m-4' |
-'m-5' |
-'m-auto' |
-'m-lg-0' |
-'m-lg-auto' |
-'m-md-0' |
-'m-md-auto' |
-'m-sm-0' |
-'m-sm-auto' |
-'m-xl-0' |
-'m-xl-auto' |
-'m-xxl-0' |
-'m-xxl-auto' |
-'material-icons' |
-'material-symbols-outlined' |
-'mb-0' |
-'mb-1' |
-'mb-2' |
-'mb-3' |
-'mb-4' |
-'mb-5' |
-'mb-auto' |
-'mb-lg-0' |
-'mb-lg-auto' |
-'mb-md-0' |
-'mb-md-auto' |
-'mb-sm-0' |
-'mb-sm-auto' |
-'mb-xl-0' |
-'mb-xl-auto' |
-'mb-xxl-0' |
-'mb-xxl-auto' |
-'me-0' |
-'me-1' |
-'me-2' |
-'me-3' |
-'me-4' |
-'me-5' |
-'me-auto' |
-'me-lg-0' |
-'me-lg-auto' |
-'me-md-0' |
-'me-md-auto' |
-'me-sm-0' |
-'me-sm-auto' |
-'me-xl-0' |
-'me-xl-auto' |
-'me-xxl-0' |
-'me-xxl-auto' |
-'media' |
-'mh-100' |
-'middle' |
-'min-vw-100' |
-'modal-body' |
-'modal-contant' |
-'modal-content' |
-'modal-dialog-centered' |
-'modal-dialog-scrollable' |
-'modal-dialog' |
-'modal-footer' |
-'modal-fullscreen-lg-down' |
-'modal-fullscreen-md-down' |
-'modal-fullscreen-sm-down' |
-'modal-fullscreen-xl-down' |
-'modal-fullscreen-xxl-down' |
-'modal-fullscreen' |
-'modal-header' |
-'modal-lg' |
-'modal-sm' |
-'modal-static' |
-'modal-title' |
-'modal-xl' |
-'modal' |
-'ms-0' |
-'ms-1' |
-'ms-2' |
-'ms-3' |
-'ms-4' |
-'ms-5' |
-'ms-auto' |
-'ms-lg-0' |
-'ms-lg-auto' |
-'ms-md-0' |
-'ms-md-auto' |
-'ms-sm-0' |
-'ms-sm-auto' |
-'ms-xl-0' |
-'ms-xl-auto' |
-'ms-xxl-0' |
-'ms-xxl-auto' |
-'mt-0' |
-'mt-1' |
-'mt-2' |
-'mt-3' |
-'mt-4' |
-'mt-5' |
-'mt-auto' |
-'mt-lg-0' |
-'mt-lg-auto' |
-'mt-md-0' |
-'mt-md-auto' |
-'mt-sm-0' |
-'mt-sm-auto' |
-'mt-xl-0' |
-'mt-xl-auto' |
-'mt-xxl-0' |
-'mt-xxl-auto' |
-'multiple' |
-'mw-100' |
-'mx-0' |
-'mx-1' |
-'mx-2' |
-'mx-3' |
-'mx-4' |
-'mx-5' |
-'mx-auto' |
-'mx-lg-0' |
-'mx-lg-auto' |
-'mx-md-0' |
-'mx-md-auto' |
-'mx-sm-0' |
-'mx-sm-auto' |
-'mx-xl-0' |
-'mx-xl-auto' |
-'mx-xxl-0' |
-'mx-xxl-auto' |
-'my-0' |
-'my-1' |
-'my-2' |
-'my-3' |
-'my-4' |
-'my-5' |
-'my-auto' |
-'my-lg-0' |
-'my-lg-auto' |
-'my-md-0' |
-'my-md-auto' |
-'my-sm-0' |
-'my-sm-auto' |
-'my-xl-0' |
-'my-xl-auto' |
-'my-xxl-0' |
-'my-xxl-auto' |
-'nav-fill' |
-'nav-item' |
-'nav-justified' |
-'nav-link' |
-'nav-pills' |
-'nav-tabs' |
-'nav.nav' |
-'nav' |
-'navbar-brand' |
-'navbar-collapse' |
-'navbar-dark' |
-'navbar-expand-lg' |
-'navbar-expand-md' |
-'navbar-expand-sm' |
-'navbar-expand-xl' |
-'navbar-expand-xxl' |
-'navbar-light' |
-'navbar-nav' |
-'navbar-text' |
-'navbar-toggler-icon' |
-'navbar-toggler' |
-'navbar' |
-'nested' |
-'no-gutters' |
-'offset-0' |
-'offset-1' |
-'offset-2' |
-'offset-3' |
-'offset-4' |
-'offset-5' |
-'offset-lg-0' |
-'offset-lg-1' |
-'offset-lg-2' |
-'offset-lg-3' |
-'offset-lg-4' |
-'offset-lg-5' |
-'offset-md-0' |
-'offset-md-1' |
-'offset-md-2' |
-'offset-md-3' |
-'offset-md-4' |
-'offset-md-5' |
-'offset-sm-0' |
-'offset-sm-1' |
-'offset-sm-2' |
-'offset-sm-3' |
-'offset-sm-4' |
-'offset-sm-5' |
-'offset-xl-0' |
-'offset-xl-1' |
-'offset-xl-2' |
-'offset-xl-3' |
-'offset-xl-4' |
-'offset-xl-5' |
-'offset-xs-0' |
-'offset-xs-1' |
-'offset-xs-2' |
-'offset-xs-3' |
-'offset-xs-4' |
-'offset-xs-5' |
-'offset-xxl-0' |
-'offset-xxl-1' |
-'offset-xxl-2' |
-'offset-xxl-3' |
-'offset-xxl-4' |
-'offset-xxl-5' |
-'order-0' |
-'order-1' |
-'order-2' |
-'order-3' |
-'order-4' |
-'order-5' |
-'order-first' |
-'order-last' |
-'order-lg-0' |
-'order-lg-1' |
-'order-lg-2' |
-'order-lg-3' |
-'order-lg-4' |
-'order-lg-5' |
-'order-lg-first' |
-'order-lg-last' |
-'order-md-0' |
-'order-md-1' |
-'order-md-2' |
-'order-md-3' |
-'order-md-4' |
-'order-md-5' |
-'order-md-first' |
-'order-md-last' |
-'order-sm-0' |
-'order-sm-1' |
-'order-sm-2' |
-'order-sm-3' |
-'order-sm-4' |
-'order-sm-5' |
-'order-sm-first' |
-'order-sm-last' |
-'order-xl-0' |
-'order-xl-1' |
-'order-xl-2' |
-'order-xl-3' |
-'order-xl-4' |
-'order-xl-5' |
-'order-xl-first' |
-'order-xl-last' |
-'order-xs-0' |
-'order-xs-1' |
-'order-xs-2' |
-'order-xs-3' |
-'order-xs-4' |
-'order-xs-5' |
-'order-xxl-0' |
-'order-xxl-1' |
-'order-xxl-2' |
-'order-xxl-3' |
-'order-xxl-4' |
-'order-xxl-5' |
-'order-xxl-first' |
-'order-xxl-last' |
-'orm' |
-'overflow-auto' |
-'overflow-hidden' |
-'overflow-scroll' |
-'overflow-visible' |
-'p-0' |
-'p-1' |
-'p-2' |
-'p-3' |
-'p-4' |
-'p-5' |
-'p-lg-0' |
-'p-md-0' |
-'p-sm-0' |
-'p-xl-0' |
-'p-xxl-0' |
-'page-item' |
-'pagination-lg' |
-'pagination-sm' |
-'pagination' |
-'pb-0' |
-'pb-1' |
-'pb-2' |
-'pb-3' |
-'pb-4' |
-'pb-5' |
-'pb-lg-0' |
-'pb-md-0' |
-'pb-sm-0' |
-'pb-xl-0' |
-'pb-xxl-0' |
-'pe-0' |
-'pe-1' |
-'pe-2' |
-'pe-3' |
-'pe-4' |
-'pe-5' |
-'pe-auto' |
-'pe-lg-0' |
-'pe-md-0' |
-'pe-none' |
-'pe-sm-0' |
-'pe-xl-0' |
-'pe-xxl-0' |
-'popovers' |
-'position-absolute' |
-'position-fixed' |
-'position-relative' |
-'position-static' |
-'position-sticky' |
-'progress-bar-animated' |
-'progress-bar-striped' |
-'progress-bar' |
-'progress' |
-'ps-0' |
-'ps-1' |
-'ps-2' |
-'ps-3' |
-'ps-4' |
-'ps-5' |
-'ps-lg-0' |
-'ps-md-0' |
-'ps-sm-0' |
-'ps-xl-0' |
-'ps-xxl-0' |
-'pt-0' |
-'pt-1' |
-'pt-2' |
-'pt-3' |
-'pt-4' |
-'pt-5' |
-'pt-lg-0' |
-'pt-md-0' |
-'pt-sm-0' |
-'pt-xl-0' |
-'pt-xxl-0' |
-'px-0' |
-'px-1' |
-'px-2' |
-'px-3' |
-'px-4' |
-'px-5' |
-'px-lg-0' |
-'px-md-0' |
-'px-sm-0' |
-'px-xl-0' |
-'px-xxl-0' |
-'py-0' |
-'py-1' |
-'py-2' |
-'py-3' |
-'py-4' |
-'py-5' |
-'py-lg-0' |
-'py-md-0' |
-'py-sm-0' |
-'py-xl-0' |
-'py-xxl-0' |
-'radio' |
-'readonly' |
-'right' |
-'rounded-0' |
-'rounded-1' |
-'rounded-2' |
-'rounded-3' |
-'rounded-bottom' |
-'rounded-circle' |
-'rounded-end' |
-'rounded-pill' |
-'rounded-start' |
-'rounded-top' |
-'rounded' |
-'row-cols-1' |
-'row-cols-auto' |
-'row-cols-lg-1' |
-'row-cols-lg-auto' |
-'row-cols-md-1' |
-'row-cols-md-auto' |
-'row-cols-sm-1' |
-'row-cols-sm-auto' |
-'row-cols-xl-1' |
-'row-cols-xl-auto' |
-'row-cols-xxl-1' |
-'row-cols-xxl-auto' |
-'row' |
-'segmented' |
-'shadow-lg' |
-'shadow-none' |
-'shadow-sm' |
-'shadow' |
-'show' |
-'spinner-border-sm' |
-'spinner-border' |
-'spinner-grow-sm' |
-'spinner-grow' |
-'sr-only-focusable' |
-'sr-only' |
-'start-0' |
-'start-100' |
-'start-50' |
-'sticky-lg-top' |
-'sticky-md-top' |
-'sticky-sm-top' |
-'sticky-top' |
-'sticky-xl-top' |
-'stretched-link' |
-'tab-content' |
-'tab-pane' |
-'table-active' |
-'table-bordered' |
-'table-borderless' |
-'table-danger' |
-'table-dark' |
-'table-hover' |
-'table-info' |
-'table-light' |
-'table-primary' |
-'table-reflow' |
-'table-responsive-xxl' |
-'table-responsive' |
-'table-secondary' |
-'table-sm' |
-'table-striped' |
-'table-success' |
-'table-warning' |
-'table' |
-'text-black-50' |
-'text-body' |
-'text-break' |
-'text-capitalize' |
-'text-center' |
-'text-danger' |
-'text-dark' |
-'text-decoration-line-through' |
-'text-decoration-none' |
-'text-decoration-underline' |
-'text-end' |
-'text-hide' |
-'text-info' |
-'text-justify' |
-'text-lg-center' |
-'text-lg-end' |
-'text-lg-justify' |
-'text-lg-start' |
-'text-light' |
-'text-lowercase' |
-'text-md-center' |
-'text-md-end' |
-'text-md-justify' |
-'text-md-start' |
-'text-monospace' |
-'text-muted' |
-'text-normal' |
-'text-nowrap' |
-'text-pre-line' |
-'text-pre-wrap' |
-'text-pre' |
-'text-primary' |
-'text-reset' |
-'text-secondary' |
-'text-sm-center' |
-'text-sm-end' |
-'text-sm-justify' |
-'text-sm-start' |
-'text-start' |
-'text-success' |
-'text-truncate' |
-'text-uppercase' |
-'text-warning' |
-'text-white-50' |
-'text-white' |
-'text-wrap' |
-'text-xl-center' |
-'text-xl-end' |
-'text-xl-justify' |
-'text-xl-start' |
-'text-xs-center' |
-'text-xs-end' |
-'text-xs-justify' |
-'text-xs-start' |
-'text-xxl-center' |
-'text-xxl-end' |
-'text-xxl-justify' |
-'text-xxl-start' |
-'thead-dark' |
-'thead-light' |
-'toast-body' |
-'toast-container' |
-'toast-header' |
-'toast' |
-'tooltip' |
-'top-0' |
-'top-100' |
-'top-50' |
-'translate-middle' |
-'ul.nav' |
-'valid-feedback' |
-'valid-tooltip' |
-'visible' |
-'visually-hidden-focusable' |
-'visually-hidden' |
-'w-100' |
-'w-25' |
-'w-50' |
-'w-75' |
-'w-auto';
+	'accordion-button' |
+	'accordion-collapse' |
+	'accordion-flush' |
+	'accordion-header' |
+	'accordion-item' |
+	'accordion' |
+	'active' |
+	'alert-danger' |
+	'alert-dark' |
+	'alert-dismissible' |
+	'alert-heading' |
+	'alert-info' |
+	'alert-light' |
+	'alert-link' |
+	'alert-primary' |
+	'alert-secondary' |
+	'alert-success' |
+	'alert-warning' |
+	'alert-white' |
+	'align-items-baseline' |
+	'align-items-center' |
+	'align-items-end' |
+	'align-items-lg-baseline' |
+	'align-items-lg-center' |
+	'align-items-lg-end' |
+	'align-items-lg-start' |
+	'align-items-lg-stretch' |
+	'align-items-md-baseline' |
+	'align-items-md-center' |
+	'align-items-md-end' |
+	'align-items-md-start' |
+	'align-items-md-stretch' |
+	'align-items-sm-baseline' |
+	'align-items-sm-center' |
+	'align-items-sm-end' |
+	'align-items-sm-start' |
+	'align-items-sm-stretch' |
+	'align-items-start' |
+	'align-items-stretch' |
+	'align-items-xl-baseline' |
+	'align-items-xl-center' |
+	'align-items-xl-end' |
+	'align-items-xl-start' |
+	'align-items-xl-stretch' |
+	'align-items-xs-baseline' |
+	'align-items-xs-center' |
+	'align-items-xs-end' |
+	'align-items-xs-start' |
+	'align-items-xs-stretch' |
+	'align-items-xxl-baseline' |
+	'align-items-xxl-center' |
+	'align-items-xxl-end' |
+	'align-items-xxl-start' |
+	'align-items-xxl-stretch' |
+	'badge-danger' |
+	'badge-dark' |
+	'badge-info' |
+	'badge-light' |
+	'badge-pill' |
+	'badge-primary' |
+	'badge-secondary' |
+	'badge-success' |
+	'badge-warning' |
+	'badge' |
+	'bg-body' |
+	'bg-danger' |
+	'bg-dark' |
+	'bg-gradient' |
+	'bg-info' |
+	'bg-light' |
+	'bg-primary' |
+	'bg-secondary' |
+	'bg-success' |
+	'bg-transparent' |
+	'bg-warning' |
+	'bg-white' |
+	'blockquote-footer' |
+	'blockquote-reverse' |
+	'blockquote' |
+	'border-0' |
+	'border-1' |
+	'border-2' |
+	'border-3' |
+	'border-4' |
+	'border-5' |
+	'border-bottom-0' |
+	'border-bottom-1' |
+	'border-bottom-2' |
+	'border-bottom-3' |
+	'border-bottom-4' |
+	'border-bottom-5' |
+	'border-danger' |
+	'border-dark' |
+	'border-end-0' |
+	'border-end-1' |
+	'border-end-2' |
+	'border-end-3' |
+	'border-end-4' |
+	'border-end-5' |
+	'border-info' |
+	'border-light' |
+	'border-primary' |
+	'border-secondary' |
+	'border-start-0' |
+	'border-start-1' |
+	'border-start-2' |
+	'border-start-3' |
+	'border-start-4' |
+	'border-start-5' |
+	'border-success' |
+	'border-top-0' |
+	'border-top-1' |
+	'border-top-2' |
+	'border-top-3' |
+	'border-top-4' |
+	'border-top-5' |
+	'border-warning' |
+	'border-white' |
+	'border' |
+	'bottom-0' |
+	'bottom-100' |
+	'bottom-50' |
+	'breadcrumb-item' |
+	'breadcrumb' |
+	'btn-block' |
+	'btn-close-white' |
+	'btn-close' |
+	'btn-danger' |
+	'btn-dark' |
+	'btn-default' |
+	'btn-group-lg' |
+	'btn-group-sm' |
+	'btn-group-vertical' |
+	'btn-group' |
+	'btn-info' |
+	'btn-lg' |
+	'btn-light' |
+	'btn-link' |
+	'btn-outline-danger' |
+	'btn-outline-dark' |
+	'btn-outline-info' |
+	'btn-outline-light' |
+	'btn-outline-primary' |
+	'btn-outline-secondary' |
+	'btn-outline-success' |
+	'btn-outline-warning' |
+	'btn-primary' |
+	'btn-secondary' |
+	'btn-sm' |
+	'btn-success' |
+	'btn-toolbar' |
+	'btn-warning' |
+	'btn-xs' |
+	'btn' |
+	'caption-top' |
+	'card-body' |
+	'card-columns' |
+	'card-deck' |
+	'card-footer' |
+	'card-group' |
+	'card-header-pills' |
+	'card-header-tabs' |
+	'card-header' |
+	'card-img-bottom' |
+	'card-img-overlay' |
+	'card-img-top' |
+	'card-link' |
+	'card-subtitle' |
+	'card-text' |
+	'card-title' |
+	'card' |
+	'carousel-caption' |
+	'carousel-control-next-icon' |
+	'carousel-control-next' |
+	'carousel-control-prev-icon' |
+	'carousel-control-prev' |
+	'carousel-dark' |
+	'carousel-fade' |
+	'carousel-indicators' |
+	'carousel-inner' |
+	'carousel-item' |
+	'carousel' |
+	'checkbox' |
+	'clearfix' |
+	'close' |
+	'col-1' |
+	'col-10' |
+	'col-11' |
+	'col-12' |
+	'col-2' |
+	'col-3' |
+	'col-4' |
+	'col-5' |
+	'col-6' |
+	'col-7' |
+	'col-8' |
+	'col-9' |
+	'col-auto' |
+	'col-form-label-lg' |
+	'col-form-label-sm' |
+	'col-form-label' |
+	'col-lg-1' |
+	'col-lg-10' |
+	'col-lg-11' |
+	'col-lg-12' |
+	'col-lg-2' |
+	'col-lg-3' |
+	'col-lg-4' |
+	'col-lg-5' |
+	'col-lg-6' |
+	'col-lg-7' |
+	'col-lg-8' |
+	'col-lg-9' |
+	'col-md-1' |
+	'col-md-10' |
+	'col-md-11' |
+	'col-md-12' |
+	'col-md-2' |
+	'col-md-3' |
+	'col-md-4' |
+	'col-md-5' |
+	'col-md-6' |
+	'col-md-7' |
+	'col-md-8' |
+	'col-md-9' |
+	'col-sm-1' |
+	'col-sm-10' |
+	'col-sm-11' |
+	'col-sm-12' |
+	'col-sm-2' |
+	'col-sm-3' |
+	'col-sm-4' |
+	'col-sm-5' |
+	'col-sm-6' |
+	'col-sm-7' |
+	'col-sm-8' |
+	'col-sm-9' |
+	'col-xl-1' |
+	'col-xl-10' |
+	'col-xl-11' |
+	'col-xl-12' |
+	'col-xl-2' |
+	'col-xl-3' |
+	'col-xl-4' |
+	'col-xl-5' |
+	'col-xl-6' |
+	'col-xl-7' |
+	'col-xl-8' |
+	'col-xl-9' |
+	'col-xs-1' |
+	'col-xs-10' |
+	'col-xs-11' |
+	'col-xs-12' |
+	'col-xs-2' |
+	'col-xs-3' |
+	'col-xs-4' |
+	'col-xs-5' |
+	'col-xs-6' |
+	'col-xs-7' |
+	'col-xs-8' |
+	'col-xs-9' |
+	'col-xxl-1' |
+	'col-xxl-10' |
+	'col-xxl-11' |
+	'col-xxl-12' |
+	'col-xxl-2' |
+	'col-xxl-3' |
+	'col-xxl-4' |
+	'col-xxl-5' |
+	'col-xxl-6' |
+	'col-xxl-7' |
+	'col-xxl-8' |
+	'col-xxl-9' |
+	'col' |
+	'collapse' |
+	'collapsed' |
+	'container-fluid' |
+	'container-lg' |
+	'container-md' |
+	'container-sm' |
+	'container-xl' |
+	'container-xxl' |
+	'container' |
+	'contanier-lg' |
+	'contanier-md' |
+	'contanier-xl' |
+	'contanier-xxl' |
+	'custom-checkbox' |
+	'custom-file' |
+	'custom-radio' |
+	'custom-range' |
+	'custom-select' |
+	'custom-switch' |
+	'd-block' |
+	'd-flex' |
+	'd-grid' |
+	'd-inline-block' |
+	'd-inline-flex' |
+	'd-inline' |
+	'd-lg-flex' |
+	'd-lg-grid' |
+	'd-lg-inline-flex' |
+	'd-lg-table-row' |
+	'd-md-flex' |
+	'd-md-grid' |
+	'd-md-inline-flex' |
+	'd-md-table-row' |
+	'd-none' |
+	'd-print-...' |
+	'd-print-flex' |
+	'd-print-grid' |
+	'd-print-inline-flex' |
+	'd-print-table-cell' |
+	'd-print-table-row' |
+	'd-print-table' |
+	'd-sm-flex' |
+	'd-sm-grid' |
+	'd-sm-inline-flex' |
+	'd-sm-table-row' |
+	'd-table-cell' |
+	'd-table-row' |
+	'd-table' |
+	'd-xl-flex' |
+	'd-xl-grid' |
+	'd-xl-inline-flex' |
+	'd-xl-table-row' |
+	'd-xs-flex' |
+	'd-xs-inline-flex' |
+	'd-xxl-block' |
+	'd-xxl-flex' |
+	'd-xxl-grid' |
+	'd-xxl-inline-block' |
+	'd-xxl-inline-flex' |
+	'd-xxl-inline' |
+	'd-xxl-none' |
+	'd-xxl-table-cell' |
+	'd-xxl-table-row' |
+	'd-xxl-table' |
+	'data-spy' |
+	'disabled' |
+	'dismissible' |
+	'display-1' |
+	'display-2' |
+	'display-3' |
+	'display-4' |
+	'display-5' |
+	'display-6' |
+	'dl-horizontal' |
+	'dropdown-divider' |
+	'dropdown-header' |
+	'dropdown-item-text' |
+	'dropdown-item' |
+	'dropdown-menu-dark' |
+	'dropdown-menu-end' |
+	'dropdown-menu-lg-end' |
+	'dropdown-menu-lg-start' |
+	'dropdown-menu-md-end' |
+	'dropdown-menu-md-start' |
+	'dropdown-menu-right' |
+	'dropdown-menu-sm-end' |
+	'dropdown-menu-sm-start' |
+	'dropdown-menu-start' |
+	'dropdown-menu-xl-end' |
+	'dropdown-menu-xl-start' |
+	'dropdown-menu' |
+	'dropdown-toggle-split' |
+	'dropdown-toggle' |
+	'dropdown' |
+	'dropleft' |
+	'dropright' |
+	'dropup' |
+	'embed-responsive' |
+	'end-0' |
+	'end-100' |
+	'end-50' |
+	'fade' |
+	'figure-caption' |
+	'figure-img' |
+	'figure' |
+	'fixed-bottom' |
+	'fixed-top' |
+	'flex-column-0' |
+	'flex-column-1' |
+	'flex-column-2' |
+	'flex-column-3' |
+	'flex-column-4' |
+	'flex-column-5' |
+	'flex-column-reverse-0' |
+	'flex-column-reverse-1' |
+	'flex-column-reverse-2' |
+	'flex-column-reverse-3' |
+	'flex-column-reverse-4' |
+	'flex-column-reverse-5' |
+	'flex-column-reverse' |
+	'flex-column' |
+	'flex-fill' |
+	'flex-grow-0' |
+	'flex-grow-1' |
+	'flex-grow-2' |
+	'flex-grow-3' |
+	'flex-grow-4' |
+	'flex-grow-5' |
+	'flex-grow' |
+	'flex-lg-column-0' |
+	'flex-lg-column-1' |
+	'flex-lg-column-2' |
+	'flex-lg-column-3' |
+	'flex-lg-column-4' |
+	'flex-lg-column-5' |
+	'flex-lg-column-reverse-0' |
+	'flex-lg-column-reverse-1' |
+	'flex-lg-column-reverse-2' |
+	'flex-lg-column-reverse-3' |
+	'flex-lg-column-reverse-4' |
+	'flex-lg-column-reverse-5' |
+	'flex-lg-column-reverse' |
+	'flex-lg-column' |
+	'flex-lg-fill' |
+	'flex-lg-grow-0' |
+	'flex-lg-grow-1' |
+	'flex-lg-grow-2' |
+	'flex-lg-grow-3' |
+	'flex-lg-grow-4' |
+	'flex-lg-grow-5' |
+	'flex-lg-grow' |
+	'flex-lg-nowrap-0' |
+	'flex-lg-nowrap-1' |
+	'flex-lg-nowrap-2' |
+	'flex-lg-nowrap-3' |
+	'flex-lg-nowrap-4' |
+	'flex-lg-nowrap-5' |
+	'flex-lg-nowrap' |
+	'flex-lg-row-0' |
+	'flex-lg-row-1' |
+	'flex-lg-row-2' |
+	'flex-lg-row-3' |
+	'flex-lg-row-4' |
+	'flex-lg-row-5' |
+	'flex-lg-row-reverse-0' |
+	'flex-lg-row-reverse-1' |
+	'flex-lg-row-reverse-2' |
+	'flex-lg-row-reverse-3' |
+	'flex-lg-row-reverse-4' |
+	'flex-lg-row-reverse-5' |
+	'flex-lg-row-reverse' |
+	'flex-lg-row' |
+	'flex-lg-shrink-0' |
+	'flex-lg-shrink-1' |
+	'flex-lg-shrink-2' |
+	'flex-lg-shrink-3' |
+	'flex-lg-shrink-4' |
+	'flex-lg-shrink-5' |
+	'flex-lg-shrink' |
+	'flex-lg-wrap-0' |
+	'flex-lg-wrap-1' |
+	'flex-lg-wrap-2' |
+	'flex-lg-wrap-3' |
+	'flex-lg-wrap-4' |
+	'flex-lg-wrap-5' |
+	'flex-lg-wrap-reverse-0' |
+	'flex-lg-wrap-reverse-1' |
+	'flex-lg-wrap-reverse-2' |
+	'flex-lg-wrap-reverse-3' |
+	'flex-lg-wrap-reverse-4' |
+	'flex-lg-wrap-reverse-5' |
+	'flex-lg-wrap-reverse' |
+	'flex-lg-wrap' |
+	'flex-md-column-0' |
+	'flex-md-column-1' |
+	'flex-md-column-2' |
+	'flex-md-column-3' |
+	'flex-md-column-4' |
+	'flex-md-column-5' |
+	'flex-md-column-reverse-0' |
+	'flex-md-column-reverse-1' |
+	'flex-md-column-reverse-2' |
+	'flex-md-column-reverse-3' |
+	'flex-md-column-reverse-4' |
+	'flex-md-column-reverse-5' |
+	'flex-md-column-reverse' |
+	'flex-md-column' |
+	'flex-md-fill' |
+	'flex-md-grow-0' |
+	'flex-md-grow-1' |
+	'flex-md-grow-2' |
+	'flex-md-grow-3' |
+	'flex-md-grow-4' |
+	'flex-md-grow-5' |
+	'flex-md-grow' |
+	'flex-md-nowrap-0' |
+	'flex-md-nowrap-1' |
+	'flex-md-nowrap-2' |
+	'flex-md-nowrap-3' |
+	'flex-md-nowrap-4' |
+	'flex-md-nowrap-5' |
+	'flex-md-nowrap' |
+	'flex-md-row-0' |
+	'flex-md-row-1' |
+	'flex-md-row-2' |
+	'flex-md-row-3' |
+	'flex-md-row-4' |
+	'flex-md-row-5' |
+	'flex-md-row-reverse-0' |
+	'flex-md-row-reverse-1' |
+	'flex-md-row-reverse-2' |
+	'flex-md-row-reverse-3' |
+	'flex-md-row-reverse-4' |
+	'flex-md-row-reverse-5' |
+	'flex-md-row-reverse' |
+	'flex-md-row' |
+	'flex-md-shrink-0' |
+	'flex-md-shrink-1' |
+	'flex-md-shrink-2' |
+	'flex-md-shrink-3' |
+	'flex-md-shrink-4' |
+	'flex-md-shrink-5' |
+	'flex-md-shrink' |
+	'flex-md-wrap-0' |
+	'flex-md-wrap-1' |
+	'flex-md-wrap-2' |
+	'flex-md-wrap-3' |
+	'flex-md-wrap-4' |
+	'flex-md-wrap-5' |
+	'flex-md-wrap-reverse-0' |
+	'flex-md-wrap-reverse-1' |
+	'flex-md-wrap-reverse-2' |
+	'flex-md-wrap-reverse-3' |
+	'flex-md-wrap-reverse-4' |
+	'flex-md-wrap-reverse-5' |
+	'flex-md-wrap-reverse' |
+	'flex-md-wrap' |
+	'flex-nowrap-0' |
+	'flex-nowrap-1' |
+	'flex-nowrap-2' |
+	'flex-nowrap-3' |
+	'flex-nowrap-4' |
+	'flex-nowrap-5' |
+	'flex-nowrap' |
+	'flex-row-0' |
+	'flex-row-1' |
+	'flex-row-2' |
+	'flex-row-3' |
+	'flex-row-4' |
+	'flex-row-5' |
+	'flex-row-reverse-0' |
+	'flex-row-reverse-1' |
+	'flex-row-reverse-2' |
+	'flex-row-reverse-3' |
+	'flex-row-reverse-4' |
+	'flex-row-reverse-5' |
+	'flex-row-reverse' |
+	'flex-row' |
+	'flex-shrink-0' |
+	'flex-shrink-1' |
+	'flex-shrink-2' |
+	'flex-shrink-3' |
+	'flex-shrink-4' |
+	'flex-shrink-5' |
+	'flex-shrink' |
+	'flex-sm-column-0' |
+	'flex-sm-column-1' |
+	'flex-sm-column-2' |
+	'flex-sm-column-3' |
+	'flex-sm-column-4' |
+	'flex-sm-column-5' |
+	'flex-sm-column-reverse-0' |
+	'flex-sm-column-reverse-1' |
+	'flex-sm-column-reverse-2' |
+	'flex-sm-column-reverse-3' |
+	'flex-sm-column-reverse-4' |
+	'flex-sm-column-reverse-5' |
+	'flex-sm-column-reverse' |
+	'flex-sm-column' |
+	'flex-sm-fill' |
+	'flex-sm-grow-0' |
+	'flex-sm-grow-1' |
+	'flex-sm-grow-2' |
+	'flex-sm-grow-3' |
+	'flex-sm-grow-4' |
+	'flex-sm-grow-5' |
+	'flex-sm-grow' |
+	'flex-sm-nowrap-0' |
+	'flex-sm-nowrap-1' |
+	'flex-sm-nowrap-2' |
+	'flex-sm-nowrap-3' |
+	'flex-sm-nowrap-4' |
+	'flex-sm-nowrap-5' |
+	'flex-sm-nowrap' |
+	'flex-sm-row-0' |
+	'flex-sm-row-1' |
+	'flex-sm-row-2' |
+	'flex-sm-row-3' |
+	'flex-sm-row-4' |
+	'flex-sm-row-5' |
+	'flex-sm-row-reverse-0' |
+	'flex-sm-row-reverse-1' |
+	'flex-sm-row-reverse-2' |
+	'flex-sm-row-reverse-3' |
+	'flex-sm-row-reverse-4' |
+	'flex-sm-row-reverse-5' |
+	'flex-sm-row-reverse' |
+	'flex-sm-row' |
+	'flex-sm-shrink-0' |
+	'flex-sm-shrink-1' |
+	'flex-sm-shrink-2' |
+	'flex-sm-shrink-3' |
+	'flex-sm-shrink-4' |
+	'flex-sm-shrink-5' |
+	'flex-sm-shrink' |
+	'flex-sm-wrap-0' |
+	'flex-sm-wrap-1' |
+	'flex-sm-wrap-2' |
+	'flex-sm-wrap-3' |
+	'flex-sm-wrap-4' |
+	'flex-sm-wrap-5' |
+	'flex-sm-wrap-reverse-0' |
+	'flex-sm-wrap-reverse-1' |
+	'flex-sm-wrap-reverse-2' |
+	'flex-sm-wrap-reverse-3' |
+	'flex-sm-wrap-reverse-4' |
+	'flex-sm-wrap-reverse-5' |
+	'flex-sm-wrap-reverse' |
+	'flex-sm-wrap' |
+	'flex-wrap-0' |
+	'flex-wrap-1' |
+	'flex-wrap-2' |
+	'flex-wrap-3' |
+	'flex-wrap-4' |
+	'flex-wrap-5' |
+	'flex-wrap-reverse-0' |
+	'flex-wrap-reverse-1' |
+	'flex-wrap-reverse-2' |
+	'flex-wrap-reverse-3' |
+	'flex-wrap-reverse-4' |
+	'flex-wrap-reverse-5' |
+	'flex-wrap-reverse' |
+	'flex-wrap' |
+	'flex-xl-column-0' |
+	'flex-xl-column-1' |
+	'flex-xl-column-2' |
+	'flex-xl-column-3' |
+	'flex-xl-column-4' |
+	'flex-xl-column-5' |
+	'flex-xl-column-reverse-0' |
+	'flex-xl-column-reverse-1' |
+	'flex-xl-column-reverse-2' |
+	'flex-xl-column-reverse-3' |
+	'flex-xl-column-reverse-4' |
+	'flex-xl-column-reverse-5' |
+	'flex-xl-column-reverse' |
+	'flex-xl-column' |
+	'flex-xl-fill' |
+	'flex-xl-grow-0' |
+	'flex-xl-grow-1' |
+	'flex-xl-grow-2' |
+	'flex-xl-grow-3' |
+	'flex-xl-grow-4' |
+	'flex-xl-grow-5' |
+	'flex-xl-grow' |
+	'flex-xl-nowrap-0' |
+	'flex-xl-nowrap-1' |
+	'flex-xl-nowrap-2' |
+	'flex-xl-nowrap-3' |
+	'flex-xl-nowrap-4' |
+	'flex-xl-nowrap-5' |
+	'flex-xl-nowrap' |
+	'flex-xl-row-0' |
+	'flex-xl-row-1' |
+	'flex-xl-row-2' |
+	'flex-xl-row-3' |
+	'flex-xl-row-4' |
+	'flex-xl-row-5' |
+	'flex-xl-row-reverse-0' |
+	'flex-xl-row-reverse-1' |
+	'flex-xl-row-reverse-2' |
+	'flex-xl-row-reverse-3' |
+	'flex-xl-row-reverse-4' |
+	'flex-xl-row-reverse-5' |
+	'flex-xl-row-reverse' |
+	'flex-xl-row' |
+	'flex-xl-shrink-0' |
+	'flex-xl-shrink-1' |
+	'flex-xl-shrink-2' |
+	'flex-xl-shrink-3' |
+	'flex-xl-shrink-4' |
+	'flex-xl-shrink-5' |
+	'flex-xl-shrink' |
+	'flex-xl-wrap-0' |
+	'flex-xl-wrap-1' |
+	'flex-xl-wrap-2' |
+	'flex-xl-wrap-3' |
+	'flex-xl-wrap-4' |
+	'flex-xl-wrap-5' |
+	'flex-xl-wrap-reverse-0' |
+	'flex-xl-wrap-reverse-1' |
+	'flex-xl-wrap-reverse-2' |
+	'flex-xl-wrap-reverse-3' |
+	'flex-xl-wrap-reverse-4' |
+	'flex-xl-wrap-reverse-5' |
+	'flex-xl-wrap-reverse' |
+	'flex-xl-wrap' |
+	'flex-xs-column-0' |
+	'flex-xs-column-1' |
+	'flex-xs-column-2' |
+	'flex-xs-column-3' |
+	'flex-xs-column-4' |
+	'flex-xs-column-5' |
+	'flex-xs-column-reverse-0' |
+	'flex-xs-column-reverse-1' |
+	'flex-xs-column-reverse-2' |
+	'flex-xs-column-reverse-3' |
+	'flex-xs-column-reverse-4' |
+	'flex-xs-column-reverse-5' |
+	'flex-xs-column-reverse' |
+	'flex-xs-column' |
+	'flex-xs-grow-0' |
+	'flex-xs-grow-1' |
+	'flex-xs-grow-2' |
+	'flex-xs-grow-3' |
+	'flex-xs-grow-4' |
+	'flex-xs-grow-5' |
+	'flex-xs-grow' |
+	'flex-xs-nowrap-0' |
+	'flex-xs-nowrap-1' |
+	'flex-xs-nowrap-2' |
+	'flex-xs-nowrap-3' |
+	'flex-xs-nowrap-4' |
+	'flex-xs-nowrap-5' |
+	'flex-xs-nowrap' |
+	'flex-xs-row-0' |
+	'flex-xs-row-1' |
+	'flex-xs-row-2' |
+	'flex-xs-row-3' |
+	'flex-xs-row-4' |
+	'flex-xs-row-5' |
+	'flex-xs-row-reverse-0' |
+	'flex-xs-row-reverse-1' |
+	'flex-xs-row-reverse-2' |
+	'flex-xs-row-reverse-3' |
+	'flex-xs-row-reverse-4' |
+	'flex-xs-row-reverse-5' |
+	'flex-xs-row-reverse' |
+	'flex-xs-row' |
+	'flex-xs-shrink-0' |
+	'flex-xs-shrink-1' |
+	'flex-xs-shrink-2' |
+	'flex-xs-shrink-3' |
+	'flex-xs-shrink-4' |
+	'flex-xs-shrink-5' |
+	'flex-xs-shrink' |
+	'flex-xs-wrap-0' |
+	'flex-xs-wrap-1' |
+	'flex-xs-wrap-2' |
+	'flex-xs-wrap-3' |
+	'flex-xs-wrap-4' |
+	'flex-xs-wrap-5' |
+	'flex-xs-wrap-reverse-0' |
+	'flex-xs-wrap-reverse-1' |
+	'flex-xs-wrap-reverse-2' |
+	'flex-xs-wrap-reverse-3' |
+	'flex-xs-wrap-reverse-4' |
+	'flex-xs-wrap-reverse-5' |
+	'flex-xs-wrap-reverse' |
+	'flex-xs-wrap' |
+	'flex-xxl-column-0' |
+	'flex-xxl-column-1' |
+	'flex-xxl-column-2' |
+	'flex-xxl-column-3' |
+	'flex-xxl-column-4' |
+	'flex-xxl-column-5' |
+	'flex-xxl-column-reverse-0' |
+	'flex-xxl-column-reverse-1' |
+	'flex-xxl-column-reverse-2' |
+	'flex-xxl-column-reverse-3' |
+	'flex-xxl-column-reverse-4' |
+	'flex-xxl-column-reverse-5' |
+	'flex-xxl-column-reverse' |
+	'flex-xxl-column' |
+	'flex-xxl-fill' |
+	'flex-xxl-grow-0' |
+	'flex-xxl-grow-1' |
+	'flex-xxl-grow-2' |
+	'flex-xxl-grow-3' |
+	'flex-xxl-grow-4' |
+	'flex-xxl-grow-5' |
+	'flex-xxl-grow' |
+	'flex-xxl-nowrap-0' |
+	'flex-xxl-nowrap-1' |
+	'flex-xxl-nowrap-2' |
+	'flex-xxl-nowrap-3' |
+	'flex-xxl-nowrap-4' |
+	'flex-xxl-nowrap-5' |
+	'flex-xxl-nowrap' |
+	'flex-xxl-row-0' |
+	'flex-xxl-row-1' |
+	'flex-xxl-row-2' |
+	'flex-xxl-row-3' |
+	'flex-xxl-row-4' |
+	'flex-xxl-row-5' |
+	'flex-xxl-row-reverse-0' |
+	'flex-xxl-row-reverse-1' |
+	'flex-xxl-row-reverse-2' |
+	'flex-xxl-row-reverse-3' |
+	'flex-xxl-row-reverse-4' |
+	'flex-xxl-row-reverse-5' |
+	'flex-xxl-row-reverse' |
+	'flex-xxl-row' |
+	'flex-xxl-shrink-0' |
+	'flex-xxl-shrink-1' |
+	'flex-xxl-shrink-2' |
+	'flex-xxl-shrink-3' |
+	'flex-xxl-shrink-4' |
+	'flex-xxl-shrink-5' |
+	'flex-xxl-shrink' |
+	'flex-xxl-wrap-0' |
+	'flex-xxl-wrap-1' |
+	'flex-xxl-wrap-2' |
+	'flex-xxl-wrap-3' |
+	'flex-xxl-wrap-4' |
+	'flex-xxl-wrap-5' |
+	'flex-xxl-wrap-reverse-0' |
+	'flex-xxl-wrap-reverse-1' |
+	'flex-xxl-wrap-reverse-2' |
+	'flex-xxl-wrap-reverse-3' |
+	'flex-xxl-wrap-reverse-4' |
+	'flex-xxl-wrap-reverse-5' |
+	'flex-xxl-wrap-reverse' |
+	'flex-xxl-wrap' |
+	'float-end' |
+	'float-left' |
+	'float-lg-end' |
+	'float-lg-left' |
+	'float-lg-none' |
+	'float-lg-right' |
+	'float-lg-start' |
+	'float-md-end' |
+	'float-md-left' |
+	'float-md-none' |
+	'float-md-right' |
+	'float-md-start' |
+	'float-none' |
+	'float-right' |
+	'float-sm-end' |
+	'float-sm-left' |
+	'float-sm-none' |
+	'float-sm-right' |
+	'float-sm-start' |
+	'float-start' |
+	'float-xl-end' |
+	'float-xl-left' |
+	'float-xl-none' |
+	'float-xl-right' |
+	'float-xl-start' |
+	'float-xs-end' |
+	'float-xs-left' |
+	'float-xs-none' |
+	'float-xs-right' |
+	'float-xs-start' |
+	'float-xxl-end' |
+	'float-xxl-left' |
+	'float-xxl-none' |
+	'float-xxl-right' |
+	'float-xxl-start' |
+	'font-italic' |
+	'font-monospace' |
+	'font-weight-bold' |
+	'font-weight-bolder' |
+	'font-weight-light' |
+	'font-weight-lighter' |
+	'font-weight-normal' |
+	'form-check-inline' |
+	'form-check-input' |
+	'form-check-label' |
+	'form-check' |
+	'form-control-color' |
+	'form-control-file' |
+	'form-control-lg' |
+	'form-control-plaintext' |
+	'form-control-range' |
+	'form-control-sm' |
+	'form-control' |
+	'form-floating' |
+	'form-group' |
+	'form-inline' |
+	'form-label' |
+	'form-select-lg' |
+	'form-select-sm' |
+	'form-select' |
+	'form-switch' |
+	'form-text' |
+	'form' |
+	'fs-1' |
+	'fs-2' |
+	'fs-3' |
+	'fs-4' |
+	'fs-5' |
+	'fs-6' |
+	'fs-lg-1' |
+	'fs-md-1' |
+	'fs-sm-1' |
+	'fst-italic' |
+	'fst-normal' |
+	'fw-bold' |
+	'fw-bolder' |
+	'fw-light' |
+	'fw-lighter' |
+	'fw-normal' |
+	'g-0' |
+	'g-lg-0' |
+	'g-md-0' |
+	'g-sm-0' |
+	'g-xl-0' |
+	'g-xxl-0' |
+	'gap-0' |
+	'gap-lg-0' |
+	'gap-md-0' |
+	'gap-sm-0' |
+	'gap-xl-0' |
+	'gap-xxl-0' |
+	'gx-0' |
+	'gx-lg-0' |
+	'gx-md-0' |
+	'gx-sm-0' |
+	'gx-xl-0' |
+	'gx-xxl-0' |
+	'gy-xxl-0' |
+	'h-100' |
+	'h-25' |
+	'h-50' |
+	'h-75' |
+	'h-auto' |
+	'h1' |
+	'h2' |
+	'h3' |
+	'h4' |
+	'h5' |
+	'h6' |
+	'hide' |
+	'img-fluid' |
+	'img-thumbnail' |
+	'initialism' |
+	'input-group-append' |
+	'input-group-lg' |
+	'input-group-prepend' |
+	'input-group-sm' |
+	'input-group-text' |
+	'input-group' |
+	'invisible' |
+	'is-invalid' |
+	'is-valid' |
+	'jumbotron-fluid' |
+	'jumbotron' |
+	'justify-content-around' |
+	'justify-content-between' |
+	'justify-content-center' |
+	'justify-content-end' |
+	'justify-content-evenly' |
+	'justify-content-lg-around' |
+	'justify-content-lg-between' |
+	'justify-content-lg-center' |
+	'justify-content-lg-end' |
+	'justify-content-lg-evenly' |
+	'justify-content-lg-start' |
+	'justify-content-md-around' |
+	'justify-content-md-between' |
+	'justify-content-md-center' |
+	'justify-content-md-end' |
+	'justify-content-md-evenly' |
+	'justify-content-md-start' |
+	'justify-content-sm-around' |
+	'justify-content-sm-between' |
+	'justify-content-sm-center' |
+	'justify-content-sm-end' |
+	'justify-content-sm-evenly' |
+	'justify-content-sm-start' |
+	'justify-content-start' |
+	'justify-content-xl-around' |
+	'justify-content-xl-between' |
+	'justify-content-xl-center' |
+	'justify-content-xl-end' |
+	'justify-content-xl-evenly' |
+	'justify-content-xl-start' |
+	'justify-content-xxl-around' |
+	'justify-content-xxl-between' |
+	'justify-content-xxl-center' |
+	'justify-content-xxl-end' |
+	'justify-content-xxl-evenly' |
+	'justify-content-xxl-start' |
+	'lead' |
+	'lh-1' |
+	'lh-base' |
+	'lh-lg' |
+	'lh-sm' |
+	'link-danger' |
+	'link-dark' |
+	'link-info' |
+	'link-light' |
+	'link-primary' |
+	'link-secondary' |
+	'link-success' |
+	'link-warning' |
+	'list-group-flush' |
+	'list-group-horizontal-lg' |
+	'list-group-horizontal-md' |
+	'list-group-horizontal-sm' |
+	'list-group-horizontal-xl' |
+	'list-group-horizontal-xxl' |
+	'list-group-horizontal' |
+	'list-group-item-action' |
+	'list-group-item-danger' |
+	'list-group-item-dark' |
+	'list-group-item-info' |
+	'list-group-item-light' |
+	'list-group-item-primary' |
+	'list-group-item-secondary' |
+	'list-group-item-success' |
+	'list-group-item-warning' |
+	'list-group-item' |
+	'list-group' |
+	'list-inline' |
+	'list-unstyled' |
+	'm-0' |
+	'm-1' |
+	'm-2' |
+	'm-3' |
+	'm-4' |
+	'm-5' |
+	'm-auto' |
+	'm-lg-0' |
+	'm-lg-auto' |
+	'm-md-0' |
+	'm-md-auto' |
+	'm-sm-0' |
+	'm-sm-auto' |
+	'm-xl-0' |
+	'm-xl-auto' |
+	'm-xxl-0' |
+	'm-xxl-auto' |
+	'material-icons' |
+	'material-symbols-outlined' |
+	'mb-0' |
+	'mb-1' |
+	'mb-2' |
+	'mb-3' |
+	'mb-4' |
+	'mb-5' |
+	'mb-auto' |
+	'mb-lg-0' |
+	'mb-lg-auto' |
+	'mb-md-0' |
+	'mb-md-auto' |
+	'mb-sm-0' |
+	'mb-sm-auto' |
+	'mb-xl-0' |
+	'mb-xl-auto' |
+	'mb-xxl-0' |
+	'mb-xxl-auto' |
+	'me-0' |
+	'me-1' |
+	'me-2' |
+	'me-3' |
+	'me-4' |
+	'me-5' |
+	'me-auto' |
+	'me-lg-0' |
+	'me-lg-auto' |
+	'me-md-0' |
+	'me-md-auto' |
+	'me-sm-0' |
+	'me-sm-auto' |
+	'me-xl-0' |
+	'me-xl-auto' |
+	'me-xxl-0' |
+	'me-xxl-auto' |
+	'media' |
+	'mh-100' |
+	'middle' |
+	'min-vw-100' |
+	'modal-body' |
+	'modal-contant' |
+	'modal-content' |
+	'modal-dialog-centered' |
+	'modal-dialog-scrollable' |
+	'modal-dialog' |
+	'modal-footer' |
+	'modal-fullscreen-lg-down' |
+	'modal-fullscreen-md-down' |
+	'modal-fullscreen-sm-down' |
+	'modal-fullscreen-xl-down' |
+	'modal-fullscreen-xxl-down' |
+	'modal-fullscreen' |
+	'modal-header' |
+	'modal-lg' |
+	'modal-sm' |
+	'modal-static' |
+	'modal-title' |
+	'modal-xl' |
+	'modal' |
+	'ms-0' |
+	'ms-1' |
+	'ms-2' |
+	'ms-3' |
+	'ms-4' |
+	'ms-5' |
+	'ms-auto' |
+	'ms-lg-0' |
+	'ms-lg-auto' |
+	'ms-md-0' |
+	'ms-md-auto' |
+	'ms-sm-0' |
+	'ms-sm-auto' |
+	'ms-xl-0' |
+	'ms-xl-auto' |
+	'ms-xxl-0' |
+	'ms-xxl-auto' |
+	'mt-0' |
+	'mt-1' |
+	'mt-2' |
+	'mt-3' |
+	'mt-4' |
+	'mt-5' |
+	'mt-auto' |
+	'mt-lg-0' |
+	'mt-lg-auto' |
+	'mt-md-0' |
+	'mt-md-auto' |
+	'mt-sm-0' |
+	'mt-sm-auto' |
+	'mt-xl-0' |
+	'mt-xl-auto' |
+	'mt-xxl-0' |
+	'mt-xxl-auto' |
+	'multiple' |
+	'mw-100' |
+	'mx-0' |
+	'mx-1' |
+	'mx-2' |
+	'mx-3' |
+	'mx-4' |
+	'mx-5' |
+	'mx-auto' |
+	'mx-lg-0' |
+	'mx-lg-auto' |
+	'mx-md-0' |
+	'mx-md-auto' |
+	'mx-sm-0' |
+	'mx-sm-auto' |
+	'mx-xl-0' |
+	'mx-xl-auto' |
+	'mx-xxl-0' |
+	'mx-xxl-auto' |
+	'my-0' |
+	'my-1' |
+	'my-2' |
+	'my-3' |
+	'my-4' |
+	'my-5' |
+	'my-auto' |
+	'my-lg-0' |
+	'my-lg-auto' |
+	'my-md-0' |
+	'my-md-auto' |
+	'my-sm-0' |
+	'my-sm-auto' |
+	'my-xl-0' |
+	'my-xl-auto' |
+	'my-xxl-0' |
+	'my-xxl-auto' |
+	'nav-fill' |
+	'nav-item' |
+	'nav-justified' |
+	'nav-link' |
+	'nav-pills' |
+	'nav-tabs' |
+	'nav.nav' |
+	'nav' |
+	'navbar-brand' |
+	'navbar-collapse' |
+	'navbar-dark' |
+	'navbar-expand-lg' |
+	'navbar-expand-md' |
+	'navbar-expand-sm' |
+	'navbar-expand-xl' |
+	'navbar-expand-xxl' |
+	'navbar-light' |
+	'navbar-nav' |
+	'navbar-text' |
+	'navbar-toggler-icon' |
+	'navbar-toggler' |
+	'navbar' |
+	'nested' |
+	'no-gutters' |
+	'offset-0' |
+	'offset-1' |
+	'offset-2' |
+	'offset-3' |
+	'offset-4' |
+	'offset-5' |
+	'offset-lg-0' |
+	'offset-lg-1' |
+	'offset-lg-2' |
+	'offset-lg-3' |
+	'offset-lg-4' |
+	'offset-lg-5' |
+	'offset-md-0' |
+	'offset-md-1' |
+	'offset-md-2' |
+	'offset-md-3' |
+	'offset-md-4' |
+	'offset-md-5' |
+	'offset-sm-0' |
+	'offset-sm-1' |
+	'offset-sm-2' |
+	'offset-sm-3' |
+	'offset-sm-4' |
+	'offset-sm-5' |
+	'offset-xl-0' |
+	'offset-xl-1' |
+	'offset-xl-2' |
+	'offset-xl-3' |
+	'offset-xl-4' |
+	'offset-xl-5' |
+	'offset-xs-0' |
+	'offset-xs-1' |
+	'offset-xs-2' |
+	'offset-xs-3' |
+	'offset-xs-4' |
+	'offset-xs-5' |
+	'offset-xxl-0' |
+	'offset-xxl-1' |
+	'offset-xxl-2' |
+	'offset-xxl-3' |
+	'offset-xxl-4' |
+	'offset-xxl-5' |
+	'order-0' |
+	'order-1' |
+	'order-2' |
+	'order-3' |
+	'order-4' |
+	'order-5' |
+	'order-first' |
+	'order-last' |
+	'order-lg-0' |
+	'order-lg-1' |
+	'order-lg-2' |
+	'order-lg-3' |
+	'order-lg-4' |
+	'order-lg-5' |
+	'order-lg-first' |
+	'order-lg-last' |
+	'order-md-0' |
+	'order-md-1' |
+	'order-md-2' |
+	'order-md-3' |
+	'order-md-4' |
+	'order-md-5' |
+	'order-md-first' |
+	'order-md-last' |
+	'order-sm-0' |
+	'order-sm-1' |
+	'order-sm-2' |
+	'order-sm-3' |
+	'order-sm-4' |
+	'order-sm-5' |
+	'order-sm-first' |
+	'order-sm-last' |
+	'order-xl-0' |
+	'order-xl-1' |
+	'order-xl-2' |
+	'order-xl-3' |
+	'order-xl-4' |
+	'order-xl-5' |
+	'order-xl-first' |
+	'order-xl-last' |
+	'order-xs-0' |
+	'order-xs-1' |
+	'order-xs-2' |
+	'order-xs-3' |
+	'order-xs-4' |
+	'order-xs-5' |
+	'order-xxl-0' |
+	'order-xxl-1' |
+	'order-xxl-2' |
+	'order-xxl-3' |
+	'order-xxl-4' |
+	'order-xxl-5' |
+	'order-xxl-first' |
+	'order-xxl-last' |
+	'orm' |
+	'overflow-auto' |
+	'overflow-hidden' |
+	'overflow-scroll' |
+	'overflow-visible' |
+	'p-0' |
+	'p-1' |
+	'p-2' |
+	'p-3' |
+	'p-4' |
+	'p-5' |
+	'p-lg-0' |
+	'p-md-0' |
+	'p-sm-0' |
+	'p-xl-0' |
+	'p-xxl-0' |
+	'page-item' |
+	'pagination-lg' |
+	'pagination-sm' |
+	'pagination' |
+	'pb-0' |
+	'pb-1' |
+	'pb-2' |
+	'pb-3' |
+	'pb-4' |
+	'pb-5' |
+	'pb-lg-0' |
+	'pb-md-0' |
+	'pb-sm-0' |
+	'pb-xl-0' |
+	'pb-xxl-0' |
+	'pe-0' |
+	'pe-1' |
+	'pe-2' |
+	'pe-3' |
+	'pe-4' |
+	'pe-5' |
+	'pe-auto' |
+	'pe-lg-0' |
+	'pe-md-0' |
+	'pe-none' |
+	'pe-sm-0' |
+	'pe-xl-0' |
+	'pe-xxl-0' |
+	'popovers' |
+	'position-absolute' |
+	'position-fixed' |
+	'position-relative' |
+	'position-static' |
+	'position-sticky' |
+	'progress-bar-animated' |
+	'progress-bar-striped' |
+	'progress-bar' |
+	'progress' |
+	'ps-0' |
+	'ps-1' |
+	'ps-2' |
+	'ps-3' |
+	'ps-4' |
+	'ps-5' |
+	'ps-lg-0' |
+	'ps-md-0' |
+	'ps-sm-0' |
+	'ps-xl-0' |
+	'ps-xxl-0' |
+	'pt-0' |
+	'pt-1' |
+	'pt-2' |
+	'pt-3' |
+	'pt-4' |
+	'pt-5' |
+	'pt-lg-0' |
+	'pt-md-0' |
+	'pt-sm-0' |
+	'pt-xl-0' |
+	'pt-xxl-0' |
+	'px-0' |
+	'px-1' |
+	'px-2' |
+	'px-3' |
+	'px-4' |
+	'px-5' |
+	'px-lg-0' |
+	'px-md-0' |
+	'px-sm-0' |
+	'px-xl-0' |
+	'px-xxl-0' |
+	'py-0' |
+	'py-1' |
+	'py-2' |
+	'py-3' |
+	'py-4' |
+	'py-5' |
+	'py-lg-0' |
+	'py-md-0' |
+	'py-sm-0' |
+	'py-xl-0' |
+	'py-xxl-0' |
+	'radio' |
+	'readonly' |
+	'right' |
+	'rounded-0' |
+	'rounded-1' |
+	'rounded-2' |
+	'rounded-3' |
+	'rounded-bottom' |
+	'rounded-circle' |
+	'rounded-end' |
+	'rounded-pill' |
+	'rounded-start' |
+	'rounded-top' |
+	'rounded' |
+	'row-cols-1' |
+	'row-cols-auto' |
+	'row-cols-lg-1' |
+	'row-cols-lg-auto' |
+	'row-cols-md-1' |
+	'row-cols-md-auto' |
+	'row-cols-sm-1' |
+	'row-cols-sm-auto' |
+	'row-cols-xl-1' |
+	'row-cols-xl-auto' |
+	'row-cols-xxl-1' |
+	'row-cols-xxl-auto' |
+	'row' |
+	'segmented' |
+	'shadow-lg' |
+	'shadow-none' |
+	'shadow-sm' |
+	'shadow' |
+	'show' |
+	'spinner-border-sm' |
+	'spinner-border' |
+	'spinner-grow-sm' |
+	'spinner-grow' |
+	'sr-only-focusable' |
+	'sr-only' |
+	'start-0' |
+	'start-100' |
+	'start-50' |
+	'sticky-lg-top' |
+	'sticky-md-top' |
+	'sticky-sm-top' |
+	'sticky-top' |
+	'sticky-xl-top' |
+	'stretched-link' |
+	'tab-content' |
+	'tab-pane' |
+	'table-active' |
+	'table-bordered' |
+	'table-borderless' |
+	'table-danger' |
+	'table-dark' |
+	'table-hover' |
+	'table-info' |
+	'table-light' |
+	'table-primary' |
+	'table-reflow' |
+	'table-responsive-xxl' |
+	'table-responsive' |
+	'table-secondary' |
+	'table-sm' |
+	'table-striped' |
+	'table-success' |
+	'table-warning' |
+	'table' |
+	'text-black-50' |
+	'text-body' |
+	'text-break' |
+	'text-capitalize' |
+	'text-center' |
+	'text-danger' |
+	'text-dark' |
+	'text-decoration-line-through' |
+	'text-decoration-none' |
+	'text-decoration-underline' |
+	'text-end' |
+	'text-hide' |
+	'text-info' |
+	'text-justify' |
+	'text-lg-center' |
+	'text-lg-end' |
+	'text-lg-justify' |
+	'text-lg-start' |
+	'text-light' |
+	'text-lowercase' |
+	'text-md-center' |
+	'text-md-end' |
+	'text-md-justify' |
+	'text-md-start' |
+	'text-monospace' |
+	'text-muted' |
+	'text-normal' |
+	'text-nowrap' |
+	'text-pre-line' |
+	'text-pre-wrap' |
+	'text-pre' |
+	'text-primary' |
+	'text-reset' |
+	'text-secondary' |
+	'text-sm-center' |
+	'text-sm-end' |
+	'text-sm-justify' |
+	'text-sm-start' |
+	'text-start' |
+	'text-success' |
+	'text-truncate' |
+	'text-uppercase' |
+	'text-warning' |
+	'text-white-50' |
+	'text-white' |
+	'text-wrap' |
+	'text-xl-center' |
+	'text-xl-end' |
+	'text-xl-justify' |
+	'text-xl-start' |
+	'text-xs-center' |
+	'text-xs-end' |
+	'text-xs-justify' |
+	'text-xs-start' |
+	'text-xxl-center' |
+	'text-xxl-end' |
+	'text-xxl-justify' |
+	'text-xxl-start' |
+	'thead-dark' |
+	'thead-light' |
+	'toast-body' |
+	'toast-container' |
+	'toast-header' |
+	'toast' |
+	'tooltip' |
+	'top-0' |
+	'top-100' |
+	'top-50' |
+	'translate-middle' |
+	'ul.nav' |
+	'valid-feedback' |
+	'valid-tooltip' |
+	'visible' |
+	'visually-hidden-focusable' |
+	'visually-hidden' |
+	'w-100' |
+	'w-25' |
+	'w-50' |
+	'w-75' |
+	'w-auto';

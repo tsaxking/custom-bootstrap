@@ -1,9 +1,17 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Class } from "../../1-main/classes";
+
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums";
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_ButtonOptions}
  */
-type CBS_ButtonOptions = CBS_Options & {
+export type CBS_ButtonOptions = CBS_Options & {
     outlined?: boolean;
     rounded?: boolean;
     size?: CBS_Size;
@@ -22,7 +30,7 @@ type CBS_ButtonOptions = CBS_Options & {
  * @typedef {CBS_Button}
  * @extends {CBS_Component}
  */
-class CBS_Button extends CBS_Element {
+export class CBS_Button extends CBS_Element {
     /**
      * Creates an instance of CBS_Button.
      *

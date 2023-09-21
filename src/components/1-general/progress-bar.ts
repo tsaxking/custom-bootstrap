@@ -1,9 +1,20 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+
+
+
+
+
+
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_ProgressBarOptions}
  */
-type CBS_ProgressBarOptions = CBS_Options & {
+export type CBS_ProgressBarOptions = CBS_Options & {
 }
 
 /**
@@ -13,7 +24,7 @@ type CBS_ProgressBarOptions = CBS_Options & {
  * @typedef {CBS_ProgressBar}
  * @extends {CBS_Component}
  */
-class CBS_ProgressBar extends CBS_Component {
+export class CBS_ProgressBar extends CBS_Component {
     /**
      * Creates an instance of CBS_ProgressBar.
      *
@@ -41,7 +52,7 @@ class CBS_ProgressBar extends CBS_Component {
  * @typedef {CBS_Progress}
  * @extends {CBS_Component}
  */
-class CBS_Progress extends CBS_Component {
+export class CBS_Progress extends CBS_Component {
     /**
      * Description placeholder
      *

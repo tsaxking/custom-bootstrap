@@ -1,3 +1,14 @@
+import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+
+
 
 
 /**
@@ -5,7 +16,7 @@
  *
  * @typedef {CBS_ListItemOptions}
  */
-type CBS_ListItemOptions = CBS_Options & {
+export type CBS_ListItemOptions = CBS_Options & {
 }
 
 
@@ -16,7 +27,7 @@ type CBS_ListItemOptions = CBS_Options & {
  * @typedef {CBS_ListItem}
  * @extends {CBS_Component}
  */
-class CBS_ListItem extends CBS_Component {
+export class CBS_ListItem extends CBS_Component {
     /**
      * Creates an instance of CBS_ListItem
      *

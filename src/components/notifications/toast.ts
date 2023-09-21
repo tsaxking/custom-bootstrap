@@ -1,4 +1,31 @@
-type CBS_ToastOptions = CBS_Options & {
+import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+import { CBS_Class } from "../../1-main/classes";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+
+
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums";
+
+
+
+
+
+import { CBS_H5, CBS_H6 } from "../0-text/header";
+import { CBS_CardBody } from "../1-general/card";
+import { CBS_Paragraph } from "../0-text/paragraph";
+import { CBS_Text } from "../0-text/1-text";
+import { CBS_Span } from "../0-text/span";
+import { CBS_SVG } from "../media/svg";
+
+
+
+export type CBS_ToastOptions = CBS_Options & {
     color?: CBS_Color;
     dismiss?: number; // in milliseconds
 
@@ -9,7 +36,7 @@ type CBS_ToastOptions = CBS_Options & {
 }
 
 
-class CBS_ToastBody extends CBS_Element {
+export class CBS_ToastBody extends CBS_Element {
     constructor() {
         super();
 
@@ -17,7 +44,7 @@ class CBS_ToastBody extends CBS_Element {
     }
 }
 
-class CBS_ToastHeader extends CBS_Component {
+export class CBS_ToastHeader extends CBS_Component {
     subcomponents: {
         title: CBS_Span;
         button: CBS_Button;
@@ -36,7 +63,7 @@ class CBS_ToastHeader extends CBS_Component {
         time: new CBS_Span()
     }
 
-    interval: number = 0;
+    interval: number | NodeJS.Timeout = 0;
 
     constructor() {
         super();
@@ -89,7 +116,7 @@ class CBS_ToastHeader extends CBS_Component {
 }
 
 
-class CBS_ToastCard extends CBS_Component {
+export class CBS_ToastCard extends CBS_Component {
     subcomponents: {
         header: CBS_ToastHeader;
         body: CBS_ToastBody;
@@ -110,7 +137,7 @@ class CBS_ToastCard extends CBS_Component {
     }
 }
 
-class CBS_ToastPolite extends CBS_Component {
+export class CBS_ToastPolite extends CBS_Component {
     subcomponents: {
         container: CBS_ToastContainer;
     } = {
@@ -131,7 +158,7 @@ class CBS_ToastPolite extends CBS_Component {
 
 
 
-class CBS_ToastContainer extends CBS_Component {
+export class CBS_ToastContainer extends CBS_Component {
     subcomponents: {
         card: CBS_ToastCard;
     } = {
@@ -153,7 +180,7 @@ class CBS_ToastContainer extends CBS_Component {
 
 
 
-class CBS_Toast extends CBS_Component {
+export class CBS_Toast extends CBS_Component {
     static container = new CBS_ToastPolite();
 
     subcomponents: {

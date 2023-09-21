@@ -1,11 +1,13 @@
-
+import { CBS_Element, CBS_Options, } from "../1-main/2-element";
+import CBS from "../1-main/1-main";
+import { CBS_ElementConstructorMap, CBS_ElementContainer } from "../1-main/1-main";
 
 /**
  * For Subcomponents
  *
  * @typedef {CBS_SubComponentContainer}
  */
-type CBS_SubComponentContainer = {
+export type CBS_SubComponentContainer = {
     [key: string]: CBS_Element;
 }
 
@@ -22,7 +24,7 @@ type CBS_SubComponentContainer = {
  * @typedef {CBS_Component}
  * @extends {CBS_Element}
  */
-class CBS_Component extends CBS_Element {
+export class CBS_Component extends CBS_Element {
     /**
      * The subcomponents of this component
      *

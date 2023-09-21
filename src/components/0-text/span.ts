@@ -1,4 +1,10 @@
-class CBS_Span extends CBS_Element {
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Text, CBS_TextOptions } from "./1-text";
+
+
+export class CBS_Span extends CBS_Element {
     constructor(options?: CBS_TextOptions) {
         super(options);
         this.el = document.createElement('span');

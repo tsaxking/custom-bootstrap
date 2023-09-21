@@ -18,6 +18,7 @@ pids
 archive/
 
 *.js
+!webpack.config.js
 
 !all-classes.js
 

@@ -1,9 +1,26 @@
+import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CustomBootstrap } from "../../1-main/1-main";
+
+
+
+import { CBS_Container } from "../0-grid/container";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_InputOptions, CBS_Input, CBS_InputInterface, CBS_InputMirrorValueMap } from "./1-input";
+
+
+
+import { CBS_Label } from "./2-label";
+import { CBS_FormText } from "./form-text";
+import { CBS_Row } from "../0-grid/row";
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_InputLabelContainerOptions}
  */
-type CBS_InputLabelContainerOptions = CBS_Options & {
+export type CBS_InputLabelContainerOptions = CBS_Options & {
     type?: string;
 }
 
@@ -16,7 +33,7 @@ type CBS_InputLabelContainerOptions = CBS_Options & {
  * @extends {CBS_Component}
  * @implements {CBS_InputInterface}
  */
-class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
+export class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterface {
     /**
      * Description placeholder
      *
@@ -197,4 +214,4 @@ class CBS_InputLabelContainer extends CBS_Component implements CBS_InputInterfac
     }
 }
 
-CBS.addElement('cbs-input-label-container', CBS_InputLabelContainer);
+CBS.addElement('input-label-container', CBS_InputLabelContainer);

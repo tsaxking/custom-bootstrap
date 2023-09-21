@@ -1,10 +1,21 @@
+import { CBS_Node, CBS_Element, CBS_Options } from "./2-element";
+import { CBS_Elements, CBS_ElementName } from "./0-types";
+import { CBS_Class } from "./classes";
+import { CBS_Component } from "./3-components";
+import { CBS_Button } from "../components/1-general/1-button";
+import { CBS_Modal } from "../components/1-general/modal";
+import { CBS_Form } from "../components/form-inputs/0-form";
+import { CBS_TextInput } from "../components/form-inputs/text";
+import { CBS_Container } from "../components/0-grid/container";
+import { CBS_ModalOptions } from "../components/1-general/modal";
+
 // Generic types
 /**
  * Generic types for the library
  *
  * @typedef {CBS_NodeContainer}
  */
-type CBS_NodeContainer = {
+export type CBS_NodeContainer = {
     [key: string]: CBS_Node;
 }
 
@@ -14,7 +25,7 @@ type CBS_NodeContainer = {
  *
  * @typedef {CBS_ElementContainer}
  */
-type CBS_ElementContainer = {
+export type CBS_ElementContainer = {
     [key: string]: CBS_Element;
 }
 
@@ -24,14 +35,14 @@ type CBS_ElementContainer = {
  *
  * @typedef {CBS_ParameterValue}
  */
-type CBS_ParameterValue = string|number|boolean|HTMLElement|undefined|Element|Node;
+export type CBS_ParameterValue = string|number|boolean|HTMLElement|undefined|Element|Node;
 
 /**
  * Used for parameters
  *
  * @typedef {CBS_Parameters}
  */
-type CBS_Parameters = {
+export type CBS_Parameters = {
     [key: string]: CBS_ParameterValue;
 }
 
@@ -43,7 +54,7 @@ type CBS_Parameters = {
  *
  * @typedef {Selector}
  */
-type Selector = {
+export type Selector = {
     tag: string;
     id?: string;
     classes?: string[];
@@ -57,7 +68,7 @@ type Selector = {
  *
  * @typedef {CBS_ElementConstructorMap}
  */
-type CBS_ElementConstructorMap = {
+export type CBS_ElementConstructorMap = {
     [key: string]: new <type = unknown>(options?: CBS_Options) => CBS_Element;
 }
 
@@ -67,7 +78,7 @@ type CBS_ElementConstructorMap = {
  * @class CustomBootstrap
  * @typedef {CustomBootstrap}
  */
-class CustomBootstrap {
+export class CustomBootstrap {
     static ids: string[] = [];
 
     static getAllParentNodes(el: HTMLElement): Node[] {
@@ -164,7 +175,7 @@ class CustomBootstrap {
      * @param {new (options?: CBS_Options) => CBS_Element} element
      * @returns {(CBS_Element) => void}
      */
-    addElement(name: keyof CBS_ElementNameMap, element: new (options?: CBS_Options) => CBS_Element) {
+    addElement(name: keyof CBS_Elements, element: new (options?: CBS_Options) => CBS_Element) {
         this.#elements[name] = element;
     }
 
@@ -176,7 +187,7 @@ class CustomBootstrap {
      * @param {?CBS_Options} [options]
      * @returns {CBS_Element}
      */
-    createElement<K extends CBS_ElementName = CBS_ElementName, type = unknown>(selector: K, options?: CBS_ElementOptionMap[K]): CBS_ElementNameMap<type>[K];
+    createElement<K extends CBS_ElementName = CBS_ElementName, type = unknown>(selector: K, options?: CBS_Elements[K][0]): CBS_Elements<type>[K][1];
     createElement<K extends CBS_ElementName = CBS_ElementName, type = unknown>(tag: CBS_ElementName, options?: CBS_Options): CBS_Element {
         const element = this.#elements[tag];
 
@@ -202,7 +213,7 @@ class CustomBootstrap {
      * @param {string} text
      * @returns {(ChildNode|null)}
      */
-    createElementFromText<type>(text: string): (Element|ChildNode|CBS_ElementNameMap<type>[keyof CBS_ElementNameMap])[] {
+    createElementFromText<type>(text: string): (Element|ChildNode|(CBS_Elements<type>[keyof CBS_Elements])[1])[] {
         const div = document.createElement('div');
         div.innerHTML = text;
         const fullArray = Array.from(div.querySelectorAll('*'));
@@ -512,6 +523,7 @@ class CustomBootstrap {
  * @type {CustomBootstrap}
  */
 const CBS = new CustomBootstrap();
+export default CBS;
 (() => {
     // test for jQuery and popper
     try {

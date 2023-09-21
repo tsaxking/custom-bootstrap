@@ -1,3 +1,9 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+
+
+
 /**
  * Description placeholder
  *
@@ -5,7 +11,7 @@
  * @typedef {CBS_CardHeader}
  * @extends {CBS_Element}
  */
-class CBS_CardHeader extends CBS_Element {
+export class CBS_CardHeader extends CBS_Element {
     /**
      * Creates an instance of CBS_CardHeader.
      *
@@ -27,7 +33,7 @@ class CBS_CardHeader extends CBS_Element {
  * @typedef {CBS_CardBody}
  * @extends {CBS_Element}
  */
-class CBS_CardBody extends CBS_Element {
+export class CBS_CardBody extends CBS_Element {
     /**
      * Creates an instance of CBS_CardBody.
      *
@@ -49,7 +55,7 @@ class CBS_CardBody extends CBS_Element {
  * @typedef {CBS_CardFooter}
  * @extends {CBS_Element}
  */
-class CBS_CardFooter extends CBS_Element {
+export class CBS_CardFooter extends CBS_Element {
     /**
      * Creates an instance of CBS_CardFooter.
      *
@@ -69,7 +75,7 @@ class CBS_CardFooter extends CBS_Element {
  *
  * @typedef {CBS_CardOptions}
  */
-type CBS_CardOptions = CBS_Options & {
+export type CBS_CardOptions = CBS_Options & {
 }
 
 
@@ -80,7 +86,7 @@ type CBS_CardOptions = CBS_Options & {
  * @typedef {CBS_Card}
  * @extends {CBS_Component}
  */
-class CBS_Card extends CBS_Component {
+export class CBS_Card extends CBS_Component {
     /**
      * Description placeholder
      *

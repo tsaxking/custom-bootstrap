@@ -1,9 +1,14 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Class } from "../../1-main/classes";
+
+
 /**
  * Column Options
  *
  * @typedef {CBS_ColOptions}
  */
-type CBS_ColOptions = CBS_Options & {
+export type CBS_ColOptions = CBS_Options & {
     breakpoints?: CBS_BreakpointMap;
 }
 
@@ -12,7 +17,7 @@ type CBS_ColOptions = CBS_Options & {
  *
  * @typedef {CBS_BreakpointMap}
  */
-type CBS_BreakpointMap = {
+export type CBS_BreakpointMap = {
     xs?: number;
     sm?: number;
     md?: number;
@@ -28,7 +33,7 @@ type CBS_BreakpointMap = {
  * @typedef {CBS_Col}
  * @extends {CBS_Element}
  */
-class CBS_Col extends CBS_Element {
+export class CBS_Col extends CBS_Element {
     /**
      * All breakpoints for this column
      *

@@ -1,9 +1,15 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Text } from "./1-text";
+
+
 /**
  * Description placeholder
  *
  * @typedef {CBS_HeadingOptions}
  */
-type CBS_HeadingOptions = CBS_Options & {
+export type CBS_HeadingOptions = CBS_Options & {
 }
 
 /**
@@ -13,7 +19,7 @@ type CBS_HeadingOptions = CBS_Options & {
  * @typedef {CBS_Heading}
  * @extends {CBS_Component}
  */
-class CBS_Heading extends CBS_Text {
+export class CBS_Heading extends CBS_Text {
     /**
      * Creates an instance of CBS_Heading.
      *
@@ -32,7 +38,7 @@ class CBS_Heading extends CBS_Text {
  * @typedef {CBS_H1}
  * @extends {CBS_Heading}
  */
-class CBS_H1 extends CBS_Heading {
+export class CBS_H1 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H1.
      *
@@ -53,7 +59,7 @@ class CBS_H1 extends CBS_Heading {
  * @typedef {CBS_H2}
  * @extends {CBS_Heading}
  */
-class CBS_H2 extends CBS_Heading {
+export class CBS_H2 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H2.
      *
@@ -74,7 +80,7 @@ class CBS_H2 extends CBS_Heading {
  * @typedef {CBS_H3}
  * @extends {CBS_Heading}
  */
-class CBS_H3 extends CBS_Heading {
+export class CBS_H3 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H3.
      *
@@ -95,7 +101,7 @@ class CBS_H3 extends CBS_Heading {
  * @typedef {CBS_H4}
  * @extends {CBS_Heading}
  */
-class CBS_H4 extends CBS_Heading {
+export class CBS_H4 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H4.
      *
@@ -116,7 +122,7 @@ class CBS_H4 extends CBS_Heading {
  * @typedef {CBS_H5}
  * @extends {CBS_Heading}
  */
-class CBS_H5 extends CBS_Heading {
+export class CBS_H5 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H5.
      *
@@ -137,7 +143,7 @@ class CBS_H5 extends CBS_Heading {
  * @typedef {CBS_H6}
  * @extends {CBS_Heading}
  */
-class CBS_H6 extends CBS_Heading {
+export class CBS_H6 extends CBS_Heading {
     /**
      * Creates an instance of CBS_H6.
      *

@@ -1,10 +1,13 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
 
 /**
  * Description placeholder
  *
  * @typedef {CBS_AnchorOptions}
  */
-type CBS_AnchorOptions = CBS_Options & {
+export type CBS_AnchorOptions = CBS_Options & {
 }
 
 /**
@@ -14,7 +17,7 @@ type CBS_AnchorOptions = CBS_Options & {
  * @typedef {CBS_Anchor}
  * @extends {CBS_Component}
  */
-class CBS_Anchor extends CBS_Component {
+export class CBS_Anchor extends CBS_Component {
     /**
      * Creates an instance of CBS_Anchor.
      *

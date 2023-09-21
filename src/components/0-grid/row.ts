@@ -1,9 +1,15 @@
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_BreakpointMap } from "./col";
+import { CBS_Col } from "./col";
+
+
 /**
  * Row component Options
  *
  * @typedef {CBS_RowOptions}
  */
-type CBS_RowOptions = CBS_Options & {
+export type CBS_RowOptions = CBS_Options & {
 }
 
 /**
@@ -13,7 +19,7 @@ type CBS_RowOptions = CBS_Options & {
  * @typedef {CBS_Row}
  * @extends {CBS_Element}
  */
-class CBS_Row extends CBS_Element {
+export class CBS_Row extends CBS_Element {
     /**
      * Creates an instance of CBS_Row
      *
