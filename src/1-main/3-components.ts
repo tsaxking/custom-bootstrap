@@ -1,6 +1,5 @@
-import { CBS_Element, CBS_Options, } from "../1-main/2-element";
-import CBS from "../1-main/1-main";
-import { CBS_ElementConstructorMap, CBS_ElementContainer } from "../1-main/1-main";
+import { CBS_Element, CBS_Options, } from "../1-main/2-element.ts";
+import { CBS_ElementContainer } from "../1-main/1-main.ts";
 
 /**
  * For Subcomponents

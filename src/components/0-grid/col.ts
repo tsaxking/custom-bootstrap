@@ -1,6 +1,6 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_Class } from "../../1-main/classes";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_Class } from "../../1-main/classes.ts";
 
 
 /**
@@ -63,7 +63,7 @@ export class CBS_Col extends CBS_Element {
      */
     addBreakpoint(breakpoint: string, size: number) {
         this.addClass(`col-${breakpoint}-${size}` as CBS_Class);
-        this.breakpoints[breakpoint] = size;
+        this.breakpoints[breakpoint as keyof CBS_BreakpointMap] = size;
     }
 
     /**
@@ -72,8 +72,8 @@ export class CBS_Col extends CBS_Element {
      * @param {string} breakpoint
      */
     removeBreakpoint(breakpoint: string) {
-        this.removeClass(`col-${breakpoint}-${this.breakpoints[breakpoint]}` as CBS_Class);
-        delete this.breakpoints[breakpoint];
+        this.removeClass(`col-${breakpoint}-${this.breakpoints[breakpoint as keyof CBS_BreakpointMap]}` as CBS_Class);
+        delete this.breakpoints[breakpoint as keyof CBS_BreakpointMap];
     }
 
     /**
@@ -88,7 +88,8 @@ export class CBS_Col extends CBS_Element {
         if (options.breakpoints) {
             if (!this.breakpoints) this.breakpoints = {}
             for (const breakpoint in options.breakpoints) {
-                this.addBreakpoint(breakpoint, options.breakpoints[breakpoint]);
+                const b = this.breakpoints[breakpoint as keyof CBS_BreakpointMap];
+                if (b) this.addBreakpoint(breakpoint, b);
             }
         }
     }

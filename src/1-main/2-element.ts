@@ -1,11 +1,11 @@
-import { CBS_ListenerCallback, CBS_EventCallback, CBS_Listener } from "../events/listener";
-import { CBS_Event } from "../events/events";
-import CBS from "./1-main";
-import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../1-main/enums";
+import { CBS_ListenerCallback, CBS_Listener } from "../events/listener.ts";
+import { CBS_Event } from "../events/events.ts";
+import CBS from "./1-main.ts";
+import { CBS_Color } from "../1-main/enums.ts";
 
-import { CBS_ParameterValue, CBS_Parameters } from "./1-main";
-import { CBS_Class } from "../1-main/classes";
-import { CBS_Component } from "./3-components";
+import { CBS_ParameterValue, CBS_Parameters } from "./1-main.ts";
+import { CBS_Class } from "../1-main/classes.ts";
+import { CBS_Component } from "./3-components.ts";
 
 /**
  * Generic Node
@@ -300,8 +300,8 @@ export class CBS_Element {
                 this.el.classList.add(`${abbr}-${value}`);
             } else {
                 delete property.global;
-                this.el.classList.remove(`${abbr}${key}-${property[key]}`); // removes the current property
-                property[key] = value;
+                this.el.classList.remove(`${abbr}${key}-${property[key as keyof CBS_PropertyMap]}`); // removes the current property
+                property[key as keyof CBS_PropertyMap] = value;
                 this.el.classList.add(`${abbr}${key}-${value}`);
             }
         }

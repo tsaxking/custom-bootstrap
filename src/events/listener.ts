@@ -1,4 +1,4 @@
-import { CBS_Event } from "./events";
+import { CBS_Event } from "./events.ts";
 
 /**
  * Description placeholder

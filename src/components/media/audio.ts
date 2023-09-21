@@ -1,23 +1,10 @@
-import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_Component } from "../../1-main/3-components";
-import { CustomBootstrap } from "../../1-main/1-main";
-
-
-
-import { CBS_Container } from "../0-grid/container";
-import { CBS_Button } from "../1-general/1-button";
-
-
-
-
-
-
-
-import { CBS_H5 } from "../0-text/header";
-import { CBS_CardBody } from "../1-general/card";
-import { CBS_Image } from "./image";
-import { CBS_MaterialIcon } from "../../z-extensions/material-icons";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_Component } from "../../1-main/3-components.ts";
+import { CBS_H5 } from "../0-text/header.ts";
+import { CBS_CardBody } from "../1-general/card.ts";
+import { CBS_Image } from "./image.ts";
+import { CBS_MaterialIcon } from "../../z-extensions/material-icons.ts";
 
 
 
@@ -340,11 +327,11 @@ export class CBS_AudioPlayhead extends CBS_Element {
 
         this.el.style.width = '8px';
         this.el.style.height = '8px';
-        this.el.style['-webkit-border-radius'] = '50%';
-        this.el.style['border-radius'] = '50%';
+        this.el.style.webkitBorderRadius = '50%';
+        this.el.style.borderRadius = '50%';
         this.el.style.background = 'black';
         this.el.style.cursor = 'pointer';
-        this.el.style['margin-top'] = '-3px';
+        this.el.style.marginTop = '-3px';
 
         this.el = document.createElement('div');
     }
@@ -444,7 +431,7 @@ export class CBS_AudioButton extends CBS_Component {
 
         this.el.style.cursor = 'pointer';
         this.el.style.float = 'left';
-        this.el.style['margin-top'] = '12px';
+        this.el.style.marginTop = '12px';
 
         this.addClass('material-icons');
 

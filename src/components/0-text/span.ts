@@ -1,7 +1,6 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_Component } from "../../1-main/3-components";
-import { CBS_Text, CBS_TextOptions } from "./1-text";
+import { CBS_Element } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_TextOptions } from "./1-text.ts";
 
 
 export class CBS_Span extends CBS_Element {

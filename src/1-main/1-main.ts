@@ -1,13 +1,13 @@
-import { CBS_Node, CBS_Element, CBS_Options } from "./2-element";
-import { CBS_Elements, CBS_ElementName } from "./0-types";
-import { CBS_Class } from "./classes";
-import { CBS_Component } from "./3-components";
-import { CBS_Button } from "../components/1-general/1-button";
-import { CBS_Modal } from "../components/1-general/modal";
-import { CBS_Form } from "../components/form-inputs/0-form";
-import { CBS_TextInput } from "../components/form-inputs/text";
-import { CBS_Container } from "../components/0-grid/container";
-import { CBS_ModalOptions } from "../components/1-general/modal";
+import { CBS_Node, CBS_Element, CBS_Options } from "./2-element.ts";
+import { CBS_Elements, CBS_ElementName } from "./0-types.ts";
+import { CBS_Class } from "./classes.ts";
+import { CBS_Component } from "./3-components.ts";
+import { CBS_Button } from "../components/1-general/1-button.ts";
+import { CBS_Modal } from "../components/1-general/modal.ts";
+import { CBS_Form } from "../components/form-inputs/0-form.ts";
+import { CBS_TextInput } from "../components/form-inputs/text.ts";
+import { CBS_Container } from "../components/0-grid/container.ts";
+import { CBS_ModalOptions } from "../components/1-general/modal.ts";
 
 // Generic types
 /**

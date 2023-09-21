@@ -1,28 +1,22 @@
-import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_Component } from "../../1-main/3-components";
-
-
-
-import { CBS_Container } from "../0-grid/container";
-import { CBS_Button } from "../1-general/1-button";
-
-
-
-import { CBS_Input } from "./1-input";
-import { CBS_InputLabelContainer } from "./3-input-label-container";
-import { CBS_SelectInput } from "./select";
-import { CBS_FileInput } from "./file";
-import { CBS_TextareaInput } from "./textarea";
-import { CBS_DateInput } from "./date";
-import { CBS_ColorInput } from "./color";
-import { CBS_RangeInput } from "./range";
-import { CBS_TextInput } from "./text";
-import { CBS_PasswordInput } from "./password";
-import { CBS_EmailInput } from "./email";
-import { CBS_Checkbox } from "./checkbox";
-import { CBS_CheckboxGroup } from "./checkbox";
-import { CBS_RadioGroup } from "./radio";
+import { CBS_Element, CBS_Options, CBS_Node, CBS_NodeMap } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_Component } from "../../1-main/3-components.ts";
+import { CBS_Container } from "../0-grid/container.ts";
+import { CBS_Button } from "../1-general/1-button.ts";
+import { CBS_Input } from "./1-input.ts";
+import { CBS_InputLabelContainer } from "./3-input-label-container.ts";
+import { CBS_SelectInput } from "./select.ts";
+import { CBS_FileInput } from "./file.ts";
+import { CBS_TextareaInput } from "./textarea.ts";
+import { CBS_DateInput } from "./date.ts";
+import { CBS_ColorInput } from "./color.ts";
+import { CBS_RangeInput } from "./range.ts";
+import { CBS_TextInput } from "./text.ts";
+import { CBS_PasswordInput } from "./password.ts";
+import { CBS_EmailInput } from "./email.ts";
+import { CBS_Checkbox } from "./checkbox.ts";
+import { CBS_CheckboxGroup } from "./checkbox.ts";
+import { CBS_RadioGroup } from "./radio.ts";
 
 
 

@@ -1,8 +1,8 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_BreakpointMap } from "./col";
-import { CBS_Row } from "./row";
-import { CBS_Class } from "../../1-main/classes";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_BreakpointMap } from "./col.ts";
+import { CBS_Row } from "./row.ts";
+import { CBS_Class } from "../../1-main/classes.ts";
 
 
 
@@ -58,8 +58,8 @@ export class CBS_Container extends CBS_Element {
                 'container-fluid'
             );
             this.addClass(...Object.keys(options.breakpoints).map((key) => {
-                if (options.breakpoints && options.breakpoints[key]) 
-                    return `container-${key}-${options.breakpoints[key]}`;
+                if (options.breakpoints && options.breakpoints[key as keyof CBS_BreakpointMap]) 
+                    return `container-${key}-${options.breakpoints[key as keyof CBS_BreakpointMap]}`;
             }).filter(Boolean) as CBS_Class[]);
         } else {
             this.addClass('container');

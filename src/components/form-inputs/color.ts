@@ -1,18 +1,7 @@
 
-import { CBS_Element, CBS_Options, CBS_Node } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
-import { CBS_Component } from "../../1-main/3-components";
-import { CustomBootstrap } from "../../1-main/1-main";
-
-
-
-import { CBS_Container } from "../0-grid/container";
-import { CBS_Button } from "../1-general/1-button";
-import { CBS_InputOptions, CBS_Input, CBS_InputInterface, CBS_InputMirrorValueMap } from "./1-input";
-
-
-
-import { CBS_Label } from "./2-label";
+import { CBS_Options } from "../../1-main/2-element.ts";
+import CBS from "../../1-main/1-main.ts";
+import { CBS_Input } from "./1-input.ts";
 
 
 /**
