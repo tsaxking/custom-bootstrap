@@ -1,4 +1,4 @@
-import CBS from "../../1-main/1-main";
+import { CBS }from "../../1-main/1-main";
 import { CBS_InputOptions, CBS_Input } from "./1-input";
 
 

@@ -1,5 +1,5 @@
 import { CBS_Component } from "../1-main/3-components";
-import CBS from '../1-main/1-main';
+import { CBS }from '../1-main/1-main';
 import { CBS_Options } from "../1-main/2-element";
 import { CBS_H1, CBS_H2, CBS_H3, CBS_H4, CBS_H5, CBS_H6 } from '../components/0-text/header';
 import { CBS_Anchor } from "../components/0-text/anchor";

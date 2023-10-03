@@ -522,8 +522,7 @@ export class CustomBootstrap {
  *
  * @type {CustomBootstrap}
  */
-const CBS = new CustomBootstrap();
-export default CBS;
+export const CBS = new CustomBootstrap();
 (() => {
     // test for jQuery and popper
     try {

@@ -1,6 +1,6 @@
 import { CBS_ListenerCallback, CBS_Listener } from "../events/listener";
 import { CBS_Event } from "../events/events";
-import CBS from "./1-main";
+import { CBS } from "./1-main";
 import { CBS_Color } from "../1-main/enums";
 
 import { CBS_ParameterValue, CBS_Parameters } from "./1-main";

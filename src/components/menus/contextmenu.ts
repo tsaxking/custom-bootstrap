@@ -1,5 +1,5 @@
 import { CBS_Element, CBS_Options } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
+import { CBS }from "../../1-main/1-main";
 import { CBS_Component } from "../../1-main/3-components";
 import { CBS_H6 } from "../0-text/header";
 import { CBS_Paragraph } from "../0-text/paragraph";

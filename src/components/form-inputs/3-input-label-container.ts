@@ -1,5 +1,5 @@
 import { CBS_Options } from "../../1-main/2-element";
-import CBS from "../../1-main/1-main";
+import { CBS }from "../../1-main/1-main";
 import { CBS_Component } from "../../1-main/3-components";
 import { CustomBootstrap } from "../../1-main/1-main";
 import { CBS_Input, CBS_InputInterface } from "./1-input";
