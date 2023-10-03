@@ -1,8 +1,8 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_Input } from "./1-input.ts";
-import { CBS_InputLabelContainer } from "./3-input-label-container.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Input } from "./1-input";
+import { CBS_InputLabelContainer } from "./3-input-label-container";
 
 
 

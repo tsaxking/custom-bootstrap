@@ -1,11 +1,11 @@
-import { CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_Class } from "../../1-main/classes.ts";
-import { CBS_Color } from "../../1-main/enums.ts";
-import { CBS_Button } from "../1-general/1-button.ts";
-import { CBS_Span } from "../0-text/span.ts";
-import { CBS_SVG } from "../media/svg.ts";
+import { CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Class } from "../../1-main/classes";
+import { CBS_Color } from "../../1-main/enums";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_Span } from "../0-text/span";
+import { CBS_SVG } from "../media/svg";
 
 
 

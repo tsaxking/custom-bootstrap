@@ -1,10 +1,10 @@
-import { CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_Button } from "../1-general/1-button.ts";
-import { CBS_Input, CBS_InputInterface } from "./1-input.ts";
-import { CBS_Label } from "./2-label.ts";
-import { CBS_InputLabelContainer } from "./3-input-label-container.ts";
+import { CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Button } from "../1-general/1-button";
+import { CBS_Input, CBS_InputInterface } from "./1-input";
+import { CBS_Label } from "./2-label";
+import { CBS_InputLabelContainer } from "./3-input-label-container";
 
 
 export type CBS_InputLabelSaveOptions = CBS_Options & {

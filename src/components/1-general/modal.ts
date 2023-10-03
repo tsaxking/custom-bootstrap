@@ -1,11 +1,11 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_Button } from "./1-button.ts";
-import { CBS_H5 } from "../0-text/header.ts";
-import { CBS_Text } from "../0-text/1-text.ts";
-import { CBS_Class } from "../../1-main/classes.ts";
-import { CBS_Size } from "../../1-main/enums.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Button } from "./1-button";
+import { CBS_H5 } from "../0-text/header";
+import { CBS_Text } from "../0-text/1-text";
+import { CBS_Class } from "../../1-main/classes";
+import { CBS_Size } from "../../1-main/enums";
 
 
 

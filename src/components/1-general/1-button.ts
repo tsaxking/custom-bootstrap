@@ -1,7 +1,7 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Class } from "../../1-main/classes.ts";
-import { CBS_Color, CBS_Size } from "../../1-main/enums.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Class } from "../../1-main/classes";
+import { CBS_Color, CBS_Size } from "../../1-main/enums";
 
 
 /**

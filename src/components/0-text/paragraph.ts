@@ -1,6 +1,6 @@
-import { CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Text } from "./1-text.ts";
+import { CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Text } from "./1-text";
 
 
 /**

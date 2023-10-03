@@ -1,6 +1,6 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import { CBS_Class } from "../../1-main/classes.ts";
-import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import { CBS_Class } from "../../1-main/classes";
+import { CBS_Color, CBS_Align, CBS_Breakpoint, CBS_Icons, CBS_Size, CBS_Weight } from "../../1-main/enums";
 
 
 /**

@@ -1,11 +1,11 @@
-import { CBS_ListenerCallback, CBS_Listener } from "../events/listener.ts";
-import { CBS_Event } from "../events/events.ts";
-import CBS from "./1-main.ts";
-import { CBS_Color } from "../1-main/enums.ts";
+import { CBS_ListenerCallback, CBS_Listener } from "../events/listener";
+import { CBS_Event } from "../events/events";
+import CBS from "./1-main";
+import { CBS_Color } from "../1-main/enums";
 
-import { CBS_ParameterValue, CBS_Parameters } from "./1-main.ts";
-import { CBS_Class } from "../1-main/classes.ts";
-import { CBS_Component } from "./3-components.ts";
+import { CBS_ParameterValue, CBS_Parameters } from "./1-main";
+import { CBS_Class } from "../1-main/classes";
+import { CBS_Component } from "./3-components";
 
 /**
  * Generic Node

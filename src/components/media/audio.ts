@@ -1,10 +1,10 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_H5 } from "../0-text/header.ts";
-import { CBS_CardBody } from "../1-general/card.ts";
-import { CBS_Image } from "./image.ts";
-import { CBS_MaterialIcon } from "../../z-extensions/material-icons.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_H5 } from "../0-text/header";
+import { CBS_CardBody } from "../1-general/card";
+import { CBS_Image } from "./image";
+import { CBS_MaterialIcon } from "../../z-extensions/material-icons";
 
 
 

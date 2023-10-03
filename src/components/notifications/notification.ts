@@ -1,8 +1,8 @@
-import { CBS_Options } from "../../1-main/2-element.ts";
-import { CBS_Component } from "../../1-main/3-components.ts";
-import { CBS_Color } from "../../1-main/enums.ts";
-import { CBS_Toast } from "./toast.ts";
-import { CBS_Alert } from "./alert.ts";
+import { CBS_Options } from "../../1-main/2-element";
+import { CBS_Component } from "../../1-main/3-components";
+import { CBS_Color } from "../../1-main/enums";
+import { CBS_Toast } from "./toast";
+import { CBS_Alert } from "./alert";
 
 
 export type CBS_NotificationOptions = CBS_Options & {

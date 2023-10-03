@@ -1,8 +1,8 @@
-import { CBS_Element, CBS_Options } from "../../1-main/2-element.ts";
-import CBS from "../../1-main/1-main.ts";
-import { CBS_BreakpointMap } from "./col.ts";
-import { CBS_Row } from "./row.ts";
-import { CBS_Class } from "../../1-main/classes.ts";
+import { CBS_Element, CBS_Options } from "../../1-main/2-element";
+import CBS from "../../1-main/1-main";
+import { CBS_BreakpointMap } from "./col";
+import { CBS_Row } from "./row";
+import { CBS_Class } from "../../1-main/classes";
 
 
 
